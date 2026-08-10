@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-5588bfec-4a2c-478b-b965-0a1c6f9e0ae4/styles.css">
+<script src="_ds/organic-5588bfec-4a2c-478b-b965-0a1c6f9e0ae4/_ds_bundle.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400..700&display=swap" rel="stylesheet">
+<style>body{margin:0;--bg:var(--color-bg);--fg:var(--color-text);--hd:var(--color-text);--mut:var(--color-neutral-600);--card:#fffdf8;--card2:var(--color-neutral-100);--line:var(--color-neutral-300);--acc:var(--color-accent);--accDeep:var(--color-accent-700);--accSoft:var(--color-accent-100);--sage:var(--color-accent-2);--sageSoft:var(--color-accent-2-100);--sageDeep:var(--color-accent-2-800);--onSage:#fff;--dockBg:#fffdf8;--dockOn:var(--color-accent-2);--dockOnFg:#fff;--dockFg:var(--color-neutral-600);--dockLine:var(--color-neutral-200);--ok:var(--color-accent-2-700);--bad:var(--color-accent-800)}:root{--font-heading:'Bricolage Grotesque',sans-serif}a{color:var(--accDeep,var(--color-accent-700))}a:hover{opacity:.8}</style>
+</helmet>
+<div style="width:1280px;height:860px;position:relative;background:var(--bg);font-family:var(--font-body);color:var(--fg);overflow:hidden">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:28px 48px 0 122px">
+    <div>
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:30px;color:var(--hd)">Review the sweep</div>
+      <div style="font-size:14px;color:var(--mut);margin-top:4px">19 targets · uncheck anything you want to keep</div>
+    </div>
+    <div style="display:flex;gap:28px;text-align:right">
+      <div><div style="font-family:var(--font-heading);font-weight:700;font-size:32px;color:var(--accDeep)">$87.00</div><div style="font-size:12.5px;color:var(--mut)">saved / month</div></div>
+      <div><div style="font-family:var(--font-heading);font-weight:700;font-size:32px;color:var(--sageDeep)">6,214</div><div style="font-size:12.5px;color:var(--mut)">emails / year removed</div></div>
+    </div>
+  </div>
+  <div style="display:flex;gap:20px;padding:20px 48px 0 122px">
+    <div style="flex:1;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line)">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)">Executing · 7 of 19 done</span>
+        <div style="width:220px;height:7px;border-radius:999px;background:var(--card2);overflow:hidden"><div style="width:37%;height:100%;background:var(--sage);border-radius:999px"></div></div>
+      </div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="9">
+        <div style="display:grid;grid-template-columns:44px 1.5fr 1fr .8fr 1.3fr;align-items:center;padding:11px 22px;font-size:13.5px;border-bottom:1px solid var(--line);opacity:{{ r.op }}">
+          <span style="width:18px;height:18px;border-radius:6px;border:2px solid {{ r.ckBorder }};background:{{ r.ckBg }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;cursor:pointer">{{ r.ck }}</span>
+          <span style="font-weight:600;color:var(--hd)">{{ r.name }}</span>
+          <span style="color:var(--mut)">{{ r.kind }}</span>
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ r.gain }}</span>
+          <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:{{ r.stFg }}"><span style="width:7px;height:7px;border-radius:999px;background:{{ r.stDot }}"></span>{{ r.st }}</span>
+        </div>
+      </sc-for>
+      <div style="padding:11px 22px;font-size:13px;color:var(--mut)">…10 more queued</div>
+    </div>
+    <div style="width:330px;display:flex;flex-direction:column;gap:12px">
+      <div style="background:var(--accSoft);border-radius:var(--radius-lg);padding:20px 22px">
+        <div style="display:flex;align-items:center;gap:9px;font-weight:800;color:var(--accDeep);font-size:14px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+          2 critical services excluded
+        </div>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--fg)">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span>iCloud+ — backups, photos</span><a href="#" style="font-size:12px;font-weight:700;text-decoration:none">include</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span>Dropbox — shared team folder</span><a href="#" style="font-size:12px;font-weight:700;text-decoration:none">include</a></div>
+        </div>
+        <div style="font-size:12px;color:var(--accDeep);margin-top:12px">Including one triggers its own confirmation.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow-sm)">
+        <div style="font-size:13px;color:var(--mut);line-height:1.55">One-click unsubscribes run instantly. Cancellations open their playbook or agent, one at a time, and report back here.</div>
+        <button style="width:100%;margin-top:14px;cursor:pointer;background:transparent;color:var(--fg);font-family:var(--font-body);font-size:14px;font-weight:700;padding:12px 0;border-radius:999px;border:2px solid var(--line)" style-hover="background:var(--card2)">Pause sweep</button>
+      </div>
+    </div>
+  </div>
+  <dc-import name="Rail" active="Home" style="position:absolute;left:0;top:0;bottom:0;width:86px" hint-size="86px,100%"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  renderVals() {
+    const R = (name, kind, gain, st) => {
+      const map = {
+        done: {stFg: 'var(--ok)', stDot: 'var(--dotOk)', st: 'done · evidence', op: '.66', ckBg: 'var(--sage)', ckBorder: 'var(--sage)', ck: '✓'},
+        running: {stFg: 'var(--accDeep)', stDot: 'var(--acc)', st: 'running…', op: '1', ckBg: 'var(--sage)', ckBorder: 'var(--sage)', ck: '✓'},
+        failed: {stFg: 'var(--bad)', stDot: 'var(--acc)', st: 'failed · retry', op: '1', ckBg: 'var(--sage)', ckBorder: 'var(--sage)', ck: '✓'},
+        queued: {stFg: 'var(--mut)', stDot: 'var(--line)', st: 'queued', op: '1', ckBg: 'var(--sage)', ckBorder: 'var(--sage)', ck: '✓'},
+        kept: {stFg: 'var(--mut)', stDot: 'var(--line)', st: 'kept', op: '.55', ckBg: 'transparent', ckBorder: 'var(--line)', ck: ''}
+      };
+      return {name, kind, gain, ...map[st]};
+    };
+    return { rows: [
+      R('The Dispatch', 'newsletter', '−728/yr', 'done'),
+      R('LinkedIn', 'newsletter', '−572/yr', 'done'),
+      R('Groupon', 'newsletter', '−468/yr', 'done'),
+      R('Scribd', 'subscription', '$9.99/mo', 'running'),
+      R('Hulu', 'subscription', '$17.99/mo', 'queued'),
+      R('Audible', 'subscription', '$14.95/mo', 'queued'),
+      R('Bandcamp Weekly', 'newsletter', '−52/yr', 'failed'),
+      R('Medium Daily Digest', 'newsletter', '−364/yr', 'queued'),
+      R('NYT Cooking', 'newsletter', '−156/yr', 'kept')
+    ]};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-5588bfec-4a2c-478b-b965-0a1c6f9e0ae4/styles.css">
+<script src="_ds/organic-5588bfec-4a2c-478b-b965-0a1c6f9e0ae4/_ds_bundle.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400..700&display=swap" rel="stylesheet">
+<style>body{margin:0;--bg:var(--color-bg);--fg:var(--color-text);--hd:var(--color-text);--mut:var(--color-neutral-600);--card:#fffdf8;--card2:var(--color-neutral-100);--line:var(--color-neutral-300);--acc:var(--color-accent);--accDeep:var(--color-accent-700);--accSoft:var(--color-accent-100);--sage:var(--color-accent-2);--sageSoft:var(--color-accent-2-100);--sageDeep:var(--color-accent-2-800);--onSage:#fff;--dotOk:var(--color-accent-2);--dockBg:#fffdf8;--dockOn:var(--color-accent-2);--dockOnFg:#fff;--dockFg:var(--color-neutral-600);--dockLine:var(--color-neutral-200)}:root{--font-heading:'Bricolage Grotesque',sans-serif}a{color:var(--accDeep,var(--color-accent-700))}a:hover{opacity:.8}</style>
+</helmet>
+<div style="width:1280px;height:860px;position:relative;background:var(--bg);font-family:var(--font-body);color:var(--fg);overflow:hidden">
+  <div style="display:flex;align-items:center;gap:14px;padding:26px 48px 0 122px">
+    <span style="display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--mut);cursor:pointer" style-hover="color:var(--fg)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6 6-6-6 6-6"></path></svg>Subscriptions
+    </span>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px;padding:18px 48px 0 122px">
+    <div style="width:64px;height:64px;border-radius:999px;background:var(--sage);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:700;font-size:22px">NY</div>
+    <div style="flex:1">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:30px;color:var(--hd)">NYTimes</span>
+        <span style="font-size:11px;font-weight:800;color:var(--accDeep);background:var(--accSoft);padding:3px 10px;border-radius:999px">price ↑ 31% this year</span>
+      </div>
+      <div style="font-size:13.5px;color:var(--mut);margin-top:3px">billing@nytimes.com · monthly · member since Mar 2021</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:40px;color:var(--hd)">$17.00<span style="font-size:17px;color:var(--mut)">/mo</span></div>
+      <div style="font-size:13px;color:var(--mut)">last charged Aug 1 · $204/yr</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:20px;padding:24px 48px 0 122px">
+    <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 24px;box-shadow:var(--shadow-sm)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--hd)">Spend history</span>
+          <span style="font-size:12px;color:var(--mut)">2021 → today</span>
+        </div>
+        <svg width="100%" height="120" viewBox="0 0 640 120" preserveAspectRatio="none" style="margin-top:12px">
+          <path d="M0 96 L120 96 L120 84 L300 84 L300 68 L480 68 L480 40 L640 40" fill="none" stroke="var(--acc)" stroke-width="3"></path>
+          <path d="M0 96 L120 96 L120 84 L300 84 L300 68 L480 68 L480 40 L640 40 L640 120 L0 120 Z" fill="var(--accSoft)" opacity=".6"></path>
+        </svg>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--mut);font-family:ui-monospace,Menlo,monospace;margin-top:6px"><span>$8.00</span><span>$9.99</span><span>$13.00</span><span>$17.00</span></div>
+      </div>
+      <div style="display:flex;gap:20px">
+        <div style="flex:1;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 24px;box-shadow:var(--shadow-sm)">
+          <span style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--hd)">Email volume</span>
+          <div style="display:flex;align-items:flex-end;gap:6px;height:82px;margin-top:14px">
+            <sc-for list="{{ bars }}" as="b" hint-placeholder-count="12">
+              <div style="flex:1;height:{{ b.h }};background:var(--sage);border-radius:6px 6px 0 0;opacity:{{ b.o }}"></div>
+            </sc-for>
+          </div>
+          <div style="font-size:12px;color:var(--mut);margin-top:8px">390 emails/yr · mostly marketing, 7% receipts</div>
+        </div>
+        <div style="flex:1;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 24px;box-shadow:var(--shadow-sm)">
+          <span style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--hd)">Price changes</span>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:9px;font-size:13.5px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--mut)">May 2026</span><span style="font-family:ui-monospace,Menlo,monospace;font-weight:700;color:var(--accDeep)">$13.00 → $17.00</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--mut)">Jan 2024</span><span style="font-family:ui-monospace,Menlo,monospace">$9.99 → $13.00</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--mut)">Aug 2022</span><span style="font-family:ui-monospace,Menlo,monospace">$8.00 → $9.99</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 24px;box-shadow:var(--shadow-sm)">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--hd)">Receipts</span>
+        <div style="margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13px;display:flex;flex-direction:column">
+          <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--line)"><span>Aug 1, 2026 — Your receipt from The New York Times</span><span style="display:flex;gap:16px"><span>$17.00</span><a href="#" style="font-family:var(--font-body);font-size:12px;font-weight:700;text-decoration:none">view email</a></span></div>
+          <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--line)"><span>Jul 1, 2026 — Your receipt from The New York Times</span><span style="display:flex;gap:16px"><span>$17.00</span><a href="#" style="font-family:var(--font-body);font-size:12px;font-weight:700;text-decoration:none">view email</a></span></div>
+          <div style="display:flex;justify-content:space-between;padding:7px 0"><span>Jun 1, 2026 — Your receipt from The New York Times</span><span style="display:flex;gap:16px"><span>$17.00</span><a href="#" style="font-family:var(--font-body);font-size:12px;font-weight:700;text-decoration:none">view email</a></span></div>
+        </div>
+      </div>
+    </div>
+    <div style="width:340px;display:flex;flex-direction:column;gap:12px">
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm)">
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--hd)">End it</div>
+        <button style="width:100%;margin-top:14px;border:none;cursor:pointer;background:var(--acc);color:#fff;font-family:var(--font-body);font-size:14.5px;font-weight:700;padding:13px 0;border-radius:999px;box-shadow:var(--shadow-sm)" style-hover="filter:brightness(1.08)">Cancel via playbook</button>
+        <button style="width:100%;margin-top:9px;cursor:pointer;background:transparent;color:var(--fg);font-family:var(--font-body);font-size:14.5px;font-weight:600;padding:12px 0;border-radius:999px;border:2px solid var(--line)" style-hover="background:var(--card2)">Unsubscribe from emails</button>
+        <button style="width:100%;margin-top:9px;cursor:pointer;background:transparent;color:var(--fg);font-family:var(--font-body);font-size:14.5px;font-weight:600;padding:12px 0;border-radius:999px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;gap:8px" style-hover="background:var(--card2)">Cancel via agent<span style="font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accDeep);background:var(--accSoft);padding:2px 8px;border-radius:999px">experimental</span></button>
+        <div style="font-size:12.5px;color:var(--mut);margin-top:14px;line-height:1.5">Playbook: 4 steps, ~3 minutes. Community-verified 2 weeks ago.</div>
+      </div>
+      <div style="background:var(--sageSoft);border-radius:var(--radius-lg);padding:18px 20px;font-size:13px;color:var(--sageDeep);line-height:1.55">
+        <strong>Worth it?</strong> You opened 3 NYTimes emails this year. At $204/yr, each open cost you $68.
+      </div>
+    </div>
+  </div>
+  <dc-import name="Rail" active="Subs" style="position:absolute;left:0;top:0;bottom:0;width:86px" hint-size="86px,100%"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  renderVals() {
+    const hs = [34, 48, 28, 55, 62, 40, 71, 58, 66, 45, 78, 82];
+    return { bars: hs.map((h, i) => ({h: h + 'px', o: i === hs.length - 1 ? '1' : '.55'})) };
+  }
+}
+</script>
+</body>
+</html>

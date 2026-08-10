@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/organic-5588bfec-4a2c-478b-b965-0a1c6f9e0ae4/styles.css">
+<script src="_ds/organic-5588bfec-4a2c-478b-b965-0a1c6f9e0ae4/_ds_bundle.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400..700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#eae3d4;font-family:Figtree,sans-serif}a{color:#8f4c1e}a:hover{color:#c67139}
+.sec{padding:56px 60px 40px;border-bottom:1px solid rgba(32,30,29,.1)}
+.shd{display:flex;align-items:baseline;gap:14px;margin:0 0 22px}
+.snum{font:800 11px ui-monospace,Menlo,monospace;padding:4px 9px;background:#201e1d;color:#f5ead8;border-radius:6px}
+.sname{font:700 17px 'Bricolage Grotesque',sans-serif;color:#201e1d}
+.snote{font:400 12.5px Figtree,sans-serif;color:rgba(32,30,29,.55)}
+.row{display:flex;flex-wrap:wrap;gap:34px;align-items:flex-start}
+.opt{display:flex;flex-direction:column;gap:10px}
+.olabel{font:700 11px Figtree,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(32,30,29,.5)}
+.frame{border-radius:22px;overflow:hidden;box-shadow:0 2px 14px rgba(32,30,29,.14);border:1px solid rgba(32,30,29,.1)}
+.thL{--onSage:#fff;--band:var(--color-accent-2-800);--bandFg:var(--color-accent-2-200);--dotOk:var(--color-accent-2);--bg:var(--color-bg);--fg:var(--color-text);--hd:var(--color-text);--mut:var(--color-neutral-600);--card:#fffdf8;--card2:var(--color-neutral-100);--line:var(--color-neutral-300);--acc:var(--color-accent);--accDeep:var(--color-accent-700);--accSoft:var(--color-accent-100);--sage:var(--color-accent-2);--sageSoft:var(--color-accent-2-100);--sageDeep:var(--color-accent-2-800);--onSage:#fff;--dotOk:var(--color-accent-2);--dockBg:#fffdf8;--dockOn:var(--color-accent-2);--dockOnFg:#fff;--dockFg:var(--color-neutral-600);--dockLine:var(--color-neutral-200);--ok:var(--color-accent-2-700);--bad:var(--color-accent-800);--b1:var(--color-accent-2-100);--b1f:var(--color-accent-2-900);--b2:var(--color-accent);--b2f:#fff;--b3:var(--color-accent-2);--b3f:#fff;--b4:var(--color-neutral-200);--b4f:var(--color-text)}
+.thD{--onSage:var(--color-neutral-900);--band:var(--color-neutral-800);--bandFg:var(--color-neutral-300);--dotOk:var(--color-accent-2-400);--bg:var(--color-neutral-900);--fg:var(--color-neutral-100);--hd:#fff;--mut:var(--color-neutral-400);--card:var(--color-neutral-800);--card2:rgba(255,255,255,.06);--line:var(--color-neutral-700);--acc:var(--color-accent);--accDeep:var(--color-accent-300);--accSoft:rgba(198,113,57,.24);--sage:var(--color-accent-400);--sageSoft:var(--color-neutral-700);--sageDeep:var(--color-neutral-100);--dockBg:rgba(255,255,255,.08);--dockOn:#fff;--dockOnFg:var(--color-neutral-900);--dockFg:var(--color-neutral-300);--dockLine:var(--color-neutral-700);--ok:var(--color-accent-2-300);--bad:var(--color-accent-300);--b1:#f5ead8;--b1f:#201e1d;--b2:var(--color-accent);--b2f:#fff;--b3:var(--color-accent-700);--b3f:#fff;--b4:var(--color-neutral-700);--b4f:var(--color-neutral-100)}</style>
+</helmet>
+<section class="sec" id="intro" style="padding-bottom:30px">
+  <div style="max-width:880px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:38px;height:38px;border-radius:999px;background:#c67139;display:flex;align-items:center;justify-content:center">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"></path></svg>
+      </div>
+      <span style="font:700 26px 'Bricolage Grotesque',sans-serif;color:#201e1d">EmailTerminator — v0 screens</span>
+    </div>
+    <div style="font:400 13.5px/1.7 Figtree,sans-serif;color:rgba(32,30,29,.7);margin-top:14px">
+      All 12 app screens + landing page, light and dark, on the Organic system with Bricolage Grotesque headings. Direction from the picked candidate: <strong>bubbles = money</strong> (dashboard, with a bubble/table toggle on Subscriptions), <strong>rows = work</strong> everywhere else. Navigation is a left icon rail (short labels) with a context-aware action button pinned at its foot, plus a ⌘K command palette as accelerator. Dark theme is espresso (warm neutrals; green survives only as status dots). Money details set in monospace, receipt-style. Critical services get a prominent blocking confirm. Kill animation (spec): on unsubscribe/cancel success the row or bubble deflates with a spring, pops into a small "✓ saved $X" pill that flies to the rail's action button, and the hero totals count down.
+    </div>
+  </div>
+</section>
+<section class="sec" id="s00">
+  <div class="shd"><span class="snum">00</span><span class="sname">Landing page</span><span class="snote">show-the-money hero · live dashboard embed · privacy as architecture</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL" style="width:1280px"><dc-import name="S00 Landing" hint-size="1280px,3200px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD" style="width:1280px"><dc-import name="S00 Landing" hint-size="1280px,3200px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s01">
+  <div class="shd"><span class="snum">01</span><span class="sname">Welcome / source picker</span><span class="snote">no accounts · three sources · privacy statement</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S01 Welcome" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S01 Welcome" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s02">
+  <div class="shd"><span class="snum">02</span><span class="sname">Scan progress</span><span class="snote">live counts · cancelable · found-item ticker</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S02 Scan" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S02 Scan" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s03">
+  <div class="shd"><span class="snum">03</span><span class="sname">Dashboard</span><span class="snote">bubble map sized by spend · hero totals · bulk actions</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S03 Dashboard" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S03 Dashboard" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s03b">
+  <div class="shd"><span class="snum">03b</span><span class="sname">Command palette (⌘K)</span><span class="snote">jump anywhere, act on anything — accelerator, not primary nav</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S18 Command Palette" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S18 Command Palette" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s04">
+  <div class="shd"><span class="snum">04</span><span class="sname">Subscriptions list</span><span class="snote">table/bubble toggle · sort, filter, search · multi-select → dock action</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S04 Subscriptions" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S04 Subscriptions" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s05">
+  <div class="shd"><span class="snum">05</span><span class="sname">Newsletters list</span><span class="snote">frequency, volume, one-click availability · multi-select → dock action</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S05 Newsletters" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S05 Newsletters" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s06">
+  <div class="shd"><span class="snum">06</span><span class="sname">Service detail</span><span class="snote">spend + volume + price history · receipts with evidence · three exits</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S06 Service Detail" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S06 Service Detail" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s07">
+  <div class="shd"><span class="snum">07a</span><span class="sname">Cancellation — one-click result</span><span class="snote">per-sender result with evidence links</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S07 One-Click Result" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S07 One-Click Result" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s08">
+  <div class="shd"><span class="snum">07b</span><span class="sname">Cancellation — playbook</span><span class="snote">curated steps · mark done · community "improve" link</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S08 Playbook" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S08 Playbook" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s09">
+  <div class="shd"><span class="snum">07c</span><span class="sname">Cancellation — agent (experimental)</span><span class="snote">live timeline · pause / take over · logged clicks</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S09 Agent" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S09 Agent" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s10">
+  <div class="shd"><span class="snum">07+</span><span class="sname">Critical-service confirm</span><span class="snote">blocking modal · evidence of why it's critical · type-to-confirm</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S10 Critical Confirm" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S10 Critical Confirm" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s11">
+  <div class="shd"><span class="snum">08</span><span class="sname">Bulk action review</span><span class="snote">include/exclude · criticals excluded by default · live per-item progress</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S11 Bulk Review" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S11 Bulk Review" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s12">
+  <div class="shd"><span class="snum">09</span><span class="sname">Sources settings</span><span class="snote">per-source sync state · add / re-sync / disconnect</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S12 Sources" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S12 Sources" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s13">
+  <div class="shd"><span class="snum">10</span><span class="sname">Intelligence settings</span><span class="snote">three tiers · Tier 0 default · test connection</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S13 Intelligence" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S13 Intelligence" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s13a">
+  <div class="shd"><span class="snum">10b</span><span class="sname">General settings</span><span class="snote">appearance · sweep behavior · data location · erase</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S17 General" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S17 General" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s14">
+  <div class="shd"><span class="snum">11</span><span class="sname">Activity log</span><span class="snote">what, when, outcome · evidence links · filters</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S14 Activity" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S14 Activity" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s15">
+  <div class="shd"><span class="snum">12</span><span class="sname">Report an issue</span><span class="snote">exact prefilled GitHub issue · redacted, never message content</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S15 Report Issue" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S15 Report Issue" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+<section class="sec" id="s16" style="border-bottom:none">
+  <div class="shd"><span class="snum">SS</span><span class="sname">Shared states</span><span class="snote">empty states · errors · experimental + critical markers</span></div>
+  <div class="row">
+    <div class="opt"><span class="olabel">Light</span><div class="frame thL"><dc-import name="S16 Shared States" hint-size="1280px,860px"></dc-import></div></div>
+    <div class="opt"><span class="olabel">Dark</span><div class="frame thD"><dc-import name="S16 Shared States" hint-size="1280px,860px"></dc-import></div></div>
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

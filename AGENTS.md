@@ -13,3 +13,7 @@ The five default labels, each string equal to its role name. See `docs/agents/tr
 ### Domain docs
 
 Single-context: `CONTEXT.md` at the repo root plus `docs/adr/`. See `docs/agents/domain.md`.
+
+### Design references
+
+UI work follows `docs/design/screens.md` (screens, content, actions). Each screen links to its visual mockup in `docs/reference/design/`; the design tokens and usage rules live in `docs/reference/design/_ds/organic-*/`.
