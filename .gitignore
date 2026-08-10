@@ -1,0 +1,22 @@
+# Scratch space. Nothing here is authoritative — the four root documents are.
+.scratch/
+
+# Rust
+/target/
+**/*.rs.bk
+
+# Node / SvelteKit
+node_modules/
+/ui/.svelte-kit/
+/ui/build/
+
+# Tauri
+/app/gen/
+
+# Local fixtures that must never enter the repository:
+# real mail, the Takeout sample (PLAN.md 2.11), fetched stress corpora.
+*.mbox
+*.mbox.gz
+
+# OS
+.DS_Store

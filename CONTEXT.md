@@ -4,8 +4,29 @@ August 2026
 
 ## Origin
 
-A direct answer to Balaji's "THE EMAIL TERMINATOR" product request (Jul 2024).
-Full tweet text: docs/reference/balaji-email-terminator-tweet.md
+A direct answer to Balaji's "THE EMAIL TERMINATOR" product request
+([@balajis, 12 Jul 2024](https://x.com/balajis/status/1811590332657598604)):
+
+> THE EMAIL TERMINATOR
+>
+> Wanted: an AI tool that processes your inbox, lists every SaaS subscription
+> and newsletter, shows total amount billed and total number of emails sent by
+> that service, and allows you to one-click cancel.
+
+A [second tweet](https://x.com/balajis/status/1811596254918701373) gave 17
+implementation notes. The ones this product answers, in his order: build a
+privacy-preserving local version over mbox files; curate the cancellation
+process heavily, because many services make it hard on purpose; virtual cards
+so you need not log in everywhere; per-service relay addresses; big
+"unsubscribe all" and "cancel all" buttons that state the emails removed and
+the dollars saved; warn before cancelling things like AWS that break live
+sites; graph email volume and price history to expose creeping increases;
+resist ads and paid whitelisting; and combine deterministic mbox parsing,
+hard-coded heuristics, and AI parsing of unstructured content.
+
+Three of his notes are declined on purpose: a $99 one-time charge (the free
+product is the whole product), sender-pays-user schemes, and crypto billing.
+The hosted version he suggests first is deferred, not refused.
 
 ## Positioning
 
@@ -36,8 +57,8 @@ distribution, and reputation.
   discovery, spend, volume, and one-click unsubscribe. Models are optional
   tiers above it:
   1. No model — the complete first-run experience.
-  2. Local model (Gemma / Qwen / Ministral class) — long-tail
-     classification, messy receipt extraction.
+  2. Local model (Gemma 4 / Qwen 3.5 / Ministral 3 class, all Apache-2.0
+     and ungated) — long-tail classification, messy receipt extraction.
   3. BYOK cloud model — agentic browser cancellation. Providers:
      OpenAI-compatible, Anthropic-compatible, OpenRouter, DeepSeek, and
      similar endpoints.
@@ -51,8 +72,7 @@ distribution, and reputation.
 - **Ingestion ladder**: (1) mbox import (Google Takeout / Mail.app) as the
   zero-auth baseline; (2) IMAP with app password for live sync;
   (3) optional BYO Google OAuth client with guided setup (Hermes/OpenClaw
-  idiom). No shared OAuth client, no CASA burden.
-  Research: docs/reference/gmail-access-research.md
+  idiom). No shared OAuth client, no CASA burden. See `PLAN.md` 1.6.
 - **Dashboard**: every subscription and newsletter, total billed, email
   volume, historical graphs, "unsubscribe all" / "cancel all" with $-saved
   and emails-removed counts.
@@ -63,12 +83,15 @@ distribution, and reputation.
 - **Feedback**: no telemetry, no crash-report phone-home. Feedback flows
   through user-initiated prefilled GitHub issue links that never contain
   message content.
-- **Form**: Tauri desktop app with an embedded web UI, plus a headless
-  CLI / localhost mode from the same core. macOS first, Linux second,
-  Windows when cheap.
+- **Form**: Tauri desktop app with an embedded web UI. The domain logic is
+  a Rust library the app links in-process. No CLI, no localhost mode, no
+  daemon. macOS, Linux and Windows all ship at v0. See `PLAN.md` 1.2 and 1.4.
 - **Distribution**: shell installer (`curl | sh`, PowerShell one-liner)
-  and npm, from emailterminator.com. Never a browser download of the .app
-  (keeps installs quarantine-free). Unsigned at launch.
+  from emailterminator.com, with the GitHub Releases page as a documented
+  fallback. The installer path sets no quarantine and no Mark of the Web,
+  so an unsigned build launches clean. Installs land in user-owned
+  directories and update themselves silently. No npm and no Homebrew cask
+  while unsigned. See `PLAN.md` 1.4 and Part 9.
 
 ## Deferred (with triggers)
 
