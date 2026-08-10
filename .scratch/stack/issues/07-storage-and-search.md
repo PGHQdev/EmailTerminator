@@ -3,7 +3,7 @@
 Type: grilling
 Status: open
 Blocked by: 06
-ADR: docs/adr/0002-storage.md
+ADR: docs/adr/NNNN-storage.md (number assigned at resolution, in acceptance order)
 
 ## Question
 

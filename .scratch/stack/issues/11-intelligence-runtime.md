@@ -3,7 +3,7 @@
 Type: grilling
 Status: open
 Blocked by: 02, 06
-ADR: docs/adr/0006-intelligence-runtime.md
+ADR: docs/adr/NNNN-intelligence-runtime.md (number assigned at resolution, in acceptance order)
 
 ## Question
 

@@ -3,7 +3,7 @@
 Type: prototype
 Status: open
 Blocked by: —
-ADR: docs/adr/0005-ui-composition.md
+ADR: docs/adr/NNNN-ui-composition.md (number assigned at resolution, in acceptance order)
 
 ## Question
 

@@ -3,7 +3,7 @@
 Type: grilling
 Status: open
 Blocked by: 06
-ADR: docs/adr/0004-credential-storage.md
+ADR: docs/adr/NNNN-credential-storage.md (number assigned at resolution, in acceptance order)
 
 ## Question
 

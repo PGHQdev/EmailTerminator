@@ -258,3 +258,40 @@ API.
 - [list-unsubscribe](https://crates.io/crates/list-unsubscribe), [mailbox-formats](https://crates.io/crates/mailbox-formats)
 - RFCs: [2045](https://datatracker.ietf.org/doc/html/rfc2045), [2046](https://datatracker.ietf.org/doc/html/rfc2046), [2047](https://datatracker.ietf.org/doc/html/rfc2047), [2048](https://datatracker.ietf.org/doc/html/rfc2048), [2049](https://datatracker.ietf.org/doc/html/rfc2049), [2231](https://datatracker.ietf.org/doc/html/rfc2231), [2369](https://datatracker.ietf.org/doc/html/rfc2369), [3501](https://datatracker.ietf.org/doc/html/rfc3501), [8058](https://datatracker.ietf.org/doc/html/rfc8058)
 - [qmail mbox specification](http://qmail.org/qmail-manual-html/man5/mbox.html)
+
+## Correction (2026-08-10)
+
+The "Decision consequence" section above is wrong about Rust IMAP, and ticket 06
+was nearly decided on it. Verified the same day from the crates.io API and from
+extracted crate sources:
+
+| Crate | Latest | Published | 90-day downloads |
+|---|---|---|---|
+| [`async-imap`](https://github.com/chatmail/async-imap) | 0.11.3 | 2026-07-17 | 578,875 |
+| [`imap-proto`](https://github.com/djc/tokio-imap) | 0.16.7 | 2026-04-21 | 1,021,885 |
+| [`imap-codec`](https://github.com/duesee/imap-codec) / `imap-types` | 1.0.0 | 2026-07-19 | ~24,000 |
+| [`imap`](https://github.com/jonhoo/rust-imap) | 2.4.1 stable, 3.0.0-alpha.15 | alpha 2025-02-08 | 421,724 |
+
+`async-imap` has shipped eight releases since September 2024 on a regular
+cadence. Describing it as "effectively Delta Chat's internal dependency" with
+thin adoption understated it. The "looking for maintainers" notice belongs to
+`jonhoo/rust-imap` alone and does not generalize to the ecosystem.
+
+Feature coverage, counted in the extracted sources of `imap-proto` 0.16.7 and
+`async-imap` 0.11.3: MODSEQ and CONDSTORE, VANISHED and QRESYNC, UIDPLUS,
+`BODY.PEEK`, IDLE, and the Gmail extensions. `imap-proto/src/parser/gmail.rs`
+parses `X-GM-LABELS`, `X-GM-MSGID` and `X-GM-THRID` with tests, and `async-imap`
+exposes them as typed accessors on FETCH responses. These are the features the
+section above credits to ImapFlow as its decisive advantage. Rust has them.
+
+Two further measured corrections, from the benchmark recorded in
+`docs/adr/0001-core-language.md`:
+
+- Rust `mail-parser` parses at 220 MB/s against `postal-mime` at 18.2 MB/s and
+  `mailparser` at 4.0 MB/s, at 4.5 MB resident against 127 MB and 156 MB. The
+  "near parity" verdict on MIME holds only for feature coverage, never for cost.
+- `mailparser` returned nothing for `list-unsubscribe` across 122,800 messages
+  in that run, while `postal-mime` found every one. Unexplained, and recorded
+  because this survey used download counts as an adoption signal.
+
+The mbox and RFC 8058 findings above stand unchanged.

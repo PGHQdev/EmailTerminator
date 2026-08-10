@@ -25,11 +25,30 @@ before a builder starts.
   prototype tickets.
 - Each decision ticket closes by writing `docs/adr/NNNN-<slug>.md`, numbered
   from `0001`. Research tickets write to `docs/reference/` and produce no ADR.
-- Ticket 06 is the root. Eleven tickets wait on it.
+- Ticket 06 is the root, and is resolved: the core is Rust. ADR 0001.
+- Standing acceptance criterion from 06, inherited by every ticket that touches
+  the scan path: a 10 GB mbox scans in under ten minutes with flat memory.
+- Standing scope facts settled during 06: IMAP live sync is in v0; the agentic
+  cancellation driver is a separate opt-in process fetched on enable, and may be
+  TypeScript.
+- Standing scope facts settled during 08: v0 delivers the desktop app only. No
+  CLI, no localhost web UI, no daemon, no bound port. Nothing runs while the app
+  is closed.
+- ADR numbers are assigned at resolution, in acceptance order. Tickets name a
+  slug, not a number.
+- Blocking edges are rewired when they turn out to be wrong. 2026-08-10: cut
+  11 to 12, reversed 12 and 13, and split the old 17 into a pull-request
+  pipeline (17) and release automation (21).
 
 ## Decisions so far
 
 <!-- one line per closed ticket: gist + link -->
+
+- [Browser automation choice](issues/13-browser-automation-choice.md) — **agentic cancellation runs through a Chrome extension using `chrome.debugger` in the user's own profile**; the Rust core drives and the extension relays CDP over native messaging to a Unix socket. Store listing plus supported sideload. Playwright is out of the project entirely. ADR 0003.
+
+- [Desktop and CLI seam](issues/08-desktop-cli-seam.md) — **there is no seam: v0 is the desktop app alone.** No CLI, no localhost UI, no daemon, no bound port. Workspace of `core` (no Tauri) and `app` (thin Tauri command layer); progress streams over Tauri Channels; single instance, so SQLite has one writer. ADR 0002.
+
+- [Core language: Rust core or TypeScript/Bun core](issues/06-core-language.md) — **Rust holds the domain logic**, one binary for the app core and the CLI, in-process with Tauri. TypeScript is confined to the SvelteKit UI and the opt-in automation driver. Measured 12x throughput and 28x lower memory, and the survey's Rust-IMAP weakness turned out to be false. ADR 0001.
 
 - [Test mail corpora](issues/05-mail-corpus-survey.md) — no public corpus holds modern SaaS receipts; Enron and SpamAssassin are not licence-clean and Enron carries real PII. A seeded synthetic generator with committed .eml plus golden JSON is the primary fixture source; Untroubled is the one unrestricted archive, usable as stress input only.
 
@@ -43,6 +62,13 @@ before a builder starts.
 
 ## Not yet specified
 
+- `CONTEXT.md` now misstates the v0 form and the distribution channels: it names
+  a headless CLI and a localhost mode that ADR 0002 removed, and an npm channel
+  whose artifact was the CLI. Corrections land once ticket 16 settles what
+  actually ships.
+- How we manage `mail-parser`'s open defects on the scan path: issue #156
+  (silent multipart truncation) and #155 (panic on a folded `Received` header).
+  Pin, patch, fork, or upstream. Graduates once ingest is being built.
 - Diagnostics and error reporting without telemetry — what the "Report an
   issue" screen (S15) can capture, and what a local log looks like. Shape
   depends on 06 and 08.

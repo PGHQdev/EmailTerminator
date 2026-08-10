@@ -3,7 +3,7 @@
 Type: grilling
 Status: open
 Blocked by: —
-ADR: docs/adr/0009-community-data-format.md
+ADR: docs/adr/NNNN-community-data-format.md (number assigned at resolution, in acceptance order)
 
 ## Question
 

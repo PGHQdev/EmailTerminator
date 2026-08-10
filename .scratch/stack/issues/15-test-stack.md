@@ -3,7 +3,7 @@
 Type: grilling
 Status: open
 Blocked by: 05, 06
-ADR: docs/adr/0010-test-stack.md
+ADR: docs/adr/NNNN-test-stack.md (number assigned at resolution, in acceptance order)
 
 ## Question
 
