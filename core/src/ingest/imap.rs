@@ -257,6 +257,13 @@ async fn sync_once(
                 })
                 .try_collect()
                 .await?;
+            // A FETCH cut off by a closed connection ends like a complete one:
+            // async-imap stops the stream at end of input without an error.
+            // A short batch is either expunged mail or a lost connection, and
+            // a NOOP tells them apart before anything is committed.
+            if batch.len() < chunk.len() {
+                session.noop().await?;
+            }
             let count = batch.len() as u64;
             blocking(target.clone(), {
                 let folder = folder.clone();
