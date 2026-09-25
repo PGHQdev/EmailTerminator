@@ -68,8 +68,10 @@ CREATE TABLE message (
     list_unsubscribe        TEXT,
     list_unsubscribe_post   INTEGER NOT NULL DEFAULT 0,
     list_id                 TEXT,
-    is_bulk                 INTEGER NOT NULL DEFAULT 0,
-    has_dkim                INTEGER NOT NULL DEFAULT 0,
+    -- List or bulk mail that is not a receipt (Extraction::is_list).
+    is_list                 INTEGER NOT NULL DEFAULT 0,
+    -- DKIM d= domains, comma-separated; RFC 8058 eligibility reads them at M3.
+    dkim_domains            TEXT NOT NULL DEFAULT '',
     UNIQUE (source_id, mailbox_id, locator)
 );
 CREATE INDEX message_sender ON message (sender_id);

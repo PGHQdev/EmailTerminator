@@ -1,3 +1,6 @@
+// Each test crate uses a different part of the stub.
+#![allow(dead_code)]
+
 //! A scripted IMAP server on loopback (PLAN.md 2.9). It models one mailbox per
 //! provider profile, answers only the commands the client sends, records every
 //! command, and can drop the connection mid-fetch or refuse the password.

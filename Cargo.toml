@@ -19,6 +19,7 @@ dirs = "=7.0.0"
 futures = "=0.3.34"
 getrandom = "=0.4.3"
 mail-parser = { version = "=0.11.9", features = ["full_encoding"] }
+psl = "=2.1.238"
 regex = "=1.13.1"
 rustls = { version = "=0.23.45", default-features = false, features = ["ring", "std", "tls12", "logging"] }
 rustls-platform-verifier = "=0.7.1"

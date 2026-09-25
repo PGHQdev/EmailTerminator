@@ -9,7 +9,7 @@ mod receipt;
 use mail_parser::{MessageParser, PartType};
 use serde::{Deserialize, Serialize};
 
-pub use headers::rfc3339_utc;
+pub use headers::{parse_rfc3339_utc, rfc3339_utc};
 pub use receipt::is_platform;
 
 /// The facts taken from one raw message. No body text survives past this.

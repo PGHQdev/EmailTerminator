@@ -88,6 +88,25 @@ pub fn rfc3339_utc(timestamp: i64) -> String {
     )
 }
 
+/// The inverse of [`rfc3339_utc`], for dates this crate wrote.
+pub fn parse_rfc3339_utc(value: &str) -> Option<i64> {
+    let b = value.as_bytes();
+    if b.len() != 20 || b[4] != b'-' || b[7] != b'-' || b[10] != b'T' || b[19] != b'Z' {
+        return None;
+    }
+    let num = |r: std::ops::Range<usize>| value.get(r)?.parse::<i64>().ok();
+    let (y, m, d) = (num(0..4)?, num(5..7)?, num(8..10)?);
+    let (h, min, s) = (num(11..13)?, num(14..16)?, num(17..19)?);
+    let y = y - i64::from(m <= 2);
+    let era = y.div_euclid(400);
+    let yoe = y.rem_euclid(400);
+    let mp = (m + 9) % 12;
+    let doy = (153 * mp + 2) / 5 + d - 1;
+    let doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+    let days = era * 146_097 + doe - 719_468;
+    Some(days * 86_400 + h * 3600 + min * 60 + s)
+}
+
 /// Howard Hinnant's days-to-civil algorithm.
 fn civil_from_days(z: i64) -> (i64, u32, u32) {
     let z = z + 719_468;
@@ -111,5 +130,13 @@ mod tests {
         assert_eq!(rfc3339_utc(0), "1970-01-01T00:00:00Z");
         assert_eq!(rfc3339_utc(1_772_357_400), "2026-03-01T09:30:00Z");
         assert_eq!(rfc3339_utc(951_782_400), "2000-02-29T00:00:00Z");
+    }
+
+    #[test]
+    fn parsing_inverts_formatting() {
+        for t in [0, 951_782_400, 1_772_357_400, -86_400, 4_102_444_799] {
+            assert_eq!(parse_rfc3339_utc(&rfc3339_utc(t)), Some(t));
+        }
+        assert_eq!(parse_rfc3339_utc("2026-03-01"), None);
     }
 }
