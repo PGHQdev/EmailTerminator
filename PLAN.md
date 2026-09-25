@@ -518,12 +518,24 @@ through `imap-proto`.
   `AUTHENTICATE XOAUTH2` for Outlook.com and the BYO Gmail client, and
   per-provider quirk handling for Gmail, iCloud, Fastmail, Yahoo and Outlook.
   Outlook.com takes OAuth only (1.6); the other four take an app password.
-- **CONDSTORE/QRESYNC are used when the server advertises them**, with a
-  UID-range fallback when it does not. Incremental resync is needed at v0, not
-  later: nothing syncs while the app is closed (1.2), so every launch
-  performs a catch-up and a full re-fetch each time is not viable.
-- Fetch is `BODY.PEEK`, never `BODY`. Reading a user's mail must not mark it
-  read.
+- **Incremental resync is a UID range**, `UID SEARCH UID n:*` from the
+  highest UID committed per folder, reset when `UIDVALIDITY` changes. It is
+  needed at v0: nothing syncs while the app is closed (1.2), so every launch
+  catches up. CONDSTORE and QRESYNC are not used. They report flag changes and
+  expunges, and neither matters here: a stored row outlives its message (Part
+  4). An earlier version of this section planned them; M1 found they would add
+  round trips and change no result.
+- A fetched batch and its resume point commit in one transaction, so a dropped
+  connection resumes without duplicates.
+- Folders open with `EXAMINE`, and fetch is `BODY.PEEK[]<0.2097152>`, never
+  `BODY`. Reading a user's mail must not mark it read, and the first 2 MB of a
+  message carry its headers and text; the rest of a large attachment is never
+  downloaded.
+- Gmail reads `\All` alone, so a message in several labels is fetched once.
+  Elsewhere every folder except sent, drafts, trash and junk, by special-use
+  attribute or common name. The account owner's own mail is skipped.
+- TLS is `rustls` with the `ring` provider and `rustls-platform-verifier`, so
+  the OS trust store decides, as it does for the user's mail client.
 
 ### 2.4 UI composition (was 10)
 
@@ -735,9 +747,13 @@ where contributing needs nothing but a text editor.
 - **Regression rule**: every parser bug fixed adds its message to the fixture
   set as a redacted synthetic reconstruction. Real mail never enters the
   repository.
-- **IMAP is faked by a scripted stub server** on loopback that replays recorded
-  response transcripts, one per provider quirk (Gmail, iCloud, Fastmail,
-  Yahoo, Outlook). Provider HTTP endpoints — OAuth token endpoints, Polar, and
+- **IMAP is faked by a stub server** on loopback
+  (`core/tests/support/imap_stub.rs`) that models one mailbox per provider
+  profile (Gmail, iCloud, Fastmail, Yahoo, Outlook): their folder names,
+  special-use attributes and sign-in refusal text. It records every command
+  and can drop the connection mid-fetch. A model replaced the planned
+  transcript replay at M1, because a replay breaks whenever the client's
+  command order changes. Provider HTTP endpoints — OAuth token endpoints, Polar, and
   our Worker — are faked with `wiremock`.
 - **Server**: `vitest` against the Worker with Miniflare's local D1.
 - **UI**: `vitest` plus `@testing-library/svelte` for component logic. The
@@ -801,8 +817,9 @@ Cargo.toml                  workspace: core, app, native-host, et-data
 core/                       the domain. No Tauri dependency.
   src/
     ingest/                 IMAP client, Outlook and Gmail OAuth, mbox and Maildir readers
-    parse/                  MIME, List-Unsubscribe grammar, receipt extraction
-    detect/                 subscription and newsletter classification
+    extract/                one message to facts: headers, list signals, receipts
+    scan/                   store fetched mail; rebuild senders, services, charges, rollups
+    source/                 connected mailboxes and files (S12)
     store/                  rusqlite, schema, migrations, FTS
     action/                 unsubscribe, playbook execution, bulk runner
     skill/                  the three-stage pipeline and the step executor
@@ -813,6 +830,8 @@ core/                       the domain. No Tauri dependency.
     crypt/                  SQLCipher keying, HKDF subkeys, sealed files
   migrations/               NNN-name.sql, applied by user_version
   tests/corpus/             seeded generator plus goldens
+  tests/support/            the IMAP stub server
+vendor/mail-parser/         mail-parser with the #156 patch (M1)
 app/                        the Tauri binary. Thin command layer over core.
   src/                      commands, Channel streams, browser-file writer
   tauri.conf.json           version omitted; inherits from Cargo.toml
@@ -849,8 +868,14 @@ Dependabot move them.
 
 | Dependency | Version | Note |
 |---|---|---|
-| `mail-parser` | 0.11.5 | Pin exactly; carries issues #155 and #156 (M1) |
-| `async-imap` | 0.11.3 | Brings `tokio` into `core` (2.3) |
+| `mail-parser` | 0.11.9 | Vendored with the #156 patch; `full_encoding` for legacy charsets (M1) |
+| `async-imap` / `tokio` | 0.11.3 / 1.53.1 | `runtime-tokio`, no async-std |
+| `rustls` / `tokio-rustls` / `rustls-platform-verifier` | 0.23.45 / 0.26.5 / 0.7.1 | `ring` provider, OS trust store |
+| `regex` | 1.13.1 | Amount and receipt phrases |
+| `psl` | 2.1.238 | Registrable domains for grouping senders |
+| `chacha20poly1305` | 0.11.0 | The Linux secrets file (2.2) |
+| `tauri-plugin-opener` | 2.5.5 | Provider guides, later S15 and checkout |
+| `lucide-svelte` | 1.0.1 | Icons, stroke 2.75 |
 | `rusqlite` | 0.40.2 | Feature `bundled-sqlcipher-vendored-openssl`; FTS5 confirmed at M0 (2.1) |
 | `chacha20poly1305`, `hkdf`, `ed25519-dalek` | pin at M0 | Sealed files and the licence token (1.7, 2.1) |
 | `machine-uid`, `hmac`, `sha2` | pin at M0 | Device hash (1.7) |
@@ -869,31 +894,40 @@ Dependabot move them.
 
 ## Part 4 — Data model
 
-Tables, with the columns that carry weight. Full DDL lives in
-`core/migrations/001-initial.sql`.
+Tables, with the columns that carry weight. M1's DDL is
+`core/migrations/001-initial.sql`; a later milestone adds its tables in its
+own migration.
 
 - **`source`** — `id`, `kind` (`imap` | `outlook` | `gmail` | `mbox` | `maildir`), `label`,
   `last_sync_at`, `message_count`, plus per-kind config. Feeds S12. `last_sync_at`
   only advances while the app is open (1.2); S12 must not imply otherwise.
-- **`message`** — `id`, `source_id`, `message_id` header, `sender_id`,
-  `subject`, `date`, `list_unsubscribe` (raw), `list_unsubscribe_post` (bool),
-  `locator` (UID for IMAP, byte offset for mbox, file name for Maildir).
+- **`mailbox`** — one row per IMAP folder: `source_id`, `name`, `uid_validity`,
+  `highest_uid`. The resume point of 2.3.
+- **`message`** — `id`, `source_id`, `mailbox_id`, `message_id` header,
+  `sender_id`, `subject`, `date`, `list_unsubscribe` (raw),
+  `list_unsubscribe_post` (bool), `list_id`, `is_list`, `dkim_domains`,
+  `locator` (UID for IMAP, byte offset for mbox, file name for Maildir),
+  unique per source and mailbox.
   **No body is stored.** The
   locator is how evidence links re-read the original from its source.
   **A locator can stop resolving** — an imported mbox is moved or deleted, an
   IMAP message is expunged. That is a designed state in S14, not an error: the
   row keeps its subject, sender and date, and the evidence link reports that
   the original is no longer reachable.
-- **`sender`** — `id`, `address`, `display_name`, `domain`, `first_seen`,
-  `last_seen`, `message_count`, `classification` (`service` | `newsletter` |
-  `other`), `confidence`, `classified_by` (`parser` | `playbook` | `model`).
-- **`service`** — `id`, `sender_id`, `name`, `data_key` (the `data/services/`
-  entry it matched), `is_critical`, `status` (`active` | `canceling` |
-  `canceled`), `cadence`, `monthly_minor_units`, `currency`.
-- **`receipt`** / **`charge`** — extracted amounts with `message_id`,
-  `amount_minor_units`, `currency`, `charged_at`, `extracted_by`. Price-increase
-  flags in S04 and price history in S06 are derived from `charge` ordered by
-  date.
+- **`sender`** — `id`, `address`, `display_name`, `domain`, `service_id`,
+  `first_seen`, `last_seen`, `message_count`, `classification` (`service` |
+  `newsletter` | `other`), `confidence`, `classified_by` (`parser` |
+  `playbook` | `model`). A service has many senders (`billing@`, `news@`), so
+  the link sits on the sender; it was planned the other way round until M1.
+- **`service`** — `id`, `name`, `group_key` (the registrable domain, or the
+  merchant for receipts a payment platform relays), `data_key` (the
+  `data/services/` entry it matched), `is_critical`, `status` (`active` |
+  `canceling` | `canceled`), `cadence`, `monthly_minor_units`, `currency`.
+- **`receipt`** / **`charge`** — a receipt is what one message says: `kind`,
+  `amount_minor_units`, `currency`, `merchant`, `invoice_ref`,
+  `extracted_by`. A charge is money that left the account, after one receipt
+  in two folders is merged. Price-increase flags in S04 and price history in
+  S06 are derived from `charge` ordered by date.
 - **`aggregate`** — per-service and per-sender monthly rollups of spend and
   volume, rebuilt by a scan. This is what S03 and S06 read. **Rollups are keyed
   by currency.** A mailbox holding USD and EUR receipts produces a row per
@@ -938,10 +972,11 @@ deterministic subscription and newsletter detection, receipt extraction for the
 first ten vendor formats, the schema and its migration stepper, aggregates, and
 the scan progress `Channel`.
 
-Handle `mail-parser`'s two open defects here — issue #156 silent multipart
+Handle `mail-parser`'s two defects here — issue #156 silent multipart
 truncation and #155 panic on a folded `Received` header, both on the parse path
-(1.1). Pin a known-good version, carry a patch, and add a fixture for
-each so an upgrade cannot regress them silently.
+(1.1). Done at M1: 0.11.9 fixes #155 upstream; #156 is still open, so
+`vendor/mail-parser/` carries a patch that accepts a boundary only at the
+start of a line. `core/tests/mail_parser_defects.rs` holds a fixture for each.
 
 Screens: S01 (IMAP path only), S02, plus S16's IMAP auth failure state.
 
