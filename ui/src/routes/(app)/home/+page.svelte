@@ -6,12 +6,14 @@
   import Button from '$lib/components/Button.svelte';
   import Empty from '$lib/components/Empty.svelte';
   import { ago, count, money, rate } from '$lib/format';
+  import { sweep } from '$lib/sweep.svelte';
 
   let dashboard = $state<Dashboard | null>(null);
   let sources = $state<SourceSummary[]>([]);
   let problem = $state<string | null>(null);
 
   $effect(() => {
+    void sweep.version;
     commands.dashboard().then((r) => {
       if (r.status === 'ok') dashboard = r.data;
       else problem = r.error;
@@ -24,6 +26,20 @@
   let saving = $derived(
     dashboard?.cancelAll.find((a) => a.currency === headline?.currency) ?? null,
   );
+
+  /** Every newsletter still subscribed, the figure on the button. */
+  async function unsubscribeAll() {
+    const list = await commands.newsletters();
+    if (list.status === 'error') {
+      problem = list.error;
+      return;
+    }
+    await sweep.begin(
+      list.data
+        .filter((n) => n.unsubscribedAt === null)
+        .map((n) => ({ kind: 'sender', id: n.id }) as const),
+    );
+  }
 
   function scanAgain() {
     goto(sources.length === 1 ? `/scan?source=${sources[0].id}` : '/welcome');
@@ -81,15 +97,15 @@
         </div>
       </div>
 
-      <!-- Bulk actions arrive with S11 in M3; the figures are real now. -->
+      <!-- Cancelling arrives with playbooks in M4; unsubscribing runs now. -->
       {#if dashboard.subscriptions > 0 || dashboard.unsubscribeAll > 0}
       <div class="actions">
         {#if saving}
-        <Button disabled title="Arrives with bulk actions">
+        <Button disabled title="Arrives with cancellation playbooks">
           Cancel all — save {money(saving, { whole: true })}/mo
         </Button>
         {/if}
-        <Button variant="outline" disabled title="Arrives with bulk actions">
+        <Button variant="outline" disabled={dashboard.unsubscribeAll === 0 || sweep.running} onclick={unsubscribeAll}>
           Unsubscribe all — cut {count(dashboard.unsubscribeAll)}/yr
         </Button>
       </div>

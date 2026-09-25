@@ -133,3 +133,23 @@ export function bytes(value: number | null): string {
   }
   return `${size.toFixed(unit === 0 || size >= 10 ? 0 : 1)} ${units[unit]}`;
 }
+
+/** `14:21`, in local time. */
+export function clock(rfc3339: string): string {
+  return new Date(rfc3339).toLocaleTimeString(LOCALE, {
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  });
+}
+
+/** S14's time: `today 14:21`, `yesterday 19:12`, `Aug 8 09:14`, in local time. */
+export function when(rfc3339: string, now = new Date()): string {
+  const date = new Date(rfc3339);
+  const time = clock(rfc3339);
+  const day = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+  const days = Math.round((day(now) - day(date)) / 86_400_000);
+  if (days === 0) return `today ${time}`;
+  if (days === 1) return `yesterday ${time}`;
+  return `${shortDate(rfc3339, now)} ${time}`;
+}

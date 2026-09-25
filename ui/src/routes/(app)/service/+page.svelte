@@ -6,6 +6,7 @@
   import Marker from '$lib/components/Marker.svelte';
   import { count, initials, longDate, money, monthLabel, shortDate } from '$lib/format';
   import { priceRise, stepLine } from '$lib/history';
+  import { sweep } from '$lib/sweep.svelte';
 
   let detail = $state<ServiceDetail | null | undefined>(undefined);
   let problem = $state<string | null>(null);
@@ -165,15 +166,25 @@
     <aside>
       <section class="card">
         <h2>End it</h2>
-        <!-- Unsubscribe arrives in M3, playbooks in M4, the agent in M7. -->
+        <!-- Playbooks arrive in M4, the agent in M7. -->
         <div class="actions">
           <Button size="medium" disabled>Cancel via playbook</Button>
-          <Button size="medium" variant="outline" disabled>Unsubscribe from emails</Button>
+          <Button
+            size="medium"
+            variant="outline"
+            disabled={sweep.running}
+            onclick={() => detail && sweep.begin([{ kind: 'service', id: detail.id }])}
+          >
+            Unsubscribe from emails
+          </Button>
           <Button size="medium" variant="outline" disabled>
             Cancel via agent <Marker kind="experimental" />
           </Button>
         </div>
-        <p class="quiet">These actions arrive in a later version. The figures here are final.</p>
+        <p class="quiet">
+          Unsubscribing stops its list mail; receipts keep coming. Cancelling arrives in a later
+          version.
+        </p>
       </section>
       {#if detail.isCritical}
         <div class="critical">

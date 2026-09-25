@@ -4,12 +4,14 @@
   import { ChevronDown, CircleCheck, Rows3, Shapes } from 'lucide-svelte';
   import { commands, type Subscription } from '$lib/bindings';
   import Bubbles from '$lib/components/Bubbles.svelte';
+  import Button from '$lib/components/Button.svelte';
   import Check from '$lib/components/Check.svelte';
   import Chip from '$lib/components/Chip.svelte';
   import Empty from '$lib/components/Empty.svelte';
   import Marker from '$lib/components/Marker.svelte';
   import SearchField from '$lib/components/SearchField.svelte';
   import { cadenceLabel, count, initials, money, shortDate, sum } from '$lib/format';
+  import { sweep } from '$lib/sweep.svelte';
 
   let rows = $state<Subscription[] | null>(null);
   let problem = $state<string | null>(null);
@@ -20,6 +22,7 @@
   let selected = $state(new Set<number>());
 
   $effect(() => {
+    void sweep.version;
     commands.subscriptions().then((r) => {
       if (r.status === 'ok') rows = r.data;
       else problem = r.error;
@@ -68,6 +71,11 @@
   let total = $derived(monthly(rows ?? []));
   let chosen = $derived((rows ?? []).filter((r) => selected.has(r.id)));
   let chosenCost = $derived(monthly(chosen));
+
+  async function unsubscribe() {
+    await sweep.begin(chosen.map((r) => ({ kind: 'service', id: r.id }) as const));
+    selected = new Set();
+  }
 
   function toggle(id: number) {
     const next = new Set(selected);
@@ -164,10 +172,16 @@
   {/if}
 
   {#if chosen.length > 0}
-    <p class="selection">
-      {chosen.length} selected — {chosenCost ? money(chosenCost) : '—'}/mo,
-      {count(chosen.reduce((t, r) => t + r.emailsPerYear, 0))} emails/yr
-    </p>
+    <div class="selection">
+      <span>
+        {chosen.length} selected — {chosenCost ? money(chosenCost) : '—'}/mo,
+        {count(chosen.reduce((t, r) => t + r.emailsPerYear, 0))} emails/yr
+      </span>
+      <Button size="small" variant="outline" disabled={sweep.running} onclick={unsubscribe}>
+        Unsubscribe from emails
+      </Button>
+      <Button size="small" disabled title="Arrives with cancellation playbooks">Cancel</Button>
+    </div>
   {/if}
 {/if}
 
@@ -415,6 +429,9 @@
   .selection {
     position: sticky;
     bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     margin: 1.25rem 0 0;
     font-size: 0.8125rem;
     color: var(--mut);

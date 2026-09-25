@@ -7,6 +7,7 @@
     CreditCard,
     House,
     Mail,
+    MailX,
     MessageSquareWarning,
     Moon,
     Plus,
@@ -23,6 +24,7 @@
     type Subscription,
   } from '$lib/bindings';
   import { frequency, money, shortDate } from '$lib/format';
+  import { sweep } from '$lib/sweep.svelte';
 
   // S18 — search across services, senders, screens and actions. The index is
   // the lists themselves, loaded when the palette opens (PLAN.md 2.1).
@@ -120,6 +122,22 @@
                       {#if n.oneClick}<span class="hint ok">one-click</span>{/if}
                     </Command.Item>
                   {/each}
+                  <!-- The action on a sender, offered once the search names it. -->
+                  {#if search.trim()}
+                    {#each senders.filter((n) => n.unsubscribedAt === null) as n (n.id)}
+                      <Command.Item
+                        value={`unsubscribe-${n.id}`}
+                        keywords={[`unsubscribe ${n.name}`, n.address]}
+                        onSelect={() => run(() => sweep.begin([{ kind: 'sender', id: n.id }]))}
+                      >
+                        <span class="tile acc"><MailX size={15} strokeWidth={2.75} /></span>
+                        <span class="text">
+                          <strong>Unsubscribe from {n.name}</strong>
+                          <small>{n.oneClick ? 'one-click' : 'no one-click'}</small>
+                        </span>
+                      </Command.Item>
+                    {/each}
+                  {/if}
                 </Command.GroupItems>
               </Command.Group>
             {/if}

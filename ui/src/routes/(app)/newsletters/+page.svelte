@@ -6,17 +6,20 @@
   import Check from '$lib/components/Check.svelte';
   import Chip from '$lib/components/Chip.svelte';
   import Empty from '$lib/components/Empty.svelte';
+  import Button from '$lib/components/Button.svelte';
   import SearchField from '$lib/components/SearchField.svelte';
   import { count, frequency, initials } from '$lib/format';
+  import { sweep } from '$lib/sweep.svelte';
 
   let rows = $state<Newsletter[] | null>(null);
   let problem = $state<string | null>(null);
   let query = $state(page.url.searchParams.get('q') ?? '');
-  let filter = $state<'all' | 'daily' | 'oneClick'>('all');
+  let filter = $state<'all' | 'daily' | 'oneClick' | 'unsubscribed'>('all');
   let sort = $state<'volume' | 'frequency' | 'name'>('volume');
   let selected = $state(new Set<number>());
 
   $effect(() => {
+    void sweep.version;
     commands.newsletters().then((r) => {
       if (r.status === 'ok') rows = r.data;
       else problem = r.error;
@@ -27,6 +30,7 @@
     all: () => true,
     daily: (r: Newsletter) => (r.perWeek ?? 0) >= 5.5 && r.received >= 2,
     oneClick: (r: Newsletter) => r.oneClick,
+    unsubscribed: (r: Newsletter) => r.unsubscribedAt !== null,
   };
   const sorts: Record<typeof sort, { label: string; compare: (a: Newsletter, b: Newsletter) => number }> = {
     volume: { label: 'volume', compare: (a, b) => b.lastYear - a.lastYear || b.received - a.received },
@@ -44,6 +48,11 @@
   let yearly = $derived((rows ?? []).reduce((t, r) => t + r.lastYear, 0));
   let chosen = $derived((rows ?? []).filter((r) => selected.has(r.id)));
   let chosenOneClick = $derived(chosen.filter((r) => r.oneClick).length);
+
+  async function unsubscribe() {
+    await sweep.begin(chosen.map((r) => ({ kind: 'sender', id: r.id }) as const));
+    selected = new Set();
+  }
 
   function toggle(id: number) {
     const next = new Set(selected);
@@ -83,6 +92,7 @@
     <Chip label="All" count={rows.length} on={filter === 'all'} onclick={() => (filter = 'all')} />
     <Chip label="Daily+" count={rows.filter(filters.daily).length} on={filter === 'daily'} onclick={() => (filter = 'daily')} />
     <Chip label="One-click" count={rows.filter(filters.oneClick).length} on={filter === 'oneClick'} onclick={() => (filter = 'oneClick')} />
+    <Chip label="Unsubscribed" count={rows.filter(filters.unsubscribed).length} on={filter === 'unsubscribed'} onclick={() => (filter = 'unsubscribed')} />
     <label class="sort">
       Sort:
       <select bind:value={sort}>
@@ -119,8 +129,9 @@
         <span class="mut">{frequency(r.perWeek, r.received)}</span>
         <span class="mono">{count(r.received)}</span>
         <span class="unsub" class:ok={r.oneClick}><span class="dot"></span>{r.oneClick ? 'One-click' : 'Manual only'}</span>
-        <!-- Unsubscribing arrives in M3; until then every sender is subscribed. -->
-        <span class="status">Subscribed</span>
+        <span class="status" class:off={r.unsubscribedAt !== null}>
+          {r.unsubscribedAt === null ? 'Subscribed' : 'Unsubscribed'}
+        </span>
       </div>
     {:else}
       <p class="none">No sender matches.</p>
@@ -128,10 +139,13 @@
   </div>
 
   {#if chosen.length > 0}
-    <p class="selection">
-      {chosen.length} selected — {count(chosen.reduce((t, r) => t + r.lastYear, 0))} emails/yr,
-      {chosenOneClick === chosen.length ? 'all one-click' : `${chosenOneClick} one-click`}
-    </p>
+    <div class="selection">
+      <span>
+        {chosen.length} selected — {count(chosen.reduce((t, r) => t + r.lastYear, 0))} emails/yr,
+        {chosenOneClick === chosen.length ? 'all one-click' : `${chosenOneClick} one-click`}
+      </span>
+      <Button size="small" disabled={sweep.running} onclick={unsubscribe}>Unsubscribe</Button>
+    </div>
   {/if}
 {/if}
 
@@ -331,6 +345,10 @@
     font-weight: 600;
   }
 
+  .status.off {
+    color: var(--mut);
+  }
+
   .none {
     margin: 0;
     padding: 1rem 1.375rem;
@@ -341,6 +359,9 @@
   .selection {
     position: sticky;
     bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     margin: 1.25rem 0 0;
     font-size: 0.8125rem;
     color: var(--mut);

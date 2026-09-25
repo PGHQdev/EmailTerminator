@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ago, bytes, frequency, initials, money, monthLabel, rate, sum } from './format';
+import { ago, bytes, frequency, initials, money, monthLabel, rate, sum, when } from './format';
 
 describe('money', () => {
   it('reads minor units by the currency', () => {
@@ -60,5 +60,12 @@ describe('labels', () => {
     expect(bytes(3.1 * 1024 ** 3)).toBe('3.1 GB');
     expect(bytes(512)).toBe('512 B');
     expect(bytes(null)).toBe('');
+  });
+
+  it('names the day of an action in local time', () => {
+    const now = new Date(2026, 8, 26, 16, 0);
+    expect(when(new Date(2026, 8, 26, 14, 21).toISOString(), now)).toBe('today 14:21');
+    expect(when(new Date(2026, 8, 25, 19, 12).toISOString(), now)).toBe('yesterday 19:12');
+    expect(when(new Date(2026, 7, 8, 9, 14).toISOString(), now)).toBe('Aug 8 09:14');
   });
 });

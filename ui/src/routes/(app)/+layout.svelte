@@ -1,6 +1,9 @@
 <script lang="ts">
+  import CriticalConfirm from '$lib/components/CriticalConfirm.svelte';
+  import EvidenceDialog from '$lib/components/EvidenceDialog.svelte';
   import Palette from '$lib/components/Palette.svelte';
   import Rail from '$lib/components/Rail.svelte';
+  import SweepResult from '$lib/components/SweepResult.svelte';
 
   let { children } = $props();
   let palette = $state(false);
@@ -20,6 +23,9 @@
   {@render children()}
 </div>
 <Palette bind:open={palette} />
+<SweepResult />
+<EvidenceDialog />
+<CriticalConfirm />
 
 <style>
   .screen {
