@@ -71,7 +71,7 @@ fn last_twelve_months(now: i64) -> Vec<String> {
 
 /// "Per year" everywhere means the last twelve months of the rollups: this
 /// month and the eleven before it.
-fn first_month(now: i64) -> String {
+pub(crate) fn first_month(now: i64) -> String {
     last_twelve_months(now).swap_remove(0)
 }
 
@@ -111,7 +111,8 @@ pub struct Dashboard {
     /// What "cancel all" saves per month: active subscriptions that are not
     /// critical, per currency.
     pub cancel_all: Vec<Amount>,
-    /// Newsletter mail in the last twelve months: what "unsubscribe all" removes.
+    /// Mail in the last twelve months from newsletters still subscribed:
+    /// what "unsubscribe all" removes.
     pub unsubscribe_all: u32,
 }
 
@@ -173,7 +174,8 @@ pub fn dashboard(store: &Store, now: i64) -> Result<Dashboard, StoreError> {
     )?;
     let unsubscribe_all: u32 = conn.query_row(
         "SELECT coalesce(sum(a.message_count), 0) FROM aggregate a JOIN sender s ON s.id = a.subject_id
-         WHERE a.subject_kind = 'sender' AND a.month >= ?1 AND s.classification = 'newsletter'",
+         WHERE a.subject_kind = 'sender' AND a.month >= ?1 AND s.classification = 'newsletter'
+           AND s.unsubscribed_at IS NULL",
         [&since],
         |r| r.get(0),
     )?;
@@ -305,9 +307,11 @@ pub struct Newsletter {
     pub service_id: Option<u32>,
     /// Messages per week between the first and the last one, at least a week apart.
     pub per_week: f64,
-    /// The newest `List-Unsubscribe` offers an HTTPS link and RFC 8058's
-    /// one-click POST. M3 checks the DKIM alignment before it uses it.
+    /// The newest list mail meets RFC 8058, so unsubscribing is one POST
+    /// (`action::unsubscribe`).
     pub one_click: bool,
+    /// When the app unsubscribed the sender; null while subscribed.
+    pub unsubscribed_at: Option<String>,
 }
 
 pub fn newsletters(store: &Store, now: i64) -> Result<Vec<Newsletter>, StoreError> {
@@ -315,14 +319,12 @@ pub fn newsletters(store: &Store, now: i64) -> Result<Vec<Newsletter>, StoreErro
     let mut stmt = conn.prepare(
         "SELECT s.id, coalesce(s.display_name, s.address), s.address, s.message_count,
                 s.first_seen, s.last_seen,
-                (SELECT m.list_unsubscribe_post
-                        AND instr(lower(m.list_unsubscribe), '<https:') > 0
-                 FROM message m
-                 WHERE m.sender_id = s.id AND m.list_unsubscribe IS NOT NULL
-                 ORDER BY m.date DESC LIMIT 1),
+                (SELECT m.one_click FROM message m
+                 WHERE m.sender_id = s.id AND m.is_list = 1
+                 ORDER BY m.list_unsubscribe IS NULL, m.date DESC, m.id DESC LIMIT 1),
                 (SELECT coalesce(sum(a.message_count), 0) FROM aggregate a
                  WHERE a.subject_kind = 'sender' AND a.subject_id = s.id AND a.month >= ?1),
-                s.service_id
+                s.service_id, s.unsubscribed_at
          FROM sender s WHERE s.classification = 'newsletter'
          ORDER BY s.message_count DESC, s.id",
     )?;
@@ -346,6 +348,7 @@ pub fn newsletters(store: &Store, now: i64) -> Result<Vec<Newsletter>, StoreErro
                 service_id: r.get(8)?,
                 per_week: f64::from(received) / weeks,
                 one_click: r.get::<_, Option<bool>>(6)?.unwrap_or(false),
+                unsubscribed_at: r.get(9)?,
             })
         })?
         .collect::<Result<_, _>>()?;

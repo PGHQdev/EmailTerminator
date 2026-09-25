@@ -1,49 +1,17 @@
 //! What S03–S06 read, over a store filled the way a scan fills it (PLAN.md M2).
 
+mod support {
+    pub mod mail;
+}
+
 use std::sync::Arc;
 
 use et_core::crypt::DbKey;
 use et_core::extract::parse_rfc3339_utc;
-use et_core::ingest::imap::{Fetched, SyncTarget};
 use et_core::scan::summary::Cadence;
-use et_core::scan::{ImapScan, rebuild};
 use et_core::store::Store;
 use et_core::view::{self, Amount, ServiceStatus};
-
-const MONTHS: [&str; 12] = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-];
-
-fn receipt(vendor: &str, month: usize, total: &str) -> Vec<u8> {
-    let (year, month) = (2025 + month / 12, month % 12);
-    format!(
-        "From: {vendor} Billing <billing@{vendor}.test>\r\n\
-         Subject: Your {vendor} receipt\r\n\
-         Date: Mon, 5 {} {year} 10:00:00 +0000\r\n\
-         Message-ID: <{vendor}{month}.{year}@{vendor}.test>\r\n\r\n\
-         Pro plan\r\nTotal {total}\r\n",
-        MONTHS[month],
-    )
-    .into_bytes()
-}
-
-fn newsletter(name: &str, day: u32, one_click: bool) -> Vec<u8> {
-    let post = if one_click {
-        "List-Unsubscribe-Post: List-Unsubscribe=One-Click\r\n"
-    } else {
-        ""
-    };
-    format!(
-        "From: {name} <news@{name}.test>\r\n\
-         Subject: Issue {day}\r\n\
-         Date: Sun, {day} Jun 2026 08:00:00 +0000\r\n\
-         Message-ID: <{name}{day}@{name}.test>\r\n\
-         List-Unsubscribe: <https://{name}.test/u>, <mailto:u@{name}.test>\r\n\
-         {post}\r\n\
-         This week's issue.\r\n"
-    )
-    .into_bytes()
-}
+use support::mail::{newsletter, receipt, scan};
 
 fn now() -> i64 {
     parse_rfc3339_utc("2026-07-01T00:00:00Z").unwrap()
@@ -85,15 +53,7 @@ fn scanned() -> (tempfile::TempDir, Arc<Store>) {
         mail.push(newsletter("digest", day, false));
     }
 
-    let scan = ImapScan::new(store.clone(), 1, "me@example.test");
-    scan.resume("INBOX", 1).unwrap();
-    let batch = mail
-        .into_iter()
-        .zip(1..)
-        .map(|(raw, uid)| Fetched { uid, raw })
-        .collect();
-    scan.commit("INBOX", 1, batch).unwrap();
-    rebuild(&store).unwrap();
+    scan(&store, mail);
     (dir, store)
 }
 

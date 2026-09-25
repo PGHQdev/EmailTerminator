@@ -192,8 +192,8 @@ fn insert(
     let inserted = tx.execute(
         "INSERT OR IGNORE INTO message
              (source_id, mailbox_id, locator, message_id, sender_id, subject, date,
-              list_unsubscribe, list_unsubscribe_post, list_id, is_list, dkim_domains)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)",
+              list_unsubscribe, list_unsubscribe_post, list_id, is_list, dkim_domains, one_click)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13)",
         params![
             source_id,
             mailbox_id,
@@ -207,8 +207,17 @@ fn insert(
             e.list_id,
             e.is_list,
             e.dkim_domains.join(","),
+            e.one_click,
         ],
     )?;
+    if inserted == 0 {
+        // Fetched again after migration 003: only the new verdict changes.
+        tx.execute(
+            "UPDATE message SET one_click = ?4
+             WHERE source_id = ?1 AND mailbox_id = ?2 AND locator = ?3",
+            params![source_id, mailbox_id, locator, e.one_click],
+        )?;
+    }
     if inserted == 1
         && let Some(r) = &e.receipt
     {
