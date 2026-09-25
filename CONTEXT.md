@@ -24,9 +24,9 @@ sites; graph email volume and price history to expose creeping increases;
 resist ads and paid whitelisting; and combine deterministic mbox parsing,
 hard-coded heuristics, and AI parsing of unstructured content.
 
-Three of his notes are declined on purpose: a $99 one-time charge (the free
-product is the whole product), sender-pays-user schemes, and crypto billing.
-The hosted version he suggests first is deferred, not refused.
+His $99 one-time charge is kept in shape and cut in price: the prebuilt app
+costs $29 or more, once. Two notes are declined on purpose: sender-pays-user schemes and
+crypto billing. The hosted version he suggests first is deferred, not refused.
 
 ## Positioning
 
@@ -36,8 +36,12 @@ spend, and drives cancellation. It is a focused tool: deterministic parsers
 first, domain-specific agent skills second, models third. It is not a
 general-purpose agent.
 
-Fully open source under the MIT license. The project's value is credibility,
-distribution, and reputation.
+Source-available under FSL-1.1-MIT: anyone can read, build and run it, and
+each release becomes MIT two years after it ships. Nobody may sell it as a
+competing product. The app is free and complete, like WinRAR or Sublime Text:
+after a 14-day evaluation an unlicensed copy reminds the user to buy a licence
+for $29 or more, and nothing is ever locked. The project's value is credibility,
+distribution, reputation, and licence revenue.
 
 ## Users
 
@@ -51,7 +55,12 @@ distribution, and reputation.
 ## Product principles
 
 - Local-first and privacy-preserving by default. Mail never leaves the
-  machine.
+  machine. The local database is encrypted at rest.
+- **Built in the open, auditable by anyone.** The promise is verifiability:
+  every request the app makes is in public source code, listed in the app,
+  and small enough to read. Anyone can build the app and compare. The app
+  does talk to our server — for the licence and, if the user opts in, cancel
+  stats — and it says so plainly.
 - **Works with zero models configured.** The deterministic layer alone
   (headers, List-Unsubscribe, sender heuristics, receipt parsing) produces
   discovery, spend, volume, and one-click unsubscribe. Models are optional
@@ -65,14 +74,17 @@ distribution, and reputation.
 - Community-maintained knowledge: unsubscribe recipes, cancellation
   playbooks, and the critical-services warning list live in the repo as
   pull-requestable data.
-- The free product is the whole product.
+- One product, one price, no locked feature. There are no paid tiers and no
+  subscription.
 
 ## v0 scope
 
-- **Ingestion ladder**: (1) mbox import (Google Takeout / Mail.app) as the
-  zero-auth baseline; (2) IMAP with app password for live sync;
-  (3) optional BYO Google OAuth client with guided setup (Hermes/OpenClaw
-  idiom). No shared OAuth client, no CASA burden. See `PLAN.md` 1.6.
+- **Ingestion ladder**: (1) IMAP first — app password for Gmail, iCloud,
+  Fastmail and Yahoo, and our own Microsoft OAuth client for Outlook.com,
+  which no longer accepts app passwords; (2) optional BYO Google OAuth client
+  with guided setup (Hermes/OpenClaw idiom); (3) mbox and Maildir import, in a
+  later v0 milestone. No shared Google OAuth client and no CASA audit at v0.
+  See `PLAN.md` 1.6.
 - **Dashboard**: every subscription and newsletter, total billed, email
   volume, historical graphs, "unsubscribe all" / "cancel all" with $-saved
   and emails-removed counts.
@@ -80,9 +92,17 @@ distribution, and reputation.
   playbooks; agentic browser cancellation behind an experimental flag.
 - **Safeguard**: the critical-services list (AWS, registrars, and similar)
   warns before risky cancellations.
-- **Feedback**: no telemetry, no crash-report phone-home. Feedback flows
-  through user-initiated prefilled GitHub issue links that never contain
-  message content.
+- **Licence**: $29 or more, one-time, through Polar; $19 or more in launch
+  week. The app is free; after a 14-day evaluation, an unlicensed copy shows
+  reminders until a key is entered. One licence covers 3 devices. A licensed
+  copy checks the licence every 15 days and works offline for up to 30. See
+  `PLAN.md` 1.7.
+- **Telemetry**: two payloads and no others. On a licensed copy, activation
+  and the 15-day check send the licence key and a hash of the machine ID. Cancel stats — which community
+  playbook ran and how it ended — go only when the user opts in, and they
+  help other users see which cancellations work. No crash-report phone-home.
+  Feedback flows through user-initiated prefilled GitHub issue links that
+  never contain message content.
 - **Form**: Tauri desktop app with an embedded web UI. The domain logic is
   a Rust library the app links in-process. No CLI, no localhost mode, no
   daemon. macOS, Linux and Windows all ship at v0. See `PLAN.md` 1.2 and 1.4.
@@ -101,21 +121,29 @@ distribution, and reputation.
   user brings a relay account.
 - **Hosted version + mobile apps**: after the desktop core proves demand;
   they absorb the CASA and app-store costs when funded.
-- **Apple-signed builds**: at first sponsorship money (~$99/yr; requires
-  an entity for a non-personal name on the certificate).
+- **Apple-signed builds**: when licence revenue covers the ~$99/yr fee and an
+  entity exists for a non-personal name on the certificate.
+- **Our own verified Google OAuth client**: when licence revenue covers
+  Google's verification and the annual CASA audit (~$540–1,800/yr). Gmail
+  users sign in with one click after that. See `PLAN.md` 1.6.
 
 ## Non-goals
 
 - Ads, data selling, paid whitelisting of services.
-- Telemetry of any kind.
+- Telemetry beyond the two payloads above. Never mail content, subjects,
+  addresses, or sender domains.
 - Sender-pays-user schemes and crypto billing.
 - General-purpose agent ambitions.
 
 ## Monetization
 
-Tips, donations, and sponsorships; indirect revenue through reputation,
-freelancing, consulting, and cross-promotion of our other projects
-(HNTerminal and others). Nothing else. No paid tiers.
+A one-time, pay-what-you-want licence with a $29 minimum ($19 in launch
+week), sold through Polar as merchant of record. Checkout pre-fills the
+minimum, so paying more is a choice and never a default. Donations through
+GitHub Sponsors stay open before and after a purchase, from the repository and
+from S17. Indirect revenue comes through reputation, freelancing, consulting,
+and cross-promotion of our other projects (HNTerminal and others). No paid
+tiers, no subscription.
 
 ## Success metrics
 
@@ -123,6 +151,8 @@ freelancing, consulting, and cross-promotion of our other projects
   Success = HN front page or a Balaji acknowledgment.
 - **90 days**: 1,000 GitHub stars; 10 community recipes/playbooks merged;
   one external contributor returns for a second PR.
+- **Licences**: activations and the share of installs that buy, read from Polar and the
+  activation log. No target is set yet.
 - **12 months**: at least one inbound consulting/freelance lead traceable
   to the project; measurable cross-promotion to our other projects.
 

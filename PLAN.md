@@ -1,6 +1,6 @@
 # EmailTerminator — v0 implementation plan
 
-Date: 2026-08-10
+Date: 2026-08-10, revised 2026-09-26
 Status: the working document for building v0
 
 This file is self-contained: the decisions, the reasoning behind them, the
@@ -22,9 +22,9 @@ section named beside it holds the argument and what would reopen it.
 
 | # | Decision | Why |
 |---|---|---|
-| 1 | Domain logic is Rust. TypeScript exists only in the SvelteKit UI. | 1.1 |
-| 2 | A 10 GB mbox scans in under ten minutes with flat memory. | 1.1 |
-| 3 | v0 is the desktop app alone. No CLI, no localhost UI, no daemon, no bound port. | 1.2 |
+| 1 | Domain logic is Rust. TypeScript exists only in the SvelteKit UI and the licence Worker, which holds no domain logic. | 1.1, 1.7 |
+| 2 | The parse path handles 10 GB in under ten minutes with flat memory, measured on an mbox. | 1.1 |
+| 3 | v0 is the desktop app alone. No CLI, no localhost UI, no daemon, no bound port. Locked again on 2026-09-26. | 1.2 |
 | 4 | Cargo workspace: `core` (no Tauri) and `app` (thin Tauri command layer). | 1.2 |
 | 5 | Progress streams over a Tauri `Channel`, never the event system. | 1.2 |
 | 6 | Single instance. SQLite has exactly one writer. | 1.2 |
@@ -40,6 +40,11 @@ section named beside it holds the argument and what would reopen it.
 | 16 | Installer is latest-only. No `--version`, no `ET_VERSION`. Testers use `install-prerelease.sh`. | 1.5 |
 | 17 | `CHANGELOG.md` is the single source of release notes, injected into the release body, `latest.json` `notes`, and the app's "what changed" screen. | 1.5 |
 | 18 | The minisign key lives in a `release` GitHub Environment restricted to `v*`. Two offline backups exist before the first release. | 1.5 |
+| 19 | IMAP comes first. mbox and Maildir import ship in a later v0 milestone. | 1.6 |
+| 20 | Source is FSL-1.1-MIT, which becomes MIT two years after each release. The app is free with no locked feature. After a 14-day evaluation an unlicensed copy shows reminders; a licence for $29 or more ($19 or more in launch week) removes them. | 1.7 |
+| 21 | Polar sells the licence. One licence covers 3 devices, each identified by a salted hash of the OS machine ID. The Worker issues an Ed25519-signed token bound to that hash; the app renews it every 15 days, with a further 15 days of grace. | 1.7 |
+| 22 | Exactly two payloads reach our server: licence activation (always) and cancel stats (opt-in). | 1.7 |
+| 23 | The database is SQLCipher, keyed by a random 256-bit key in the OS keychain. | 2.1 |
 
 ### 1.1 Why Rust holds the domain logic
 
@@ -194,9 +199,19 @@ before our code runs.
 The full artifact list, install locations, update behaviour, versioning rules
 and uninstall policy are in Part 8.
 
-**What would reopen it**: Apple or Microsoft signing money arriving, which makes
-a cask and a browser download viable and changes the whole channel argument; or
-a user need for managed deployment, which is what an `.msi` is for.
+**What signing would buy**, recorded because licence revenue now makes it
+affordable: an Apple Developer ID plus notarization (~$99/yr) lets a browser
+download launch without the "damaged" refusal, which opens a `.dmg`, a Homebrew
+cask and the buyer who never opens a terminal. It also gives the keychain a
+stable code identity across updates (Part 6, item 5). Windows Authenticode
+only builds SmartScreen reputation slowly per certificate. minisign already
+covers the one thing v0 needs: an update that nobody can forge. The shell
+installer, not signing, is what keeps an unsigned build clean.
+
+**What would reopen it**: licence revenue covering the Apple fee plus an entity
+for the certificate name, which makes a cask and a browser download viable and
+changes the whole channel argument; or a user need for managed deployment,
+which is what an `.msi` is for.
 
 ### 1.5 Why the release pipeline looks like this
 
@@ -231,7 +246,11 @@ is worth having, which means moving `latest.json` off GitHub to something that
 can serve a percentage; a tester group large enough to want real nightlies; or
 a Chrome Web Store API change that puts a human back at the publish step.
 
-### 1.6 Why the ingestion ladder has three rungs
+### 1.6 Why the ingestion ladder looks like this
+
+IMAP is the first rung because it is live, it needs no export step, and one
+implementation covers most mailboxes. mbox and Maildir import follow in a later
+v0 milestone (M5) for offline users and exported archives.
 
 Every official read path for consumer Gmail was costed. The axis that decides
 it is developer verification: Google's restricted scopes (`gmail.readonly`,
@@ -239,17 +258,37 @@ it is developer verification: Google's restricted scopes (`gmail.readonly`,
 CASA Tier 2 audit, which runs roughly $540–1,800 a year on the precedents we
 could confirm.
 
-| Path | Verification burden | User friction | Freshness |
-|---|---|---|---|
-| Google Takeout mbox export | None | High, manual; schedulable every 2 months | Snapshot |
-| IMAP with app password | None | Medium: enable 2SV, generate, paste | Live |
-| BYO OAuth client | On the user, not us | Medium: guided Google Cloud setup | Live, plus history and push |
-| Own verified client + CASA | Verification + annual audit | Low | Live |
+| Path | Verification burden | User friction | Freshness | v0 |
+|---|---|---|---|---|
+| IMAP with app password | None | Medium: enable 2SV, generate, paste | Live | Rung 1 |
+| Outlook.com through our Microsoft OAuth client | None beyond app registration | Low: sign in | Live | Rung 1 |
+| BYO Google OAuth client | On the user, not us | Medium: guided Google Cloud setup | Live, plus history and push | Rung 2 |
+| mbox / Maildir import | None | High, manual | Snapshot | Rung 3 |
+| Our own verified Google client + CASA | Verification + annual audit | Low | Live | Deferred |
 
 App passwords survived the 2022–2025 "less secure apps" shutdowns and Google
 publishes no sunset date; third-party claims of a 2026 phase-out are
-unconfirmed. That makes rung 2 the workhorse, and it covers Gmail, iCloud,
-Fastmail and Outlook with one implementation.
+unconfirmed. That makes rung 1 the workhorse for Gmail, iCloud, Fastmail and
+Yahoo with one implementation.
+
+**Outlook.com is the exception.** Since 16 September 2024 Microsoft refuses
+basic authentication, app passwords included, for personal Outlook.com,
+Hotmail and Live mailboxes. They need `AUTHENTICATE XOAUTH2`. Microsoft's
+identity platform lets us register one public desktop client with PKCE and the
+`IMAP.AccessAsUser.All` and `offline_access` scopes. There is no audit
+comparable to CASA, so this client ships at v0. An earlier version of this
+section counted Outlook among the app-password providers; that was wrong.
+
+**Can the app use its own Google OAuth client for normal users?** Yes, but not
+at v0. IMAP over OAuth needs the `https://mail.google.com/` scope, which is
+restricted. Until verification passes, an app is capped at 100 test users and
+shows the unverified-app warning. Google puts restricted-scope verification at
+about six weeks, and the CASA assessment repeats every 12 months. The "local-only
+apps are exempt from CASA" reading is contradicted in practice: Mimestream is a
+local-only client and still passed CASA. At the $29 minimum, net of Polar's
+fee (about 5% + 50¢), the audit costs roughly 20–67 licences a year. So: apply for verification after
+launch, fund the audit from licence revenue, and ship the client as a patch once
+it passes. Until then Gmail users take rung 1 or rung 2.
 
 The user-supplied OAuth client is the dominant 2026 pattern for developer-facing
 tools — rclone, Home Assistant, gmvault, mbsync — and Hermes and OpenClaw both
@@ -261,29 +300,117 @@ client, and doing so without consent violates Google OAuth policy. Free managed
 OAuth middlemen exist, but mail transits their servers, which is incompatible
 with local-first.
 
-The "local-only apps are exempt from CASA" reading is contradicted in practice:
-Mimestream is a local-only client and still passed CASA. Treat the exemption as
-discretionary and budget for the audit if we ever ship our own client — that is
-rung 4, deferred until sponsorship funds it, and it is the same unlock as the
-hosted version.
-
 **RFC 8058 one-click unsubscribe needs no mailbox access at all**, because it is
-an HTTPS POST. That is why rung 1 already delivers the product's headline
-action.
+an HTTPS POST. That is why an imported file on rung 3 still delivers the
+product's headline action.
+
+**What would reopen it**: Google publishing an app-password sunset, which makes
+our own verified client urgent; or licence revenue covering the audit, which
+moves that client out of the deferred row.
+
+### 1.7 Why the licence and the server look like this
+
+The code stays readable so the privacy claim stays auditable. The model is
+WinRAR's and Sublime Text's: the app is free and complete, and an unlicensed
+copy keeps asking to be paid for.
+
+- **FSL-1.1-MIT.** Anyone may read, build, run and modify the code for any
+  purpose except a Competing Use: selling it, or something substantially
+  similar, as a commercial product or service. Each release becomes MIT on its
+  second anniversary. **FSL has no clause against removing the licence check.**
+  A user who patches out the reminders for their own copy breaks no term. It
+  stops a competitor from selling our code; it does not stop a personal bypass,
+  and with nothing locked a bypass only removes a reminder. FSL is
+  source-available, not OSI open source, and the copy in `CONTEXT.md` says so.
+- **Every build checks.** There is no feature flag, so a build from source
+  shows the same reminders as the installed app. Removing them means editing
+  the code.
+- **Evaluation.** 14 days with no reminders, counted from first launch. The
+  start date lives in the keychain. Erase-all-data restarts it, and we accept
+  that.
+- **Reminders after day 14**, on an unlicensed copy:
+  - a dialog at every launch — buy a licence, enter a key, or continue
+    evaluating;
+  - the same dialog after every bulk run and after every tenth single action;
+  - a permanent "Unregistered" marker in the rail.
+
+  No feature is locked and no button waits on a countdown. A reminder never
+  opens during a scan, a critical-service confirmation, or an agent run; it
+  waits until the work ends.
+- **Hardening is modest on purpose.** The token is verified in several code
+  paths with no single `is_licensed()` switch, and release binaries are
+  stripped. That turns a one-prompt patch into a longer job. Anything stronger
+  costs auditability and stops nobody determined.
+- **Polar is the merchant of record.** It handles checkout, sales tax, refunds
+  and licence-key issue. The price is pay-what-you-want with a minimum: $19 in
+  launch week, then $29. Checkout pre-fills the minimum. Every amount buys the
+  same licence.
+- **Device fingerprint.** A device is the machine ID the OS already keeps:
+  `IOPlatformUUID` on macOS, `/etc/machine-id` on Linux, the `MachineGuid`
+  registry value on Windows, read through the `machine-uid` crate. The app
+  sends only `HMAC-SHA256(machine ID, key = "emailterminator-device-v1")`, so
+  the raw ID never leaves the machine and our hash cannot be joined with any
+  other app's. No other hardware data is read. Known limits: a Windows
+  reinstall changes `MachineGuid`, and a cloned Linux VM shares its
+  `machine-id`. Both are accepted; the first costs a device slot the user can
+  free.
+- **3 devices per licence.** Polar's activation limit on the licence-key
+  benefit is 3. The Worker keeps a D1 row per device hash and its Polar
+  activation ID, so a reinstall on the same machine reuses its slot. A fourth
+  device is refused with the list of the three, and the user can free one from
+  S17 or from Polar's customer portal.
+- **Activation.** The app sends the key, the device hash, the app version, the
+  OS and the architecture to `api.emailterminator.com/activate`. The Worker
+  checks the key with Polar, activates or reuses the device, and returns a
+  token signed with our Ed25519 key that names the key, the device hash and an
+  expiry 30 days out. The app verifies the signature against the public key
+  compiled into the binary, and verifies that the device hash is its own, so a
+  token copied to another machine is worthless.
+- **Check every 15 days.** From day 15 of a token's life, the app calls
+  `/check` with the same fields at launch and then once a day while it runs.
+  The Worker asks Polar whether the key and this activation are still valid
+  and returns a fresh 30-day token. Offline, the old token keeps working until
+  day 30. After that the copy shows the evaluation reminders again, and the
+  next successful check silences them. A refunded or revoked key, or a device
+  freed in Polar's portal, fails its next check. Nothing is ever locked,
+  because an unlicensed copy is still the complete app.
+- **Deactivate** from S17 calls `/deactivate`, frees the Polar activation, and
+  deletes the local token.
+- **Cancel stats, opt-in.** After a playbook or agent run finishes, the app
+  sends the community `data_key` of the service (2.6), the action kind, the
+  outcome, and the ISO week. No licence key, no device hash, no sender domain,
+  and nothing for a service that matched no community entry, so a personal or
+  unknown sender can never leave the machine. Before release, a maintainer exports the aggregates
+  to `data/stats.json`, which ships inside the app. S06 and S08 read it. The app
+  makes no new request to fetch stats.
+- **The server is one Cloudflare Worker** (Hono, TypeScript) with D1, in
+  `server/`. It holds no domain logic, which is why locked decision 1 still
+  stands. The site stays static.
+
+Abuse of the stats endpoint is accepted at v0: the numbers are advisory and a
+maintainer reviews them before they ship.
+
+**What would reopen it**: a fork selling the prebuilt app at scale, which
+questions the licence choice; or a demand for per-user stats, which would need
+an identifier and a new consent screen.
 
 ### Invariants that override any local convenience
 
-- **Mail never leaves the machine.** The only outbound requests the app makes
-  on its own are the update check and, when the user configures Tier 2, calls
-  to the endpoint they entered.
-- **No telemetry of any kind.** No crash phone-home, no identifier we invent.
+- **Mail never leaves the machine.** The outbound requests the app makes on its
+  own are: the update check; on a licensed copy, activation and a licence check
+  every 15 days; cancel stats, only when the user opts in; the mail provider and its OAuth endpoints; and, when the
+  user configures Tier 2, the endpoint they entered.
+- **No telemetry beyond the two payloads in 1.7.** No crash phone-home. The
+  device hash goes only with licence requests, and an unlicensed copy never
+  sends it.
 - **No network font, script, or stylesheet at runtime.** Everything the UI
   loads is bundled. This kills the `@import url('https://fonts.googleapis.com…')`
   that ships in the design-system CSS (see 2.4).
 - **Tier 0 is complete.** Every feature path must work with no model
   configured. A model call is an enhancement inside a branch that already has
   a deterministic answer.
-- **MIT-compatible dependencies only.**
+- **Permissive dependencies only**: MIT, Apache-2.0, BSD, ISC, Zlib, MPL-2.0,
+  and OFL for fonts. No GPL or AGPL, which cannot combine with FSL.
 
 ---
 
@@ -294,9 +421,31 @@ build instruction. Rationale is kept to what a builder needs to not undo it.
 
 ### 2.1 Storage and search (was 07)
 
-**SQLite through `rusqlite` with the `bundled` and `fts5` features.** Bundled
-compiles SQLite from source, so there is no system dependency on any of the
-three platforms and no version drift between them. SQLite is public domain.
+**SQLCipher through `rusqlite` with the `bundled-sqlcipher-vendored-openssl`
+feature.** It compiles SQLCipher and OpenSSL from source, so there is no system
+dependency on any of the three platforms and no version drift between them.
+SQLCipher Community is BSD-3 and OpenSSL 3 is Apache-2.0, both permissive.
+
+- **Encryption at rest.** SQLCipher encrypts every page with AES-256 and
+  authenticates it with HMAC-SHA512. At first launch `core` generates a random
+  256-bit key and stores it in the keychain (2.2). The key goes in as a raw key
+  (`PRAGMA key = "x'…'"`), which skips SQLCipher's password derivation, because
+  the key is already random.
+- **Files outside the database** — `sessions/*.jsonl` transcripts, their
+  screenshots, and cached scan artefacts — are sealed with XChaCha20-Poly1305
+  under a subkey derived from the same key through HKDF-SHA256.
+- **What it protects**: a copied data directory, a backup, a cloud-synced
+  folder, a lost disk without full-disk encryption. **What it does not**: other
+  software that runs as the same user and can ask the keychain for the key. On
+  the Linux fallback (2.2) the key file sits beside the database, so there it
+  protects only against a copy that leaves the key file behind. S17 says so.
+- **A lost key is a designed state.** If the keychain entry is gone, the
+  database cannot open. S16 says so and offers a fresh scan; mail on the server
+  is untouched.
+- **Check at M0** that the SQLCipher build carries FTS5, and that the perf test
+  in 2.9 still passes with encryption on.
+- SQLCipher was picked over SQLite3MultipleCiphers because `rusqlite` supports
+  it as a feature flag; the alternative needs our own build of the C library.
 
 - **One writer thread.** `core` owns a single connection for writes behind a
   channel; readers use a small read-only pool. This matches locked decision 6,
@@ -344,11 +493,15 @@ fallback.
 - **There is no session-less context to design for**, because decision 3
   removed the CLI.
 - **Erase-all-data (S17) reaches**: the database, the FTS index, the cached
-  scan artefacts, every keychain entry we created, the fallback key file, and
-  the settings file. It does not touch the browser integration files; those go
-  through their own control (Part 9).
-- Stored items: IMAP app passwords (per source), Gmail OAuth client secret and
-  refresh token (per source), Tier 2 provider API keys (per provider).
+  scan artefacts, the session transcripts, every keychain entry we created
+  except the licence token, the fallback key file, and the settings file. The
+  licence token stays, because it holds no mail data and a buyer should not pay
+  twice. It does not touch the browser integration files; those go through
+  their own control (Part 8).
+- Stored items: the database key, IMAP app passwords (per source), Gmail OAuth
+  client secret and refresh token (per source), the Outlook refresh token (per
+  source), Tier 2 provider API keys (per provider), the evaluation start date, and
+  the licence token.
 
 ### 2.3 Rust IMAP client (was 19)
 
@@ -362,8 +515,9 @@ through `imap-proto`.
   connection handling, reconnect and backoff to write ourselves. It stays the
   named fallback if `async-imap` stalls.
 - **We write**: reconnect with exponential backoff, resync after disconnect,
-  and per-provider quirk handling for Gmail, iCloud, Fastmail and Outlook —
-  all four are app-password targets at v0.
+  `AUTHENTICATE XOAUTH2` for Outlook.com and the BYO Gmail client, and
+  per-provider quirk handling for Gmail, iCloud, Fastmail, Yahoo and Outlook.
+  Outlook.com takes OAuth only (1.6); the other four take an app password.
 - **CONDSTORE/QRESYNC are used when the server advertises them**, with a
   UID-range fallback when it does not. Incremental resync is needed at v0, not
   later: nothing syncs while the app is closed (1.2), so every launch
@@ -405,7 +559,7 @@ Therefore:
 - **Fonts are vendored.** Bricolage Grotesque and Figtree woff2 files go in
   `ui/static/fonts/` with local `@font-face` rules. The `@import` line is
   deleted. This is not a preference: the network request breaks a stated
-  privacy invariant. Both faces are OFL, which bundles into an MIT project as
+  privacy invariant. Both faces are OFL, which bundles into our project as
   long as their licence file ships beside them in `ui/static/fonts/`.
 - **No Tailwind.** The global default is Tailwind + Phosphor + BitsUI; here it
   would sit on top of a token system that already owns colour, spacing and
@@ -470,10 +624,12 @@ against the committed types, which is the same drift check with more typing.
   execute: navigate, click a described target, fill, wait, confirm). A step
   with no `action` is a human-only step, and the agent stops there and hands
   over.
-- **Three collections**: `data/services/` (cancellation playbooks and
+- **Four collections**: `data/services/` (cancellation playbooks and
   unsubscribe recipes, keyed per service), `data/critical.toml` (the
   critical-services warning list), `data/providers.toml` (Tier 2 endpoint
-  presets).
+  presets), and `data/stats.json` (cancel-stats aggregates per service, exported
+  from the Worker before a release, 1.7). The file stem of a service entry is
+  its `data_key`, the only service identifier cancel stats may carry.
 - **Bundle-only at v0.** Entries ship inside the app; a corrected playbook is a
   patch release (Part 9). Runtime fetching is deferred — it would add an
   outbound request to a product whose privacy statement enumerates them.
@@ -533,7 +689,7 @@ where contributing needs nothing but a text editor.
   which no unattended download can satisfy. Every `google/gemma-3-*` repo
   reports `"gated": "manual"`, including the official GGUF ones, as does
   `meta-llama/Llama-3.2-3B-Instruct`. Ministral 8B Instruct 2410 is worse: MRL
-  §3.2 restricts it to research purposes, so it cannot ship in an MIT product
+  §3.2 restricts it to research purposes, so it cannot ship in a product we sell
   at all.
 
   The current generation clears both problems — Gemma 4 moved to Apache-2.0,
@@ -579,7 +735,9 @@ where contributing needs nothing but a text editor.
   repository.
 - **IMAP is faked by a scripted stub server** on loopback that replays recorded
   response transcripts, one per provider quirk (Gmail, iCloud, Fastmail,
-  Outlook). Provider HTTP endpoints are faked with `wiremock`.
+  Yahoo, Outlook). Provider HTTP endpoints — OAuth token endpoints, Polar, and
+  our Worker — are faked with `wiremock`.
+- **Server**: `vitest` against the Worker with Miniflare's local D1.
 - **UI**: `vitest` plus `@testing-library/svelte` for component logic. The
   bindings file (2.5) makes the seam type-checked, so there are no UI tests
   that assert command shapes.
@@ -587,9 +745,11 @@ where contributing needs nothing but a text editor.
   is a large maintenance surface for a release that already has a mandatory
   human smoke test before publish (Part 6). The smoke test is a written
   checklist in Part 6, not an improvised click-around.
-- **Performance is a test.** A 1 GB generated mbox scans in CI with an asserted
-  ceiling on wall-clock and peak RSS, scaled from the 1.1 measurement. The
-  10 GB acceptance criterion is checked by hand before a release.
+- **Performance is a test.** From M1, 1 GB of generated messages runs through
+  the parse path in CI with an asserted ceiling on wall-clock and peak RSS,
+  scaled from the 1.1 measurement and taken with SQLCipher on. From M5 the same
+  test reads a generated mbox. The 10 GB acceptance criterion is checked by hand
+  before a release.
 
 ### 2.10 CI: the pull-request pipeline (was 17)
 
@@ -606,11 +766,12 @@ Standard GitHub runners are free and unmetered on public repositories
 | `ui` | `ubuntu-latest` | `bun install --frozen-lockfile`, `svelte-check`, `oxlint`, `vitest` |
 | `bindings-drift` | `ubuntu-latest` | regenerate bindings, `git diff --exit-code` |
 | `data` | `ubuntu-latest` | `cargo run -p et-data -- validate` |
+| `server` | `ubuntu-latest` | `bun install --frozen-lockfile`, `tsc --noEmit`, `oxlint`, `vitest` in `server/` |
 
 - **The Linux job uses the same `ubuntu:22.04` container as the release
   build** (Part 9), so glibc and WebKitGTK cannot drift between
   what a pull request tested and what a release ships.
-- All six are required checks. Caching is `Swatinem/rust-cache` plus Bun's
+- All seven are required checks. Caching is `Swatinem/rust-cache` plus Bun's
   lockfile cache; an external contributor's first pull request pays one cold
   Rust build and nothing after.
 - No `cargo build` of the Tauri bundle on a pull request. Bundling is the
@@ -637,7 +798,7 @@ disk. **The file never enters the repository.**
 Cargo.toml                  workspace: core, app, native-host, et-data
 core/                       the domain. No Tauri dependency.
   src/
-    ingest/                 mbox reader, IMAP client, Gmail OAuth
+    ingest/                 IMAP client, Outlook and Gmail OAuth, mbox and Maildir readers
     parse/                  MIME, List-Unsubscribe grammar, receipt extraction
     detect/                 subscription and newsletter classification
     store/                  rusqlite, schema, migrations, FTS
@@ -645,7 +806,9 @@ core/                       the domain. No Tauri dependency.
     skill/                  the three-stage pipeline and the step executor
     cdp/                    the CDP driver and socket transport
     model/                  ModelClient trait, OpenAI-compatible, Anthropic
-    data/                   loader for data/ (services, critical, providers)
+    data/                   loader for data/ (services, critical, providers, stats)
+    licence/                evaluation clock, reminders, activation, Ed25519 token check
+    crypt/                  SQLCipher keying, HKDF subkeys, sealed files
   migrations/               NNN-name.sql, applied by user_version
   tests/corpus/             seeded generator plus goldens
 app/                        the Tauri binary. Thin command layer over core.
@@ -658,13 +821,15 @@ ui/                         SvelteKit, adapter-static
   src/lib/styles/           tokens.css, theme.css
   src/lib/bindings.ts       generated by tauri-specta, committed
   static/fonts/             vendored woff2
-data/                       community data: services/, critical.toml, providers.toml
+data/                       community data: services/, critical.toml, providers.toml, stats.json
+server/                     Cloudflare Worker (Hono, D1): /activate, /check, /deactivate, /stats. Bun.
 site/                       landing page, install scripts. Cloudflare on push to main.
 .github/workflows/          pr.yml, release.yml, extension.yml, yank.yml
+.github/FUNDING.yml         GitHub Sponsors; the same link S17 opens
 CHANGELOG.md                single source of release notes
 ```
 
-`ui` uses Bun (`bun install`, `bunx`). `@sveltejs/adapter-static` is required —
+`ui` and `server` use Bun (`bun install`, `bunx`). `@sveltejs/adapter-static` is required —
 Tauri does not support a server-based frontend (1.2).
 
 **Two on-disk directories exist and must not be merged.** The data directory is
@@ -683,7 +848,10 @@ Dependabot move them.
 |---|---|---|
 | `mail-parser` | 0.11.5 | Pin exactly; carries issues #155 and #156 (M1) |
 | `async-imap` | 0.11.3 | Brings `tokio` into `core` (2.3) |
-| `rusqlite` | 0.40.2 | Features `bundled`, `fts5` |
+| `rusqlite` | 0.40.2 | Feature `bundled-sqlcipher-vendored-openssl`; confirm FTS5 at M0 (2.1) |
+| `chacha20poly1305`, `hkdf`, `ed25519-dalek` | pin at M0 | Sealed files and the licence token (1.7, 2.1) |
+| `machine-uid`, `hmac`, `sha2` | pin at M0 | Device hash (1.7) |
+| `hono` | pin at M0 | `server/` only |
 | `keyring` | 4.1.6 | |
 | `specta` / `tauri-specta` | 2.0.0-rc.25 | Release candidate — see 2.5 |
 | `insta` | 1.48.0 | |
@@ -700,12 +868,13 @@ Dependabot move them.
 Tables, with the columns that carry weight. Full DDL lives in
 `core/migrations/001-initial.sql`.
 
-- **`source`** — `id`, `kind` (`mbox` | `imap` | `gmail`), `label`,
+- **`source`** — `id`, `kind` (`imap` | `outlook` | `gmail` | `mbox` | `maildir`), `label`,
   `last_sync_at`, `message_count`, plus per-kind config. Feeds S12. `last_sync_at`
   only advances while the app is open (1.2); S12 must not imply otherwise.
 - **`message`** — `id`, `source_id`, `message_id` header, `sender_id`,
   `subject`, `date`, `list_unsubscribe` (raw), `list_unsubscribe_post` (bool),
-  `locator` (byte offset for mbox, UID for IMAP). **No body is stored.** The
+  `locator` (UID for IMAP, byte offset for mbox, file name for Maildir).
+  **No body is stored.** The
   locator is how evidence links re-read the original from its source.
   **A locator can stop resolving** — an imported mbox is moved or deleted, an
   IMAP message is expunged. That is a designed state in S14, not an error: the
@@ -731,7 +900,8 @@ Tables, with the columns that carry weight. Full DDL lives in
   `playbook` | `agent` | `bulk`), `target`, `started_at`, `finished_at`,
   `outcome`, `evidence` (a `message` id or a `sessions/<id>.jsonl` path).
 - **`setting`** — key/value. Appearance, sweep behaviour, update behaviour,
-  data location, active tier.
+  data location, active tier, cancel-stats opt-in. The evaluation start and the
+  licence token live in the keychain (2.2), not here.
 
 FTS5 external-content table over `message.subject` and `sender.display_name`,
 kept current by triggers.
@@ -741,36 +911,39 @@ kept current by triggers.
 ## Part 5 — Milestones
 
 Each milestone ends with something demonstrable and its own acceptance check.
-The order is driven by one rule: the mbox path is the zero-auth baseline, so it
-proves the product before any credential exists anywhere.
+The order is driven by one rule: IMAP is the first rung (1.6), so a live
+mailbox proves the product first, and file import follows once the results
+and actions exist.
 
 ### M0 — Skeleton
 
 Cargo workspace with the four crates; SvelteKit with `adapter-static`; Tauri
 v2 with the single-instance plugin; `tokens.css` and `theme.css` extracted with
-fonts vendored; `pr.yml` running all six jobs; `CHANGELOG.md` with an
-`Unreleased` section; MIT `LICENSE`.
+fonts vendored; the SQLCipher store keyed from the keychain, with the FTS5
+check from 2.1; `server/` scaffolded as an empty Hono Worker; `pr.yml` running
+all seven jobs; `CHANGELOG.md` with an `Unreleased` section; FSL-1.1-MIT `LICENSE`.
 
-Done when: an empty window opens on all three platforms and every CI job is
-green on a pull request.
+Done when: an empty window opens on all three platforms, the database file is
+unreadable without the key, and every CI job is green on a pull request.
 
-### M1 — Scan an mbox
+### M1 — Scan a mailbox over IMAP
 
-mbox reader (including the gzip wrapper and `X-Gmail-Labels`, which
-`mail-parser` does not cover), MIME parse, sender aggregation, deterministic
-subscription and newsletter detection, receipt extraction for the first ten
-vendor formats, the schema and its migration stepper, aggregates, and the scan
-progress `Channel`.
+IMAP with app passwords through `async-imap`, credential storage, `BODY.PEEK`
+fetch, full sync and incremental resync (2.3), MIME parse, sender aggregation,
+deterministic subscription and newsletter detection, receipt extraction for the
+first ten vendor formats, the schema and its migration stepper, aggregates, and
+the scan progress `Channel`.
 
 Handle `mail-parser`'s two open defects here — issue #156 silent multipart
-truncation and #155 panic on a folded `Received` header, both on the scan path
+truncation and #155 panic on a folded `Received` header, both on the parse path
 (1.1). Pin a known-good version, carry a patch, and add a fixture for
 each so an upgrade cannot regress them silently.
 
-Screens: S01 (mbox path only), S02, plus S16's mbox-parse-failure error state.
+Screens: S01 (IMAP path only), S02, plus S16's IMAP auth failure state.
 
-Done when: a 1 GB generated mbox scans inside the CI ceiling, and a real
-Takeout export (2.11) scans without a panic.
+Done when: the stub server (2.9) replays every provider transcript, a real
+Gmail app-password account scans without a panic, and a disconnect mid-sync
+resumes without duplicating rows.
 
 ### M2 — See the results
 
@@ -778,13 +951,14 @@ Dashboard, subscriptions list, newsletters list, service detail, command
 palette, general settings, report an issue. All read paths over M1's data. This
 is where the design system becomes real components.
 
-Screens: S03, S04, S05, S06, S18, S15, plus S16's empty states. **S17 opens
-here but does not finish here**: its appearance, data-location and
-erase-all-data controls land in M2, sweep behaviour in M3, the browser
-integration control in M7, and the update section in M8.
+Screens: S03, S04, S05, S06, S18, S15, plus S16's empty states and lost-key
+state. **S17 opens here but does not finish here**: its appearance,
+data-location, encryption-backend and erase-all-data controls land in M2, sweep
+behaviour in M3, the browser integration control in M7, the licence and
+cancel-stats sections in M8, and the update section in M9.
 
-Done when: every one of those screens renders from a scanned mbox and matches
-its mockup in light and dark.
+Done when: every one of those screens renders from a scanned mailbox and
+matches its mockup in light and dark.
 
 ### M3 — Act
 
@@ -798,7 +972,7 @@ sweep-behaviour settings — which are this milestone's defaults made editable:
 whether critical services are excluded from a bulk run, and the size at which a
 bulk run asks for confirmation.
 
-Done when: a bulk unsubscribe over a scanned mbox reports per-item outcomes,
+Done when: a bulk unsubscribe over a scanned mailbox reports per-item outcomes,
 excludes critical services by default, and writes an evidence link for each.
 
 ### M4 — Community data
@@ -813,17 +987,18 @@ Screens: S08.
 Done when: a contributor can add a service in one file and CI rejects a
 malformed one with a file and line.
 
-### M5 — Live mail
+### M5 — More sources
 
-IMAP with app passwords through `async-imap`, credential storage, incremental
-resync, and the sources screen. Then the bring-your-own Gmail OAuth client
-flow with guided setup — the third rung of the ingestion ladder, and the one
-`CONTEXT.md` puts in v0.
+The Outlook.com OAuth client (1.6), then the bring-your-own Gmail OAuth client
+flow with guided setup, then the sources screen. Then file import: the mbox
+reader (including the gzip wrapper and `X-Gmail-Labels`, which `mail-parser`
+does not cover) and the Maildir reader.
 
-Screens: S01 (all three paths), S12, plus S16's IMAP auth failure state.
+Screens: S01 (all paths), S12, plus S16's mbox-parse-failure error state.
 
-Done when: all four target providers (Gmail, iCloud, Fastmail, Outlook) sync
-incrementally, and a disconnect mid-sync resumes without duplicating rows.
+Done when: all five target providers (Gmail, iCloud, Fastmail, Yahoo,
+Outlook) sync incrementally; a 1 GB generated mbox scans inside the CI ceiling;
+and a real Takeout export (2.11) scans without a panic.
 
 ### M6 — Intelligence
 
@@ -856,15 +1031,37 @@ Done when: a cancellation runs end to end in a real logged-in profile, pause
 and hand-over work, and both unavailable states render correctly with the
 extension removed and with a deliberately mismatched protocol version.
 
-### M8 — Ship
+### M8 — Licence and stats
+
+The Polar product and its licence-key benefit with an activation limit of 3;
+the Worker's `/activate`, `/check`, `/deactivate` and `/stats` routes on D1;
+the Ed25519 signing key as a Worker secret; the evaluation clock, the
+reminders, the device hash, activation, the 15-day check and its grace;
+the cancel-stats opt-in and its sender; the export script that writes
+`data/stats.json`; and the S06/S08 lines that read it.
+
+Screens: S17's licence and cancel-stats sections, S16's evaluation reminder,
+licence-invalid state and "Unregistered" marker, the stats lines in S06 and
+S08.
+
+Done when: an unlicensed copy shows no reminder before day 15, shows every
+reminder in 1.7 from day 15 with every feature still working, never interrupts
+a scan, a critical confirmation or an agent run, and goes quiet with a Polar
+test key; a fourth device is refused and a freed slot accepts it; a licensed
+copy runs 30 days with the network off and then shows reminders; a token
+copied to another machine is rejected; a refunded key fails its next check;
+and a stats payload
+captured in a test holds nothing beyond the four fields in 1.7.
+
+### M9 — Ship
 
 The release pipeline exactly as Part 8 specifies: the gate, three platform
 jobs, the single assemble job writing `latest.json` and `SHA256SUMS`, build
 provenance attestation, the `ext-v*` extension workflow with staged rollout,
-and the `workflow_dispatch` yank. The landing site, `install.sh`,
-`install.ps1`, `install-prerelease.sh`, `install-prerelease.ps1`,
-`uninstall.sh`, `uninstall.ps1`. The updater plugin wired to S17's three-way
-setting and the "what changed" screen.
+and the `workflow_dispatch` yank. The landing site with the price and the Polar
+checkout link, `install.sh`, `install.ps1`, `install-prerelease.sh`,
+`install-prerelease.ps1`, `uninstall.sh`, `uninstall.ps1`. The updater plugin
+wired to S17's three-way setting and the "what changed" screen.
 
 Screens: S00, plus S16's update-ready state.
 
@@ -879,20 +1076,21 @@ and the other meets a real browser.
 
 | Milestone | Estimate | What drives the spread |
 |---|---|---|
-| M0 Skeleton | 2–3 h | Three-platform CI going green on the first try, or not |
-| M1 Scan an mbox | 1–2 d | Receipt formats and the two `mail-parser` defects |
+| M0 Skeleton | 3–4 h | Three-platform CI going green, and SQLCipher's OpenSSL build on Windows |
+| M1 Scan over IMAP | 2–3 d | Receipt formats, the two `mail-parser` defects, provider quirks |
 | M2 See the results | 2–3 d | Eight dense screens against mockups, light and dark |
 | M3 Act | 1 d | |
 | M4 Community data | 1 d | Twenty seed entries is research, not code |
-| M5 Live mail | 2–3 d | Four providers' quirks, plus the OAuth guided setup |
+| M5 More sources | 2–3 d | Two OAuth flows, plus the mbox and Maildir readers |
 | M6 Intelligence | 1 d | |
 | M7 Agentic cancellation | 2–3 d | Extension, host, socket and CDP against a real profile |
-| M8 Ship | 1–2 d | Plus the hardware checks in Part 6, which are serial |
+| M8 Licence and stats | 1 d | Polar's API in test mode |
+| M9 Ship | 1–2 d | Plus the hardware checks in Part 6, which are serial |
 
-Roughly two to three weeks of agent wall-clock. **Three things do not respond
-to effort** and should start now if they can: the Takeout export queue (2.11),
-Chrome Web Store review for the extension, and the four hardware confirmations
-in Part 6.
+Roughly two and a half to three and a half weeks of agent wall-clock. **Three
+things do not respond to effort** and should start now if they can: the
+Takeout export queue (2.11), Chrome Web Store review for the extension, and the
+hardware confirmations in Part 6.
 
 ---
 
@@ -912,37 +1110,52 @@ from code review.
 3. macOS App Management does not prompt during a self-update in
    `~/Applications`.
 4. Chrome on Windows accepts our wrapper path as a native-messaging host.
+5. The macOS keychain still hands the database key to the app after a
+   self-update. An ad-hoc signature changes with every build, and the keychain
+   ties an item's access list to the code signature. If it prompts, every
+   update shows a keychain dialog, and a "Deny" locks the user out of their
+   database until they allow it. Test before `0.1.0`; the fix, if needed, is a
+   keychain access group or a stable self-signed identity.
 
 **Must exist before the pipeline can finish**:
 
-5. The minisign key, password-protected, in the `release` Environment, with two
+6. The minisign key, password-protected, in the `release` Environment, with two
    offline backups. Losing it strands every installed copy permanently.
-6. Chrome Web Store client ID, client secret and refresh token. The refresh
+7. Chrome Web Store client ID, client secret and refresh token. The refresh
    token is revocable and will fail silently one day, so the extension workflow
    fails loudly when the API rejects it.
-7. Both extension IDs frozen (M7).
-8. A tag protection rule restricting `v*` to maintainers.
+8. Both extension IDs frozen (M7).
+9. A tag protection rule restricting `v*` to maintainers.
+10. The Ed25519 licence key as a Worker secret, with two offline backups. Its
+    public half is compiled into every build, so losing the private
+    half means no new activation until an app update ships a new public key.
+11. The Polar product as pay-what-you-want with its licence-key benefit: minimum
+    and default $19 for launch week, then $29, the Polar API token
+    as a Worker secret, and the Worker deployed on `api.emailterminator.com`.
+12. The Microsoft app registration for Outlook.com, public client with PKCE.
 
 **Human smoke test before publishing any draft release**, on each platform:
-install from the script, first run reaches S01, import a small mbox, dashboard
-renders, one unsubscribe completes and appears in the activity log, settings
-open, quit and relaunch retains data.
+install from the script, first run reaches S01 with the evaluation running, connect
+a test IMAP account, dashboard renders, one unsubscribe completes and appears in
+the activity log, a Polar test key activates, settings open, quit and relaunch
+retains data.
 
 ---
 
 ## Part 7 — Explicitly not in v0
 
-Virtual cards, email aliasing, a hosted version, mobile apps, Apple-signed
-builds, a Homebrew cask, an `.msi`, npm, a background daemon, nightly builds, a
-second release channel, runtime-fetched community data, end-to-end webview
-automation, and any telemetry. Each has a trigger recorded in `CONTEXT.md` or
+Virtual cards, email aliasing, a hosted version, mobile apps, a CLI,
+Apple-signed builds, a Homebrew cask, an `.msi`, npm, a background daemon,
+nightly builds, a second release channel, runtime-fetched community data,
+end-to-end webview automation, our own verified Google OAuth client, and any
+telemetry beyond the two payloads in 1.7. Each has a trigger recorded in `CONTEXT.md` or
 in the Part 1 section that removed it.
 
 ---
 
 ## Part 8 — Packaging and release reference
 
-The mechanics behind locked decisions 9–18. M8 builds this; the reasoning is in
+The mechanics behind locked decisions 9–18. M9 builds this; the reasoning is in
 1.4 and 1.5.
 
 ### Artifacts per release
@@ -998,12 +1211,13 @@ for the AppImage.
 
 The setting offers Automatic (default), Notify only, and Off. S01's privacy
 statement names the check and what it sends: our version, operating system,
-architecture, and the IP that any HTTPS request carries. Nothing we invent is
-transmitted, which keeps the no-telemetry line intact.
+architecture, and the IP that any HTTPS request carries. The update check
+carries nothing we invent; the device hash goes only with licence requests
+(1.7).
 
 The cost of that line, stated so nobody is surprised later: adoption signal is
-limited to GitHub asset download counts and `latest.json` hits, both aggregate
-and collected by GitHub rather than by us. **We will not know crash rates.** An
+limited to GitHub asset download counts, `latest.json` hits, and activation
+counts. **We will not know crash rates.** An
 opt-in report that shows its exact payload before sending is the cheap answer
 if that ever matters, and it is a separate decision.
 
@@ -1124,8 +1338,11 @@ build can never display a version that disagrees with what the installer
 fetches.
 
 The site serves `install.sh`, `install.ps1`, `install-prerelease.sh`,
-`install-prerelease.ps1`, `uninstall.sh` and `uninstall.ps1`. All are static
-files, so the site needs no Function and no server-side logic.
+`install-prerelease.ps1`, `uninstall.sh` and `uninstall.ps1`, plus the price
+and a link to the Polar checkout. All are static files, so the site needs no
+Function and no server-side logic. Activation and stats live in `server/` on
+their own host (1.7). A push to `main` that touches `server/` deploys it with
+`wrangler deploy`.
 
 **Installer scope is latest only.** `install-prerelease.sh` resolves the newest
 GitHub pre-release through the API and installs it, so it is still "latest of a

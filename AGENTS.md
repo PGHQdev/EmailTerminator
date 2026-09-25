@@ -20,7 +20,7 @@ Read `PLAN.md` before writing code. Read `DESIGN.md` before writing UI. Read
 
 There is no ADR directory, no ticket tracker, no decision map. Do not create
 them. When a decision in `PLAN.md` turns out to be wrong, edit `PLAN.md` — the
-sections numbered 1.1 to 1.6 hold the reasoning and each names what would
+sections numbered 1.1 to 1.7 hold the reasoning and each names what would
 reopen it.
 
 If your work contradicts a locked decision in Part 1, say so explicitly rather
@@ -29,9 +29,10 @@ than quietly working around it.
 ## Vocabulary
 
 Use the terms these documents already use — service, sender, newsletter,
-subscription, recipe, playbook, skill, tier, source. A concept that is not in
-them is either language the project does not use, in which case reconsider it,
-or a real gap, in which case add it to the document that owns it.
+subscription, recipe, playbook, skill, tier, source, licence, evaluation. A concept
+that is not in them is either language the project does not use, in which case
+reconsider it, or a real gap, in which case add it to the document that owns
+it.
 
 ## Design work
 
