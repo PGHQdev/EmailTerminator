@@ -8,14 +8,20 @@ rust-version.workspace = true
 publish = false
 
 [dependencies]
+async-imap.workspace = true
 chacha20poly1305.workspace = true
+futures.workspace = true
 getrandom.workspace = true
 keyring.workspace = true
 mail-parser.workspace = true
 rusqlite.workspace = true
+rustls.workspace = true
+rustls-platform-verifier.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true
+tokio.workspace = true
+tokio-rustls.workspace = true
 zeroize.workspace = true
 
 [dev-dependencies]
