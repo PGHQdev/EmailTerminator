@@ -1253,6 +1253,7 @@ dependencies = [
  "getrandom 0.4.3",
  "keyring",
  "mail-parser",
+ "regex",
  "rusqlite",
  "rustls",
  "rustls-platform-verifier",

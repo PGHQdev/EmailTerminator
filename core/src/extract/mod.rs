@@ -2,7 +2,15 @@
 //! one). The corpus goldens in `core/tests/corpus/` are serialised
 //! `Extraction` values, so a change here is a change to every golden.
 
+mod headers;
+mod money;
+mod receipt;
+
+use mail_parser::{MessageParser, PartType};
 use serde::{Deserialize, Serialize};
+
+pub use headers::rfc3339_utc;
+pub use receipt::is_platform;
 
 /// The facts taken from one raw message. No body text survives past this.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -73,13 +81,114 @@ impl ReceiptKind {
 /// Reads one raw message. Never panics; bytes that do not parse produce an
 /// extraction with every field empty.
 pub fn extract(raw: &[u8]) -> Extraction {
-    let _ = raw;
-    todo!("M1: parse, headers, receipts")
+    let Some(msg) = MessageParser::default().parse(raw) else {
+        return Extraction::empty();
+    };
+    let (from_address, from_name) = headers::from(&msg);
+    let subject = msg.subject().map(|s| s.trim().to_owned());
+    let list_unsubscribe = headers::raw(&msg, "List-Unsubscribe");
+    let list_id = headers::list_id(&msg);
+    let listish = list_unsubscribe.is_some() || list_id.is_some() || headers::is_bulk(&msg);
+
+    let from_domain = from_address
+        .as_deref()
+        .and_then(|a| a.rsplit_once('@'))
+        .map(|(_, d)| d);
+    let receipt = receipt::read(&receipt::Input {
+        subject: subject.as_deref().unwrap_or(""),
+        text: &body_text(&msg),
+        from_name: from_name.as_deref(),
+        from_domain,
+    });
+
+    Extraction {
+        from_address,
+        from_name,
+        subject,
+        date: headers::date(&msg),
+        message_id: msg.message_id().map(|id| id.trim().to_owned()),
+        list_unsubscribe_post: headers::raw(&msg, "List-Unsubscribe-Post")
+            .is_some_and(|v| v == "List-Unsubscribe=One-Click"),
+        list_unsubscribe,
+        list_id,
+        is_list: listish && receipt.is_none(),
+        dkim_domains: headers::dkim_domains(&msg),
+        receipt,
+    }
+}
+
+impl Extraction {
+    fn empty() -> Self {
+        Self {
+            from_address: None,
+            from_name: None,
+            subject: None,
+            date: None,
+            message_id: None,
+            list_unsubscribe: None,
+            list_unsubscribe_post: false,
+            list_id: None,
+            is_list: false,
+            dkim_domains: Vec::new(),
+            receipt: None,
+        }
+    }
+}
+
+/// Every text part, then every HTML part read as text, so an amount that
+/// only the HTML carries is still found.
+fn body_text(msg: &mail_parser::Message<'_>) -> String {
+    let mut text = String::new();
+    for part in msg.text_bodies().chain(msg.html_bodies()) {
+        let chunk = match &part.body {
+            PartType::Text(t) => t.to_string(),
+            PartType::Html(h) => mail_parser::decoders::html::html_to_text(h),
+            _ => continue,
+        };
+        if !text.contains(chunk.trim()) {
+            text.push_str(&chunk);
+            text.push('\n');
+        }
+    }
+    text
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn a_newsletter_reads_as_a_list() {
+        let raw = b"From: =?utf-8?Q?The_Dispatch?= <News@Dispatch.test>\r\n\
+Subject: Issue 12\r\n\
+Date: Sun, 1 Mar 2026 10:30:00 +0100\r\n\
+Message-ID: <issue-12@dispatch.test>\r\n\
+List-Unsubscribe: <https://dispatch.test/u/1>,\r\n <mailto:u@dispatch.test>\r\n\
+List-Unsubscribe-Post: List-Unsubscribe=One-Click\r\n\
+List-Id: The Dispatch <dispatch.test>\r\n\
+DKIM-Signature: v=1; a=rsa-sha256; d=Dispatch.test; s=k1;\r\n h=from:list-unsubscribe:list-unsubscribe-post; b=abc\r\n\
+\r\n\
+Hello.\r\n";
+        let e = extract(raw);
+        assert_eq!(e.from_address.as_deref(), Some("news@dispatch.test"));
+        assert_eq!(e.from_name.as_deref(), Some("The Dispatch"));
+        assert_eq!(e.date.as_deref(), Some("2026-03-01T09:30:00Z"));
+        assert_eq!(e.message_id.as_deref(), Some("issue-12@dispatch.test"));
+        assert_eq!(
+            e.list_unsubscribe.as_deref(),
+            Some("<https://dispatch.test/u/1>, <mailto:u@dispatch.test>")
+        );
+        assert!(e.list_unsubscribe_post);
+        assert_eq!(e.list_id.as_deref(), Some("dispatch.test"));
+        assert_eq!(e.dkim_domains, vec!["dispatch.test"]);
+        assert!(e.is_list);
+        assert!(e.receipt.is_none());
+    }
+
+    #[test]
+    fn bytes_that_do_not_parse_give_an_empty_extraction() {
+        assert_eq!(extract(b""), Extraction::empty());
+    }
 
     #[test]
     fn the_golden_format_round_trips() {
