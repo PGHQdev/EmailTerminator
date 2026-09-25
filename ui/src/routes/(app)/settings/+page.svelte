@@ -3,19 +3,20 @@
   import { revealItemInDir } from '@tauri-apps/plugin-opener';
   import { KeyRound, LockKeyhole } from 'lucide-svelte';
   import { appearance } from '$lib/appearance.svelte';
-  import { commands, type Appearance, type DataLocation } from '$lib/bindings';
+  import { commands, type Appearance, type DataLocation, type Sweep } from '$lib/bindings';
   import Button from '$lib/components/Button.svelte';
   import { bytes } from '$lib/format';
 
-  // S17 — General settings, M2's part: appearance, data location, encryption
-  // and erase. Sweep behaviour arrives in M3, licence and cancel stats in M8,
-  // updates in M9.
+  // S17 — General settings: appearance, sweep behaviour, data location,
+  // encryption and erase. Licence and cancel stats arrive in M8, updates in M9.
   let location = $state<DataLocation | null>(null);
+  let sweep = $state<Sweep | null>(null);
   let note = $state<string | null>(null);
   let erasing = $state(false);
   let confirmOpen = $state(false);
 
   $effect(() => {
+    commands.sweepSettings().then((value) => (sweep = value));
     commands.dataLocation().then((r) => {
       if (r.status === 'ok') location = r.data;
       else note = r.error;
@@ -27,6 +28,13 @@
     { value: 'dark', label: 'Dark' },
     { value: 'system', label: 'System' },
   ];
+
+  async function saveSweep(change: Partial<Sweep>) {
+    if (!sweep) return;
+    sweep = { ...sweep, ...change };
+    const result = await commands.setSweepSettings(sweep);
+    if (result.status === 'error') note = result.error;
+  }
 
   async function move() {
     note = null;
@@ -74,6 +82,56 @@
       {/each}
     </div>
   </section>
+
+  {#snippet toggle(on: boolean, label: string, flip: () => void)}
+    <button type="button" role="switch" aria-checked={on} aria-label={label} class="switch" class:on onclick={flip}>
+      <span></span>
+    </button>
+  {/snippet}
+
+  {#if sweep}
+    {@const s = sweep}
+    <section class="card list">
+      <div class="row item">
+        <div>
+          <h2>Confirm before bulk actions</h2>
+          <p>Always show the review screen before a sweep runs</p>
+        </div>
+        {@render toggle(s.confirmAlways, 'Confirm before bulk actions', () =>
+          saveSweep({ confirmAlways: !s.confirmAlways }),
+        )}
+      </div>
+      {#if !s.confirmAlways}
+        <div class="row item">
+          <div>
+            <h2>Review large sweeps anyway</h2>
+            <p>Smaller sweeps run straight away and report back</p>
+          </div>
+          <label class="size">
+            from
+            <input
+              type="number"
+              min="2"
+              max="999"
+              value={s.confirmFrom}
+              onchange={(e) =>
+                saveSweep({ confirmFrom: Math.max(2, Number(e.currentTarget.value) || 2) })}
+            />
+            items
+          </label>
+        </div>
+      {/if}
+      <div class="row item">
+        <div>
+          <h2>Leave critical services out</h2>
+          <p>A sweep starts with them unchecked; including one asks first</p>
+        </div>
+        {@render toggle(s.excludeCritical, 'Leave critical services out', () =>
+          saveSweep({ excludeCritical: !s.excludeCritical }),
+        )}
+      </div>
+    </section>
+  {/if}
 
   <section class="card">
     <div class="row">
@@ -215,6 +273,72 @@
     border-radius: var(--radius-lg);
     padding: 1.25rem 1.625rem;
     box-shadow: var(--shadow-sm);
+  }
+
+  .card.list {
+    padding: 0.5rem 1.625rem;
+  }
+
+  .item {
+    padding: 0.875rem 0;
+    border-bottom: var(--stroke) solid var(--line);
+  }
+
+  .item:last-child {
+    border-bottom: none;
+  }
+
+  .switch {
+    position: relative;
+    flex: none;
+    width: 2.875rem;
+    height: 1.6875rem;
+    padding: 0;
+    border-radius: var(--pill);
+    border: var(--stroke) solid var(--line);
+    background: var(--card2);
+    cursor: pointer;
+  }
+
+  .switch span {
+    position: absolute;
+    top: 0.125rem;
+    left: 0.1875rem;
+    width: 1.3125rem;
+    height: 1.3125rem;
+    border-radius: var(--pill);
+    background: var(--onSage);
+    box-shadow: var(--shadow-sm);
+    transition: left 0.15s;
+  }
+
+  .switch.on {
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+
+  .switch.on span {
+    left: 1.375rem;
+  }
+
+  .size {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--mut);
+  }
+
+  .size input {
+    width: 3.5rem;
+    padding: 0.375rem 0.625rem;
+    border: var(--stroke-strong) solid var(--line);
+    border-radius: var(--pill);
+    background: var(--card2);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg);
+    text-align: center;
   }
 
   .row {
