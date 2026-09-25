@@ -32,12 +32,19 @@ pub struct Charge {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Summary {
     /// `None` for a single charge: one purchase is not a subscription yet.
+    /// Overlapping plans share a cadence when every plan has it.
     pub cadence: Option<Cadence>,
+    /// Charges after the same receipt in two folders is merged.
+    pub charge_count: usize,
+    /// Within one regular plan: two plans, or two purchases, at different
+    /// prices are not a rise.
     pub price_increase: bool,
     pub latest: Option<(i64, String)>,
-    /// The latest charge spread over a month: itself when monthly, a twelfth
-    /// when annual, unknown otherwise.
+    /// What the service costs per month now: each plan's latest charge, a
+    /// twelfth of it when annual, summed; unknown when any plan is irregular.
     pub monthly_minor_units: Option<i64>,
+    /// Plans billed side by side, such as two subscriptions from one vendor.
+    pub plans: usize,
 }
 
 const DAY: i64 = 86_400;
@@ -53,23 +60,73 @@ pub fn summarize(charges: &[Charge]) -> Summary {
             && b.currency == a.currency
     });
 
-    let cadence = cadence(&sorted);
-    let latest = sorted.last().map(|c| (c.minor_units, c.currency.clone()));
-    let price_increase = sorted.windows(2).any(|w| {
-        w[0].currency == w[1].currency
-            && w[1].minor_units > w[0].minor_units
-            && w[0].minor_units > 0
-    });
-    let monthly_minor_units = match (cadence, &latest) {
-        (Some(Cadence::Monthly), Some((amount, _))) => Some(*amount),
-        (Some(Cadence::Annual), Some((amount, _))) => Some((*amount + 6) / 12),
-        _ => None,
+    let plans = plans(&sorted);
+    let cadences: Vec<Option<Cadence>> = plans.iter().map(|p| cadence(p)).collect();
+    let cadence = match cadences.first() {
+        Some(first) if cadences.iter().all(|c| c == first) => *first,
+        _ => Some(Cadence::Irregular),
     };
+    let monthly_minor_units = plans
+        .iter()
+        .zip(&cadences)
+        .map(|(plan, cadence)| match (cadence, plan.last()) {
+            (Some(Cadence::Monthly), Some(c)) => Some(c.minor_units),
+            (Some(Cadence::Annual), Some(c)) => Some((c.minor_units + 6) / 12),
+            _ => None,
+        })
+        .sum();
     Summary {
         cadence,
-        price_increase,
-        latest,
+        charge_count: sorted.len(),
+        // Only a regular plan has a price to raise; one-off purchases just differ.
+        price_increase: plans.iter().zip(&cadences).any(|(plan, cadence)| {
+            matches!(cadence, Some(Cadence::Monthly | Cadence::Annual))
+                && plan.windows(2).any(|w| {
+                    w[0].currency == w[1].currency
+                        && w[1].minor_units > w[0].minor_units
+                        && w[0].minor_units > 0
+                })
+        }),
+        latest: sorted.last().map(|c| (c.minor_units, c.currency.clone())),
         monthly_minor_units,
+        plans: plans.len(),
+    }
+}
+
+/// Splits charges into plans billed side by side. Charges are grouped by
+/// amount; a group that starts after another ends continues it (a price
+/// change), one that overlaps it is a second plan. The split stands only when
+/// every plan is regular on its own with at least three charges; otherwise
+/// the charges are one irregular run, like a shop's purchases.
+fn plans<'a>(sorted: &[&'a Charge]) -> Vec<Vec<&'a Charge>> {
+    let mut groups: Vec<Vec<&Charge>> = Vec::new();
+    for charge in sorted {
+        match groups
+            .iter_mut()
+            .find(|g| g[0].minor_units == charge.minor_units && g[0].currency == charge.currency)
+        {
+            Some(group) => group.push(charge),
+            None => groups.push(vec![charge]),
+        }
+    }
+    let mut plans: Vec<Vec<&Charge>> = Vec::new();
+    for group in groups {
+        let start = group[0].at;
+        match plans
+            .iter_mut()
+            .find(|p| p.last().is_some_and(|last| last.at <= start + DAY))
+        {
+            Some(plan) => plan.extend(group),
+            None => plans.push(group),
+        }
+    }
+    let regular = |plan: &Vec<&Charge>| {
+        plan.len() >= 3 && matches!(cadence(plan), Some(Cadence::Monthly | Cadence::Annual))
+    };
+    if plans.len() > 1 && plans.iter().all(regular) {
+        plans
+    } else {
+        vec![sorted.to_vec()]
     }
 }
 
@@ -131,6 +188,36 @@ mod tests {
     fn one_purchase_is_not_recurring() {
         let s = summarize(&monthly(1, |_| 4900));
         assert_eq!(s.cadence, None);
+        assert_eq!(s.monthly_minor_units, None);
+    }
+
+    #[test]
+    fn two_plans_side_by_side_are_two_plans() {
+        let mut charges = monthly(8, |_| 1500);
+        charges.extend(monthly(8, |_| 400).into_iter().map(|mut c| {
+            c.at += 5 * DAY;
+            c
+        }));
+        let s = summarize(&charges);
+        assert_eq!(s.plans, 2);
+        assert_eq!(s.cadence, Some(Cadence::Monthly));
+        assert_eq!(s.monthly_minor_units, Some(1900));
+        assert!(!s.price_increase);
+        assert_eq!(s.charge_count, 16);
+    }
+
+    #[test]
+    fn irregular_purchases_stay_one_run() {
+        let charges: Vec<Charge> = [(0, 3000), (41, 4500), (97, 1200), (180, 4500)]
+            .iter()
+            .map(|(d, a)| Charge {
+                at: 1_767_225_600 + d * DAY,
+                minor_units: *a,
+                currency: "USD".into(),
+            })
+            .collect();
+        let s = summarize(&charges);
+        assert_eq!((s.plans, s.cadence), (1, Some(Cadence::Irregular)));
         assert_eq!(s.monthly_minor_units, None);
     }
 

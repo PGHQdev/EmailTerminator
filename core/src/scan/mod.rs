@@ -1,6 +1,7 @@
 //! A scan: fetched mail becomes rows, then rows become senders, services,
 //! charges and monthly totals (PLAN.md 2.1, M1).
 
+pub mod group;
 mod rebuild;
 pub mod summary;
 

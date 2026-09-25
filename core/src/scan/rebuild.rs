@@ -1,10 +1,11 @@
 //! After a scan: classify senders, group billing mail into services, derive
 //! charges and cadence, and rebuild the monthly rollups S03 and S06 read.
 
-use std::collections::{BTreeMap, HashMap, HashSet};
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 
 use rusqlite::{Transaction, params};
 
+use super::group::{Candidate, keys};
 use super::group_key;
 use super::summary::{Charge, summarize};
 use crate::extract::{is_platform, parse_rfc3339_utc};
@@ -98,14 +99,16 @@ fn services(tx: &Transaction<'_>) -> Result<(), StoreError> {
         })?
         .collect::<Result<_, _>>()?;
 
-    // Group: the merchant for platform-relayed receipts, else the sender's
-    // registrable domain.
+    let candidates: Vec<Candidate<'_>> = rows
+        .iter()
+        .map(|r| Candidate {
+            domain: &r.domain,
+            display_name: r.display_name.as_deref(),
+            merchant: r.merchant.as_deref(),
+        })
+        .collect();
     let mut groups: BTreeMap<String, Vec<&Row>> = BTreeMap::new();
-    for row in &rows {
-        let key = match (&row.merchant, is_platform(&row.domain)) {
-            (Some(merchant), true) => merchant.trim().to_lowercase(),
-            _ => group_key(&row.domain),
-        };
+    for (row, key) in rows.iter().zip(keys(&candidates)) {
         groups.entry(key).or_default().push(row);
     }
 
@@ -162,13 +165,18 @@ fn services(tx: &Transaction<'_>) -> Result<(), StoreError> {
             ],
         )?;
 
-        // Every sender on the service's own domain belongs to it; platform
+        // Every sender on the service's own domains belongs to it; platform
         // senders serve many merchants and belong to none.
-        if !groups_by_merchant(rows) {
+        let domains: BTreeSet<String> = rows
+            .iter()
+            .filter(|r| !is_platform(&r.domain))
+            .map(|r| group_key(&r.domain))
+            .collect();
+        for domain in domains {
             tx.execute(
                 "UPDATE sender SET service_id = ?1
                  WHERE domain = ?2 OR domain LIKE '%.' || ?2",
-                params![service_id, key],
+                params![service_id, domain],
             )?;
         }
     }

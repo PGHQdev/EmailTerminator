@@ -10,7 +10,7 @@ use std::fs;
 use std::panic::{AssertUnwindSafe, catch_unwind};
 use std::path::{Path, PathBuf};
 
-use et_core::extract::{Extraction, ReceiptKind, extract};
+use et_core::extract::{Extraction, extract};
 use generator::{SEED, SeriesExpected, generate};
 use mail_parser::MessageParser;
 use serde_json::Value;
@@ -227,7 +227,6 @@ fn diff(at: &str, expected: &Value, actual: &Value, out: &mut Vec<String>) {
 }
 
 #[test]
-#[ignore = "enabled when extract() lands"]
 fn extraction_matches_goldens() {
     let files = read_tree(&out_dir());
     let mut failures = Vec::new();
@@ -261,38 +260,47 @@ fn extraction_matches_goldens() {
 }
 
 #[test]
-#[ignore = "enabled when recurrence detection lands"]
 fn series_match_expectations() {
     let files = read_tree(&out_dir());
     let mut failures = Vec::new();
     for (name, expected, members) in series(&files) {
         let extractions: Vec<Extraction> = members.iter().map(|(_, raw)| extract(raw)).collect();
-        // TODO(M1 detect): summarise `extractions` with the recurrence
-        // detector and compare the whole result with `expected`:
-        //     assert_eq!(summarize(&extractions), expected);
-        // Until then, check what single extractions already decide.
-        let charges: Vec<_> = extractions
-            .iter()
-            .filter_map(|e| e.receipt.as_ref())
-            .filter(|r| r.kind == ReceiptKind::Charge)
-            .collect();
-        if charges.len() < expected.charge_count as usize {
+        let groups = et_core::scan::group::series(&extractions);
+        let Some(summary) = groups.get(&expected.group_key) else {
             failures.push(format!(
-                "series/{name}: {} charges extracted, {} expected after de-duplication",
-                charges.len(),
-                expected.charge_count
+                "series/{name}: no service keyed {:?}; got {:?}",
+                expected.group_key,
+                groups.keys().collect::<Vec<_>>()
             ));
-        }
-        let latest = charges.last();
-        if latest.and_then(|r| r.amount_minor_units) != expected.latest_amount_minor_units
-            || latest.and_then(|r| r.currency.clone()) != expected.currency
-        {
+            continue;
+        };
+        let actual = (
+            summary.cadence.map(|c| c.as_str().to_owned()),
+            summary.charge_count as u32,
+            summary.price_increase,
+            summary.latest.as_ref().map(|(amount, _)| *amount),
+            summary
+                .latest
+                .as_ref()
+                .map(|(_, currency)| currency.clone()),
+        );
+        let wanted = (
+            expected.cadence.map(|c| {
+                serde_json::to_value(c)
+                    .expect("cadence")
+                    .as_str()
+                    .unwrap_or_default()
+                    .to_owned()
+            }),
+            expected.charge_count,
+            expected.price_increase,
+            expected.latest_amount_minor_units,
+            expected.currency.clone(),
+        );
+        if actual != wanted || groups.len() != 1 {
             failures.push(format!(
-                "series/{name}: latest charge {:?} {:?}, expected {:?} {:?}",
-                latest.and_then(|r| r.amount_minor_units),
-                latest.and_then(|r| r.currency.as_deref()),
-                expected.latest_amount_minor_units,
-                expected.currency
+                "series/{name}: got {actual:?} in {} group(s), expected {wanted:?}",
+                groups.len()
             ));
         }
     }
