@@ -1,0 +1,75 @@
+/* The alias layer screens consume (PLAN.md 2.4). Light values are the ones
+   every mockup defines; dark is lifted from Dark A Espresso.dc.html, which
+   redefines these aliases and nothing else. The --dock* aliases belong to the
+   rejected Docked Bar navigation and are not ported. --band and --bandFg have
+   no dark value in the mockups. */
+
+:root {
+  --bg: var(--color-bg);
+  --fg: var(--color-text);
+  --hd: var(--color-text);
+  --mut: var(--color-neutral-600);
+  --card: #fffdf8;
+  --card2: var(--color-neutral-100);
+  --line: var(--color-neutral-300);
+  --acc: var(--color-accent);
+  --accDeep: var(--color-accent-700);
+  --accSoft: var(--color-accent-100);
+  --sage: var(--color-accent-2);
+  --sageSoft: var(--color-accent-2-100);
+  --sageDeep: var(--color-accent-2-800);
+  --onSage: #fff;
+  --dotOk: var(--color-accent-2);
+  --ok: var(--color-accent-2-700);
+  --bad: var(--color-accent-800);
+  --band: var(--color-accent-2-800);
+  --bandFg: var(--color-accent-2-200);
+  --b1: var(--color-accent-2-100);
+  --b1f: var(--color-accent-2-900);
+  --b2: var(--color-accent);
+  --b2f: #fff;
+  --b3: var(--color-accent-2);
+  --b3f: #fff;
+  --b4: var(--color-neutral-200);
+  --b4f: var(--color-text);
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--color-neutral-900);
+  --fg: var(--color-neutral-100);
+  --hd: #fff;
+  --mut: var(--color-neutral-400);
+  --card: var(--color-neutral-800);
+  --card2: rgba(255, 255, 255, 0.06);
+  --line: var(--color-neutral-700);
+  --acc: var(--color-accent);
+  --accDeep: var(--color-accent-300);
+  --accSoft: rgba(198, 113, 57, 0.24);
+  --sage: var(--color-accent-400);
+  --sageSoft: var(--color-neutral-700);
+  --sageDeep: var(--color-neutral-100);
+  --onSage: var(--color-neutral-900);
+  --dotOk: var(--color-accent-2-400);
+  --ok: var(--color-accent-2-300);
+  --bad: var(--color-accent-300);
+  --b1: #f5ead8;
+  --b1f: #201e1d;
+  --b2: var(--color-accent);
+  --b2f: #fff;
+  --b3: var(--color-accent-700);
+  --b3f: #fff;
+  --b4: var(--color-neutral-700);
+  --b4f: var(--color-neutral-100);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
