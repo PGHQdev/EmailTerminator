@@ -6,6 +6,7 @@
   "message_id": "cf08cc2b9aaa2481.0a5ce751@news.harbor.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": "weekly.news.harbor.test",
   "is_list": true,
   "dkim_domains": [

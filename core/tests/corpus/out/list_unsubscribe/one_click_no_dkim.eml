@@ -1,3 +1,4 @@
+Authentication-Results: mx.inbox.test; dkim=none; spf=pass smtp.mailfrom=news.harbor.test
 From: Harbor Weekly <weekly@news.harbor.test>
 To: Sam Rivera <sam@inbox.test>
 Subject: Harbor Weekly: tides, ferries and a new pier

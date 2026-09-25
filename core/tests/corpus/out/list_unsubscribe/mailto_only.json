@@ -6,6 +6,7 @@
   "message_id": "e88f9b96bed87606.8ea942c7@news.harbor.test",
   "list_unsubscribe": "<mailto:leave-8a1f2c@news.harbor.test>",
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": true,
   "dkim_domains": [

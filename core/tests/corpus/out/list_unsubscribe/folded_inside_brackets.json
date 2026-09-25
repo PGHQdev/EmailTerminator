@@ -6,6 +6,7 @@
   "message_id": "52afa65ce3154e47.8829ea1a@news.harbor.test",
   "list_unsubscribe": "<https://news.harbor.test/unsubscribe?list=weekly& user=8a1f2c>",
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": true,
   "dkim_domains": [

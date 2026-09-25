@@ -6,6 +6,7 @@
   "message_id": "d327056527c67073.b1bb7565@stripe.com",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

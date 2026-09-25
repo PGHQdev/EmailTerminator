@@ -97,6 +97,7 @@ impl Corpus {
                 message_id: None,
                 list_unsubscribe: None,
                 list_unsubscribe_post: false,
+                one_click: false,
                 list_id: None,
                 is_list: false,
                 dkim_domains: Vec::new(),
@@ -302,6 +303,18 @@ impl Msg {
     pub fn list_unsubscribe_post(&mut self, raw: &str) -> &mut Self {
         self.header("List-Unsubscribe-Post", raw);
         self.g.list_unsubscribe_post = raw.trim() == "List-Unsubscribe=One-Click";
+        self
+    }
+
+    /// The receiving server's verdict, which the RFC 8058 check trusts. Write
+    /// it first: a server adds it on top.
+    pub fn auth_results(&mut self, value: &str) -> &mut Self {
+        self.header("Authentication-Results", value)
+    }
+
+    /// The golden: every RFC 8058 condition holds.
+    pub fn one_click(&mut self) -> &mut Self {
+        self.g.one_click = true;
         self
     }
 

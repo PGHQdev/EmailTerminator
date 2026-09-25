@@ -6,6 +6,7 @@
   "message_id": "02a3d077b54e97e7.06931369@mail.quill.test",
   "list_unsubscribe": "<mailto:dev-unsubscribe@quill.apache.test>",
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": "dev.quill.apache.test",
   "is_list": true,
   "dkim_domains": [

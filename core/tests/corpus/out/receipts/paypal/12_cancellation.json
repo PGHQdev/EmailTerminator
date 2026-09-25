@@ -6,6 +6,7 @@
   "message_id": "64aceec2dbf86dd1.a087e0f3@paypal.com",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

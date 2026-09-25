@@ -6,6 +6,7 @@
   "message_id": "9017514e7ca77fee.2239d780@northpeak.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

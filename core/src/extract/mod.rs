@@ -6,6 +6,7 @@ mod headers;
 mod html;
 mod money;
 mod receipt;
+pub mod unsubscribe;
 mod words;
 
 use mail_parser::{MessageParser, MimeHeaders, PartType};
@@ -29,9 +30,11 @@ pub struct Extraction {
     pub message_id: Option<String>,
     /// The `List-Unsubscribe` header unfolded, or `None`.
     pub list_unsubscribe: Option<String>,
-    /// True only for exactly `List-Unsubscribe=One-Click`. Whether the
-    /// message qualifies for RFC 8058 is decided at M3, not here.
+    /// True only for exactly `List-Unsubscribe=One-Click`.
     pub list_unsubscribe_post: bool,
+    /// Every RFC 8058 condition holds, so an unsubscribe can be one POST
+    /// (`unsubscribe::one_click`).
+    pub one_click: bool,
     /// `List-Id` without angle brackets.
     pub list_id: Option<String>,
     /// Mailing-list or bulk mail: any `List-Id`, `List-Unsubscribe`, or
@@ -111,14 +114,16 @@ pub fn extract(raw: &[u8]) -> Extraction {
         }),
     });
 
+    let list_unsubscribe_post = headers::raw(&msg, "List-Unsubscribe-Post")
+        .is_some_and(|v| v == "List-Unsubscribe=One-Click");
     Extraction {
+        one_click: unsubscribe::one_click(&msg, list_unsubscribe.as_deref(), list_unsubscribe_post),
         from_address,
         from_name,
         subject,
         date: headers::date(&msg),
         message_id: msg.message_id().map(|id| id.trim().to_owned()),
-        list_unsubscribe_post: headers::raw(&msg, "List-Unsubscribe-Post")
-            .is_some_and(|v| v == "List-Unsubscribe=One-Click"),
+        list_unsubscribe_post,
         list_unsubscribe,
         list_id,
         is_list: listish && receipt.is_none(),
@@ -137,6 +142,7 @@ impl Extraction {
             message_id: None,
             list_unsubscribe: None,
             list_unsubscribe_post: false,
+            one_click: false,
             list_id: None,
             is_list: false,
             dkim_domains: Vec::new(),
@@ -189,6 +195,10 @@ Hello.\r\n";
             Some("<https://dispatch.test/u/1>, <mailto:u@dispatch.test>")
         );
         assert!(e.list_unsubscribe_post);
+        assert!(
+            !e.one_click,
+            "no Authentication-Results reports the signature"
+        );
         assert_eq!(e.list_id.as_deref(), Some("dispatch.test"));
         assert_eq!(e.dkim_domains, vec!["dispatch.test"]);
         assert!(e.is_list);
@@ -210,6 +220,7 @@ Hello.\r\n";
             message_id: Some("abc@acme.test".into()),
             list_unsubscribe: None,
             list_unsubscribe_post: false,
+            one_click: false,
             list_id: None,
             is_list: false,
             dkim_domains: vec!["acme.test".into()],

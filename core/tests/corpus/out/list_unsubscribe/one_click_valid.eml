@@ -1,3 +1,6 @@
+Authentication-Results: mx.inbox.test;
+ dkim=pass (2048-bit key) header.d=news.harbor.test;
+ spf=pass smtp.mailfrom=news.harbor.test
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=news.harbor.test;
 	s=k1; t=1776187094;
 	h=from:to:subject:date:message-id:list-unsubscribe:list-unsubscribe-post;

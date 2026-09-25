@@ -6,6 +6,7 @@
   "message_id": "27741b0a52ef4d5c.ba38a897@xn--bcher-kva.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

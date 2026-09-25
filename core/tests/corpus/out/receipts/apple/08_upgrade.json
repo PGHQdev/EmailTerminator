@@ -6,6 +6,7 @@
   "message_id": "d57918b8094c7cff.7c41b914@email.apple.com",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

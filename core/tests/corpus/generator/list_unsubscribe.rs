@@ -7,6 +7,17 @@ use super::{Corpus, Cte, Dt, Msg, html, multipart, text};
 const SIGNED_WITH_LIST: &str =
     "from:to:subject:date:message-id:list-unsubscribe:list-unsubscribe-post";
 
+/// Stem, `List-Unsubscribe`, `Authentication-Results`, the DKIM `h=`, the
+/// `List-Unsubscribe-Post` value, and whether the message qualifies.
+type OneClickCase = (
+    &'static str,
+    &'static str,
+    Option<&'static str>,
+    Option<&'static str>,
+    &'static str,
+    bool,
+);
+
 fn newsletter_body(m: &mut Msg) {
     m.body(text(
         "Hi Sam,\n\nThis week: the spring ferry timetable, and the new pier opens.\n\nYou get this because you subscribed at harbor.test.\n",
@@ -94,48 +105,81 @@ pub fn generate(corpus: &mut Corpus) {
     newsletter_body(&mut m);
     corpus.put(m);
 
-    // RFC 8058 cases. The golden records only whether the Post value is
-    // exactly right; whether the message qualifies is decided at M3.
-    let one_click: [(&str, &str, Option<&str>, &str); 5] = [
+    // RFC 8058 cases. Each breaks one condition of `one_click_valid`.
+    const PASS: &str = "mx.inbox.test;\n dkim=pass (2048-bit key) header.d=news.harbor.test;\n spf=pass smtp.mailfrom=news.harbor.test";
+    const SIGNED_WITHOUT_POST: &str = "from:to:subject:date:message-id:list-unsubscribe";
+    let one_click: [OneClickCase; 7] = [
         (
             "list_unsubscribe/one_click_valid",
             "<https://news.harbor.test/u/8a1f2c>, <mailto:leave-8a1f2c@news.harbor.test>",
+            Some(PASS),
             Some(SIGNED_WITH_LIST),
             "List-Unsubscribe=One-Click",
+            true,
         ),
         (
             "list_unsubscribe/one_click_http_only",
             "<http://news.harbor.test/u/8a1f2c>",
+            Some(PASS),
             Some(SIGNED_WITH_LIST),
             "List-Unsubscribe=One-Click",
+            false,
         ),
         (
             "list_unsubscribe/one_click_no_dkim",
             "<https://news.harbor.test/u/8a1f2c>",
+            Some("mx.inbox.test; dkim=none; spf=pass smtp.mailfrom=news.harbor.test"),
             None,
             "List-Unsubscribe=One-Click",
+            false,
         ),
         (
             "list_unsubscribe/one_click_wrong_value",
             "<https://news.harbor.test/u/8a1f2c>",
+            Some(PASS),
             Some(SIGNED_WITH_LIST),
             "One-Click",
+            false,
         ),
         (
             "list_unsubscribe/one_click_wrong_case",
             "<https://news.harbor.test/u/8a1f2c>",
+            Some(PASS),
             Some(SIGNED_WITH_LIST),
             "list-unsubscribe=one-click",
+            false,
+        ),
+        (
+            "list_unsubscribe/one_click_post_not_signed",
+            "<https://news.harbor.test/u/8a1f2c>",
+            Some(PASS),
+            Some(SIGNED_WITHOUT_POST),
+            "List-Unsubscribe=One-Click",
+            false,
+        ),
+        (
+            "list_unsubscribe/one_click_dkim_failed",
+            "<https://news.harbor.test/u/8a1f2c>",
+            Some("mx.inbox.test;\n dkim=fail (body hash did not verify) header.d=news.harbor.test"),
+            Some(SIGNED_WITH_LIST),
+            "List-Unsubscribe=One-Click",
+            false,
         ),
     ];
-    for (day, (stem, value, signed, post)) in (13..).zip(one_click) {
+    for (day, (stem, value, results, signed, post, qualifies)) in (13..).zip(one_click) {
         let mut m = corpus.msg(stem);
+        if let Some(r) = results {
+            m.auth_results(r);
+        }
         if let Some(h) = signed {
             m.dkim("news.harbor.test", h);
         }
         signed_newsletter(&mut m, day);
         m.list_unsubscribe(value);
         m.list_unsubscribe_post(post);
+        if qualifies {
+            m.one_click();
+        }
         newsletter_body(&mut m);
         corpus.put(m);
     }

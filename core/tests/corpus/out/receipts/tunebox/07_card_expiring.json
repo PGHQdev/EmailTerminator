@@ -6,6 +6,7 @@
   "message_id": "ba78d1380458fe61.97d30ca1@tunebox.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

@@ -6,6 +6,7 @@
   "message_id": "0760c97b56c4aefd.2fb771c0@google.com",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

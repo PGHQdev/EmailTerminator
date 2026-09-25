@@ -6,6 +6,7 @@
   "message_id": "9d2014898a785413.b6dfc32b@fieldnote.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

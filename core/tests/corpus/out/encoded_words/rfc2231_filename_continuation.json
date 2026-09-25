@@ -6,6 +6,7 @@
   "message_id": "952d9e38395f2e0c.23ce42c0@kanzlei-weber.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [],

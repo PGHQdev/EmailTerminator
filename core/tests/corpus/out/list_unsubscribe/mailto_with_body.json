@@ -6,6 +6,7 @@
   "message_id": "7851495d73b68bd7.f65ed866@news.harbor.test",
   "list_unsubscribe": "<mailto:unsubscribe@news.harbor.test?subject=unsubscribe&body=Please%20remove%20sam%40inbox.test>",
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": true,
   "dkim_domains": [

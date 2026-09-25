@@ -6,6 +6,7 @@
   "message_id": "8e7e4ce9c9d432ce.cd6420e8@library.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [],

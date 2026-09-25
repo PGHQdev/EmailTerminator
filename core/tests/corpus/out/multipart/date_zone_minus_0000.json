@@ -6,6 +6,7 @@
   "message_id": "f19b761f1a2c946d.06659d65@library.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [],

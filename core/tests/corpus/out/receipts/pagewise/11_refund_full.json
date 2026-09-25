@@ -6,6 +6,7 @@
   "message_id": "db095b39e6d1ed15.f0f6b3fb@pagewise.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

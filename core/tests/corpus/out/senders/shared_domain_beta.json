@@ -6,6 +6,7 @@
   "message_id": "53ae67798e1e33e9.e9241c18@letterpost.test",
   "list_unsubscribe": "<https://letterpost.test/betadigest/unsubscribe?r=sam>, <mailto:betadigest+unsubscribe@letterpost.test>",
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": "betadigest.letterpost.test",
   "is_list": true,
   "dkim_domains": [

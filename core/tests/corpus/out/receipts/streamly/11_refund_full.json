@@ -6,6 +6,7 @@
   "message_id": "56d3745ab6e7cb0e.5d8523cd@account.streamly.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

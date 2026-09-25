@@ -6,6 +6,7 @@
   "message_id": "c61ef2f58911d176.49477608@email.amazonses.com",
   "list_unsubscribe": "<https://fernleaf.test/unsubscribe?u=sam%40inbox.test&t=8a1f>",
   "list_unsubscribe_post": true,
+  "one_click": false,
   "list_id": null,
   "is_list": true,
   "dkim_domains": [

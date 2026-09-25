@@ -6,6 +6,7 @@
   "message_id": "765df4a06be2624b.f478b89c@gitforge.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [

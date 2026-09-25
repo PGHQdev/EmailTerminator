@@ -6,6 +6,7 @@
   "message_id": "53f5ae6940028a47.85cef28e@club.harbor.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": true,
   "dkim_domains": [],

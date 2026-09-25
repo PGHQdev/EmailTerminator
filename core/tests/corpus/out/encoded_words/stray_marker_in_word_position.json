@@ -6,6 +6,7 @@
   "message_id": "9ed938b0a8a20855.b9296fdb@mailroom.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [],

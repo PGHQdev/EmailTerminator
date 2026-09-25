@@ -6,6 +6,7 @@
   "message_id": "73852c4ff3b7d6c0.18d51e3b@billing.cloudbarn.test",
   "list_unsubscribe": null,
   "list_unsubscribe_post": false,
+  "one_click": false,
   "list_id": null,
   "is_list": false,
   "dkim_domains": [
