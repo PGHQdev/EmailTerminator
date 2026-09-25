@@ -33,8 +33,10 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo fmt --all --check
       - run: cargo clippy --workspace --all-targets -- -D warnings
-      # The perf test (PLAN.md 2.9) joins this job at M1.
       - run: cargo test --workspace
+      # PLAN.md 2.9: 1 GB through extraction and the encrypted store, with a
+      # wall-clock and peak-memory ceiling.
+      - run: cargo test --release -p et-core --test perf -- --ignored --nocapture
 
   core-macos:
     runs-on: macos-latest
