@@ -1,6 +1,8 @@
 [workspace]
 resolver = "3"
 members = ["core", "app", "native-host", "et-data"]
+# Patched third-party crates, not linted or tested as ours.
+exclude = ["vendor"]
 
 [workspace.package]
 edition = "2024"
@@ -13,6 +15,7 @@ et-core = { path = "core" }
 keyring = "=4.2.0"
 dirs = "=7.0.0"
 getrandom = "=0.4.3"
+mail-parser = { version = "=0.11.9", features = ["full_encoding"] }
 rusqlite = { version = "=0.40.2", features = ["bundled-sqlcipher-vendored-openssl"] }
 serde = { version = "=1.0.229", features = ["derive"] }
 serde_json = "=1.0.151"
@@ -29,3 +32,7 @@ zeroize = "=1.9.0"
 
 [profile.release]
 strip = true
+
+# mail-parser 0.11.9 with the fix for upstream issue #156 (PLAN.md M1).
+[patch.crates-io]
+mail-parser = { path = "vendor/mail-parser" }
