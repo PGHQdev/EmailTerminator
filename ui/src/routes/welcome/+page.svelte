@@ -49,6 +49,9 @@
   </div>
 
   {#if sources.length > 0}
+    <button type="button" class="home" onclick={() => goto('/home')}>
+      Back to the dashboard <ArrowRight size={15} strokeWidth={2.75} />
+    </button>
     <ul class="sources">
       {#each sources as source (source.id)}
         <li>
@@ -191,9 +194,23 @@
     border-radius: var(--pill);
   }
 
+  .home {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-8);
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accDeep);
+    cursor: pointer;
+  }
+
   .sources {
     list-style: none;
-    margin: var(--space-8) 0 var(--space-8);
+    margin: var(--space-4) 0 var(--space-8);
     padding: 0;
     width: min(100%, 40rem);
   }

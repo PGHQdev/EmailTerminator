@@ -25,6 +25,7 @@
   "dependencies": {
     "@tauri-apps/api": "2.11.1",
     "@tauri-apps/plugin-opener": "2.5.5",
+    "bits-ui": "2.19.3",
     "lucide-svelte": "1.0.1"
   }
 }
