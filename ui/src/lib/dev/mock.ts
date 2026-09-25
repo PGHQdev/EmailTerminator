@@ -3,23 +3,38 @@
 // `+layout.ts` loads this file only in dev and only outside Tauri, so a build
 // never contains it. Add `?mock=empty` or `?mock=clean` for the S16 empty
 // states, `?mock=locked` for the lost key, and `?theme=dark` for dark.
+// `?demo=review`, `running`, `result` or `critical` opens S11, S11 mid-run,
+// S07 or S10 with a sample sweep; `?demo=evidence` opens an evidence link.
 
 import { mockIPC } from '@tauri-apps/api/mocks';
+import type { Channel } from '@tauri-apps/api/core';
 import type {
   Amount,
   Dashboard,
+  Entry,
+  Event,
+  Item,
   Newsletter,
+  RunItem,
   ServiceDetail,
   Subscription,
+  Sweep,
+  Target,
 } from '$lib/bindings';
 
 const params = new URLSearchParams(location.search);
-for (const key of ['mock', 'theme']) {
+for (const key of ['mock', 'theme', 'demo']) {
   const value = params.get(key);
   if (value) sessionStorage.setItem(key, value);
 }
 const mode = sessionStorage.getItem('mock') ?? 'full';
 let theme = sessionStorage.getItem('theme') ?? 'system';
+const demo = params.get('demo');
+let sweepSettings: Sweep = {
+  confirmAlways: demo !== 'result' && demo !== 'critical',
+  confirmFrom: 10,
+  excludeCritical: true,
+};
 
 const usd = (dollars: number): Amount => ({ minorUnits: Math.round(dollars * 100), currency: 'USD' });
 
@@ -152,6 +167,113 @@ function detail(id: number): ServiceDetail | null {
   };
 }
 
+function review(targets: Target[]): Item[] {
+  return targets.flatMap((target): Item[] => {
+    if (target.kind === 'sender') {
+      const n = newsletters.find((x) => x.id === target.id);
+      if (!n) return [];
+      const route = n.oneClick ? 'oneClick' : 'page';
+      return [{ target, name: n.name, emailsPerYear: n.lastYear, critical: false, route, senders: 1, included: true }];
+    }
+    const sub = subscriptions.find((x) => x.id === target.id);
+    if (!sub) return [];
+    const critical = sub.isCritical;
+    return [{
+      target,
+      name: sub.name,
+      emailsPerYear: Math.round(sub.emailsPerYear * 0.6),
+      critical,
+      route: 'oneClick',
+      senders: 1,
+      included: !(critical && sweepSettings.excludeCritical),
+    }];
+  });
+}
+
+let stopped = false;
+
+/** Emits a started and a finished event per item, a beat apart. */
+function run(items: RunItem[], events: Channel<Event>): Promise<number> {
+  stopped = false;
+  return new Promise((resolve) => {
+    let index = 0;
+    const next = () => {
+      if (stopped || index >= items.length) return resolve(index);
+      const i = index;
+      const item = review([items[i].target])[0];
+      events.onmessage({ kind: 'started', index: i });
+      setTimeout(() => {
+        const manual = item?.route === 'page';
+        const failed = item?.name === 'Bandcamp Weekly';
+        events.onmessage({
+          kind: 'finished',
+          index: i,
+          result: {
+            outcome: failed ? 'failed' : manual ? 'needsYou' : 'succeeded',
+            detail: failed ? 'the sender answered 410' : manual ? 'no one-click unsubscribe' : 'the sender answered 200',
+            actionIds: [1],
+            finishAt: manual ? 'https://example.com/unsubscribe' : null,
+          },
+        });
+        index += 1;
+        next();
+      }, 450);
+    };
+    next();
+  });
+}
+
+const activity: Entry[] = [
+  ['unsubscribe', 'The Dispatch', 0, 'succeeded', 'the sender answered 200', true],
+  ['unsubscribe', 'LinkedIn', 0, 'succeeded', 'the sender answered 202', true],
+  ['unsubscribe', 'Groupon', 0, 'succeeded', 'the sender answered 200', true],
+  ['unsubscribe', 'Stratechery', 1, 'needsYou', 'no one-click unsubscribe: finish on the sender\'s page', false],
+  ['unsubscribe', 'Bandcamp Weekly', 1, 'failed', 'no unsubscribe header in the mail', false],
+  ['sync', 'me@example.com', 1, 'succeeded', '312 new messages', false],
+  ['sync', 'me@example.org', 6, 'succeeded', '1,204 new messages', false],
+].map(([kind, target, daysAgo, outcome, detail, post], i) => {
+  const at = new Date(Date.now() - (daysAgo as number) * 86_400_000 - i * 60_000).toISOString();
+  const name = target as string;
+  return {
+    id: i + 1,
+    kind: kind as Entry['kind'],
+    target: name,
+    at,
+    outcome: outcome as Entry['outcome'],
+    detail: detail as string,
+    request: post ? `POST https://${name.toLowerCase().replace(/\W/g, '')}.com/u/8a1f2c` : null,
+    evidence:
+      kind === 'sync'
+        ? null
+        : {
+            messageId: i === 4 ? null : i + 1,
+            subject: `${name}: this week's issue`,
+            from: `${name} <news@${name.toLowerCase().replace(/\W/g, '')}.com>`,
+            date: at,
+          },
+  };
+});
+
+if (demo === 'evidence') {
+  setTimeout(async () => (await import('$lib/evidence.svelte')).evidence.open(1), 300);
+} else if (demo) {
+  // After the app has mounted: start the sample sweep the way a page would.
+  setTimeout(async () => {
+    const { sweep } = await import('$lib/sweep.svelte');
+    const sample: Target[] =
+      demo === 'critical'
+        ? [{ kind: 'service', id: 8 }]
+        : demo === 'result'
+          ? [100, 101, 105].map((id) => ({ kind: 'sender', id }) as const)
+          : [
+              ...[100, 101, 102, 103, 104, 105, 108].map((id) => ({ kind: 'sender', id }) as const),
+              ...[3, 5, 7, 8].map((id) => ({ kind: 'service', id }) as const),
+            ];
+    await sweep.begin(sample);
+    if (demo === 'running') void sweep.run();
+  }, 300);
+}
+
 mockIPC((cmd, args) => {
   const ok = <T>(data: T) => data;
   const a = (args ?? {}) as Record<string, unknown>;
@@ -195,6 +317,36 @@ mockIPC((cmd, args) => {
       throw 'Erasing is off in the design preview.';
     case 'imap_presets':
       return [];
+    case 'sweep_settings':
+      return sweepSettings;
+    case 'set_sweep_settings':
+      sweepSettings = a.sweep as Sweep;
+      return null;
+    case 'sweep_review':
+      return review(a.targets as Target[]);
+    case 'run_sweep':
+      return run(a.items as RunItem[], a.events as Channel<Event>);
+    case 'stop_sweep':
+      stopped = true;
+      return null;
+    case 'activity':
+      return mode === 'empty' ? [] : activity;
+    case 'evidence_original':
+      return Number(a.actionId) === 5
+        ? { kind: 'gone' }
+        : {
+            kind: 'found',
+            preview: {
+              headers: [
+                { name: 'From', value: 'The Dispatch <newsletter@thedispatch.com>' },
+                { name: 'Date', value: 'Sat, 26 Sep 2026 06:30:00 +0000' },
+                { name: 'Subject', value: 'The Dispatch: this week' },
+                { name: 'List-Unsubscribe', value: '<https://thedispatch.com/u/8a1f2c>' },
+                { name: 'List-Unsubscribe-Post', value: 'List-Unsubscribe=One-Click' },
+              ],
+              text: 'Good morning.\n\nThis week: three stories worth your time.',
+            },
+          };
     default:
       console.info('[mock] unhandled command', cmd, args);
       return null;
