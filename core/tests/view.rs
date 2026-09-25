@@ -157,8 +157,10 @@ fn the_subscriptions_list_carries_every_column() {
 #[test]
 fn newsletters_report_frequency_and_one_click() {
     let (_dir, store) = scanned();
-    let list = view::newsletters(&store).unwrap();
+    let list = view::newsletters(&store, now()).unwrap();
     assert_eq!(list.len(), 2);
+    assert_eq!(list[0].last_year, 21);
+    assert_eq!(list[0].service_id, None);
     let dispatch = &list[0];
     assert_eq!(
         (dispatch.name.as_str(), dispatch.received),

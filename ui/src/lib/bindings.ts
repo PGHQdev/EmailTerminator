@@ -164,6 +164,10 @@ export type Newsletter = {
 	name: string,
 	address: string,
 	received: number,
+	/**  Messages in the last twelve months. */
+	lastYear: number,
+	/**  The service the sender mails for, whose detail S05 opens. */
+	serviceId: number | null,
 	/**  Messages per week between the first and the last one, at least a week apart. */
 	perWeek: number | null,
 	/**

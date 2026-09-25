@@ -35,7 +35,7 @@ pub async fn subscriptions(state: tauri::State<'_, AppState>) -> Result<Vec<Subs
 #[tauri::command]
 #[specta::specta]
 pub async fn newsletters(state: tauri::State<'_, AppState>) -> Result<Vec<Newsletter>, String> {
-    read(&state, view::newsletters).await
+    read(&state, |store| view::newsletters(store, unix_now())).await
 }
 
 #[tauri::command]

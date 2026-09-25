@@ -299,6 +299,10 @@ pub struct Newsletter {
     pub name: String,
     pub address: String,
     pub received: u32,
+    /// Messages in the last twelve months.
+    pub last_year: u32,
+    /// The service the sender mails for, whose detail S05 opens.
+    pub service_id: Option<u32>,
     /// Messages per week between the first and the last one, at least a week apart.
     pub per_week: f64,
     /// The newest `List-Unsubscribe` offers an HTTPS link and RFC 8058's
@@ -306,7 +310,7 @@ pub struct Newsletter {
     pub one_click: bool,
 }
 
-pub fn newsletters(store: &Store) -> Result<Vec<Newsletter>, StoreError> {
+pub fn newsletters(store: &Store, now: i64) -> Result<Vec<Newsletter>, StoreError> {
     let conn = store.read()?;
     let mut stmt = conn.prepare(
         "SELECT s.id, coalesce(s.display_name, s.address), s.address, s.message_count,
@@ -315,12 +319,15 @@ pub fn newsletters(store: &Store) -> Result<Vec<Newsletter>, StoreError> {
                         AND instr(lower(m.list_unsubscribe), '<https:') > 0
                  FROM message m
                  WHERE m.sender_id = s.id AND m.list_unsubscribe IS NOT NULL
-                 ORDER BY m.date DESC LIMIT 1)
+                 ORDER BY m.date DESC LIMIT 1),
+                (SELECT coalesce(sum(a.message_count), 0) FROM aggregate a
+                 WHERE a.subject_kind = 'sender' AND a.subject_id = s.id AND a.month >= ?1),
+                s.service_id
          FROM sender s WHERE s.classification = 'newsletter'
          ORDER BY s.message_count DESC, s.id",
     )?;
     let rows = stmt
-        .query_map([], |r| {
+        .query_map([first_month(now)], |r| {
             let received: u32 = r.get(3)?;
             let span = |i| -> rusqlite::Result<Option<i64>> {
                 Ok(r.get::<_, Option<String>>(i)?
@@ -335,6 +342,8 @@ pub fn newsletters(store: &Store) -> Result<Vec<Newsletter>, StoreError> {
                 name: r.get(1)?,
                 address: r.get(2)?,
                 received,
+                last_year: r.get(7)?,
+                service_id: r.get(8)?,
                 per_week: f64::from(received) / weeks,
                 one_click: r.get::<_, Option<bool>>(6)?.unwrap_or(false),
             })
