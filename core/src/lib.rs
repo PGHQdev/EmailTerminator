@@ -6,3 +6,4 @@ pub mod ingest;
 pub mod scan;
 pub mod source;
 pub mod store;
+pub mod view;
