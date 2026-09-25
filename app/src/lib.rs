@@ -1,5 +1,6 @@
 //! The Tauri command layer over `et-core` (PLAN.md 1.2).
 
+mod actions;
 mod scan;
 mod settings;
 mod sources;
@@ -41,6 +42,8 @@ pub(crate) struct AppState {
     default_dir: Option<PathBuf>,
     /// The cancel flag of the running scan; one scan at a time.
     scan: Mutex<Option<Arc<AtomicBool>>>,
+    /// The stop flag of the running sweep; one sweep at a time.
+    sweep: Mutex<Option<Arc<AtomicBool>>>,
 }
 
 impl AppState {
@@ -73,8 +76,15 @@ pub fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
         view::subscriptions,
         view::newsletters,
         view::service_detail,
+        actions::sweep_review,
+        actions::run_sweep,
+        actions::stop_sweep,
+        actions::activity,
+        actions::evidence_original,
         settings::appearance,
         settings::set_appearance,
+        settings::sweep_settings,
+        settings::set_sweep_settings,
         settings::data_location,
         settings::move_data_location,
         settings::erase_local_data,
@@ -145,6 +155,7 @@ pub fn run() {
             dir,
             default_dir,
             scan: Mutex::new(None),
+            sweep: Mutex::new(None),
         })
         .invoke_handler(builder.invoke_handler())
         .run(tauri::generate_context!())

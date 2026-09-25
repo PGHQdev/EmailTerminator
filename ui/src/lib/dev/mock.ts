@@ -72,6 +72,7 @@ const newsletters: Newsletter[] = [
   serviceId: name === 'Medium Daily Digest' ? 14 : null,
   perWeek: perWeek as number,
   oneClick: oneClick as boolean,
+  unsubscribedAt: null,
 }));
 
 const spend = (list: Subscription[]) =>

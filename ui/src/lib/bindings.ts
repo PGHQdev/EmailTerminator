@@ -42,9 +42,21 @@ export const commands = {
 	/**  Newest first. */
 	receipts: ReceiptLine[],
 } | null, string>(__TAURI_INVOKE("service_detail", { id })),
+	sweepReview: (targets: Target[]) => typedError<Item[], string>(__TAURI_INVOKE("sweep_review", { targets })),
+	/**
+	 *  Runs a sweep to its end or until `stop_sweep`; returns how many items
+	 *  ran. One sweep at a time.
+	 */
+	runSweep: (items: RunItem[], events: Channel<Event>) => typedError<number, string>(__TAURI_INVOKE("run_sweep", { items, events })),
+	stopSweep: () => __TAURI_INVOKE<void>("stop_sweep"),
+	activity: () => typedError<Entry[], string>(__TAURI_INVOKE("activity")),
+	/**  Re-reads the email an action came from, from its mailbox. */
+	evidenceOriginal: (actionId: number) => typedError<Original, string>(__TAURI_INVOKE("evidence_original", { actionId })),
 	/**  `system` until the user picks one, and whenever the data cannot open. */
 	appearance: () => __TAURI_INVOKE<Appearance>("appearance"),
 	setAppearance: (appearance: Appearance) => typedError<null, string>(__TAURI_INVOKE("set_appearance", { appearance })),
+	sweepSettings: () => __TAURI_INVOKE<Sweep>("sweep_settings"),
+	setSweepSettings: (sweep: Sweep) => typedError<null, string>(__TAURI_INVOKE("set_sweep_settings", { sweep })),
 	dataLocation: () => typedError<DataLocation, string>(__TAURI_INVOKE("data_location")),
 	/**
 	 *  Asks for a folder, copies the data there and checks it, then restarts so
@@ -113,7 +125,10 @@ export type Dashboard = {
 	 *  critical, per currency.
 	 */
 	cancelAll: Amount[],
-	/**  Newsletter mail in the last twelve months: what "unsubscribe all" removes. */
+	/**
+	 *  Mail in the last twelve months from newsletters still subscribed:
+	 *  what "unsubscribe all" removes.
+	 */
 	unsubscribeAll: number,
 };
 
@@ -123,12 +138,71 @@ export type DataLocation = {
 	keyPlace: KeyPlace,
 };
 
+/**  One S14 row. */
+export type Entry = {
+	id: number,
+	kind: Kind,
+	target: string,
+	at: string,
+	outcome: Outcome,
+	detail: string,
+	request: string | null,
+	evidence: Evidence | null,
+};
+
+export type Event = { kind: "started"; index: number } | { kind: "finished"; index: number; result: ItemResult };
+
+/**  The email an action came from, as it was when the action ran. */
+export type Evidence = {
+	/**
+	 *  The `message` row, or null when a rescan removed it: an IMAP folder
+	 *  renumbered, or the source was disconnected.
+	 */
+	messageId: number | null,
+	subject: string | null,
+	from: string | null,
+	date: string | null,
+};
+
+export type Field = {
+	name: string,
+	value: string,
+};
+
 export type ImapProvider = "gmail" | "icloud" | "fastmail" | "yahoo" | "other";
+
+/**  One S11 row. */
+export type Item = {
+	target: Target,
+	name: string,
+	/**  List mail from its senders in the last twelve months. */
+	emailsPerYear: number,
+	critical: boolean,
+	/**  The best route among its senders: one-click, then a page, then email. */
+	route: RouteKind,
+	/**  Senders the sweep would unsubscribe. */
+	senders: number,
+	/**  Critical services start excluded unless the user turned that off. */
+	included: boolean,
+};
+
+export type ItemResult = {
+	outcome: Outcome,
+	detail: string,
+	/**  The S14 rows written, one per sender. */
+	actionIds: number[],
+	/**  Where the user finishes a `needsYou`: a web page or a `mailto:` URI. */
+	finishAt: string | null,
+};
 
 /**  Where the key that encrypts the local data is kept (PLAN.md 2.1, 2.2). */
 export type KeyPlace = "keychain" | 
 /**  The Linux fallback: a key file beside the data. */
 "fileBeside";
+
+export type Kind = "unsubscribe" | "playbook" | "agent" | 
+/**  A scan of one source. */
+"sync";
 
 export type Loud = {
 	senderId: number,
@@ -171,10 +245,34 @@ export type Newsletter = {
 	/**  Messages per week between the first and the last one, at least a week apart. */
 	perWeek: number | null,
 	/**
-	 *  The newest `List-Unsubscribe` offers an HTTPS link and RFC 8058's
-	 *  one-click POST. M3 checks the DKIM alignment before it uses it.
+	 *  The newest list mail meets RFC 8058, so unsubscribing is one POST
+	 *  (`action::unsubscribe`).
 	 */
 	oneClick: boolean,
+	/**  When the app unsubscribed the sender; null while subscribed. */
+	unsubscribedAt: string | null,
+};
+
+export type Original = { kind: "found"; preview: Preview } | 
+/**  The message is no longer where it was stored (S14's designed state). */
+{ kind: "gone" } | 
+/**  The mailbox did not answer; the evidence may still be there. */
+{ kind: "unreachable"; message: string };
+
+export type Outcome = "succeeded" | "failed" | 
+/**
+ *  Nothing the app can send does it; the user finishes on the sender's
+ *  page or by email.
+ */
+"needsYou";
+
+/**
+ *  What an evidence link shows of an original: the headers the app read,
+ *  then the text. Built on demand from a re-read message and never stored.
+ */
+export type Preview = {
+	headers: Field[],
+	text: string,
 };
 
 export type PriceMove = {
@@ -198,6 +296,17 @@ export type ReceiptLine = {
 	/**  `ReceiptKind` as stored: `charge`, `refund`, `trial_ending` and so on. */
 	kind: string,
 	amount: Amount | null,
+};
+
+export type RouteKind = "oneClick" | "page" | "mail" | "nothing";
+
+/**
+ *  What the sweep should run: a target, and whether the user confirmed it
+ *  in S10 when it is critical.
+ */
+export type RunItem = {
+	target: Target,
+	criticalConfirmed: boolean,
 };
 
 export type ScanError = { kind: "signInRefused"; host: string; serverSays: string } | { kind: "unreachable"; message: string } | { kind: "cancelled" } | { kind: "alreadyRunning" } | { kind: "failed"; message: string };
@@ -264,6 +373,20 @@ export type Subscription = {
 	isCritical: boolean,
 	status: ServiceStatus,
 };
+
+/**  S17's sweep behaviour: M3's defaults, made editable (PLAN.md M3). */
+export type Sweep = {
+	/**
+	 *  Show S11 before every sweep. When off, a sweep of fewer than
+	 *  `confirm_from` items runs straight away.
+	 */
+	confirmAlways: boolean,
+	confirmFrom: number,
+	/**  Critical services start excluded from a sweep. */
+	excludeCritical: boolean,
+};
+
+export type Target = { kind: "sender"; id: number } | { kind: "service"; id: number };
 
 export type Tile = {
 	id: number,

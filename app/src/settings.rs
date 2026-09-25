@@ -1,5 +1,5 @@
-//! S17's M2 part (appearance, data location, encryption, erase) and the
-//! environment S15 attaches to an issue.
+//! S17's M2 and M3 parts (appearance, sweep behaviour, data location,
+//! encryption, erase) and the environment S15 attaches to an issue.
 
 use et_core::crypt::{Keychain, SecretStore, load_or_create_key};
 use et_core::local::{self, MoveError};
@@ -45,6 +45,56 @@ pub fn set_appearance(
         Appearance::System => "system",
     };
     setting::set(&*state.store()?, APPEARANCE, value).map_err(|e| e.to_string())
+}
+
+/// S17's sweep behaviour: M3's defaults, made editable (PLAN.md M3).
+#[derive(Clone, Copy, Serialize, Deserialize, Type)]
+#[serde(rename_all = "camelCase")]
+pub struct Sweep {
+    /// Show S11 before every sweep. When off, a sweep of fewer than
+    /// `confirm_from` items runs straight away.
+    pub confirm_always: bool,
+    pub confirm_from: u32,
+    /// Critical services start excluded from a sweep.
+    pub exclude_critical: bool,
+}
+
+impl Default for Sweep {
+    fn default() -> Self {
+        Self {
+            confirm_always: true,
+            confirm_from: 10,
+            exclude_critical: true,
+        }
+    }
+}
+
+const SWEEP: &str = "sweep";
+
+pub(crate) fn read_sweep(state: &AppState) -> Sweep {
+    state
+        .store()
+        .ok()
+        .and_then(|store| setting::get(&store, SWEEP).ok().flatten())
+        .and_then(|value| serde_json::from_str(&value).ok())
+        .unwrap_or_default()
+}
+
+#[tauri::command]
+#[specta::specta]
+pub fn sweep_settings(state: tauri::State<'_, AppState>) -> Sweep {
+    read_sweep(&state)
+}
+
+#[tauri::command]
+#[specta::specta]
+pub fn set_sweep_settings(state: tauri::State<'_, AppState>, sweep: Sweep) -> Result<(), String> {
+    let sweep = Sweep {
+        confirm_from: sweep.confirm_from.max(2),
+        ..sweep
+    };
+    let value = serde_json::to_string(&sweep).map_err(|e| e.to_string())?;
+    setting::set(&*state.store()?, SWEEP, &value).map_err(|e| e.to_string())
 }
 
 /// Where the key that encrypts the local data is kept (PLAN.md 2.1, 2.2).

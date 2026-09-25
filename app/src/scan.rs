@@ -3,9 +3,11 @@
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 
+use et_core::action::{self, Kind, NewEntry, Outcome};
+use et_core::extract::rfc3339_utc;
 use et_core::ingest::imap::{self, Account, ImapError, Options, Security};
 use et_core::scan::{ImapScan, rebuild};
-use et_core::source;
+use et_core::source::{self, unix_now};
 use serde::Serialize;
 use specta::Type;
 use tauri::ipc::Channel;
@@ -80,7 +82,57 @@ pub async fn start_scan(
     if let Ok(mut running) = state.scan.lock() {
         *running = None;
     }
+    log(&state, i64::from(source_id), &result).await;
     result
+}
+
+/// Every scan leaves an S14 row, however it ended. A row that cannot be
+/// written does not fail the scan.
+async fn log(state: &AppState, source_id: i64, result: &Result<ScanSummary, ScanError>) {
+    let Ok(store) = state.store() else {
+        return;
+    };
+    let (outcome, detail) = match result {
+        Ok(summary) => (
+            Outcome::Succeeded,
+            format!("{} new messages", summary.scanned),
+        ),
+        Err(ScanError::Cancelled) => (
+            Outcome::Failed,
+            "cancelled; everything read so far is kept".to_owned(),
+        ),
+        Err(ScanError::SignInRefused { server_says, .. }) => {
+            (Outcome::Failed, format!("sign-in refused: {server_says}"))
+        }
+        Err(ScanError::Unreachable { message } | ScanError::Failed { message }) => {
+            (Outcome::Failed, message.clone())
+        }
+        Err(ScanError::AlreadyRunning) => return,
+    };
+    let _ = tauri::async_runtime::spawn_blocking(move || {
+        let target = source::imap_config(&store, source_id)
+            .ok()
+            .flatten()
+            .map_or_else(|| "a mailbox".to_owned(), |c| c.username);
+        store.write(move |conn| {
+            action::record(
+                conn,
+                &NewEntry {
+                    kind: Kind::Sync,
+                    target,
+                    sender_id: None,
+                    service_id: None,
+                    source_id: Some(source_id),
+                    at: rfc3339_utc(unix_now()),
+                    outcome,
+                    detail,
+                    request: None,
+                    message: None,
+                },
+            )
+        })
+    })
+    .await;
 }
 
 #[tauri::command]
