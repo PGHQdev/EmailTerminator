@@ -8,4 +8,5 @@ pub mod scan;
 pub mod setting;
 pub mod source;
 pub mod store;
+mod tls;
 pub mod view;

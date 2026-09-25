@@ -366,7 +366,11 @@ async fn connect(account: &Account, password: &str) -> Result<Session, ImapError
             source,
         })?;
     let stream = match account.security {
-        Security::Tls => Stream::Tls(Box::new(tls(&account.host, tcp).await?)),
+        Security::Tls => Stream::Tls(Box::new(
+            crate::tls::connect(&account.host, tcp)
+                .await
+                .map_err(ImapError::Tls)?,
+        )),
         Security::PlainLoopback => {
             let loopback = tcp
                 .peer_addr()
@@ -394,23 +398,6 @@ async fn connect(account: &Account, password: &str) -> Result<Session, ImapError
             async_imap::error::Error::No(text) => ImapError::Auth(text),
             other => other.into(),
         })
-}
-
-async fn tls(host: &str, tcp: TcpStream) -> Result<TlsStream<TcpStream>, ImapError> {
-    use rustls_platform_verifier::BuilderVerifierExt;
-    let config = rustls::ClientConfig::builder_with_provider(Arc::new(
-        rustls::crypto::ring::default_provider(),
-    ))
-    .with_safe_default_protocol_versions()
-    .and_then(|builder| builder.with_platform_verifier())
-    .map_err(|err| ImapError::Tls(err.to_string()))?
-    .with_no_client_auth();
-    let name = rustls::pki_types::ServerName::try_from(host.to_owned())
-        .map_err(|err| ImapError::Tls(err.to_string()))?;
-    tokio_rustls::TlsConnector::from(Arc::new(config))
-        .connect(name, tcp)
-        .await
-        .map_err(|err| ImapError::Tls(err.to_string()))
 }
 
 #[derive(Debug)]
