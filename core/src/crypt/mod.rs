@@ -1,8 +1,8 @@
-//! Keying for data at rest (PLAN.md 2.1, 2.2).
+//! Secrets and keying for data at rest (PLAN.md 2.1, 2.2).
 
-mod key_store;
+mod secrets;
 
-pub use key_store::{KeyFile, KeyStore, Keychain, native_key_store};
+pub use secrets::{EncryptedFile, Keychain, SecretStore, native_secret_store};
 
 use zeroize::Zeroizing;
 
@@ -10,22 +10,24 @@ use zeroize::Zeroizing;
 pub enum CryptError {
     #[error("keychain: {0}")]
     Keychain(#[from] keyring::Error),
-    #[error("key file: {0}")]
+    #[error("secrets file: {0}")]
     Io(#[from] std::io::Error),
+    #[error("secrets file does not decrypt")]
+    Corrupt,
     #[error("stored key has {0} bytes, expected 32")]
     BadLength(usize),
     #[error("random source: {0}")]
     Random(getrandom::Error),
 }
 
+const DB_KEY: &str = "database-key";
+
 /// The 256-bit key that SQLCipher opens the database with.
 pub struct DbKey(Zeroizing<[u8; 32]>);
 
 impl DbKey {
     pub fn generate() -> Result<Self, CryptError> {
-        let mut bytes = Zeroizing::new([0u8; 32]);
-        getrandom::fill(bytes.as_mut()).map_err(CryptError::Random)?;
-        Ok(Self(bytes))
+        Ok(Self(random_32()?))
     }
 
     pub fn from_bytes(bytes: &[u8]) -> Result<Self, CryptError> {
@@ -51,14 +53,20 @@ impl DbKey {
     }
 }
 
-/// Returns the stored key, or generates and stores one on first launch.
-pub fn load_or_create_key(store: &dyn KeyStore) -> Result<DbKey, CryptError> {
-    if let Some(key) = store.load()? {
-        return Ok(key);
+/// Returns the stored database key, or generates and stores one on first launch.
+pub fn load_or_create_key(store: &dyn SecretStore) -> Result<DbKey, CryptError> {
+    if let Some(bytes) = store.get(DB_KEY)? {
+        return DbKey::from_bytes(&bytes);
     }
     let key = DbKey::generate()?;
-    store.save(&key)?;
+    store.set(DB_KEY, key.as_bytes())?;
     Ok(key)
+}
+
+pub(crate) fn random_32() -> Result<Zeroizing<[u8; 32]>, CryptError> {
+    let mut bytes = Zeroizing::new([0u8; 32]);
+    getrandom::fill(bytes.as_mut()).map_err(CryptError::Random)?;
+    Ok(bytes)
 }
 
 #[cfg(test)]
@@ -68,7 +76,7 @@ mod tests {
     #[test]
     fn first_call_creates_and_second_call_returns_the_same_key() {
         let dir = tempfile::tempdir().unwrap();
-        let store = KeyFile::new(dir.path().join("db.key"));
+        let store = EncryptedFile::new(dir.path());
 
         let first = load_or_create_key(&store).unwrap();
         let second = load_or_create_key(&store).unwrap();

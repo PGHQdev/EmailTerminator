@@ -3,7 +3,7 @@
 use std::path::PathBuf;
 use std::sync::Mutex;
 
-use et_core::crypt::{load_or_create_key, native_key_store};
+use et_core::crypt::{load_or_create_key, native_secret_store};
 use et_core::store::{Store, StoreError};
 use serde::Serialize;
 use specta::Type;
@@ -54,10 +54,7 @@ fn open_store() -> (StoreStatus, Option<Store>) {
     if let Err(err) = std::fs::create_dir_all(&dir) {
         return failed(format!("{}: {err}", dir.display()));
     }
-    let key_store = match native_key_store(&dir) {
-        Ok(store) => store,
-        Err(err) => return failed(err.to_string()),
-    };
+    let key_store = native_secret_store(&dir);
     let key = match load_or_create_key(key_store.as_ref()) {
         Ok(key) => key,
         Err(err) => return failed(err.to_string()),
