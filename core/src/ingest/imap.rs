@@ -188,6 +188,47 @@ pub async fn check_sign_in(account: &Account, password: &str) -> Result<(), Imap
     Ok(())
 }
 
+/// One message, for an evidence link (S14). `None` when the original is no
+/// longer there: the folder is gone or was renumbered, or the message was
+/// expunged. That is a designed state (PLAN.md Part 4), not an error.
+pub async fn fetch_one(
+    account: &Account,
+    password: &str,
+    folder: &str,
+    uid_validity: u32,
+    uid: u32,
+) -> Result<Option<Vec<u8>>, ImapError> {
+    let mut session = connect(account, password).await?;
+    let mailbox = match session.examine(folder).await {
+        Ok(mailbox) => mailbox,
+        Err(async_imap::error::Error::No(_)) => {
+            let _ = session.logout().await;
+            return Ok(None);
+        }
+        Err(err) => return Err(err.into()),
+    };
+    if mailbox.uid_validity != Some(uid_validity) {
+        let _ = session.logout().await;
+        return Ok(None);
+    }
+    let raw: Vec<Vec<u8>> = session
+        .uid_fetch(uid.to_string(), format!("(UID BODY.PEEK[]<0.{MAX_BYTES}>)"))
+        .await?
+        .try_filter_map(|fetch| async move {
+            Ok((fetch.uid == Some(uid))
+                .then(|| fetch.body().map(<[u8]>::to_vec))
+                .flatten())
+        })
+        .try_collect()
+        .await?;
+    // As in a sync: an empty answer may be a closed connection.
+    if raw.is_empty() {
+        session.noop().await?;
+    }
+    let _ = session.logout().await;
+    Ok(raw.into_iter().next())
+}
+
 async fn sync_once(
     account: &Account,
     password: &str,

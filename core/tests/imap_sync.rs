@@ -280,3 +280,23 @@ async fn plain_imap_to_a_remote_host_is_refused() {
         panic!("plain sign-in to a remote host succeeded");
     }
 }
+
+#[tokio::test]
+async fn an_evidence_link_reads_one_message_or_reports_it_gone() {
+    let stub = stub_with(Provider::Fastmail, 3).await;
+    let one = |validity, uid| {
+        let account = account(&stub);
+        async move { imap::fetch_one(&account, PASSWORD, "INBOX", validity, uid).await }
+    };
+    assert_eq!(one(1, 2).await.unwrap(), Some(message(2)));
+    assert_eq!(one(1, 9).await.unwrap(), None, "expunged");
+    assert_eq!(one(7, 2).await.unwrap(), None, "renumbered");
+    let commands = stub
+        .state
+        .lock()
+        .unwrap()
+        .commands
+        .join("\n")
+        .to_uppercase();
+    assert!(!commands.contains(" SELECT ") && commands.contains("BODY.PEEK[]"));
+}

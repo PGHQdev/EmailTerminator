@@ -151,6 +151,60 @@ impl Extraction {
     }
 }
 
+/// What an evidence link shows of an original: the headers the app read,
+/// then the text. Built on demand from a re-read message and never stored.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, specta::Type)]
+#[serde(rename_all = "camelCase")]
+pub struct Preview {
+    pub headers: Vec<Field>,
+    pub text: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, specta::Type)]
+pub struct Field {
+    pub name: String,
+    pub value: String,
+}
+
+/// The preview shows this much text; the rest of a long message is cut.
+const PREVIEW_CHARS: usize = 20_000;
+
+pub fn preview(raw: &[u8]) -> Preview {
+    let Some(msg) = MessageParser::default().parse(raw) else {
+        return Preview {
+            headers: Vec::new(),
+            text: String::new(),
+        };
+    };
+    let headers = [
+        "From",
+        "To",
+        "Date",
+        "Subject",
+        "List-Unsubscribe",
+        "List-Unsubscribe-Post",
+        "Authentication-Results",
+    ]
+    .into_iter()
+    .filter_map(|name| {
+        let value = headers::raw(&msg, name)?;
+        Some(Field {
+            name: name.to_owned(),
+            value: words::decode(&value),
+        })
+    })
+    .collect();
+    let text = body_text(&msg);
+    let text = match text.char_indices().nth(PREVIEW_CHARS) {
+        Some((cut, _)) => format!("{}…", &text[..cut]),
+        None => text,
+    };
+    Preview {
+        headers,
+        text: text.trim().to_owned(),
+    }
+}
+
 /// Every text part, then every HTML part read as text, so an amount that
 /// only the HTML carries is still found.
 fn body_text(msg: &mail_parser::Message<'_>) -> String {
@@ -203,6 +257,27 @@ Hello.\r\n";
         assert_eq!(e.dkim_domains, vec!["dispatch.test"]);
         assert!(e.is_list);
         assert!(e.receipt.is_none());
+    }
+
+    #[test]
+    fn a_preview_decodes_headers_and_keeps_the_text() {
+        let p = preview(
+            b"From: =?utf-8?Q?Caf=C3=A9?= <news@cafe.test>\r\nSubject: Menu\r\n\r\nSoup today.\r\n",
+        );
+        assert_eq!(
+            p.headers,
+            vec![
+                Field {
+                    name: "From".into(),
+                    value: "Caf\u{e9} <news@cafe.test>".into()
+                },
+                Field {
+                    name: "Subject".into(),
+                    value: "Menu".into()
+                },
+            ]
+        );
+        assert_eq!(p.text, "Soup today.");
     }
 
     #[test]
