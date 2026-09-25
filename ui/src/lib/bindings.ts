@@ -16,16 +16,139 @@ export const commands = {
 	listSources: () => typedError<SourceSummary[], string>(__TAURI_INVOKE("list_sources")),
 	startScan: (sourceId: number, events: Channel<ScanEvent>) => typedError<ScanSummary, ScanError>(__TAURI_INVOKE("start_scan", { sourceId, events })),
 	cancelScan: () => __TAURI_INVOKE<void>("cancel_scan"),
+	dashboard: () => typedError<Dashboard, string>(__TAURI_INVOKE("dashboard")),
+	subscriptions: () => typedError<Subscription[], string>(__TAURI_INVOKE("subscriptions")),
+	newsletters: () => typedError<Newsletter[], string>(__TAURI_INVOKE("newsletters")),
+	serviceDetail: (id: number) => typedError<{
+	id: number,
+	name: string,
+	status: ServiceStatus,
+	isCritical: boolean,
+	priceIncrease: boolean,
+	cadence: Cadence | null,
+	monthly: Amount | null,
+	/**  Addresses that mail as this service, the busiest first. */
+	senders: string[],
+	firstSeen: string | null,
+	lastCharge: Charged | null,
+	/**  Spend per month with a charge, oldest first, per currency. */
+	spend: MonthSpend[],
+	/**  Messages per month for the last twelve months, zeros included. */
+	volume: MonthCount[],
+	emailsPerYear: number,
+	receiptsPerYear: number,
+	/**  Oldest first. */
+	priceChanges: PriceMove[],
+	/**  Newest first. */
+	receipts: ReceiptLine[],
+} | null, string>(__TAURI_INVOKE("service_detail", { id })),
+	/**  `system` until the user picks one, and whenever the data cannot open. */
+	appearance: () => __TAURI_INVOKE<Appearance>("appearance"),
+	setAppearance: (appearance: Appearance) => typedError<null, string>(__TAURI_INVOKE("set_appearance", { appearance })),
+	dataLocation: () => typedError<DataLocation, string>(__TAURI_INVOKE("data_location")),
+	/**
+	 *  Asks for a folder, copies the data there and checks it, then restarts so
+	 *  the copy is the one in use. Returns only when nothing moved.
+	 */
+	moveDataLocation: () => typedError<MoveOutcome, string>(__TAURI_INVOKE("move_data_location")),
+	/**
+	 *  Erases the local data and restarts into a fresh install. The mailbox,
+	 *  and the licence once there is one, are untouched.
+	 */
+	eraseLocalData: () => typedError<null, string>(__TAURI_INVOKE("erase_local_data")),
+	appInfo: () => __TAURI_INVOKE<AppInfo>("app_info"),
 };
 
 /* Types */
+/**  Money as an integer count of minor units plus an ISO 4217 code (PLAN.md 2.5). */
+export type Amount = {
+	minorUnits: number,
+	currency: string,
+};
+
+/**  What S15 attaches to an issue. Nothing here identifies the user. */
+export type AppInfo = {
+	version: string,
+	os: string,
+	arch: string,
+};
+
+export type Appearance = "light" | "dark" | "system";
+
+export type Cadence = "monthly" | "annual" | "irregular";
+
+export type Charged = {
+	at: string,
+	amount: Amount,
+};
+
 /**
  *  Why a mailbox could not be connected. S16 shows `SignInRefused` with the
  *  server's own words.
  */
 export type ConnectError = { kind: "signInRefused"; host: string; serverSays: string; guide: string | null } | { kind: "unreachable"; message: string } | { kind: "invalid"; message: string } | { kind: "failed"; message: string };
 
+export type Dashboard = {
+	sources: number,
+	lastSyncAt: string | null,
+	scanned: number,
+	/**
+	 *  What active subscriptions cost per month, one entry per currency, the
+	 *  dominant currency first. There is no conversion (PLAN.md Part 4).
+	 */
+	monthlySpend: Amount[],
+	subscriptions: number,
+	newsletters: number,
+	/**
+	 *  Mail from subscriptions and newsletters in the last twelve months
+	 *  ([`first_month`]).
+	 */
+	emailsPerYear: number,
+	/**  Every subscription, dominant currency first, then by monthly cost. */
+	services: Tile[],
+	/**  The four senders that mailed most in the last twelve months. */
+	loudest: Loud[],
+	/**
+	 *  What "cancel all" saves per month: active subscriptions that are not
+	 *  critical, per currency.
+	 */
+	cancelAll: Amount[],
+	/**  Newsletter mail in the last twelve months: what "unsubscribe all" removes. */
+	unsubscribeAll: number,
+};
+
+export type DataLocation = {
+	path: string,
+	bytes: number | null,
+	keyPlace: KeyPlace,
+};
+
 export type ImapProvider = "gmail" | "icloud" | "fastmail" | "yahoo" | "other";
+
+/**  Where the key that encrypts the local data is kept (PLAN.md 2.1, 2.2). */
+export type KeyPlace = "keychain" | 
+/**  The Linux fallback: a key file beside the data. */
+"fileBeside";
+
+export type Loud = {
+	senderId: number,
+	name: string,
+	lastYear: number,
+};
+
+export type MonthCount = {
+	month: string,
+	messages: number,
+};
+
+export type MonthSpend = {
+	month: string,
+	amount: Amount,
+};
+
+export type MoveOutcome = 
+/**  The user closed the folder picker. */
+{ kind: "cancelled" } | { kind: "refused"; message: string };
 
 export type NewImapSource = {
 	provider: ImapProvider,
@@ -36,11 +159,41 @@ export type NewImapSource = {
 	port: number | null,
 };
 
+export type Newsletter = {
+	id: number,
+	name: string,
+	address: string,
+	received: number,
+	/**  Messages per week between the first and the last one, at least a week apart. */
+	perWeek: number | null,
+	/**
+	 *  The newest `List-Unsubscribe` offers an HTTPS link and RFC 8058's
+	 *  one-click POST. M3 checks the DKIM alignment before it uses it.
+	 */
+	oneClick: boolean,
+};
+
+export type PriceMove = {
+	at: string,
+	from: Amount,
+	to: Amount,
+};
+
 /**  A provider as the connect form lists it. */
 export type ProviderInfo = {
 	provider: ImapProvider,
 	label: string,
 	guide: string | null,
+};
+
+export type ReceiptLine = {
+	/**  The `message` row: the evidence link re-reads the original from it (M3). */
+	messageId: number,
+	date: string | null,
+	subject: string | null,
+	/**  `ReceiptKind` as stored: `charge`, `refund`, `trial_ending` and so on. */
+	kind: string,
+	amount: Amount | null,
 };
 
 export type ScanError = { kind: "signInRefused"; host: string; serverSays: string } | { kind: "unreachable"; message: string } | { kind: "cancelled" } | { kind: "alreadyRunning" } | { kind: "failed"; message: string };
@@ -56,6 +209,32 @@ export type ScanSummary = {
 	newsletters: number,
 };
 
+export type ServiceDetail = {
+	id: number,
+	name: string,
+	status: ServiceStatus,
+	isCritical: boolean,
+	priceIncrease: boolean,
+	cadence: Cadence | null,
+	monthly: Amount | null,
+	/**  Addresses that mail as this service, the busiest first. */
+	senders: string[],
+	firstSeen: string | null,
+	lastCharge: Charged | null,
+	/**  Spend per month with a charge, oldest first, per currency. */
+	spend: MonthSpend[],
+	/**  Messages per month for the last twelve months, zeros included. */
+	volume: MonthCount[],
+	emailsPerYear: number,
+	receiptsPerYear: number,
+	/**  Oldest first. */
+	priceChanges: PriceMove[],
+	/**  Newest first. */
+	receipts: ReceiptLine[],
+};
+
+export type ServiceStatus = "active" | "canceling" | "canceled";
+
 export type SourceSummary = {
 	id: number,
 	kind: string,
@@ -68,6 +247,27 @@ export type SourceSummary = {
 export type StoreStatus = { state: "open"; keyBackend: string; cipherVersion: string } | 
 /**  The key no longer opens the database (S16, "database key missing"). */
 { state: "locked" } | { state: "failed"; message: string };
+
+export type Subscription = {
+	id: number,
+	name: string,
+	/**  `None` when the service bills irregularly. */
+	monthly: Amount | null,
+	cadence: Cadence | null,
+	lastChargeAt: string | null,
+	emailsPerYear: number,
+	priceIncrease: boolean,
+	isCritical: boolean,
+	status: ServiceStatus,
+};
+
+export type Tile = {
+	id: number,
+	name: string,
+	monthly: Amount | null,
+	priceIncrease: boolean,
+	isCritical: boolean,
+};
 
 /* Tauri Specta runtime */
 async function typedError<T, E>(result: Promise<T>): Promise<{ status: "ok"; data: T } | { status: "error"; error: E }> {

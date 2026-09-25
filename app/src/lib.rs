@@ -1,13 +1,16 @@
 //! The Tauri command layer over `et-core` (PLAN.md 1.2).
 
 mod scan;
+mod settings;
 mod sources;
+mod view;
 
 use std::path::PathBuf;
 use std::sync::atomic::AtomicBool;
 use std::sync::{Arc, Mutex};
 
 use et_core::crypt::{SecretStore, load_or_create_key, native_secret_store};
+use et_core::local;
 use et_core::store::{Store, StoreError};
 use serde::Serialize;
 use specta::Type;
@@ -33,6 +36,9 @@ pub(crate) struct AppState {
     status: StoreStatus,
     store: Option<Arc<Store>>,
     secrets: Arc<dyn SecretStore>,
+    /// Where the data is, and where it is when it has not moved.
+    dir: Option<PathBuf>,
+    default_dir: Option<PathBuf>,
     /// The cancel flag of the running scan; one scan at a time.
     scan: Mutex<Option<Arc<AtomicBool>>>,
 }
@@ -42,6 +48,10 @@ impl AppState {
         self.store
             .clone()
             .ok_or_else(|| "local data is not open".to_owned())
+    }
+
+    fn scan_running(&self) -> bool {
+        self.scan.lock().map(|s| s.is_some()).unwrap_or(true)
     }
 }
 
@@ -59,6 +69,16 @@ pub fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
         sources::list_sources,
         scan::start_scan,
         scan::cancel_scan,
+        view::dashboard,
+        view::subscriptions,
+        view::newsletters,
+        view::service_detail,
+        settings::appearance,
+        settings::set_appearance,
+        settings::data_location,
+        settings::move_data_location,
+        settings::erase_local_data,
+        settings::app_info,
     ])
 }
 
@@ -74,11 +94,15 @@ fn open_store(secrets: &dyn SecretStore, dir: Option<&PathBuf>) -> (StoreStatus,
     if let Err(err) = std::fs::create_dir_all(dir) {
         return failed(format!("{}: {err}", dir.display()));
     }
+    // Finish a move or an erase the last session asked for.
+    if let Err(err) = local::prepare(dir, secrets) {
+        return failed(format!("{}: {err}", dir.display()));
+    }
     let key = match load_or_create_key(secrets) {
         Ok(key) => key,
         Err(err) => return failed(err.to_string()),
     };
-    match Store::open(&dir.join("emailterminator.db"), &key) {
+    match Store::open(&dir.join(local::DB_FILE), &key) {
         Ok(store) => match store.cipher_version() {
             Ok(cipher_version) => (
                 StoreStatus::Open {
@@ -96,7 +120,8 @@ fn open_store(secrets: &dyn SecretStore, dir: Option<&PathBuf>) -> (StoreStatus,
 
 pub fn run() {
     let builder = specta_builder();
-    let dir = data_dir();
+    let default_dir = data_dir();
+    let dir = default_dir.as_deref().map(local::resolve);
     let secrets: Arc<dyn SecretStore> = match &dir {
         Some(dir) => Arc::from(native_secret_store(dir)),
         None => Arc::new(et_core::crypt::Keychain),
@@ -112,10 +137,13 @@ pub fn run() {
             }
         }))
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_dialog::init())
         .manage(AppState {
             status,
             store: store.map(Arc::new),
             secrets,
+            dir,
+            default_dir,
             scan: Mutex::new(None),
         })
         .invoke_handler(builder.invoke_handler())
