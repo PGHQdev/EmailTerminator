@@ -820,6 +820,9 @@ core/                       the domain. No Tauri dependency.
     extract/                one message to facts: headers, list signals, receipts
     scan/                   store fetched mail; rebuild senders, services, charges, rollups
     source/                 connected mailboxes and files (S12)
+    view/                   what the screens read: S03–S06 queries over the rollups (M2)
+    local/                  the data directory: where it is, move, erase (S17, M2)
+    setting/                key/value preferences
     store/                  rusqlite, schema, migrations, FTS
     action/                 unsubscribe, playbook execution, bulk runner
     skill/                  the three-stage pipeline and the step executor
@@ -882,12 +885,13 @@ Dependabot move them.
 | `hono` | 4.13.9 | `server/` only |
 | `tauri` | 2.11.6 | With `tauri-plugin-single-instance` 2.4.5 |
 | `keyring` | 4.2.0 | Default `v1` feature |
-| `specta` / `tauri-specta` | 2.0.0-rc.25 | Release candidate — see 2.5 |
+| `specta` / `tauri-specta` | 2.0.0-rc.25 | Release candidate — see 2.5. `core` derives `specta::Type` on the view types too (M2) |
 | `insta` | 1.48.0 | |
 | `wiremock` | 0.6.5 | |
 | `dirs` | 7.0.0 | |
 | `@sveltejs/adapter-static` | 3.0.10 | |
-| `bits-ui` | 2.18.1 | |
+| `bits-ui` | 2.19.3 | Command palette and the erase confirmation (M2) |
+| `tauri-plugin-dialog` | 2.7.3 | S17's folder picker, called from Rust only; the web view has no dialog permission (M2) |
 | `lucide-svelte` | 1.0.1 | |
 
 ---
@@ -998,6 +1002,31 @@ cancel-stats sections in M8, and the update section in M9.
 
 Done when: every one of those screens renders from a scanned mailbox and
 matches its mockup in light and dark.
+
+Found at M2:
+
+- **"Per year" is the last twelve months of the rollups**: this month and the
+  eleven before it. S03, S04, S05 and S06 all read it from `aggregate`, so the
+  figures agree across screens.
+- **The price-increase flag is stored** on `service` (migration 002) and S06's
+  price history comes from `summary::price_changes`, which uses the same plan
+  split as the flag. Rows from an M1 scan read 0 until the next scan.
+- **Moving and erasing finish at the next launch.** Windows refuses to delete a
+  file an open connection holds, so the app records the request, restarts,
+  and `local::prepare` completes it before the database opens. A move copies,
+  opens the copy with the key and compares it, then points the default
+  directory at it with a `location` file; the original goes on the next start.
+- **Numbers and dates are formatted in English**, to match the English copy.
+- **Actions show but stay disabled** until their milestone: bulk cancel and
+  unsubscribe (M3), playbooks (M4), the agent (M7). S06's "view email" link
+  and S14's log arrive with M3's evidence links; the "worth it" card needs
+  open counts, which no source provides yet.
+- **Design preview**: `bun run dev` in a plain browser answers every command
+  from `ui/src/lib/dev/mock.ts` with the mockups' figures (`?mock=empty`,
+  `?mock=clean`, `?mock=locked`, `?theme=dark`). The build does not include it.
+- **Windows test binaries** need the Common-Controls manifest that
+  `tauri-build` gives only the app binary; `app/build.rs` adds it to every
+  target.
 
 ### M3 — Act
 
