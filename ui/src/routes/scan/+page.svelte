@@ -5,6 +5,7 @@
   import { commands, type ScanError, type ScanEvent, type ScanSummary, type SourceSummary } from '$lib/bindings';
   import Brand from '$lib/components/Brand.svelte';
   import SignInFailed from '$lib/components/SignInFailed.svelte';
+  import { count as n } from '$lib/format';
 
   type Phase = 'fetching' | 'settling' | 'done' | 'failed';
 
@@ -23,7 +24,6 @@
   let percent = $derived(
     phase === 'done' ? 100 : total ? Math.min(99, Math.floor((fetched / total) * 100)) : 0,
   );
-  const n = (value: number) => value.toLocaleString();
 
   // The ring: circumference of r = 104 in a 230 box.
   const ring = 2 * Math.PI * 104;

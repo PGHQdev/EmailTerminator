@@ -24,6 +24,10 @@
   --sageSoft: var(--color-accent-2-100);
   --sageDeep: var(--color-accent-2-800);
   --onSage: #fff;
+  /* Text and icons on the accent fill, and the scrim behind a dialog. The
+     mockups use the same values in both themes. */
+  --onAcc: #fff;
+  --scrim: rgba(32, 30, 29, 0.38);
   --dotOk: var(--color-accent-2);
   --ok: var(--color-accent-2-700);
   --bad: var(--color-accent-800);

@@ -95,6 +95,8 @@
   --font-heading: "Bricolage Grotesque", system-ui, sans-serif;
   --font-heading-weight: 700;
   --font-body: "Figtree", system-ui, sans-serif;
+  /* Figures and code: every mockup sets these in the system monospace. */
+  --font-mono: ui-monospace, Menlo, monospace;
 
   --space-1: 4.4px;
   --space-2: 8.8px;
