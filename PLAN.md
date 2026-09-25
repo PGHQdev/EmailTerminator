@@ -910,6 +910,7 @@ own migration.
 - **`message`** — `id`, `source_id`, `mailbox_id`, `message_id` header,
   `sender_id`, `subject`, `date`, `list_unsubscribe` (raw),
   `list_unsubscribe_post` (bool), `list_id`, `is_list`, `dkim_domains`,
+  `one_click` (RFC 8058 holds, M3),
   `locator` (UID for IMAP, byte offset for mbox, file name for Maildir),
   unique per source and mailbox.
   **No body is stored.** The
@@ -921,7 +922,7 @@ own migration.
 - **`sender`** — `id`, `address`, `display_name`, `domain`, `service_id`,
   `first_seen`, `last_seen`, `message_count`, `classification` (`service` |
   `newsletter` | `other`), `confidence`, `classified_by` (`parser` |
-  `playbook` | `model`). A service has many senders (`billing@`, `news@`), so
+  `playbook` | `model`), `unsubscribed_at`. A service has many senders (`billing@`, `news@`), so
   the link sits on the sender; it was planned the other way round until M1.
 - **`service`** — `id`, `name`, `group_key` (the registrable domain, or the
   merchant for receipts a payment platform relays), `data_key` (the
@@ -939,8 +940,12 @@ own migration.
   listed beside it. There is no conversion: a rate needs a network call, and
   the privacy statement enumerates every outbound request we make.
 - **`action`** — the activity log (S14): `id`, `kind` (`unsubscribe` |
-  `playbook` | `agent` | `bulk`), `target`, `started_at`, `finished_at`,
-  `outcome`, `evidence` (a `message` id or a `sessions/<id>.jsonl` path).
+  `playbook` | `agent` | `sync`), `target` (a name, kept as text), `at`,
+  `outcome` (`succeeded` | `failed` | `needs_you`), `detail`, `request` (what
+  was sent), and the evidence: a `message` id plus copies of its subject,
+  sender and date, which outlive the message row. M7 adds the
+  `sessions/<id>.jsonl` path. A sweep writes one row per sender, so there is
+  no `bulk` row.
 - **`setting`** — key/value. Appearance, sweep behaviour, update behaviour,
   data location, active tier, cancel-stats opt-in. The evaluation start and the
   licence token live in the keychain (2.2), not here.
@@ -1135,6 +1140,38 @@ Screens: S00, plus S16's update-ready state.
 
 Done when: `0.1.0` installs from the site on all three platforms, and a
 `0.1.1` tag reaches an installed copy through the updater without a prompt.
+
+Found at M3:
+
+- **The one-click verdict trusts the receiving server.** RFC 8058 needs a
+  valid DKIM signature over both list headers; verifying one needs a DNS
+  lookup per sender. The first `Authentication-Results` header must report
+  `dkim=pass` for the domain of a signature whose `h=` names both headers.
+  Mail without that header is never one-click. The verdict is stored per
+  message; migration 003 fetches each folder again from its oldest candidate.
+- **mail-parser returns the last copy of a repeated header**, so code that
+  needs the first reads the header list itself.
+- **The POST is written over the IMAP client's TLS stack**, with no HTTP
+  crate: one request, no cookies, no redirects followed. Only a 2xx answer
+  counts as done.
+- **Four routes, one request.** One-click sends the POST. An HTTPS or HTTP
+  page, or a `mailto:` address, is handed to the user as "needs you", with a
+  link to finish. A message with no header fails. The app sends no email.
+- **A service is unsubscribed through its senders that send list mail.**
+  Receipts carry no list headers, so billing mail keeps arriving.
+- **Nothing sets `is_critical` until `data/critical.toml` (M4).** S10 and the
+  exclusion are built and tested with the flag set by hand.
+- **Sweep settings are two switches**: confirm before bulk actions (with the
+  size from which a sweep is reviewed anyway, 10 by default) and leave
+  critical services out. A sweep below that size skips S11, and each
+  critical item in it still asks S10. The mockup's "keep watching after
+  unsubscribe" needs a re-send on later scans that no milestone owns, and
+  "update playbooks automatically" contradicts 2.6's bundle-only data, so
+  neither is built; S07's line about stragglers went with the first.
+- **Scans log a `sync` row**, so S14's sync filter has rows.
+- **async-imap ends a FETCH stream without an error when the connection
+  closes**, so a short batch now sends a NOOP before it commits. CI caught
+  it on macOS; locally the close arrived as an error instead.
 
 ### Sizing
 

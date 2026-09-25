@@ -228,6 +228,9 @@ Content: every action the app took — what, when, outcome — each with a link 
 its evidence, either the email it came from or the agent session log. Evidence
 can stop resolving when an imported mbox moves or an IMAP message is expunged;
 that is a designed state, and the row keeps its subject, sender and date.
+*(no mockup yet)* The evidence view: when, outcome, the request the app sent,
+the email's subject, sender and date, and on request the original re-read from
+the mailbox. Built at M3 as a dialog in the style of S07.
 Actions: open evidence; filter by action type or outcome.
 
 ### S15 — Report an issue
@@ -242,7 +245,10 @@ Actions: edit the description; open the prefilled issue on GitHub.
 
 [Mockup](docs/design/S17%20General.dc.html)
 
-Content: appearance; sweep behaviour; local data location, and *(no mockup
+Content: appearance; sweep behaviour — confirm before bulk actions, with the
+size from which a sweep is reviewed anyway, and leave critical services out
+(the mockup's other two switches are not built; `PLAN.md` M3 says why);
+local data location, and *(no mockup
 yet)* whether it is encrypted with a key in the OS keychain or in a key file
 beside it, in plain words; erase-all-data, which keeps the licence;
 *(no mockup yet)* licence — evaluation days left, unregistered, or licensed;
