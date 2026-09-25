@@ -1,0 +1,5 @@
+# Licence activation and opt-in cancel stats (PLAN.md 1.7).
+# D1 and the routes land in M8.
+name = "emailterminator-api"
+main = "src/index.ts"
+compatibility_date = "2026-09-25"
