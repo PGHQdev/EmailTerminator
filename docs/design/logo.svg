@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="167 152 922 922">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#8c491a" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect x="197" y="182" width="862" height="870" rx="172" fill="#fdfaf2" filter="url(#shadow)"/>
+
+  <g fill="#c5573b" stroke="#fdfaf2" stroke-width="12" stroke-linejoin="round">
+    <!-- antenna -->
+    <path d="M543 344 L575 344 L584 402 L551 406 Z" stroke="none"/>
+    <circle cx="558" cy="304" r="50" stroke="none"/>
+
+    <!-- ears, drawn under the head with a cream gap -->
+    <ellipse cx="320" cy="638" rx="54" ry="84"/>
+    <ellipse cx="850" cy="546" rx="30" ry="62"/>
+
+    <!-- head, with the open mouth cut into its right side -->
+    <path d="M450 406
+             L705 390
+             C782 386 832 432 832 520
+             L834 612
+             L770 636
+             C762 626 776 610 778 598
+             C780 586 766 578 750 581
+             L505 622
+             C470 629 461 660 467 692
+             C477 762 521 812 602 826
+             C682 836 742 830 786 815
+             C801 811 810 824 808 840
+             C801 882 760 918 700 918
+             L480 918
+             C395 918 334 850 334 760
+             L334 540
+             C334 470 384 412 450 406 Z"/>
+  </g>
+
+  <!-- closed, smiling eyes -->
+  <g fill="none" stroke="#fdfaf2" stroke-width="26" stroke-linecap="round">
+    <path d="M472 564 A40 40 0 0 1 552 556"/>
+    <path d="M674 530 A40 40 0 0 1 752 522"/>
+  </g>
+
+  <!-- envelopes -->
+  <g stroke="#fdfaf2" stroke-linejoin="round" stroke-linecap="round">
+    <g transform="rotate(10 618 716)">
+      <rect x="552" y="668" width="132" height="96" rx="12" fill="#c5573b" stroke-width="10"/>
+      <path d="M570 686 L618 728 L668 686" fill="none" stroke-width="10"/>
+    </g>
+    <g transform="rotate(-16 810 720)">
+      <rect x="718" y="660" width="184" height="120" rx="14" fill="#c5573b" stroke-width="12"/>
+      <path d="M730 676 L810 734 L890 666" fill="none" stroke-width="10"/>
+    </g>
+  </g>
+
+  <!-- motion lines -->
+  <g stroke="#c5573b" stroke-width="22" stroke-linecap="round">
+    <path d="M920 656 L974 638"/>
+    <path d="M934 707 L980 706"/>
+    <path d="M934 764 L980 780"/>
+  </g>
+</svg>
