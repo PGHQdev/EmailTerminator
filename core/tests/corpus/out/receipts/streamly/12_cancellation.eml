@@ -1,0 +1,42 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=selector1; t=1779640978;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=Lw+4FwhDvgRmqk7vJHbbEWJ9gOV5yo2MKeBzJiNC2VF=;
+	b=lNnIG77Ej60DohcEwMoJnpId185kCNPIJR++DkfRQb4NfjktIrFoIm9yi/V1uOp9K0LYBa94
+	 voa9g8R3B+nwYj2gLtlaYTHRqRMb+z6Lm6JV1smgaYG2ha+ZSiBOaaEjBlreST2PbhOJndRf
+	 2XNvJ9MwN4wNg0JcUYB9fFVpbpOsNDg7SK++WXrLZUJ5B5eGPaZam8MS/ruDvl+0HSNP0CXk
+	 TWrl6YY1Wvvrf88V6rfL+CicGJy2Jze7xhzSi9En0z0zBerthu6b9oCtPKB9toPbxnf3+VVo
+	 TtxKHRIdS4DNvKlWxCPSD7Slu5Se0c2svqiTD7M6/lXrZgXKCLieLBv+
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Streamly Standard subscription has been cancelled
+Date: Mon, 01 Jun 2026 18:15:00 +0000
+Message-ID: <5ae01995b391e857.fd183c6e@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_886079_2113e4f265b5"
+
+------=_Part_886079_2113e4f265b5
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your subscription to Streamly Standard is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.
+------=_Part_886079_2113e4f265b5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your Streamly Standard subscript=
+ion has been cancelled</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>Your subscription to Streamly Standard is cancelled.</p>
+<p>You keep access until Jun 21, 2026. You won't be charged again.</p>
+</body></html>
+------=_Part_886079_2113e4f265b5--

@@ -1,0 +1,26 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=pm; t=1780911039;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=X6x1F6fr71kDsRVF3tRW23PiZlAymOOaRP8IcXOq/Kt=;
+	b=PmvlF1NP3j//bdFg+QJufS+pJ/XZZleLFxTWUhamLx4lyBIwGB3UPFQt7laZ9r3XbDL1pG0h
+	 2h8e5/6AzU97BldWgMzKPKrEaiatwCyDiwdEwwpVaC7J9+mnebkYGv30d4MWwoOQS6qBXmh5
+	 wJmuC9Zm+l73Eb/AlFGwK3YPVV5DtNKZck0ckPl1YXgrFZMjgMmMnnBRd2RX6+TkRCWRaGJO
+	 efyDG/8EB/0+K7zC72I8SD0ivbwtJfEVI9uCJba0o6xt9hajFrKX1mb95lqBTsrC/zdVyoz8
+	 ObAnD0kMGdFx0xHgB8GXXULmeT0wq14qyueB13x8KtdcTB1jx5UsnmmY
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 07:32:00 +0900
+Message-ID: <9ba0bcd2e37c5b88.c91d2ec5@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+WW91ciBjYXJkIG9uIGZpbGUgZXhwaXJlcyBzb29uPC90aXRsZT48L2hlYWQ+Cjxib2R5IHN0eWxl
+PSJmb250LWZhbWlseTpIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtjb2xvcjojMjIyIj4KPGgx
+IHN0eWxlPSJmb250LXNpemU6MjBweCI+QXBwbGU8L2gxPgo8cD5IaSBTYW0sPC9wPgo8cD5UaGUg
+VmlzYSBlbmRpbmcgaW4gMDMxMCBvbiB5b3VyIEFwcGxlIGFjY291bnQgZXhwaXJlcyBhdCB0aGUg
+ZW5kIG9mIHRoaXMgbW9udGguPC9wPgo8cD5VcGRhdGUgeW91ciBjYXJkIHRvIGF2b2lkIGFuIGlu
+dGVycnVwdGlvbiB0byB5b3VyIHN1YnNjcmlwdGlvbnMuPC9wPgo8L2JvZHk+PC9odG1sPgo=

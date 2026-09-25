@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "Partial refund for your Tunebox Premium payment",
+  "date": "2026-02-04T11:10:00Z",
+  "message_id": "513d724454ba266d.a3cd494b@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 654,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "TB-25148091"
+  }
+}

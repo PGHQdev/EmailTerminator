@@ -1,0 +1,29 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=s1; t=1769387027;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=YACj+M4ldOy9ARQ/3Hom+CaGNjuQGPEr84RRsvkUggX=;
+	b=d0WufLCtIy4MtzTPIZHa4ZxeikVQYbHx5FRzdYR6nb0cr1Kvu54QRyTlCdfsYWi5lnQzTRQj
+	 Y/Yjx1LIMI+dEabfDvdZ5HVJyxyciCczJBtl28n/i6Pu9nmtwgpi80kRv6oAlA787EVbeS01
+	 +66xzGIwNLCPGQUMqGm1bsbvmKeXj1tyN7/gqxIBKu8ZR/6ABVvfJqS0G8VwZRoaB/zii0D0
+	 zLTCIuYVbL4qBVDiH8e/A+0s8jaBj8VLJvQH5Hby7IOBkqFPrV/M9IOZxL9btFgtgTCuV8Nc
+	 r8Q1qn1SMqF+Gys6EY72ygEWRwIOh18Ipa3QZMp7Ri40GmAEoQ5rOABk
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Inkwell Fonts Studio price
+Date: Thu, 02 Apr 2026 17:12:00 +0000
+Message-ID: <c8ad0b004724e6b7.74731b29@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+About your purchase from Inkwell Fonts.
+
+We're changing the price of Inkwell Fonts Studio.
+
+Current price: 12.00 USD per month
+New price from May 1, 2026: 15.00 USD per month
+
+You don't need to do anything. To cancel, visit your account settings.

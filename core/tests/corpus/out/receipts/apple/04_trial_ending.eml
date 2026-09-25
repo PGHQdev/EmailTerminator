@@ -1,0 +1,31 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=pm; t=1781142351;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=r/zQZVxrnCjhPPJ1m1QWnjosBdVzntKF4DlBvJabNHA=;
+	b=elD7fHoC/KybaqJwU1l9V6tNOUmLiaIZ8Wez52r1/67dhxBZmeNfbZV0aATuz9+RNEBRgW4q
+	 ntaKfI72mcmY85t65ACl0a12ouPwIVbsTMPBJwrX9+75EtotkBDulIGGbchbs6wFTnqRvOnf
+	 II3bqDgTCN91GIxXNFtwxyEIV8xHmy3jJNAu+DntlvG0/1iIDFjW4A44WSU16akom3C2rUwu
+	 UlvBHevQE4Fs+VeSdARgGQXXB1apL001yFE8kSHJfKixMw/ldOxgYcLiP51rS+uRw3njI1lV
+	 RHFKmTuOHwcKPqeYaO2JM8hVM1EvPYOaVez6GNgbPUp7Hq0IMPRtif+k
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Skyline Weather Premium trial ends in 3 days
+Date: Mon, 29 Dec 2025 18:27:00 +0900
+Message-ID: <5c79dc0c8e48bf41.22f456cc@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+WW91ciBTa3lsaW5lIFdlYXRoZXIgUHJlbWl1bSB0cmlhbCBlbmRzIGluIDMgZGF5czwvdGl0bGU+
+PC9oZWFkPgo8Ym9keSBzdHlsZT0iZm9udC1mYW1pbHk6SGVsdmV0aWNhLEFyaWFsLHNhbnMtc2Vy
+aWY7Y29sb3I6IzIyMiI+CjxoMSBzdHlsZT0iZm9udC1zaXplOjIwcHgiPkFwcGxlPC9oMT4KPHA+
+SGkgU2FtLDwvcD4KPHRhYmxlIHJvbGU9InByZXNlbnRhdGlvbiIgY2VsbHBhZGRpbmc9IjQiPgo8
+dHI+PHRkPkFwcDwvdGQ+PHRkIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0Ij5Ta3lsaW5lIFdlYXRo
+ZXI8L3RkPjwvdHI+CjwvdGFibGU+CjxwPllvdXIgZnJlZSB0cmlhbCBvZiBTa3lsaW5lIFdlYXRo
+ZXIgUHJlbWl1bSBlbmRzIG9uIEphbiAxLCAyMDI2LjwvcD4KPHRhYmxlIHJvbGU9InByZXNlbnRh
+dGlvbiIgY2VsbHBhZGRpbmc9IjQiPgo8dHI+PHRkPkFtb3VudCBkdWUgb24gSmFuIDEsIDIwMjY8
+L3RkPjx0ZCBzdHlsZT0idGV4dC1hbGlnbjpyaWdodCI+wqUxLDIwMDwvdGQ+PC90cj4KPC90YWJs
+ZT4KPHA+V2UnbGwgY2hhcmdlIHlvdXIgVmlzYSBlbmRpbmcgaW4gMDMxMCB1bmxlc3MgeW91IGNh
+bmNlbCBiZWZvcmUgdGhlbi48L3A+CjwvYm9keT48L2h0bWw+Cg==

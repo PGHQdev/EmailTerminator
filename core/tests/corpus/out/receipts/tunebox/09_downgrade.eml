@@ -1,0 +1,23 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=smtpapi; t=1781822110;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=mc6U5bWLlJVwnfzkT0zjt9eXNUb3xTJSGOugPFE2bbt=;
+	b=FhamClxJQvdlEiNcQkg/aUxPsR7GoX3SnYsPEmuQiChjojvWB3MA45+4VwygY5594e/PPG02
+	 l/2R4rrO/tx74fR+DKhme2kH53935/XAipByGuBybt8BDDOG8TPu9jWCLFSdybcNB4WBemCR
+	 Cgt+qxcOTZXGch+m9JBdYw4iW5M2XSVuM95E5d8c733vnpkLmSEXpKpL5C6npwGbntiy4Izk
+	 fSH6bJTEq4yM6Vw1jcka36p6ocQ2a+SHPW0rd8OSD9SUK41+ya5FghfxCiyexuGkdoT77TnC
+	 d1YCMptLOuY6Y3hQlqd+jiAfAwD7+irxtLe9HS9wK+hJDzQxKpkYeFOC
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to Tunebox Premium Lite
+Date: Mon, 16 Mar 2026 14:55:00 +0800
+Message-ID: <09f5acc6fd11daa7.6e22727b@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKWW91IG1vdmVkIGZyb20gVHVuZWJveCBQcmVtaXVtIHRvIFR1bmVib3ggUHJlbWl1
+bSBMaXRlIHRvZGF5LgoKTmV3IHByaWNlOiBVUyQ2LjAwIHBlciBtb250aApDcmVkaXQgYWRkZWQg
+dG8geW91ciBhY2NvdW50OiBVUyQzLjAwCgpXZSdsbCBhcHBseSB0aGUgY3JlZGl0IHRvIHlvdXIg
+bmV4dCBpbnZvaWNlcy4K

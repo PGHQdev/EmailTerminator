@@ -1,0 +1,51 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=pm; t=1769882727;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=f/YuHtYfrf+LpueK2BigYXvHMDNos7Cuv616Ho2pxIs=;
+	b=b6Gh6AY2dvi6wdSoHFzwlDAbhOHkQKojYhBi5bVh+wMdNcFKBTL5PKcVSXbJEoGHaWRcwcmQ
+	 RRhfoQh4GfsQXuDzwM91bSt6NJvYTDLCSKMy8jFCzmcLeaPpTqz+qSsHOMTs0Qw8iUtCNkIv
+	 YtkAUY7OKhtKn+VjS2YYGCJJGfTcrEDt6lEt7mdTcr3Td2FxqIrQsq6H7nz5zRVkOEkijGfo
+	 DBQPg2869H3ovQj5piNHQFSkvSNxpTupTUaBVxgPUkz/QbalykX7ssiMCUnzif54rKO9DbJA
+	 L0mZJDMY0aoeZmFTBoS6NkSxVPZRT3jSXbipZSRvDgo0Vp6f1FgDvDuM
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your GitForge Team subscription will be suspended
+Date: Fri, 08 May 2026 08:48:00 -0800
+Message-ID: <8d0b849bede06535.bb03e89d@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_663722_07c9d3fb2a6e"
+
+------=_Part_663722_07c9d3fb2a6e
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We still can't collect payment for GitForge Team.
+
+Amount due: $13.07
+Invoice number: GF-2026-61868
+
+If payment fails again on May 15, 2026, we'll suspend your subscription.
+------=_Part_663722_07c9d3fb2a6e
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Final notice: your GitForge Team=
+ subscription will be suspended</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>We still can't collect payment for GitForge Team.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due</td><td style=3D"text-align:right">$13.07</td></tr>
+<tr><td>Invoice number</td><td style=3D"text-align:right">GF-2026-61868</td=
+></tr>
+</table>
+<p>If payment fails again on May 15, 2026, we'll suspend your subscription.=
+</p>
+</body></html>
+------=_Part_663722_07c9d3fb2a6e--

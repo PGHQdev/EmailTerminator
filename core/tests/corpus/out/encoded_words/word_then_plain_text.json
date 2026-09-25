@@ -1,0 +1,13 @@
+{
+  "from_address": "hello@mailroom.test",
+  "from_name": "Mailroom",
+  "subject": "Café menu for spring",
+  "date": "2026-05-11T12:00:00Z",
+  "message_id": "716e477b35773772.f77f6266@mailroom.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

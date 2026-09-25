@@ -1,0 +1,61 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=20230601; t=1770009695;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=sRAILK82V6oCO1f4JYSBBIEJ8M2RCRobt/6WV4Wh3mK=;
+	b=2ASjiUIQ0HKQOU9doVG03xe1seoxs2FkuV/0m1gT+2wwnQi6h/utzLxOVxJca5dfJ9L5CDcD
+	 Uu1rZA8g/di61VLYdfxaPv1nIDRoO4MGw3fv/idqY/T+WLCixvoQJtAmt6N8kqPL2t82Uj4L
+	 oKPYfVp6iFzC3bEhMwPLtgq3sQ8QmAZumpOo0CNxIQ92twwihOi4FolBXUFzE6bHwqK/k3yd
+	 LwS8wHgv4TTXuDFt5CY2Jsyw2L2doDu1MlTnmsC4MwUgz5Gk+mTWiRCfqjB5+XMlmVFpYM0H
+	 8TtG4GAShckihguMC01zOd4sepkQczOfsRobimtxBStvYKxR08kQaJY4
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Streamly receipt
+Date: Thu, 01 Jan 2026 06:01:00 +0000
+Message-ID: <8cdb62e0f4066d05.cb23f266@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_968168_a83b29d28579"
+
+------=_Part_968168_a83b29d28579
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Streamly Standard.
+
+Date: Jan 1, 2026
+Billing period: Jan 1 =E2=80=93 Feb 1, 2026
+Total: =E2=82=AC12
+Includes VAT (23%): =E2=82=AC2.24
+
+VAT number: IE3668997OH
+
+Payment method: Visa ending in 1881
+------=_Part_968168_a83b29d28579
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your Streamly receipt</title></h=
+ead>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>Thanks for subscribing to Streamly Standard.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Date</td><td style=3D"text-align:right">Jan 1, 2026</td></tr>
+<tr><td>Billing period</td><td style=3D"text-align:right">Jan 1 =E2=80=93 F=
+eb 1, 2026</td></tr>
+<tr><td>Total</td><td style=3D"text-align:right">=E2=82=AC12</td></tr>
+<tr><td>Includes VAT (23%)</td><td style=3D"text-align:right">=E2=82=AC2.24=
+</td></tr>
+</table>
+<p>VAT number: IE3668997OH</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 18=
+81</td></tr>
+</table>
+</body></html>
+------=_Part_968168_a83b29d28579--

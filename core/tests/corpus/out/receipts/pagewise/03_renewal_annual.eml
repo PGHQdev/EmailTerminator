@@ -1,0 +1,33 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=20230601; t=1778838703;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=f31y3leUl/ZBdg0tABNWERLNoQiHo9kMm+IVo/L35QJ=;
+	b=buXMdhCCABGoOVTlW5IxwAw42os/khWi9zuhEs8DsDDrpR/VWhhznRCO1uXi1HdIXUIrxZvE
+	 U4Rrvig1eVGoXk2PsZf5VzpYr5pdLRmA0uQFpnyiEec0zRq4HMP1ynEVxmeaDy9JIv5mWw5F
+	 KYm/5+ktFjWpqZcojLr51CemeKqkHsqRqksePrt9mpws3S9XoFi7TbpXl/K2Ovd/UH+1SI6K
+	 sR6D36VeVwIAj/J0TzdURselzaV/AzQnqp8Mew2dXAwPbs0b7QT85wJwCdQ5XEUND1Li64c4
+	 1vuxqsbssOd8OZ2sZJLyHWOHosKzWdRBlufi+rX3nIdqMFOvqAX8JsxJ
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your annual Pagewise Team renewal
+Date: Mon, 15 Jun 2026 13:13:00 +0100
+Message-ID: <24d8f6d90f5900bb.2fe19268@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+Your annual subscription to Pagewise Team has renewed.
+
+Date: Jun 15, 2026
+Billing period: 15/06/2026 - 15/06/2027
+Subtotal: 1.234,56 €
+VAT 0% (reverse charge): 0,00 €
+Total: 1.234,56 €
+
+Customer VAT ID: DE811569869. VAT is due from the customer under the reverse-charge rule.
+
+Invoice number: PW-000603
+Payment method: Mastercard ending in 0005

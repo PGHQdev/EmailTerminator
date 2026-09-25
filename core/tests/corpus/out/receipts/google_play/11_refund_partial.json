@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "Partial refund for your Puzzle Den Premium payment",
+  "date": "2026-02-04T13:02:00Z",
+  "message_id": "44d04a0c167f4f97.e663329b@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 250,
+    "currency": "USD",
+    "merchant": "Puzzle Den",
+    "invoice_ref": "GPA.9848-2769-1045-63559"
+  }
+}

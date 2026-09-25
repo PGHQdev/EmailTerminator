@@ -1,0 +1,53 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=s1; t=1773363313;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=zimUwcrblpUZDHCnkSoM2Jzegm+SRT/SuO2t1Hs7Cxx=;
+	b=cVRron9J/8JHhllDhFjD7hO57a8ITeLOOiBRVMZyUskVlnG2X9l9nejbIJ4oA51fhlhXK4Gn
+	 8HRrIfvGB9avSeT9HFC1+Gb2ep1H/nkBn3vKZBRUp7VOeOt4k0oHe5noAkxCakeLnWoqkwLz
+	 UHtMcPDFKAsewogJMXtTy+d0CTFshN2dcIAj59jaIUcotZbwI8vBlLWx1U+cw1pO/+tEn6ia
+	 yGpHEfyAZ++Iz9/TS5MisTJcwOORW045MZ2UKIFXP0ZfkS4AMRcrZnprGHh3GOyJt9ptsCWe
+	 auWb7fgRcQRBNKlGvzkZUy4pdXtApseeLybkZ2alCP++frgXv/Rvq7OC
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Puzzle Den Premium price
+Date: Thu, 02 Apr 2026 12:20:00 -0500
+Message-ID: <4e70ff5876610409.242d68a8@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_615834_536d9a13070b"
+
+------=_Part_615834_536d9a13070b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+We're changing the price of Puzzle Den Premium.
+
+Current price: US$4.99 per month
+New price from May 1, 2026: US$5.99 per month
+
+You don't need to do anything. To cancel, visit your account settings.
+------=_Part_615834_536d9a13070b
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>An update to your Puzzle Den Premium price</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>We're changing the price of Puzzle Den Premium.</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Current price</td><td style="text-align:right">US$4.99 per month</td></tr>
+<tr><td>New price from May 1, 2026</td><td style="text-align:right">US$5.99 per month</td></tr>
+</table>
+<p>You don't need to do anything. To cancel, visit your account settings.</p>
+</body></html>
+------=_Part_615834_536d9a13070b--

@@ -1,0 +1,29 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=northpeak.test;
+	s=s1; t=1786301894;
+	h=from:to:subject:date:message-id;
+	bh=7ITbWBVzKKqU5gK9ZrTGF4GGhRuzVvaEBUJZEQ9zgSX=;
+	b=7DxmPvrle6zpEwsFH93ewklbKlGigNt/8s9WXVQbqR0omFMjApGAXE/JUsV/RlCmPNPrG7RY
+	 +LM/c8fCwG1b/CwKdglUp22Xi+NMizAxYiTKXXO0rUvM1xSunyBDunUOZ2u1mj/5OpDPWcfH
+	 qoKIe09s6mAX/ycp1nBtzDGeOrEFXL8Z7uXfHTHYGdX61sp1EXAQYgD3UY+S2I1VTsQRy+uD
+	 v9jFA76aw9F6k4tHaWSuz75awN5pEhjUtyxSWGbnLVbzaBjnGEZC8qn24VEnrcG/F/fhGhVR
+	 seM0KbbmAfaZYB9BYWfs/jcZgeY4TySw8ls/sPBQFa6JEgU/eiMEJrQR
+From: Northpeak Outfitters <orders@northpeak.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Northpeak order NP-100290
+Date: Mon, 08 Jun 2026 14:00:00 -0600
+Message-ID: <4c5fb60e28e80d93.a2ed8bdf@northpeak.test>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"></head><body>
+<p>Hi Sam,</p>
+<p>Thanks for your order. We'll email you when it ships.</p>
+<table>
+<tr><td>Order number</td><td>NP-100290</td></tr>
+<tr><td>Trail Runner 2 (size 10)</td><td>$30.00</td></tr>
+<tr><td>Shipping</td><td>free</td></tr>
+<tr><td><b>Total</b></td><td><b>$30.00</b></td></tr>
+</table>
+</body></html>

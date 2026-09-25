@@ -1,0 +1,36 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=selector1; t=1775641931;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=DloqjRI7mBuqyeerKDNpJCPAc5AwfpnQRq3tyfNHLEU=;
+	b=FNQtciJFJ4ncc/O2tx9mj4jSGTNdE98TN1dBmFdyvntGbVl3s9TMsXZsYMxIJpiogMcXMpUz
+	 ItE9epNsNNS2SiGSgP8bBNAM6WQJFQTbzyqi/kaM+mHG0nbJf/zneNnhAEE102JBm/mX02Xc
+	 Zf+PKpl5hQXO7oxErzcsILA7vKMbVd8U1G6mlwQteXWxKV+UBdJQob9aqTPD8lTgTpScz5OD
+	 N+8n4W981TssogOFTeyWvKruubgavZutyL84MBrpZ+qwli6rR5amdvckvnh+WhktNcJZYEws
+	 njfE0joIC1Bk04FEykg1W2LRtgHvYVjbt7Xowf/dpwisPQOkdIa7gqpc
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=s1; t=1774984844;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=qzlmAZT178yzx4oQpjpVd9lGQGFA8rV+LvBk3Ou4o8n=;
+	b=IaHh/Yw6cV1dcAMj5dcCeJ1CfVEiZQsLY8bL3UYp5pSQudTuPwwmjLv38YlIgNj8bCyeRuOl
+	 qyvSnA3mKG97UdXvdLz0m4MDeCRzYWEFdVLedoBMmgobZsGK1hLukqp0mxeHv2yQHs/vj4v0
+	 nlWU/gLei6IuS6pMlZ6XGK+6a2KLNTwEMxJPdlzsNgD/1FiDJhEdetadyCg8Q1tEQt5WUX7/
+	 KvZIIqf6bbhbpYVjrT6Wi8JztBy7+tUh1z0konMk5Xe0ikv2Gvero24yh9o054gelzJVGD6H
+	 KPgVC4fPp23PwhZ1Mmr4AA7Ij3oyQLARMRLA8GgOFEgaaW60HhCUahIy
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Cloudbarn payment
+Date: Fri, 01 May 2026 06:51:00 +0000
+Message-ID: <73852c4ff3b7d6c0.18d51e3b@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Your payment for Cloudbarn Business Support failed. Your bank declined the charge to your Mastercard ending in 5454.
+
+Amount due: USD 1,234.56
+Invoice ID: 3332777575
+
+We'll try again in 3 days. Update your payment method to keep your subscription.

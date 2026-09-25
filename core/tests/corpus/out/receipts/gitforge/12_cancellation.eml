@@ -1,0 +1,42 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=20230601; t=1783245493;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=sk8sfZcTcOKsbWigHiKYsxTb5t6b3VPkPTk8TZB8mgT=;
+	b=7w1pD7pnKEDY9RqycdcRSjxdGWJmM12VXoK+CJGrsKAOSYR3Hl0KFJh1N1ZvgEQ7rbf8tVN8
+	 7Y3wcDGzH5lOI5QDYnevY/hPVhAdj2dPq9NbXOlsQna83eyWxyhnQnlNc5baCs4idqvN1u3S
+	 vFf7xENpdKWYXROjJSyLwjltHnd45rzLP6m6F42ihp0qNvTLnzWYkzY0ENp27IhcuAmXUbBP
+	 vzWDTogg3oNzjE4m1aMR+XNCHvi/BFt293aQDb5qyDHkwQTFNHbT6vwnDRI8dMiKze0LL2Ls
+	 kqiNZ89/RvLK20GxuquqQT7DEV+lAZuzp8kqVYeb4AE7aOUSwA5EQ6Zv
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your GitForge Team subscription has been cancelled
+Date: Mon, 01 Jun 2026 08:19:00 -0800
+Message-ID: <765df4a06be2624b.f478b89c@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_163887_d08fe70f5732"
+
+------=_Part_163887_d08fe70f5732
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your subscription to GitForge Team is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.
+------=_Part_163887_d08fe70f5732
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your GitForge Team subscription =
+has been cancelled</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>Your subscription to GitForge Team is cancelled.</p>
+<p>You keep access until Jun 21, 2026. You won't be charged again.</p>
+</body></html>
+------=_Part_163887_d08fe70f5732--

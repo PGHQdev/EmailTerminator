@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@quarry.test",
+  "from_name": "Quarry",
+  "subject": "Your Quarry receipt",
+  "date": "2026-01-05T14:00:00Z",
+  "message_id": "e31a8d50b06f9673.65ef3820@quarry.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "quarry.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 900,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "INV-844820"
+  }
+}

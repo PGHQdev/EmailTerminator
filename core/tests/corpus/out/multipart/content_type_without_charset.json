@@ -1,0 +1,13 @@
+{
+  "from_address": "notices@library.test",
+  "from_name": "Town Library",
+  "subject": "Your card was renewed",
+  "date": "2026-06-13T09:00:00Z",
+  "message_id": "8e7e4ce9c9d432ce.cd6420e8@library.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

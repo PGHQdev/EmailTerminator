@@ -1,0 +1,15 @@
+{
+  "from_address": "no-reply@lattice.test",
+  "from_name": "Lattice Notes",
+  "subject": "New sign-in to your Lattice Notes account",
+  "date": "2026-01-09T03:17:00Z",
+  "message_id": "0d223cff4f68a876.adbfbb0f@lattice.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "lattice.test"
+  ],
+  "receipt": null
+}

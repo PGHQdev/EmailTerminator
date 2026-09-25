@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "An update to your Puzzle Den Premium price",
+  "date": "2026-04-02T17:20:00Z",
+  "message_id": "4e70ff5876610409.242d68a8@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "price_change",
+    "amount_minor_units": 599,
+    "currency": "USD",
+    "merchant": "Puzzle Den",
+    "invoice_ref": null
+  }
+}

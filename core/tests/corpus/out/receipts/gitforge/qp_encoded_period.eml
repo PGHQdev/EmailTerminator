@@ -1,0 +1,28 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=k1; t=1785902692;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=pYkwX6DELaItlyEUkiQIzSlArdqN+SyQvc7Yfb6RXEi=;
+	b=p3Ir6zgEDlHa5AE0UNsI/87Kc9ykM+0dj5/zVOKOx2Hdatjr2i5nGYkCm/t2tFew/zRxuxO8
+	 41uEn6Xu0zndpu0kVtD4RkrXZ8e5paBNAwRT1qvwxn1iHFRXgjg9b5ykFp7v6dqCPzEnU22Z
+	 zabz+WhA/4xb7RJ0/MoLUgrrYN499WFq6zvT66aCqdxNTN7fYy/3FReGXwcPrx5vHWFPaNkn
+	 5z/byx4P3qxMeHdMNBk7iJ4JQG7wzQya589y1u0+bk6fS1/jdxe5fJN92xirCSrh+ja2A5L8
+	 192RBocZ+S24AjKFG1AdVaAsve8umS4YXyBpaDQ7yEf/SPjuW9ahyYyj
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your GitForge receipt
+Date: Sun, 01 Mar 2026 09:12:00 -0800
+Message-ID: <9093d666ce246dc2.0252415b@gitforge.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for your payment to GitForge. Your billing address is in a state
+with no sales tax, so none was charged.
+
+Plan: GitForge Team (monthly)
+Total: $12=2E00
+Invoice number: GF-2026-92626
+Payment method: Visa ending in 4242

@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "Your Inkwell Fonts receipt",
+  "date": "2026-01-01T13:02:00Z",
+  "message_id": "e2aed32b474992ba.671e08eb@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1440,
+    "currency": "USD",
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": "235733200"
+  }
+}

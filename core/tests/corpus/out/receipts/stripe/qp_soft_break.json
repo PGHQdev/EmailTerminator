@@ -1,0 +1,21 @@
+{
+  "from_address": "invoice+statements@stripe.com",
+  "from_name": "Lumen Analytics",
+  "subject": "Your receipt from Lumen Analytics",
+  "date": "2026-03-02T00:45:00Z",
+  "message_id": "2cd52750a379a607.a033ed89@stripe.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "stripe.com"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1200,
+    "currency": "USD",
+    "merchant": "Lumen Analytics",
+    "invoice_ref": "1643-6426"
+  }
+}

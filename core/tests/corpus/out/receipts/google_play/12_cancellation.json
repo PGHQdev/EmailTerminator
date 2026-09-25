@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "Your Puzzle Den Premium subscription has been cancelled",
+  "date": "2026-06-01T21:35:00Z",
+  "message_id": "c6cae693e7985562.bcd16e13@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "cancellation",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": "Puzzle Den",
+    "invoice_ref": null
+  }
+}

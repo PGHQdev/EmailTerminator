@@ -1,0 +1,28 @@
+Return-Path: <bounces@hostlane.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hostlane.test;
+	s=selector1; t=1784098577;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=5im41d4jWWT8bhH1GiSBSojIEn7l1mozl1NJgj+cb5S=;
+	b=r2NQXnvwue6StGAp1LGgx3JxMfbCXq/qt6vg+0+mfqrJb9oBokid0YISAQwrI6yDftubXdqt
+	 tbAqp7qpFDxVnjR4P9ynRSXmKqdWP6MoGUdxFm59k4JoDnr7g9TchfCuIvHk7dl/gt/ec8c/
+	 Ko2fDrNfQoTCS+XLuHFOl8FwGK81kFvCk8lCtVkevIPWs8MRh3TW/rxIfotR8JS4ETzXCeGX
+	 QDoOALDnQ7prpJMy7fUXgAOqSiOJD4ewym8RJ8WtgK3eont8kob3BDCZByeZZnVmvhE3FhAn
+	 2Fk4ZjELUZh4uIzLxJho3DM8zetxePTauS50ks23nQvWS9DXcIh5CazM
+From: Hostlane <billing@hostlane.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Hostlane Starter subscription has renewed
+Date: Thu, 05 Dec 2024 15:51:00 -0500
+Message-ID: <f7a17ba9ec08b03e.6c0e25ce@hostlane.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your monthly subscription to Hostlane Starter has renewed.
+
+Date: Dec 5, 2024
+Billing period: Dec 5, 2024 =E2=80=93 Jan 5, 2025
+Total: $12.00
+Invoice number: INV-519694
+Payment method: Visa ending in 4242

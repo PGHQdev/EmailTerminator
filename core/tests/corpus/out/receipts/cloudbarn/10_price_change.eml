@@ -1,0 +1,36 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=selector1; t=1779203524;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=xINkPVQl5p4seGSfYmd27oXMn1axnAMBvDbsQPX5duK=;
+	b=gzFVU/t6ytcqFof58hbvBxbf3j+V+TdYL/mugouuetQnN6IhOMpKAxig4E50KNVVL6BGg3km
+	 Oq5mxU21qbk8l57gWgZnsRTZ3iP2y3QyRkRE4YALcGgW9zAx/WCcZcVR6R7a9p7dqGGqGdlE
+	 xAbUqhY/H1QpS5OLo/o/fmaqsfi3krfYLbQ0oSvsARqIV9mP3O3doOTANx8N/yRKLid3nJm/
+	 9odcwXyxF0tq2W2JzulBL2ONXhnSJ/6vCJhSGCZ5fVgxfVTChbzCEdJ6lT0OovTTctoxiiQ2
+	 enL4qNGDZsxK9gvYxTaH9fsNWp2Zp6mpdJKKOD+ycWNtmryTNZZB6Cny
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=k1; t=1785791140;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=gmlMsG2Krq96/3VIb0kKl48WUwVJXaO87c65pG7Amsg=;
+	b=6WqIcwV8ImBqr09lpBviQVCain5xiavmxe61HqNFL1LAPH4ABgC/jyxvBxdVOPT7/S7dXRDk
+	 j2JAaH/p9Qtln8BZxVfgBkC9UuQXU4lk6xrCQZT5aNWtT8/j3Q56c5DZPW2IZVBB7Ed4MQw9
+	 7rjuGIJGJUOOqCinZeibClKHIgPwUMBVPEL/wYmRAhbTwidExUD88k7a3mjhctTMLFzSFHXr
+	 b261YEU+YuhG4lnuJjZE3/I5IYSS7J/g1kJbTO9ZhZycQ74AsQX7HbI2SIWRejqqqCKB1xWV
+	 tRUt8y8RYByE2V5mjx/qkBQ1jlpLOS68VqpExI8IuJ/sIRVjEfptGoBi
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Cloudbarn Business Support price
+Date: Thu, 02 Apr 2026 07:34:00 +0000
+Message-ID: <b00c34489ff53704.07f985b6@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+We're changing the price of Cloudbarn Business Support.
+
+Current price: USD 1,234.56 per month
+New price from May 1, 2026: USD 1,300.00 per month
+
+You don't need to do anything. To cancel, visit your account settings.

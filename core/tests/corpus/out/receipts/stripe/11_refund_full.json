@@ -1,0 +1,21 @@
+{
+  "from_address": "invoice+statements@stripe.com",
+  "from_name": "Lumen Analytics",
+  "subject": "Your refund from Lumen Analytics",
+  "date": "2026-02-03T14:53:00Z",
+  "message_id": "df8d5d5bfc86a8c7.daeeab05@stripe.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "stripe.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 5255,
+    "currency": "USD",
+    "merchant": "Lumen Analytics",
+    "invoice_ref": "8037-8088"
+  }
+}

@@ -1,0 +1,53 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=pm; t=1771140168;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=/5wv4lzmVmzGBVBZxBPHhzRCy/hNNkiIwOOaWNCnHCZ=;
+	b=wylDRSX78ABbnCtMcmG3OERJuYbpH9Z/2KQM5/VH/IDfk+t36/BHvvGh8gx8Q/xgeq0AwjjL
+	 9DDR0K4L4vHjzKNKlz5ZGMjziARRczWas3JicGq+LyN+Nd/D9Lr/RRRGfghpKO+N/vYRYiek
+	 9ODMPHl13KFiuNyKAhBBpMDIqbvgpRbPgeAlE6MJ0kas84QOoeYyb7tnYMaNaf8hFSQKwvHZ
+	 yhln9rsgM2lq64ilXNRhms8AfxCNlGgrsTbcfhoIwBGTmsKg6pj4LeRoubfn/3J3RhjBjpto
+	 tyQd9CLanx8ehaTjZhhqHmrMq3XDIOy4nl2DKNijoSSKlVpzBQy0FcKZ
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from GitForge
+Date: Tue, 03 Feb 2026 14:39:00 -0800
+Message-ID: <7f3f33ed105e13a8.30deee18@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_960168_1472e1af682b"
+
+------=_Part_960168_1472e1af682b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We've refunded your payment for GitForge Team.
+
+Refund amount: $13.07
+Invoice number: GF-2026-95198
+Refunded to: Visa ending in 4242
+
+Refunds take 5-10 business days to appear.
+------=_Part_960168_1472e1af682b
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your refund from GitForge</title=
+></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>We've refunded your payment for GitForge Team.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Refund amount</td><td style=3D"text-align:right">$13.07</td></tr>
+<tr><td>Invoice number</td><td style=3D"text-align:right">GF-2026-95198</td=
+></tr>
+<tr><td>Refunded to</td><td style=3D"text-align:right">Visa ending in 4242<=
+/td></tr>
+</table>
+<p>Refunds take 5-10 business days to appear.</p>
+</body></html>
+------=_Part_960168_1472e1af682b--

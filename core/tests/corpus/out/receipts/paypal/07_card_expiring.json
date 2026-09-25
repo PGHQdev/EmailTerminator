@@ -1,0 +1,21 @@
+{
+  "from_address": "service@paypal.com",
+  "from_name": "PayPal",
+  "subject": "Your card on file expires soon",
+  "date": "2026-05-21T00:42:00Z",
+  "message_id": "f4a48e680d827576.95c4ae88@paypal.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paypal.com"
+  ],
+  "receipt": {
+    "kind": "card_expiring",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

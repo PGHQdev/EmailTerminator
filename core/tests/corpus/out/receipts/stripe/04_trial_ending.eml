@@ -1,0 +1,51 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=k1; t=1782052243;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=zyRQwKMpvZV9kTWaj16PVqpQA1pQ74twoiol4lnLjwh=;
+	b=+59jii6+U3jVRFWZ77gNlI+g31awtrxIF/q4WAv66/1u36Xedc3SxZMySBGc/6jTocO0rBIX
+	 sY+YuKc0H4QG1LYuPhzk04WgXnTnrOK12vvRYnhPajgGMD60O+vpL+cfHtisxfVvtNL2UBfI
+	 2LlLUHvWHDvNyhH+fUiPDkIYV9LrIHZg0FlsEsFb7moTRzXdpxPQKRBE2/hiMTLmJnu0v8wI
+	 BftBLHSFVUElVEXYDWGZXcj1fKs6YM/jAM7FJffDFbWY69909AHAEIr54k0gC8/dK2vMJyNx
+	 MnwPnINfoPOZxtoxH0qeGxv9F1FH3XhuRJJS+hDubPJBi6zfysoo+cPi
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Lumen Analytics Growth trial ends in 3 days
+Date: Mon, 29 Dec 2025 16:05:00 -0800
+Message-ID: <0a3a0d81d84362ca.3f5f5422@stripe.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_319452_374711d4da52"
+
+------=_Part_319452_374711d4da52
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Receipt from Lumen Analytics
+
+Your free trial of Lumen Analytics Growth ends on Jan 1, 2026.
+
+Amount due on Jan 1, 2026: $52.55
+
+We'll charge your Visa ending in 4242 unless you cancel before then.
+------=_Part_319452_374711d4da52
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your Lumen Analytics Growth tria=
+l ends in 3 days</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Lumen Analytics</h1>
+<p>Hi Sam,</p>
+<p>Receipt from Lumen Analytics</p>
+<p>Your free trial of Lumen Analytics Growth ends on Jan 1, 2026.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due on Jan 1, 2026</td><td style=3D"text-align:right">$52.55=
+</td></tr>
+</table>
+<p>We'll charge your Visa ending in 4242 unless you cancel before then.</p>
+</body></html>
+------=_Part_319452_374711d4da52--

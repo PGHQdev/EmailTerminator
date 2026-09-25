@@ -1,0 +1,13 @@
+{
+  "from_address": "hello@mailroom.test",
+  "from_name": "Mailroom",
+  "subject": "Привет из Москвы",
+  "date": "2026-05-07T12:00:00Z",
+  "message_id": "b042bbcefd7ee59e.dbe35440@mailroom.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

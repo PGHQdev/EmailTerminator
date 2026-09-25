@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@brightlinehq.test",
+  "from_name": "Brightline",
+  "subject": "Your Brightline receipt",
+  "date": "2026-04-03T13:00:00Z",
+  "message_id": "bc4f82ef9e9f2c67.464759db@brightlinehq.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "brightlinehq.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 900,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "INV-670562"
+  }
+}

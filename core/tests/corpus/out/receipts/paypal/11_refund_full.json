@@ -1,0 +1,21 @@
+{
+  "from_address": "service@paypal.com",
+  "from_name": "PayPal",
+  "subject": "Your refund from Northwind Hosting",
+  "date": "2026-02-03T22:25:00Z",
+  "message_id": "be73522177219628.6ae73202@paypal.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paypal.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 1500,
+    "currency": "USD",
+    "merchant": "Northwind Hosting",
+    "invoice_ref": "NH-67730"
+  }
+}

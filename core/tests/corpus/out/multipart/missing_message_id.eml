@@ -1,0 +1,11 @@
+From: Town Library <notices@library.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: A message with no Message-ID header
+Date: Tue, 16 Jun 2026 09:00:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+This message has no Message-ID header.

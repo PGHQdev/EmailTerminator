@@ -1,0 +1,33 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=selector1; t=1775570050;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=Uj0GM7bsKm8E/iAKMid4K+0YWNCmkTsOwfqLnkbKsxr=;
+	b=9JdPtGTtLX4JjKpwtyvZnMC8tGbiGtI7G1XP6lIBr/e/uWFBc/S+aKbIohN2tGcgNP+MsNHY
+	 g8jMtNS1UtYHYsg2VXihOudNh1LLqIlIasANiXSoWI3ElNYla8wkWO/VKvpPXv/tOaKCu4Sc
+	 u0GL176nxokGjj/QSJ+UVf6+5zMmyQ7P0hMzQHHxl13L/Qj/jBMXjXpe07NyT6tqnXSM5gaX
+	 wa51F7bU6VkuTnl8kRCSsOznWIrGeZW19/wBsf9qIT1OXjp/A7cDX9xOMY/qpToTZyr0umg6
+	 ZfchBuVCbJtpD8MKLdwPyOkJhZQsrXakeRBLb2kDO/LQ/OLdJiwtn5zq
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Skyline Weather Premium price
+Date: Thu, 02 Apr 2026 17:59:00 +0900
+Message-ID: <b7fe14a1b419755a.c216b93c@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+QW4gdXBkYXRlIHRvIHlvdXIgU2t5bGluZSBXZWF0aGVyIFByZW1pdW0gcHJpY2U8L3RpdGxlPjwv
+aGVhZD4KPGJvZHkgc3R5bGU9ImZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlm
+O2NvbG9yOiMyMjIiPgo8aDEgc3R5bGU9ImZvbnQtc2l6ZToyMHB4Ij5BcHBsZTwvaDE+CjxwPkhp
+IFNhbSw8L3A+Cjx0YWJsZSByb2xlPSJwcmVzZW50YXRpb24iIGNlbGxwYWRkaW5nPSI0Ij4KPHRy
+Pjx0ZD5BcHA8L3RkPjx0ZCBzdHlsZT0idGV4dC1hbGlnbjpyaWdodCI+U2t5bGluZSBXZWF0aGVy
+PC90ZD48L3RyPgo8L3RhYmxlPgo8cD5XZSdyZSBjaGFuZ2luZyB0aGUgcHJpY2Ugb2YgU2t5bGlu
+ZSBXZWF0aGVyIFByZW1pdW0uPC9wPgo8dGFibGUgcm9sZT0icHJlc2VudGF0aW9uIiBjZWxscGFk
+ZGluZz0iNCI+Cjx0cj48dGQ+Q3VycmVudCBwcmljZTwvdGQ+PHRkIHN0eWxlPSJ0ZXh0LWFsaWdu
+OnJpZ2h0Ij7CpTEsMjAwIHBlciBtb250aDwvdGQ+PC90cj4KPHRyPjx0ZD5OZXcgcHJpY2UgZnJv
+bSBNYXkgMSwgMjAyNjwvdGQ+PHRkIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0Ij7CpTEsNTAwIHBl
+ciBtb250aDwvdGQ+PC90cj4KPC90YWJsZT4KPHA+WW91IGRvbid0IG5lZWQgdG8gZG8gYW55dGhp
+bmcuIFRvIGNhbmNlbCwgdmlzaXQgeW91ciBhY2NvdW50IHNldHRpbmdzLjwvcD4KPC9ib2R5Pjwv
+aHRtbD4K

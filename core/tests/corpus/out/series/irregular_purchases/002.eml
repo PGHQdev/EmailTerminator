@@ -1,0 +1,25 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lumenfield.test;
+	s=smtpapi; t=1774449609;
+	h=from:to:subject:date:message-id;
+	bh=38yuAANm+iuUO2rRt9FwvNMxrXt4O5n95vG5njqTEqB=;
+	b=21+GRbUfeUtpNlmVAbCePwZ/P8FZvT5xSyoZJQk8O+GzVRSVMKykF8S47VzTYPYtUxiDSvAH
+	 YGyaeD25Gqq8ukKvVk3cYt/Vn6OSu6Xk020BKr5vmRbZ4V0OsbaVxX4/B5YG1hjZ5mx/H7yq
+	 k2SveGiTeIVRFNWV8eSThUQnpt+eZhO0DVguBdqSui5SQ4NlwMPbQWTLIOj7Ufnv9t/KvJVx
+	 RBqveuMabKUcNz6D2X3t/itrCQ64jXVnrw8a8YF+E3gO56AoCeRgKMmzMzHiWxgDbvOZQV0F
+	 zwynp+nGcm1xiQd6fFf8SraYC0RtGH3+TiwOFAq/D/gY+APfawgC9kse
+From: Lumenfield Prints <orders@lumenfield.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Order confirmation ORD-51377
+Date: Tue, 22 Apr 2025 12:40:00 -0400
+Message-ID: <8b355bb79e5811b8.abf290e5@lumenfield.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Thanks for your order. Your order ships in 3-5 days.
+
+Order number: ORD-51377
+Total: $62.50
+Payment method: Visa ending in 4242

@@ -1,0 +1,56 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=selector1; t=1786339021;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=L5SeQMsrR3j6Wmm65zuoC2Vs2m2/qchqifQqMP5jzWX=;
+	b=7rIYVdsoSsMk3Mep852uiMUtg0+uGFS36lpw2twdJ00OzI54qgsajzb8Ab+FolJgYJ9og8gh
+	 nuZkdkpn9Sv/nwfKATde3iM70BEXpeVLbP78Abz9/wpun7jgn7kVkZUBSD6UM+z47PtxpB4j
+	 5yck5PoFYU/N2YywdXKyuNVjno76PqVDn91f2iOEyavIqyGehWzYyLuMO0puacle/i3o7T7P
+	 swVdqPm2DHhLCkLuDXplmUd15UOKDNxijYKKHe277T4LvrbNqtSjjwRIQgQum+9nDTEHJrGW
+	 1GnjxUawvIY9VWO/jIkywDqfpK6a0itK2NjahXlFiSPh2pDd6lfc1Zb5
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from Northwind Hosting
+Date: Tue, 03 Feb 2026 15:25:00 -0700
+Message-ID: <be73522177219628.6ae73202@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_593120_12784bec79bf"
+
+------=_Part_593120_12784bec79bf
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Refund from Northwind Hosting
+
+We've refunded your payment for Northwind Hosting VPS-2.
+
+Refund amount: $15.00 USD
+Invoice ID: NH-67730
+Refunded to: Visa ending in 1111
+
+Refunds take 5-10 business days to appear.
+------=_Part_593120_12784bec79bf
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your refund from Northwind Hosti=
+ng</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Refund from Northwind Hosting</p>
+<p>We've refunded your payment for Northwind Hosting VPS-2.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Refund amount</td><td style=3D"text-align:right">$15.00 USD</td></t=
+r>
+<tr><td>Invoice ID</td><td style=3D"text-align:right">NH-67730</td></tr>
+<tr><td>Refunded to</td><td style=3D"text-align:right">Visa ending in 1111<=
+/td></tr>
+</table>
+<p>Refunds take 5-10 business days to appear.</p>
+</body></html>
+------=_Part_593120_12784bec79bf--

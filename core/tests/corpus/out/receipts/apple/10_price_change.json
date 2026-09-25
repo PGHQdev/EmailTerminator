@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "An update to your Skyline Weather Premium price",
+  "date": "2026-04-02T08:59:00Z",
+  "message_id": "b7fe14a1b419755a.c216b93c@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "price_change",
+    "amount_minor_units": 1500,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": null
+  }
+}

@@ -1,0 +1,60 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=smtpapi; t=1784682238;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=AFFJifTvQ5m0gx9Jc4Rqw9U5oxXumZ/2DKGyz22k58U=;
+	b=6FUbBG9YddKM7AKilwBIVsgcVS/y0gosXmJ36HkqXo2GYd8qiHWux1Tb4bvMOaiuVNS9fBSd
+	 i07jEEQio2dN/7SVXSVpW7uXM+sdfBhYtHrmbB0Ve5BL14KZvTJR19DsHEjIJhCXUElPL01c
+	 APyuB4tnl768TQKdusefrE59wcLnJPXG2HFhcKDh1IhOlElLRfOs53aEF6w55Rr9LIW3JJNt
+	 s+fcvPZcRVbN5zdEISUKaVPtKkX0LTldAZkYZAQ09Ecu2xZq1oARtUSHHwA13vV0OX7aRBnF
+	 5sruk7YskLUWl/xnR+fRjYvp9/46NA8xt7NM8VgscgmkKZle5VFD8csW
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your GitForge Team subscription has renewed
+Date: Sun, 01 Feb 2026 06:44:00 -0800
+Message-ID: <22083babefd3f76d.b0cc67af@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_216349_610dab14267b"
+
+------=_Part_216349_610dab14267b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your monthly subscription to GitForge Team has renewed.
+
+Date: Feb 1, 2026
+Billing period: Feb 1 =E2=80=93 Mar 1, 2026
+Subtotal: $12.00
+Sales tax (NY 8.875%): $1.07
+Total: $13.07
+Invoice number: GF-2026-14629
+Payment method: Visa ending in 4242
+------=_Part_216349_610dab14267b
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your GitForge Team subscription =
+has renewed</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>Your monthly subscription to GitForge Team has renewed.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Date</td><td style=3D"text-align:right">Feb 1, 2026</td></tr>
+<tr><td>Billing period</td><td style=3D"text-align:right">Feb 1 =E2=80=93 M=
+ar 1, 2026</td></tr>
+<tr><td>Subtotal</td><td style=3D"text-align:right">$12.00</td></tr>
+<tr><td>Sales tax (NY 8.875%)</td><td style=3D"text-align:right">$1.07</td>=
+</tr>
+<tr><td>Total</td><td style=3D"text-align:right">$13.07</td></tr>
+<tr><td>Invoice number</td><td style=3D"text-align:right">GF-2026-14629</td=
+></tr>
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 42=
+42</td></tr>
+</table>
+</body></html>
+------=_Part_216349_610dab14267b--

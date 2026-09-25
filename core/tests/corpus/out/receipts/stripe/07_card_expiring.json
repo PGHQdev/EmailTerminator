@@ -1,0 +1,21 @@
+{
+  "from_address": "invoice+statements@stripe.com",
+  "from_name": "Lumen Analytics",
+  "subject": "Your card on file expires soon",
+  "date": "2026-05-21T02:14:00Z",
+  "message_id": "010fc2ae70cae86d.537a485b@stripe.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "stripe.com"
+  ],
+  "receipt": {
+    "kind": "card_expiring",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": "Lumen Analytics",
+    "invoice_ref": null
+  }
+}

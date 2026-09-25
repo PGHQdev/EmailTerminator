@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "Final notice: your Tunebox Premium subscription will be suspended",
+  "date": "2026-05-08T02:37:00Z",
+  "message_id": "c42124b6169c16cf.a0094bd3@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 1308,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "TB-02603044"
+  }
+}

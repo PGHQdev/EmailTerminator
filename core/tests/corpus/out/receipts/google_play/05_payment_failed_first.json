@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "We couldn't process your Puzzle Den payment",
+  "date": "2026-05-01T16:36:00Z",
+  "message_id": "8f17b64e9ecdb6bc.3e308d24@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 499,
+    "currency": "USD",
+    "merchant": "Puzzle Den",
+    "invoice_ref": "GPA.7202-2403-6665-80230"
+  }
+}

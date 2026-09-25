@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "Partial refund for your Cloudbarn Business Support payment",
+  "date": "2026-02-04T12:32:00Z",
+  "message_id": "5359682084214b2e.7ee58965@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 61728,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "2822905963"
+  }
+}

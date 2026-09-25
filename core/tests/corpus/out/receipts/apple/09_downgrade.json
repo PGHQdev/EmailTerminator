@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Your plan has changed to Skyline Weather Premium Lite",
+  "date": "2026-03-16T04:56:00Z",
+  "message_id": "ee8f21b59df60620.28d0f508@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "downgrade",
+    "amount_minor_units": 300,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": null
+  }
+}

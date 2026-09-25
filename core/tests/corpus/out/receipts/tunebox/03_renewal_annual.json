@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "Your annual Tunebox Premium renewal",
+  "date": "2026-06-15T09:53:00Z",
+  "message_id": "dae3cba37cb56d2e.bda841c3@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 13080,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "TB-40865747"
+  }
+}

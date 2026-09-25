@@ -1,0 +1,24 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=smtpapi; t=1772506108;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=ZHgH84BGpSLkoTbE7j/frEtlzX8mksR4fhGp8+T5LjD=;
+	b=6ADttlECVoYyOgcMdLOxeYuuxVJzgXOSfv22l7nojYv6kce8HneKo3jSYoFUq6CXbiGln+v/
+	 8HpF41NWqRQy1xfice6MssrhZu0EigkV82krZqtzUQgSbuwOk6I7F0Flf51Ba5jmiQPYrbz6
+	 vPePg/sWdvYFYJTLHl8UUcFbBYwQ5pSLniYLFbBI8WKBUMLuiXyi9MaLdbk92CUNl6408ral
+	 PQSScPluEMr7MDr1TiRHbNHU/6Izrb5TFDvqzxx3+dCtX8iJzQNIZTM/2FtcuzDO323NgZBk
+	 23PlQi/+em/NlP2RIAN4rJetvZz6teG5KJl9PWwRgnt/KucycS1raDmG
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Tunebox payment
+Date: Fri, 01 May 2026 15:11:00 +0800
+Message-ID: <c4bcb4f3e1b3388c.c4f9aeee@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKWW91ciBwYXltZW50IGZvciBUdW5lYm94IFByZW1pdW0gZmFpbGVkLiBZb3VyIGJh
+bmsgZGVjbGluZWQgdGhlIGNoYXJnZSB0byB5b3VyIEFtZXggZW5kaW5nIGluIDEwMDUuCgpBbW91
+bnQgZHVlOiBVUyQxMy4wOApPcmRlciBJRDogVEItODg2MjI3MDcKCldlJ2xsIHRyeSBhZ2FpbiBp
+biAzIGRheXMuIFVwZGF0ZSB5b3VyIHBheW1lbnQgbWV0aG9kIHRvIGtlZXAgeW91ciBzdWJzY3Jp
+cHRpb24uCg==

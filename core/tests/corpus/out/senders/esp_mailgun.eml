@@ -1,0 +1,24 @@
+Return-Path: <bounce+5f1c2a.9a0e-sam=inbox.test@mg.pinecone.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailgun.org;
+	s=s1; t=1784499038;
+	h=from:to:subject:date:message-id;
+	bh=W4s9oOuaYhQhN5qDmJBFq87/N2iNggnvTIXlLHuv2Lh=;
+	b=JJb7reGOLOndSxhMwlRE+Oz2rj7J63wpWzh9x9XH5JJmDNhZP3WDUl4JuEpI0j38x/sVLnpb
+	 sIB+RY5vvEyUkNm5kxcBwODse3RJDjEwB07Vw5wnFAbc31UvgOW6bir8dGaeEvCPBWHm6D8C
+	 mz8zvLn8toKKM29m/6wozqwmswCnYIbZPeELg1p3ziw3ne4TthfaJNgvfqsnz+WkhK2jAlM6
+	 dRttzAUZ8eIAdbLy5frlAbyw41KGUjaeBpZjjQMJ3zAf28t3a2gVN98vDm7JMK9EqA/K76OQ
+	 121CBVu1pDAcYuapbN0b4In9tVJ3ozjITs0OcxmwOb1bh13n31sURaMN
+From: Pinecone Support <support@pinecone.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your support ticket 55120 was updated
+Date: Mon, 02 Mar 2026 13:30:00 +0000
+Message-ID: <ea30c9b0504559ef.e822c7fa@pinecone.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+An agent replied to ticket 55120. Reply to this email to answer.
+
+Pinecone Support

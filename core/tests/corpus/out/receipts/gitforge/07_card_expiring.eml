@@ -1,0 +1,44 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=smtpapi; t=1786099664;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=p/czMoif+E+p56uRyv9CiS9v+G7dZ2PS0Qz6R+NXQ9c=;
+	b=GKNjh1e+NPlmDdiRzgfKz47R84x/O5NE4QnbZkaVSdV8EVpOALbYu3ibTQUgd3T8lwB0Un/Y
+	 x9WohiFdmAF76yUfB+wPjFF0jNmcSTSar37QvfZcs/Csbk1TK/Yzk5DBCmS0W+B5eL47btSq
+	 PAlqn1D3cMLrzGaVIizDk7ifwMR7WlhZTcrDBVKfZrmZVGPEVI50p7LB0qdS12jbLCwV7nYW
+	 mZCMMk002yCUCliaK8stJXI4GKsTbI8e/c9SZG1p3rT2SWo9NPwGzwK9+i3gMDg2/MU3bSWC
+	 oxHWz9L4PB8xHnQQUEAgdc+Hyxl9u4ZErJ3056CNC5hgNfyY4dD2jggN
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 06:39:00 -0800
+Message-ID: <24ef3700122b1257.dc24e6f1@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_047551_5db51c3b68fa"
+
+------=_Part_047551_5db51c3b68fa
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+The Visa ending in 4242 on your GitForge account expires at the end of this=
+ month.
+
+Update your card to avoid an interruption to GitForge Team.
+------=_Part_047551_5db51c3b68fa
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your card on file expires soon</=
+title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>The Visa ending in 4242 on your GitForge account expires at the end of t=
+his month.</p>
+<p>Update your card to avoid an interruption to GitForge Team.</p>
+</body></html>
+------=_Part_047551_5db51c3b68fa--

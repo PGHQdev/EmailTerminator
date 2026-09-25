@@ -1,0 +1,35 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=s1; t=1777615992;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=DExun7YJq4T1ss2zJ6YaRaypc3uJks57uZBxe85orPP=;
+	b=cJbPANzhZRdUEiRLvtZdiUfxVETSGRlz5G8TEOeB/0ASxsz1G9Mww+uIwv20BHyqEy8uUwR5
+	 gr4LiH3bCwQfqMOZLc16xSKGkDFj/CY9SD1bnuGjE1nfNAGgVC+gsje/4PjNgHFrOE05SHzu
+	 ghjeUEDVwmhnOxC/x8r+yxnGBITy+uRq4/eOYNbfCFZ1Q3Mx6nv70zj3eP69l3QGP0HBxDDQ
+	 S+jVUMiYkHuqV7hgsw+xfIGfqvOzo7xMyCyT3BMj0m1RytRmuVt22EBYyEdwhS4svh6pZHXu
+	 eUDmSW6q2V/XbRThDSvmyk6m7n++4TRzkl63BXV5HxCLFSyisr9X1bF9
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Inkwell Fonts Studio subscription has renewed
+Date: Sun, 01 Feb 2026 16:30:00 +0000
+Message-ID: <f758451fa8127b67.e4aa1451@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for your purchase from Inkwell Fonts.
+
+Your monthly subscription to Inkwell Fonts Studio has renewed.
+
+Date: Feb 1, 2026
+Billing period: 01/02/2026 - 01/03/2026
+Subtotal: 12.00 USD
+VAT (20%): 2.40 USD
+Total: 14.40 USD
+
+VAT number: GB 123 4567 89
+
+Order number: 683458374
+Payment method: Visa ending in 1111

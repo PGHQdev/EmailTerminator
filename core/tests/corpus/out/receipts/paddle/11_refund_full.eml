@@ -1,0 +1,30 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=s1; t=1773304882;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=bBXU4RZt3imV0pL9fIOuswUiqBf9HeTvXG0bN90o5/t=;
+	b=Xdz9yOX0oipqNNozDfmr6zZjPsBYkjoKbFCBxCNGYB1rgsxaJGX31KNIEXITbfUYSCteik4W
+	 sL2s7Rk7JdR5Ho69ZNljDjihXYX0sqpjkfHaIdPsWR9RO1fFj/CBiyy+IR3LpASZnyLL/2aK
+	 G8ClmPlEbvmWMgMOZBrfikywvhGkIGN/CTctO1znJ4qptpHumQ7zrNQNJFjRVYsmjAwnP7FW
+	 G8AZtoeLHgzWOjFnuR1phvrT4tykRf3pYtbMAi+rVJQiN/TtZIy9RqucNMeRZp+cFW17TMxz
+	 14xNvkBTumWCGT06mSBW45eX7Vxh8s42QwharHszPHW1ZmtREkbEMFze
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from Inkwell Fonts
+Date: Tue, 03 Feb 2026 11:48:00 +0000
+Message-ID: <8388e48030af0ad9.f994ae04@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+About your purchase from Inkwell Fonts.
+
+We've refunded your payment for Inkwell Fonts Studio.
+
+Refund amount: 14.40 USD
+Order number: 696535141
+Refunded to: Visa ending in 1111
+
+Refunds take 5-10 business days to appear.

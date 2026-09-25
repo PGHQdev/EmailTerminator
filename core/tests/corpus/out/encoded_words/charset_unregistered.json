@@ -1,0 +1,13 @@
+{
+  "from_address": "hello@mailroom.test",
+  "from_name": "Mailroom",
+  "subject": "Your weekly summary",
+  "date": "2026-05-08T12:00:00Z",
+  "message_id": "7a8575c1cf66dac1.a93dc7fa@mailroom.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

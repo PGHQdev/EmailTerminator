@@ -1,0 +1,29 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=s1; t=1772897341;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=A8v8bQO66Hes+yz1IL/YR98PvP5TmX8kgSuDc6sf/oT=;
+	b=QoiOL/40GKVzVLCZUnE3Rw2u/vVXUIREqyCsMsQz6f4CGbeMpOvvtbaoh19t3q8Wo35t0U4Y
+	 vJu7D3QRIP/0IWQZMkTJyfCzmQ7LSuvjWXk7UrgUhXH4KRVmUbLKTHeee01CuG0ressVjEHV
+	 uh0Nz2CvmimUl6lfYGks25cr98JfSV4BLFe8bUsk3BqI7HI/LBW9r0ztU9V9iQZqvRjowiQk
+	 akhaXrZaJKnrXpZkEyKYmKKVUVjSOMgIYV4KY9pkhkZw6FI69vRMKtdlgoNRH+6ScSSf8r0d
+	 Vz0uz3m3CYaV4bkES3LHoqhbEXNJoJ+DQcOT/JuWwc1p7q0/Iypkjehe
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to Inkwell Fonts Studio Lite
+Date: Mon, 16 Mar 2026 16:37:00 +0000
+Message-ID: <3235e5a61b25e12f.63ed8146@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+About your purchase from Inkwell Fonts.
+
+You moved from Inkwell Fonts Studio to Inkwell Fonts Studio Lite today.
+
+New price: 6.00 USD per month
+Credit added to your account: 3.00 USD
+
+We'll apply the credit to your next invoices.

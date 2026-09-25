@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Your Skyline Weather Premium trial ends in 3 days",
+  "date": "2025-12-29T09:27:00Z",
+  "message_id": "5c79dc0c8e48bf41.22f456cc@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "trial_ending",
+    "amount_minor_units": 1200,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": null
+  }
+}

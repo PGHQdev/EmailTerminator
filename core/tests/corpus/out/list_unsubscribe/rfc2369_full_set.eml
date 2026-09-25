@@ -1,0 +1,31 @@
+Return-Path: <dev-return-4412-sam=inbox.test@quill.apache.test>
+Mailing-List: contact dev-help@quill.apache.test; run by ezmlm
+Precedence: bulk
+List-Help: <mailto:dev-help@quill.apache.test>
+List-Unsubscribe: <mailto:dev-unsubscribe@quill.apache.test>
+List-Post: <mailto:dev@quill.apache.test>
+List-Id: <dev.quill.apache.test>
+Delivered-To: mailing list dev@quill.apache.test
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quill.test;
+	s=smtpapi; t=1772792949;
+	h=from:to:subject:date:message-id;
+	bh=6/LeWABhfCQS/w33OT7BiphIAxFZOyXUH8N3nEZULl4=;
+	b=QYDDQ9MfPO8FriwooIZ/cWrffbpi1XNpM0iN5x8HXjv82ydST325nF5ucONTyVfhvPjXsy1G
+	 FMfVeOX3/MYv+X1nYkYhRonIDfy91uq6PlfUyEsqrST6pBPz+PKjTvfJVRcCW86y2NLleEm1
+	 FM8WmOt9BCdCd8JclUeEkPWwXcYrNEHeni9jPf+P++yA2dg/zdV7ZOzyp30cJgDdedGYORAC
+	 fgOgVrK9mZCVYowGrmvRFtDo0P/Xd0fd5eS/UyfMcBgI+kfSNJiVb/dqTdhDWAgxo6fH6OdX
+	 wu3UkYspwfgt7o0ak1Y6tri3Kb1cuMc0tx7sl0DAOo/bLfLrHihM3rXp
+From: Jane Okafor <jokafor@quill.test>
+To: dev@quill.apache.test
+Subject: [DISCUSS] Release Quill 2.4.0
+Date: Sun, 19 Apr 2026 17:02:00 +0200
+Message-ID: <02a3d077b54e97e7.06931369@mail.quill.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi all,
+
+I'd like to start the release process for 2.4.0 next week. Objections?
+
+Jane

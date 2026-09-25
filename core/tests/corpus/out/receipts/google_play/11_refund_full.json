@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "Your refund from Puzzle Den",
+  "date": "2026-02-03T15:49:00Z",
+  "message_id": "9e6392a3d50a3329.eb47f3d2@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 499,
+    "currency": "USD",
+    "merchant": "Puzzle Den",
+    "invoice_ref": "GPA.0047-1899-4318-06760"
+  }
+}

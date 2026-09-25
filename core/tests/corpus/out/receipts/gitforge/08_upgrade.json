@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "You've upgraded to GitForge Team Plus",
+  "date": "2026-02-17T02:12:00Z",
+  "message_id": "bdb6cdf2a80f99bf.fc5d19ab@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "upgrade",
+    "amount_minor_units": 490,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "GF-2026-36522"
+  }
+}

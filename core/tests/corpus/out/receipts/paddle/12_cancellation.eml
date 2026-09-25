@@ -1,0 +1,26 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=selector1; t=1785842959;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=FROkMti/MwVpaTJFHU+g9gwW9Ta2aZ9ilVu6v33Io86=;
+	b=2KYol1Se8OS6BEpVsdLJlgR9o1/L0kIHYjSYqcCjLBffm+0hU/MclsE91ACs7EyWM8gbcPDi
+	 JJvJm6ixxjcnDCqeOLvwKynNAVrBO6qac/8+SJvWh34JTAZKKjcrXKPlSb8fP0w5UEn9lB5Q
+	 QnaGX13wdGYLS8egJ/jrxj06HaYJHgmoZ6fWVMFk4ed79A4fBiowbQK/OdbueqxzPv0KYLmN
+	 6AEfG+tyFPcWQiGJ/9VPku/acGG64bnIuKuVfH87MbKuu33lKihuzlbdb8p2AfZDMbwXSO7Q
+	 Lk1Bap8QQKLrUs/qjXSxg7UkPayUUDMfKxr0tKZ+zezVVwHavuFoINnV
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Inkwell Fonts Studio subscription has been cancelled
+Date: Mon, 01 Jun 2026 06:16:00 +0000
+Message-ID: <75d1e70b85ef2e14.67af17fe@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+About your purchase from Inkwell Fonts.
+
+Your subscription to Inkwell Fonts Studio is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.

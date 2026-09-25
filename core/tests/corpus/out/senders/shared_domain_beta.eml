@@ -1,0 +1,25 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=letterpost.test;
+	s=selector1; t=1768889798;
+	h=from:to:subject:date:message-id:list-id:list-unsubscribe;
+	bh=UvEkLniRtDKRMM6dEm6n9VxHyXKTDA7AEtcTwr4Eho4=;
+	b=3vIpveku0Y7SX0vaau+RXQj3d8fYe7Wt+pbjmtVIwFlOGSWnUaYCJoPSKQynuIpyu5bQDfMQ
+	 ub9kQ9YICKmp3oKu2ETrszke3oCq7orB9DBi3398KNYTgcEvMCSlSZbCFZmSSwd6Z9lZD11B
+	 KN8UlGb6NkDYoCtUN0WuoFkdGqc7ya2FJHnbj0XLMTo22Ad+L8EYutfcNqGhCnI8vkLowQ3Q
+	 i4JfF2Nt0FEGOHnDweOj6WyKGeh1v0i9qizChy2ZrDdEOfXbnb0WGNU5bnyqte/sL80Du22G
+	 3gTX21TUPP2ROljDhE+Rf1ffJGyKGL1IZTkFoVxRHZ88SU6PBNvXG3ve
+From: The Beta Digest <betadigest@letterpost.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Beta Digest: five links for Friday
+Date: Fri, 20 Mar 2026 07:30:00 +0000
+Message-ID: <53ae67798e1e33e9.e9241c18@letterpost.test>
+List-Id: <betadigest.letterpost.test>
+List-Unsubscribe: <https://letterpost.test/betadigest/unsubscribe?r=sam>, <mailto:betadigest+unsubscribe@letterpost.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+This week's The Beta Digest is below.
+
+(The issue text.)

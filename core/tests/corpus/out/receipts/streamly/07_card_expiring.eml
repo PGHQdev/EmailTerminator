@@ -1,0 +1,44 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=smtpapi; t=1778270885;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=MhPwbnaESxW+sNazUdgfwLMj8J7jwtsA058ghAv+Dsm=;
+	b=uW1dfL8GPUl2Fv1CDunmeXCz/T8JTYXTwSiLfg4nCnOx9V5trH3rWo+wN0IsJnYFvApiifY2
+	 eapbCzwA2cVbHZhj/vcFbyONLRgs2c5GZ2Drfl9Eij7kQTHw6NifThepNrdJGehBaCkXIH/U
+	 XhFSZCm9ONklhvchSKwfQtRFm3/+fBBymGb4UhLTmMyKRSqHnbcTTAKEF3LtohhQAm2lN811
+	 wVllCOzHz+p+SC9hM/+WCaszbGnqk1HfdS3jiOAxK0oc10jGX99wXfViVolQVVxSKZ0zM3fz
+	 KT/E0MIWr/47ymqXrCQDExUHG9s7uHOkgWmqacTirQXn8TO+vZNfc7F0
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 12:20:00 +0000
+Message-ID: <1e3a87f2fa8050ee.031106a7@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_859785_c3e1c5436345"
+
+------=_Part_859785_c3e1c5436345
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+The Visa ending in 1881 on your Streamly account expires at the end of this=
+ month.
+
+Update your card to avoid an interruption to Streamly Standard.
+------=_Part_859785_c3e1c5436345
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your card on file expires soon</=
+title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>The Visa ending in 1881 on your Streamly account expires at the end of t=
+his month.</p>
+<p>Update your card to avoid an interruption to Streamly Standard.</p>
+</body></html>
+------=_Part_859785_c3e1c5436345--

@@ -1,0 +1,28 @@
+Return-Path: <bounces@driftwood.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=driftwood.test;
+	s=selector1; t=1767973432;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=khseacxmmLUfslz6h50ZR1wQaqroGRBBwI1+E4JXuau=;
+	b=vdoEL8j5XumN1oz06ngY15Mf136zhuCujxJ5LM5Oa5iAF7NZFtOUUmz0nVgcuNUIdo0BoUf6
+	 mRuMypls2PxNoUq1/dN+x2YGDKy58mkRmq4Ti5Tm7ccPcCwr0VUDvuRYRZ/igFPDj5k5m5sE
+	 S3eltR/ePGAZ6Q2LN3LLV7/eQT4ueui9N66NyOkWbTIcUZ2RvUm3zMBjcqiPDYjpfN+AAFlf
+	 y8LTSS1f+MvIshFqeGjFaFYzrpfSIACxHh4p6RPJeYoy2PeH30DD2J0RkQjEIlrJoPiqNtDc
+	 MCuNOMeaDyaDnPmopYWyvD0kXK/2iSvPOipRgjTwBSoxIspQEdRtRhLB
+From: Driftwood <billing@driftwood.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Driftwood Pro subscription has renewed
+Date: Tue, 03 Mar 2026 15:51:00 +0000
+Message-ID: <1fc93350ff8237e3.2943f5ac@driftwood.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your monthly subscription to Driftwood Pro has renewed.
+
+Date: Mar 3, 2026
+Billing period: Mar 3 =E2=80=93 Apr 3, 2026
+Total: $15.00
+Invoice number: INV-229245
+Payment method: Visa ending in 4242

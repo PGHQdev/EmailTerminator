@@ -1,0 +1,27 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=selector1; t=1771136009;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=PGa6xLSPzJ3QV9NMOXWFOd5LjTH6INkBPuW6NGlTQrF=;
+	b=4eBbBGOhQ2VopnaIs+2DDV2P3Hoh3Mnt4GWHxp38OhCLh/KpMHW7G2tKXvasos/5TZr2YQXs
+	 +NQ58aZFHLorgTATmW8UT9Y9byWWSC0JJT6cw3lLgBu7CoaqiL6PsCzmi5MHIHLotsVPudhr
+	 jSS7UCkvEcTAy93G2MdVSd0o6R1vO2GMOG9tKVCrxXpN5tClEMqoVHfPG6IySJkkzwoYGy1u
+	 wQ9DztYLxFZ+GgsQGTVkBUOWljNoqLJY5x0rbnvnKczoiZEeEbSYmJdrIFyQIUcTjSLh8bnR
+	 hHRUwjQZhrjRk9we6NvOpMH3BgfI9P/ERvbZQguQ1d5tARCXOmsAHUYW
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your Pagewise Team payment
+Date: Wed, 04 Feb 2026 13:55:00 +0100
+Message-ID: <7094bb4d5c5db70b.15bba0c3@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+We've refunded part of your payment for Pagewise Team.
+
+Original charge: 12,00 €
+Refund amount: 6,00 €
+Invoice number: PW-654029
+Refunded to: Mastercard ending in 0005

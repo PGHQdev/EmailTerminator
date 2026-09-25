@@ -1,0 +1,21 @@
+{
+  "from_address": "info@account.streamly.test",
+  "from_name": "Streamly",
+  "subject": "Your Streamly receipt",
+  "date": "2026-01-01T06:01:00Z",
+  "message_id": "8cdb62e0f4066d05.cb23f266@account.streamly.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "streamly.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1200,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

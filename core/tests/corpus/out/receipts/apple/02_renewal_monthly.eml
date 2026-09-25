@@ -1,0 +1,35 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=pm; t=1773311352;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=2qwwLC+DMMfc04+M7rcl7tjxaouhmR7YA8pP6uVgFLy=;
+	b=/QN95VJZNkMJntzbG0lMD2DKwezKLdA+XkYzS+m/Toa01ZGJFd00Xw29aTmm73UoA5DXULoh
+	 hwAtdqY1Ey2MMqww3IzYl4xlC+LQAcowp07wrkPqeDynkM1WOi7e3tkrunKzKtQE+iu2nHAh
+	 7HrakRMvFr0cJRNyMaLmEa5rSLVBHZWDDo4ruc/qsDkCSDHI3wiAApHnRtgkOxqXgmylyKMB
+	 ey408WC4dZGAYThiQLgKd7cL1qsOx1jQGW0InRKYSURbpWQHTBTilCng3GR9daGfNv0YODI7
+	 1Bjp6NXeer/0Qh2uEoO5yoYYw6tlyktfEMUOpwO1XkxugC1/9tZXtQD8
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your receipt from Apple.
+Date: Sun, 01 Feb 2026 18:49:00 +0900
+Message-ID: <b5e22f67e26789a2.ef5b997c@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+WW91ciByZWNlaXB0IGZyb20gQXBwbGUuPC90aXRsZT48L2hlYWQ+Cjxib2R5IHN0eWxlPSJmb250
+LWZhbWlseTpIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtjb2xvcjojMjIyIj4KPGgxIHN0eWxl
+PSJmb250LXNpemU6MjBweCI+QXBwbGU8L2gxPgo8cD5IaSBTYW0sPC9wPgo8dGFibGUgcm9sZT0i
+cHJlc2VudGF0aW9uIiBjZWxscGFkZGluZz0iNCI+Cjx0cj48dGQ+QXBwPC90ZD48dGQgc3R5bGU9
+InRleHQtYWxpZ246cmlnaHQiPlNreWxpbmUgV2VhdGhlcjwvdGQ+PC90cj4KPC90YWJsZT4KPHA+
+WW91ciBtb250aGx5IHN1YnNjcmlwdGlvbiB0byBTa3lsaW5lIFdlYXRoZXIgUHJlbWl1bSBoYXMg
+cmVuZXdlZC48L3A+Cjx0YWJsZSByb2xlPSJwcmVzZW50YXRpb24iIGNlbGxwYWRkaW5nPSI0Ij4K
+PHRyPjx0ZD5EYXRlPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPkZlYiAxLCAyMDI2
+PC90ZD48L3RyPgo8dHI+PHRkPkJpbGxpbmcgcGVyaW9kPC90ZD48dGQgc3R5bGU9InRleHQtYWxp
+Z246cmlnaHQiPkZlYiAxIOKAkyBNYXIgMSwgMjAyNjwvdGQ+PC90cj4KPHRyPjx0ZD5Ub3RhbDwv
+dGQ+PHRkIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0Ij7CpTEsMjAwPC90ZD48L3RyPgo8dHI+PHRk
+Pk9yZGVyIElEPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPk05RFZHNzBWWDQ8L3Rk
+PjwvdHI+Cjx0cj48dGQ+UGF5bWVudCBtZXRob2Q8L3RkPjx0ZCBzdHlsZT0idGV4dC1hbGlnbjpy
+aWdodCI+VmlzYSBlbmRpbmcgaW4gMDMxMDwvdGQ+PC90cj4KPC90YWJsZT4KPC9ib2R5PjwvaHRt
+bD4K

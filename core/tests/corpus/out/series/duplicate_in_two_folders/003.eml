@@ -1,0 +1,28 @@
+Return-Path: <bounces@quillpad.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quillpad.test;
+	s=k1; t=1780907380;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=j9Lwc4/xLbb0JygoRDPM3aL5b4Yhc8I5cXD9oqRhKQv=;
+	b=FNE7v7JvOZlysIqGRt/AphPHwocesyO6Ij7PKmDcpVG6AWlWbFUjS0T1aS7jS6uk76pe8PHJ
+	 lzK9gDdW7OumR2QriMp/drOFvB0GiRQ7+uvlDXj2QvkPFFf5gHZbPjA7Tey2OI1aXjl/W0En
+	 q+kb35iFpoAm1Eg2Ugn0RDMTjcWl6H7VYiird8ZK4EYEfcMrZl+dS5aIyJbQ71tOCfDjpNBG
+	 8W4Ef4WuuDvtI91U03CHaxn6GOdZdr2DZWzhad5gR5PcSfrhjBsXXn0R7Ipl4AJ1e2DUYV6p
+	 mkhPdIwdlSUwX6oAsCslKGHW1Fa89ZnqEy7VBnY7jhmxaE3m5zoo3kdc
+From: Quillpad <billing@quillpad.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Quillpad Plus subscription has renewed
+Date: Mon, 08 Dec 2025 07:31:00 +0100
+Message-ID: <b239547ef231ea1f.a5a1b34a@quillpad.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your monthly subscription to Quillpad Plus has renewed.
+
+Date: Dec 8, 2025
+Billing period: Dec 8, 2025 =E2=80=93 Jan 8, 2026
+Total: $5.00
+Invoice number: INV-408805
+Payment method: Visa ending in 4242

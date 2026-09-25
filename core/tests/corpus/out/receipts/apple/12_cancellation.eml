@@ -1,0 +1,29 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=pm; t=1772124654;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=ztsEUOVLZIftHX3VMn4sfP32CCRafD7M9R+hvnQCM7h=;
+	b=vtmj98utgMABLdtW78WDaaD6qGHjf1Fo7mqM6SouX39XHVfbw38Pu2xEBnm69LBqX7Cs/fKq
+	 nowv0pa/GfB8WLW/JoeU8/f+To8A3V7Hp7tRHaUJWdlJUvs4IQWGRq5FuAaLZ2AOVDJlswEB
+	 9qgkkrmDYAAznohAAqKJ4+hX/IR7ReJfT16zP0Gk2LmGKPJySlt9P52YKhkCQHO2vFsikSTA
+	 KTiyO19+tV6hKT4UHkyklfGS3gnYkAlBfqzzaeSqLuG9ct9V0mUzm7w4mhSnw8ctT+M5Q2Cx
+	 l4RcznboP7MQwObpKUxwuGDcfvhqc0l7MHFhD9o0yO8ga5YqaPTfNuMH
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Skyline Weather Premium subscription has been cancelled
+Date: Mon, 01 Jun 2026 07:35:00 +0900
+Message-ID: <c6bfbd4717c42ce8.7b147cb4@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+WW91ciBTa3lsaW5lIFdlYXRoZXIgUHJlbWl1bSBzdWJzY3JpcHRpb24gaGFzIGJlZW4gY2FuY2Vs
+bGVkPC90aXRsZT48L2hlYWQ+Cjxib2R5IHN0eWxlPSJmb250LWZhbWlseTpIZWx2ZXRpY2EsQXJp
+YWwsc2Fucy1zZXJpZjtjb2xvcjojMjIyIj4KPGgxIHN0eWxlPSJmb250LXNpemU6MjBweCI+QXBw
+bGU8L2gxPgo8cD5IaSBTYW0sPC9wPgo8dGFibGUgcm9sZT0icHJlc2VudGF0aW9uIiBjZWxscGFk
+ZGluZz0iNCI+Cjx0cj48dGQ+QXBwPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPlNr
+eWxpbmUgV2VhdGhlcjwvdGQ+PC90cj4KPC90YWJsZT4KPHA+WW91ciBzdWJzY3JpcHRpb24gdG8g
+U2t5bGluZSBXZWF0aGVyIFByZW1pdW0gaXMgY2FuY2VsbGVkLjwvcD4KPHA+WW91IGtlZXAgYWNj
+ZXNzIHVudGlsIEp1biAyMSwgMjAyNi4gWW91IHdvbid0IGJlIGNoYXJnZWQgYWdhaW4uPC9wPgo8
+L2JvZHk+PC9odG1sPgo=

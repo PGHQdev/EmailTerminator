@@ -1,0 +1,27 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=20230601; t=1778046903;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=zhCxSe3l0hgkkkidX9HXcRzaOGeExqS3kWYrCNPJVic=;
+	b=WbRrLWhDGNPOyfXT4SsK1Sfd+7xQhyeHTXZ9kyR3DGUZpWZr48h+xD/h+HkhXLt6H9MBW4Y6
+	 asVPwUwMhpXtqJMFTz77cl9BK+2QSWP5w7nY6H8sP1XCTViFNOtOfxuZotIYkgRJG0jHLsEh
+	 Ebu4saGZWvMM55zfdgezO8BnRoJNjwp/mgWODrFWR73jYRFbYg56oAPCvjfEInmPygYXUyhB
+	 q0HfzN4El4skKwNZ73I25+ynfxE5dnr1sNdyDOXXVwfsdqTblT9IebWM+ZXJrhgMQ0l0udon
+	 YpH7O0o3LusFhV8vU1ZSuqPEdwjdk2uCTVQ2f/fUkzitdbU+w2qU0ebX
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your Pagewise Team subscription will be suspended
+Date: Fri, 08 May 2026 19:51:00 +0100
+Message-ID: <b1e8fe382853c667.b5fed50d@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+We still can't collect payment for Pagewise Team.
+
+Amount due: 12,00 €
+Invoice number: PW-159703
+
+If payment fails again on May 15, 2026, we'll suspend your subscription.

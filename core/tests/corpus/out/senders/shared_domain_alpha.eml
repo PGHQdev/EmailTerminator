@@ -1,0 +1,25 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=letterpost.test;
+	s=k1; t=1786191218;
+	h=from:to:subject:date:message-id:list-id:list-unsubscribe;
+	bh=+kIhi7yj+q1d6tTLgLbAH8Ytg68Qt0OkdoFs/dyHdsB=;
+	b=+H45HH/Z1YEcZfQxbAyGFfsFKzF0hm7qKycDvWFxEYFox6JQKyzlC6EFRA0pesOwqlSJWWuQ
+	 RlWl8UfR9ySOL4rxJ4sbbfLl7yd8ooS+uYv0UwnroAYJwxORDlHvQO+6g4iEGttw3CATPkKf
+	 DU3y2v4z0uedC2/yQZz8I/sWVwRyWdgZNDmVvHjpi6Z7HbilD1VEk/wcJgUVkSvsoRhr8zvr
+	 DpgY8QR3RSwZvX24iekRIaPSSGD31uDfAOkSXd3/wrxIP0SuPEvb5YGsu6gIUCL0cNEiP8Oz
+	 hWoLVA4DTtTnvFiHviekDTofJYLFfuda2bnVYN41v89mT9S1Tz+uHvht
+From: Alpha Weekly <alphaweekly@letterpost.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Issue 41: the state of home robotics
+Date: Fri, 20 Mar 2026 07:30:00 +0000
+Message-ID: <a2acc7da17138c9e.1e41e90f@letterpost.test>
+List-Id: <alphaweekly.letterpost.test>
+List-Unsubscribe: <https://letterpost.test/alphaweekly/unsubscribe?r=sam>, <mailto:alphaweekly+unsubscribe@letterpost.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+This week's Alpha Weekly is below.
+
+(The issue text.)

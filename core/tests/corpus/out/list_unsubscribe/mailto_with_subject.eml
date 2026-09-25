@@ -1,0 +1,24 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=news.harbor.test;
+	s=selector1; t=1776107118;
+	h=from:to:subject:date:message-id:list-unsubscribe;
+	bh=LNTj2OcldaA/jsZ08QLHu9O8p9nIaPOWUg4iRe5XO6n=;
+	b=YOWagfHlsA6oyTxo3U2Ie0Drt7Hd/AEXOKNXoZpnlkjIVBtMGs1FQUTR2zpEiJXX/I5m7Ct2
+	 uurqwN+0idlSoIT7anfQTzldBU1/yPg15LZMMjtXuibbRrSbVg9pfjg/XUo/x7L8A/3dyrQD
+	 2TiILbRgPS9H+JLx72LspmpN+UJU2dPfYWX8ONrWEjQQNR02S0cBCA3uuRrQrfohs2l8LRrf
+	 6KdVspoPM+gkr/VFcH70ws43Ttkyj3BvIPzq7abbnJzewTly5bLsVRpLm/kXh6tdA3mtYFsJ
+	 7EBKGYfhlHWKwC8lARmyNPP9XjD5xwcId97TCEnkX47iAsM2Iv+skPh5
+From: Harbor Weekly <weekly@news.harbor.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Harbor Weekly: tides, ferries and a new pier
+Date: Wed, 08 Apr 2026 06:30:00 +0000
+Message-ID: <784f11a80ccc95e0.4de1ae86@news.harbor.test>
+List-Unsubscribe: <mailto:unsubscribe@news.harbor.test?subject=unsubscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+This week: the spring ferry timetable, and the new pier opens.
+
+You get this because you subscribed at harbor.test.

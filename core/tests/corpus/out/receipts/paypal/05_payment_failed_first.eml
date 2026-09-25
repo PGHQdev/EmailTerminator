@@ -1,0 +1,56 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=selector1; t=1774081592;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=DFQ6rt3K3dJhc6Ay+PCF8iJaLsnAsP8r/i8yvRaoUP/=;
+	b=WTmil4vP0MkvSHA4I81TiNkCU/umekpxmYWoT8wkqsIhqIesXsYCbzGiH1zSPhT6/UYpC3Iy
+	 9gT+BPWIn4jY2nXSpBZ717V81UWbKGNpqprA9+ujzK1V8Y80XGJ3ePSzb+KemoPitxG98LM6
+	 dURX0XrUyRrFJQ4o7KLtZAc9/ZnBTVQgfs+8jyWlwRxgO4AmMk9Xq9kRTriJsWVyZcNozaAb
+	 Ddlicja24z/Ewth0dncxhSAM1+2pppnDICs+Tx0UER9F9mC2FEv2OF9L85AAqIdSapd30E95
+	 0c1DeUyO5AsCqKHyMO6BCGMeOE7Nj+zPcq0Zo/HaZXgEviMHiLNEtzMf
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Northwind Hosting payment
+Date: Fri, 01 May 2026 06:36:00 -0700
+Message-ID: <c68f23969df95b60.94792130@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_757355_694d2253a0bf"
+
+------=_Part_757355_694d2253a0bf
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Automatic payments to Northwind Hosting
+
+Your payment for Northwind Hosting VPS-2 failed. Your bank declined the cha=
+rge to your Visa ending in 1111.
+
+Amount due: $15.00 USD
+Invoice ID: NH-34436
+
+We'll try again in 3 days. Update your payment method to keep your subscrip=
+tion.
+------=_Part_757355_694d2253a0bf
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>We couldn't process your Northwi=
+nd Hosting payment</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Automatic payments to Northwind Hosting</p>
+<p>Your payment for Northwind Hosting VPS-2 failed. Your bank declined the =
+charge to your Visa ending in 1111.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due</td><td style=3D"text-align:right">$15.00 USD</td></tr>
+<tr><td>Invoice ID</td><td style=3D"text-align:right">NH-34436</td></tr>
+</table>
+<p>We'll try again in 3 days. Update your payment method to keep your subsc=
+ription.</p>
+</body></html>
+------=_Part_757355_694d2253a0bf--

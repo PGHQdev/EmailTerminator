@@ -1,0 +1,31 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=pm; t=1786266155;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=nnSvjHDaym7hGrwSu3XCSqWUhQ9tgcFHIYcU3hGy+Go=;
+	b=D+7RfnC/Y42RDX/CjzCA44nANUPq2/9q7S9yvnc91N4XAcuvNxMt28Qtc28mJtOCshhnWWoU
+	 ucXjTMBBCuLe2CKTnP5YkSb3oY7xvwgtzF8edSa375098/jwTtwN7Pm9/LUFyjbhqGdvbz7V
+	 RC9X6OyxC3ExTFc2GwahAuWPmeuydyjbRUBzoAXQD2A1JCvRVwEUMNSeywNRsxzFKz4t+1kf
+	 MXfODp53W3SbdVfH503a1IUYTaZLWjWJYk4rnWUhjPYJ3ZMr0W5pvSIY5g7kTdDkROY8P+g9
+	 DH5lNk0LygemmU+27HTHPzw/Z92l9c4sV09A32ggO0uq6+xfKYUs4i9z
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Inkwell Fonts payment
+Date: Fri, 01 May 2026 09:48:00 +0000
+Message-ID: <0de9893c304aa5fd.e66da8d3@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+About your purchase from Inkwell Fonts.
+
+Your payment for Inkwell Fonts Studio failed. Your bank declined the charge=
+ to your Visa ending in 1111.
+
+Amount due: 14.40 USD
+Order number: 211486708
+
+We'll try again in 3 days. Update your payment method to keep your subscrip=
+tion.

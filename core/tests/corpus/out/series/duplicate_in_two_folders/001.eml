@@ -1,0 +1,28 @@
+Return-Path: <bounces@quillpad.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quillpad.test;
+	s=s1; t=1781289862;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=FwVgnyiw/jceei4PWLCjRV6NQl6EQ1wq1Iqjh/bQfM1=;
+	b=TWWgaTeoOBEceX1iKUKZDxrEIweAPxO9sjWancFKXZemP2ngLiQvSXsqclWqBC0uC+ZzCRVJ
+	 Ojuvr1+v4Nf4IdkWSGS4lsv/p1U2bGtSruq1UGWNTl8YaE1oE3SA4gn9g4SRkTrQpTfp0QsP
+	 eS/ImUH/WO4I2y8gcqwoR7jWW4HgSTKQ+9iTv3TUIEZ0XbE7hRPzNuLLrIofn0eX37Hw2LcA
+	 NvkelEzwLQQ6SQkfjLXh8xqBR3vOP3SKYmPF7wNbthajtTpA8baPX4kbZ9sUeD4Haa1z4a7K
+	 ymv3dsWac0kZro3k/F9GfCvo0NwyHIyG/MXSfYR+GI69d2rAiSewsRlz
+From: Quillpad <billing@quillpad.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Quillpad receipt
+Date: Wed, 08 Oct 2025 17:17:00 +0100
+Message-ID: <6eff1184b0cb973b.83906dbf@quillpad.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Quillpad Plus.
+
+Date: Oct 8, 2025
+Billing period: Oct 8 =E2=80=93 Nov 8, 2025
+Total: $5.00
+Invoice number: INV-650513
+Payment method: Visa ending in 4242

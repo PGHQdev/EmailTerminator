@@ -1,0 +1,13 @@
+{
+  "from_address": "hello@mailroom.test",
+  "from_name": "Mailroom",
+  "subject": "Café crème",
+  "date": "2026-05-12T12:00:00Z",
+  "message_id": "6473be785486494b.e64f6b6d@mailroom.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

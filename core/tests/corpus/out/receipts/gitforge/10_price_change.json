@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "An update to your GitForge Team price",
+  "date": "2026-04-02T17:38:00Z",
+  "message_id": "9ef3c890f594fbe5.74f78658@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "price_change",
+    "amount_minor_units": 1500,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

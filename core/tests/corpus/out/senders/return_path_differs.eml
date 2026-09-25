@@ -1,0 +1,24 @@
+Return-Path: <bounce-mc.us21_4471.90213-sam=inbox.test@mail221.suw11.rsgsv.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acmerobotics.test;
+	s=k1; t=1786306701;
+	h=from:to:subject:date:message-id;
+	bh=QcfoMsQZwsmyYH3iFV2ynQnqZ4Rm5a5LjckW40spuYw=;
+	b=wL7pqiFBYf6YGeDvpz0ju+AdlxUDzynEcf0iRDyCtuPCiMCQ/ddSq1ctZpk0H0PcmO9+7too
+	 8GGPxv5/oy2ZFmbCeeavk2AuJ7kWdHnC5lGQkZYpnMN6MR7BcopizSI3mGbE160dJFB0D05p
+	 OGR/IUAk/RmwK8yEMr+aNpWZBZPSl2Xb0ej3lVOgZ+O4X1r3h8emj+/oFYxlApyYqTH6lzSu
+	 oKHCtGyzGnKf5ta0R8Nr/9YcQ/O5xT9LB4s4QZlPgpzy/+WGXtWRQP/SWwoj+9KhO4j65SXg
+	 wS8iqbzcQHKxLmMNjGJD4OkEa9e+fiuDd90qeb3647jGxi9kcUVAdXNh
+From: Acme Robotics Store <orders@acmerobotics.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your order has shipped
+Date: Wed, 11 Feb 2026 15:04:00 -0500
+Message-ID: <20f2082ccb0a25dd.850ee217@acmerobotics.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Your order AR-10442 has shipped and should arrive on Friday.
+
+Acme Robotics Store

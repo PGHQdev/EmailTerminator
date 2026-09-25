@@ -1,0 +1,22 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=k1; t=1768830131;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=tgM3hPbSmtKuIFGMtzwufbOC3AANrub2b1Ky/8/aalw=;
+	b=kspX+DcfLwxOAie4ysUVyJtUr48vkLGau2mb8ECEyrjpQkcToMH5vJOLSw5Ge8lp9YJaWuxe
+	 gklcc0KJ6S5BWl/smHdO4ETY03gdlg8P3K8ISHgXSLEThAkkOWclF3Uz+/ny2WJw1xylzqhU
+	 VCTej5F27sdhzSj6rruk1ghu4upJpuuyIY0hUJHBqQmL4bB6VJim/CZcIOcEmj160biARzUG
+	 lqcpiQnCFgWIIl3dcrCUYrw1PuZ5M9AjlSQFby8tZpVVfs1AmhwqmHzlfNdwWPxfbe2CiRP8
+	 J6Fh+tOBeSqtgpbvSJOPEnUbnrzjK/rZQQaMWzJ2B7OQOtMACPVklqFH
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Tunebox Premium subscription has been cancelled
+Date: Mon, 01 Jun 2026 12:35:00 +0800
+Message-ID: <dc41ac6b61459324.c5c23514@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKWW91ciBzdWJzY3JpcHRpb24gdG8gVHVuZWJveCBQcmVtaXVtIGlzIGNhbmNlbGxl
+ZC4KCllvdSBrZWVwIGFjY2VzcyB1bnRpbCBKdW4gMjEsIDIwMjYuIFlvdSB3b24ndCBiZSBjaGFy
+Z2VkIGFnYWluLgo=

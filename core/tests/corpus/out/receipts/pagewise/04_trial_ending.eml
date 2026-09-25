@@ -1,0 +1,26 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=k1; t=1783383416;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=/OWefsES3wiUq6MD9ZtCARxAAbjDPrmt47P6natdpdY=;
+	b=L0Dc5v3YmiyXQccsjfkPvM7lD2X9dJupv7NiqfvUjq9J+k5NPwdCAmAxcTkOAqzz9B/Dbv6L
+	 dqw2VVNL5wb9/Oh9t5STEF/PiR/ExsTWJzphUbf16TgjpzOrtzJkOYCbgNZ+vFxsGUQMkDtH
+	 OPSl5t0rOuyEYFmncVg9B/WiIE7207/th+nJxhI8mxiYcYq+vGm/EoLx6CgAsdE2CgY+L6Ew
+	 rhjzjhRaM9/xEc03/BCyPERVXb5fff7U20a+ljuxVxMj4zNA/AgCOhgmnn7T4myaiOEZl4/l
+	 zOC3vy9FmKGypjmPln7D0QtEoidUwvmqwZuG9a+q1swxlwpX+qtcccIE
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Pagewise Team trial ends in 3 days
+Date: Mon, 29 Dec 2025 08:29:00 +0100
+Message-ID: <57512eab4111cfac.afe6dc2a@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+Your free trial of Pagewise Team ends on Jan 1, 2026.
+
+Amount due on Jan 1, 2026: 12,00 €
+
+We'll charge your Mastercard ending in 0005 unless you cancel before then.

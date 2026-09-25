@@ -1,0 +1,27 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=s1; t=1779643717;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=0v1a2nnzDeNQZ1ypIxH0eng6kNS0B1jLy4nvdbhiVPW=;
+	b=kcjqSyfoULgUdmx3IjffsbntlMIUNUYP8NPM0fyRLyaMZRpheBa9FOEQ4D2JIeNpQMU/vX5G
+	 kTAmyLWnUo5a3ezxHmKBqfRUQTeDwqFTIfVPqi9HpoC7AeLtOHrI8wpv8fLP2QWiZ3oG4D2k
+	 wGjdM8VVtekwfUR4QEBNCr5T57OjD7d32JQqA4EgQJVOlGv5Uf/tYf/boy7JQGDxlQFmMSWW
+	 9iOSQ0YoL4Hp/8X4lNlUrzD6eAyi1tc8a4AAyTYY8Z3OtVJUZHpw1ez7Lu3tKzyouDBEnQFd
+	 J9LIrxs9AYjRXDq6p88T6dJtMDnS0SnkIVI02sMonu06lwxza3WFRlWW
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 16:05:00 +0000
+Message-ID: <b1700f5270839bfc.cbd790ce@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+About your purchase from Inkwell Fonts.
+
+The Visa ending in 1111 on your Inkwell Fonts account expires at the end of=
+ this month.
+
+Update your card to avoid an interruption to Inkwell Fonts Studio.

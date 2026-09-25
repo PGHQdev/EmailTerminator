@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "An update to your Inkwell Fonts Studio price",
+  "date": "2026-04-02T17:12:00Z",
+  "message_id": "c8ad0b004724e6b7.74731b29@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "price_change",
+    "amount_minor_units": 1500,
+    "currency": "USD",
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": null
+  }
+}

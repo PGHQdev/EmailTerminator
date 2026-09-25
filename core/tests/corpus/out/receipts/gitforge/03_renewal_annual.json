@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "Your annual GitForge Team renewal",
+  "date": "2026-06-15T22:08:00Z",
+  "message_id": "a1f764100a3fbfd6.a8b17b41@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 13065,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "GF-2026-09737"
+  }
+}

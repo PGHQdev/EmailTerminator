@@ -1,0 +1,15 @@
+{
+  "from_address": "support@pinecone.test",
+  "from_name": "Pinecone Support",
+  "subject": "Your support ticket 55120 was updated",
+  "date": "2026-03-02T13:30:00Z",
+  "message_id": "ea30c9b0504559ef.e822c7fa@pinecone.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "mailgun.org"
+  ],
+  "receipt": null
+}

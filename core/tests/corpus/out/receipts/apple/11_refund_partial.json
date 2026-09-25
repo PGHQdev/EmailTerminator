@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Partial refund for your Skyline Weather Premium payment",
+  "date": "2026-02-03T22:34:00Z",
+  "message_id": "1cdf65accb942d30.f932f877@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 600,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": "MYZJSUYV0C"
+  }
+}

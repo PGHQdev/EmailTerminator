@@ -1,0 +1,33 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=20230601; t=1777669062;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=JhhOtSlZLUCarE0Nze8OIwvM3KrMkYFnPzMhpqtH4fU=;
+	b=CIESyPq6GXibHV+XGEyeyGEPUmIsvVHHjLIh2E5lwI1wPXlTO5nyRUG59rSf2m8HRm2bt6bx
+	 KZMifIupjQ7077HeCyOGyIy4gBT9Jz6D0F7tcphfCBOgnwONWeKj1BoaJ/NQFaf3gxlnju+V
+	 Y7UupgmMNHVF8DzHDLaEPGm9S2R4sxm8GAnVIiCj7fBF5HUXgTTbGYWGTcO4jlJ9kpmRLi7H
+	 jagx39XV8KPHfgUwcZ46hhiolzMosiS5JxVirLRO9FMy/JahbPcscUCld1b03legze7aHBWX
+	 gWHhIP8PGYlQR2xw4kHlwF7TiEQCk/hkDZJV5aOetz6Qo8vN+H2fwLx8
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Pagewise receipt
+Date: Thu, 01 Jan 2026 18:40:00 +0100
+Message-ID: <9b4f8ca7303ed3ea.153b93da@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+Thanks for subscribing to Pagewise Team.
+
+Date: Jan 1, 2026
+Billing period: 01/01/2026 - 01/02/2026
+Subtotal: 12,00 €
+VAT 0% (reverse charge): 0,00 €
+Total: 12,00 €
+
+Customer VAT ID: DE811569869. VAT is due from the customer under the reverse-charge rule.
+
+Invoice number: PW-686443
+Payment method: Mastercard ending in 0005

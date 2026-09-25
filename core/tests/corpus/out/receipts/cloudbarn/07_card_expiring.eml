@@ -1,0 +1,33 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=20230601; t=1777569709;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=b5SzCG8TghUXsZHi69y3itzDlwZXwfQAPD0ucq8CFEt=;
+	b=T3GaV3vB0cupEUxrcOhVH2cYNkQqOyH218Ds70nJ+wGc9SJUrsK7V5uXTUB4lo2HthTYoFu7
+	 +HvFhpPvtkVj7awJ4FB3sITa6e2aQnjWB/c9zfhmBgSkuL1/tGeAI20OC6XxZ/nH6HxvaVRX
+	 iVvlhiK8sLQwMHxqEA4CzNBO1nKm1SXy7WXMVlfkSAoFFDpMpr7stZ6YXwH/y8iBQ2WZnNWi
+	 5O+soRBlts/aN6jH8eh6zo0BYul6412A9r5tGEuOzNEZACVYOEEVV28ot7xviTZy+NsDOZnY
+	 nBnUvqjM8KX5mjoZgN5DR34g6GVtUJyIBRGaYLMgqsFCx153tZUuOVH5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=20230601; t=1783288176;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=rcMKVOzZ/KCACUTH6LbESyls59hKlPDH+fFB+ffkrPC=;
+	b=EQFmUXEKR4eroiIpjryqmULCFiRBQ90irY7pqrFdNed749Bf2LfiK1+F5XMy+MKZLOcgkoAm
+	 YNX1SRBxMyG1DGvh4SC/JhFcdKpXfC9/pux6aj4vPM742K09AkfkaI/yGGvolpFQjFPtMVI1
+	 YohILDGDWA89XoKU2qyj6u90TgXGjQpyFFvsKlM0r45cEqmDI+CqCLxGfpMFnTcAroBdIqCC
+	 2mZAE8Si+9LehtwSgTd7jnsCOYxz6mReTV0QX4v+rTpaRk63FYQWn8dSEi6AacM3To2JbA7p
+	 0jZ2NBhiBqLX3HhTQ46CsOyUgWhTiH1j41jDP8heHQe9RSHhH7dLRsNb
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 11:55:00 +0000
+Message-ID: <6ac89380acea7f84.4d83d281@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+The Mastercard ending in 5454 on your Cloudbarn account expires at the end of this month.
+
+Update your card to avoid an interruption to Cloudbarn Business Support.

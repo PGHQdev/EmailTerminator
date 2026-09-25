@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@pagewise.test",
+  "from_name": "Pagewise",
+  "subject": "We couldn't process your Pagewise payment",
+  "date": "2026-05-01T12:36:00Z",
+  "message_id": "725008fd0e1466e2.cd6311c6@pagewise.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "pagewise.test"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 1200,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": "PW-082036"
+  }
+}

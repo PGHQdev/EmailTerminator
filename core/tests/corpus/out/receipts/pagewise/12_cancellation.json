@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@pagewise.test",
+  "from_name": "Pagewise",
+  "subject": "Your Pagewise Team subscription has been cancelled",
+  "date": "2026-06-01T09:35:00Z",
+  "message_id": "5b7e7f9e21adf5dc.c772cec7@pagewise.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "pagewise.test"
+  ],
+  "receipt": {
+    "kind": "cancellation",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

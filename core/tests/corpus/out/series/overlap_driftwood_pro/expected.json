@@ -1,0 +1,8 @@
+{
+  "group_key": "driftwood.test",
+  "cadence": "monthly",
+  "charge_count": 8,
+  "price_increase": false,
+  "latest_amount_minor_units": 1500,
+  "currency": "USD"
+}

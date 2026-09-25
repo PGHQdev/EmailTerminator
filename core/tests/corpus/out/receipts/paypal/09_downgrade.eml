@@ -1,0 +1,56 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=selector1; t=1772568170;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=TGmcmxTWCleWNTDXxdAmm3iTJ24xZe4O+ksSOk7vNuS=;
+	b=1ef+DVhEVvDn2L1KTAK2kmy+DhcyII0vtPb3tcct83NYkMx8zfWuJj3xfJqTsVpWY7VLqeD2
+	 0hMmj6aNy1AlizhfMksmXi5sPmSAmOHtgFLMMXuIMlf1cmL1GgVVuk5jGM+cijISMW8Ovvmj
+	 0JPvschK6R4iMuBU2DWJwvXeTfiC8uHoa/HTBCcyqVnvM25zqjc/GpM+3kbPRDNLzst/Q5w6
+	 3fvnn1Xoe0UHOfAkRcdHQxnWdyuEMPF5XeQ/HN+BFoi/MDR2d9fDoZAS6iiBR4aq+seNARhJ
+	 RqPUAYZMVIl6mx+6FqYbZLLpWQaIc0wjD3LjNTiIcY5OsjYmX1gZO6x0
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to Northwind Hosting VPS-2 Lite
+Date: Mon, 16 Mar 2026 07:11:00 -0700
+Message-ID: <41245dbd07d00637.e3ddfad5@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_784598_9c1c54c83387"
+
+------=_Part_784598_9c1c54c83387
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Automatic payments to Northwind Hosting
+
+You moved from Northwind Hosting VPS-2 to Northwind Hosting VPS-2 Lite toda=
+y.
+
+New price: $7.00 USD per month
+Credit added to your account: $4.00 USD
+
+We'll apply the credit to your next invoices.
+------=_Part_784598_9c1c54c83387
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your plan has changed to Northwi=
+nd Hosting VPS-2 Lite</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Automatic payments to Northwind Hosting</p>
+<p>You moved from Northwind Hosting VPS-2 to Northwind Hosting VPS-2 Lite t=
+oday.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>New price</td><td style=3D"text-align:right">$7.00 USD per month</t=
+d></tr>
+<tr><td>Credit added to your account</td><td style=3D"text-align:right">$4.=
+00 USD</td></tr>
+</table>
+<p>We'll apply the credit to your next invoices.</p>
+</body></html>
+------=_Part_784598_9c1c54c83387--

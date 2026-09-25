@@ -1,0 +1,11 @@
+From: Town Library <notices@library.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: A message with no Date header
+Message-ID: <d4ffd04a04813d0e.46d67fcd@library.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+This message has no Date header.

@@ -1,0 +1,8 @@
+{
+  "group_key": "snapclip.test",
+  "cadence": "monthly",
+  "charge_count": 7,
+  "price_increase": false,
+  "latest_amount_minor_units": 799,
+  "currency": "USD"
+}

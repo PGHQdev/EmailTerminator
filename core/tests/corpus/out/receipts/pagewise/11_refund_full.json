@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@pagewise.test",
+  "from_name": "Pagewise",
+  "subject": "Your refund from Pagewise",
+  "date": "2026-02-03T11:30:00Z",
+  "message_id": "db095b39e6d1ed15.f0f6b3fb@pagewise.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "pagewise.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 1200,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": "PW-917156"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "from_address": "zoe@mueller.test",
+  "from_name": "Zoë Müller",
+  "subject": "Photos from Saturday",
+  "date": "2026-05-21T16:40:00Z",
+  "message_id": "6e8efecc97cb1bf4.c6153ebc@mueller.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

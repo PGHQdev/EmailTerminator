@@ -1,0 +1,55 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=s1; t=1771496401;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=HOYpBb0+AeJtj8Mv+vWv5oBlTKbuCYHyDUYcsLPXjyz=;
+	b=xOQTHAF0CUm2/XTh32YGbo4cXR63FvIEitAMy+8tPFzlghXq4kw6Gi+B3QBBOpQwiHtLO1Zr
+	 JDcWvQ473Tidk65/EzF6vULPPccADyEsAm9V0VSA/XRBJ3K50bWtLzrvw8FJpHGBGyTOQECC
+	 IjzbOInRoTXSF32upjH3I3Pcjs7Dg4UHaALvmzFoLCMeVFs8A2f5sAtT+JZlENOQa3A4kk4H
+	 h83okFeS6JwohygRKsGbaxXGdEHQjd83WrBilE2UkS2Sy9bde8Kqs29R1Ls05exuQoDPWTM9
+	 IrWadOv8JhqG4Hfsuv0nPtDCGoJOLvkTFCcvZgAV8ZA0KhQ4CaTWbKya
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to Lumen Analytics Growth Lite
+Date: Mon, 16 Mar 2026 09:36:00 -0800
+Message-ID: <7069c9f249e853ff.d438d7c4@stripe.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_583170_60865244bc66"
+
+------=_Part_583170_60865244bc66
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Lumen Analytics
+
+You moved from Lumen Analytics Growth to Lumen Analytics Growth Lite today.
+
+New price: $19.00 per month
+Credit added to your account: $15.00
+
+We'll apply the credit to your next invoices.
+------=_Part_583170_60865244bc66
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your plan has changed to Lumen A=
+nalytics Growth Lite</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Lumen Analytics</h1>
+<p>Hi Sam,</p>
+<p>Lumen Analytics</p>
+<p>You moved from Lumen Analytics Growth to Lumen Analytics Growth Lite tod=
+ay.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>New price</td><td style=3D"text-align:right">$19.00 per month</td><=
+/tr>
+<tr><td>Credit added to your account</td><td style=3D"text-align:right">$15=
+.00</td></tr>
+</table>
+<p>We'll apply the credit to your next invoices.</p>
+</body></html>
+------=_Part_583170_60865244bc66--

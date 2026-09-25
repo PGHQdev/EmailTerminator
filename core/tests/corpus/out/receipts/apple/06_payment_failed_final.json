@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Final notice: your Skyline Weather Premium subscription will be suspended",
+  "date": "2026-05-08T07:41:00Z",
+  "message_id": "078829215b14225c.1308449f@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 1200,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": "MSQQ401F2C"
+  }
+}

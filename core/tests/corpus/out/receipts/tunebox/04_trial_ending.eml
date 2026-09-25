@@ -1,0 +1,23 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=s1; t=1784028153;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=YUm+EkxorLZTWU3zfXLMon8Eq9oJwZ7knxy+/m0d8L4=;
+	b=KSaH3l5EzuiTfBcrDLRkgtfOEdttMCH5N++u5yfEB8k13W5/lhzDbXc+UCSGUx14z7Hq4mff
+	 XE2QMPK4g6BovPI/BCyY1M4jdR8Ng47iJokpGqUDnlLrFaAEumLpoKAjxLQowDJqruyCePuE
+	 UYS1ibF9YtTjT4gdU5+X3vY5WsnRSMWQJgjzWIMgzKYj2OR+km/CIA4p+T4ynO5jYlbqBRnr
+	 BZ0yameJpdconfrtr9iyr68u/uXuoN21fJn78S1kfK0AIfup5T0XwSlFgVgaydlx8lXVH35n
+	 LX/MeVhIg3+cC6nstVKpCidpPblhng35Jeq3fjEXNDioqlN6Wwco1naS
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Tunebox Premium trial ends in 3 days
+Date: Mon, 29 Dec 2025 19:02:00 +0800
+Message-ID: <42ea4fa693469137.95f3d299@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKWW91ciBmcmVlIHRyaWFsIG9mIFR1bmVib3ggUHJlbWl1bSBlbmRzIG9uIEphbiAx
+LCAyMDI2LgoKQW1vdW50IGR1ZSBvbiBKYW4gMSwgMjAyNjogVVMkMTMuMDgKCldlJ2xsIGNoYXJn
+ZSB5b3VyIEFtZXggZW5kaW5nIGluIDEwMDUgdW5sZXNzIHlvdSBjYW5jZWwgYmVmb3JlIHRoZW4u
+Cg==

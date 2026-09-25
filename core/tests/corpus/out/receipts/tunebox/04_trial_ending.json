@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "Your Tunebox Premium trial ends in 3 days",
+  "date": "2025-12-29T11:02:00Z",
+  "message_id": "42ea4fa693469137.95f3d299@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "trial_ending",
+    "amount_minor_units": 1308,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

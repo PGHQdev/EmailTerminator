@@ -1,0 +1,44 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=k1; t=1785802416;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=ND0PtpVpuXL/pI8PYNKKziaug2npyyG9gzT3Mqv44Gh=;
+	b=h42juN97W4dMKj0LmbDJjKl/OES5vJ/NrJm7MLejcWEiDIkxMmenW3aEnBBTe7zk+eKz7adx
+	 PDomUf7aoIK2qQIgM7FUNmZjekidwrRM6UK1aYo/w2JM9KwiK3i5w5090GPKjyL1rcXq2mH/
+	 MgRxY8q7HegWQg3cLk/FeIJZGNnMN7ThZ6dKJ81zFt2Bv2IJqvLHFx53ocWkpS3pQgngfult
+	 dOv2Rt1/L6UaAKlnAcJ+I1qCrq20O4lgQ+grUYMAJ0rYVjNKmn5hlQXhU1J3GgbKXMF6LLqZ
+	 JCin1E0YkMEbEIdf96RP70t5ZgXmcvyB5DIw5XF8JTZ3keJndLdEkvJd
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 17:42:00 -0700
+Message-ID: <f4a48e680d827576.95c4ae88@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_411433_8dc83c10f3e2"
+
+------=_Part_411433_8dc83c10f3e2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+The Visa ending in 1111 on your PayPal account expires at the end of this m=
+onth.
+
+Update your card to avoid an interruption to your subscriptions.
+------=_Part_411433_8dc83c10f3e2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your card on file expires soon</=
+title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>The Visa ending in 1111 on your PayPal account expires at the end of thi=
+s month.</p>
+<p>Update your card to avoid an interruption to your subscriptions.</p>
+</body></html>
+------=_Part_411433_8dc83c10f3e2--

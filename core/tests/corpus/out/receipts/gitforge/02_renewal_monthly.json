@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "Your GitForge Team subscription has renewed",
+  "date": "2026-02-01T14:44:00Z",
+  "message_id": "22083babefd3f76d.b0cc67af@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1307,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "GF-2026-14629"
+  }
+}

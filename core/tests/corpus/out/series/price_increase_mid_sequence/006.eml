@@ -1,0 +1,27 @@
+Return-Path: <bounces@brewbox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=brewbox.test;
+	s=s1; t=1772264776;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=AjAfwa2I9jfMm3et3p7jsfeylVO+tcXVjwqI3qJ3PWy=;
+	b=DZ3ExiFk8xhtnZYmpqsNsFVYT2VajHTYNIRZdxhn/y9/eBRDvxSf5nErDrKwLh8cSbtlVN1w
+	 FgzBv9W665w/8CrBYQEu8VxYeX8qZFcWfc6LEviRktNX97pO31w5uyXoj90YZU42k+AdIGMF
+	 04qbOO+mtzzYCLv+HKJCsH2uw8bohHvE+ydWjGaV5AVB2pxaTgK072SUfFdRayN4fOBRgBW4
+	 +Mi0/w0J9G9F5t7m3FuNubuEJupd0m+jta2KFuj02utP3fY4NdIDZ4IYn34kxPN9j4nfubws
+	 4eti4QQHE7ZbyFvaEs98JZP7uhzmxhjILQF51pdHsC/tPtCtRrIbPsax
+From: Brewbox <billing@brewbox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Brewbox Coffee Club price
+Date: Fri, 10 Oct 2025 15:03:00 -0500
+Message-ID: <0679eed392f38826.242f2fb7@brewbox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We're changing the price of Brewbox Coffee Club.
+
+Current price: $10.00 per month
+New price from Nov 1, 2025: $12.00 per month
+
+You don't need to do anything. To cancel, visit your account settings.

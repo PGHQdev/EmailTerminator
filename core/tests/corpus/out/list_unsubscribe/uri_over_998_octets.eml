@@ -1,0 +1,26 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=news.harbor.test;
+	s=smtpapi; t=1778941689;
+	h=from:to:subject:date:message-id:list-unsubscribe;
+	bh=xA0cj+O5WE4bTQjQtDuEzvuR0Zw00OckaMSCRgRTVKb=;
+	b=hnxfAjUn3+iVM5Mz7sV9ImK36PJya4Ldgptg209B+KloccCUTJPhA6k4GmGeXGGEzF8EtxHM
+	 gjtmQVR81tIzTLOyvFmCyckCCVUfYWEn3jQK1owSyxOnWvqzFBO54mU/PQSrSnnaiTTn8IfW
+	 jrXF8iy2ynnBV3dVkFNqxqQSPVsMsytqcFUVo/UVsjKcyTMWe2UuumEPCMYMtqT7wYACZ1cU
+	 1Rgy7N/JySySDocDokqdsNw47qOBzjKfd4HO6lgy0wx5+AIlrSpIKDNPTTA9Yv6EfKmAlwcJ
+	 rXQDYbQUWags5T0SIyj9vZTvHxN7WbbLHjrwhjq8ezWYUVWWEUScCqwo
+From: Harbor Weekly <weekly@news.harbor.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Harbor Weekly: tides, ferries and a new pier
+Date: Sun, 12 Apr 2026 06:30:00 +0000
+Message-ID: <b6cf874cc9cdc9df.463582b0@news.harbor.test>
+List-Unsubscribe: <https://t.news.harbor.test/unsubscribe?d=ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov
+ 29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3
+ ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+This week: the spring ferry timetable, and the new pier opens.
+
+You get this because you subscribed at harbor.test.

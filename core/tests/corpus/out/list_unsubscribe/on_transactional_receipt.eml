@@ -1,0 +1,29 @@
+Return-Path: <bounces@kiteworks.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kiteworks.test;
+	s=20230601; t=1767606739;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=waoZbSQ4Iz24Lw/bgj/4+dMudJKX/WyUMj1wsNVmeer=;
+	b=DORX2aJTpsP0jxCFSj5Sb3/y13Jja6XTLcfRJlAD2K9zYerkPlzlpNYhFxQuyISdbHDMVYSx
+	 PbKJ4aziYR97WPxzQWpAPRf9tpQS90ZoV0N25gQyxSeF9u05cqT7Abw3NEL3yBljfQ3RRBU5
+	 CF2V6lh7XE9khnad8OpAQxdv19lGg+n7Z8JWIzZc3VJuveh+RRFXcvXwa7x807YNA5TCFHWr
+	 PEleIDGYUH0yIOaKlz/iJYmAGUDDb2sGh0C8olk9A8F1zZTc2Q24nyvXyN1466S8JIQEIchY
+	 Yzh53OtRrfaAJkGZdc+6bEd4X9geCVVgdlJDt7iPgS7NIgS/RfyUsweX
+From: Kiteworks <billing@kiteworks.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Kiteworks Studio subscription has renewed
+Date: Sat, 18 Apr 2026 09:00:00 -0500
+Message-ID: <f1eeacfb48b107d5.84ecff4a@kiteworks.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+List-Unsubscribe: <https://kiteworks.test/email-preferences?u=8a1f2c>
+
+Hi Sam,
+
+Your monthly subscription to Kiteworks Studio has renewed.
+
+Date: Apr 18, 2026
+Billing period: Apr 18 =E2=80=93 May 18, 2026
+Total: $9.00
+Invoice number: INV-670192
+Payment method: Visa ending in 4242

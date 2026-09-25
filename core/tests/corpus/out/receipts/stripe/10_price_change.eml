@@ -1,0 +1,55 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=k1; t=1767460388;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=kcVACCkGaZTfWOyYRYIAGEznPwPufFBVZ904JDqTg2K=;
+	b=PMiSb6eTUOF8uex7arGzl+Br9Ae1drquGAbw/cQIHGo+6DnCHI6nfmBs6jeyf6aTrQ5ro4hN
+	 jiTwlIyu1FwN0iWDCOOIjUsH1kNhscqD4cufrvOvF+d5FyjzrB/cZ6Xhaa+CwNNJq4XnOBLa
+	 sHyILkoAo06pGuCLVCzS0JGxDqwd3eTQpNfvnFqLR+9hwZWxXtgpXwSfI7OuW0JQPDWbSxUz
+	 sezX0mh6Z0JUTCRgfoFZ2chiT0zu7iwJ1BFKLi3w+FX6o9bTdHHDcQov6lyoLdxLHi3vNdYi
+	 MUXLFWDUeuK6gzX17HEbB1cg7h/XKll+8Y+5vjZ3bIMxNL/Rvu0xYU5a
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Lumen Analytics Growth price
+Date: Thu, 02 Apr 2026 09:51:00 -0800
+Message-ID: <c7b8feb437cf7501.3c849da9@stripe.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_221427_2566e87a302f"
+
+------=_Part_221427_2566e87a302f
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Lumen Analytics
+
+We're changing the price of Lumen Analytics Growth.
+
+Current price: $49.00 per month
+New price from May 1, 2026: $59.00 per month
+
+You don't need to do anything. To cancel, visit your account settings.
+------=_Part_221427_2566e87a302f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>An update to your Lumen Analytic=
+s Growth price</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Lumen Analytics</h1>
+<p>Hi Sam,</p>
+<p>Lumen Analytics</p>
+<p>We're changing the price of Lumen Analytics Growth.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Current price</td><td style=3D"text-align:right">$49.00 per month</=
+td></tr>
+<tr><td>New price from May 1, 2026</td><td style=3D"text-align:right">$59.0=
+0 per month</td></tr>
+</table>
+<p>You don't need to do anything. To cancel, visit your account settings.</=
+p>
+</body></html>
+------=_Part_221427_2566e87a302f--

@@ -1,0 +1,56 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=s1; t=1780684714;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=2LbCQga5V0m9/s5pGQL91aFQe6ugiN6KX6TulgPvbZC=;
+	b=hFaqxoqVrOHSzmgja5I2SQr5JJWR1BZWLepiapGrizZJeWWnQCTIp6C4ViC3qK79bGUIz0zN
+	 +3YIlVUx+TQELnt/Qz8hsOVYgukGQJP74CA6+YqOHn7cb46p7KvgVLE0qcbGMuTl0xsN1GAF
+	 sb0k3f/NAM3pcFvDmARiz4hgolygEAIEHzwgtgXrhiS4NDYx1M2TEskG7Wmj+WnIEwWs76Ol
+	 5eOSkOaVpFZkuDHPGy4iBotj6K1OkwOeu8A4fpOIU1MzoWwkN94+TG0lXARSXWJVvQVrAUnt
+	 tsINB9VM4ucmz+2J9IObi2KHkiYd2RhIjdT6Ihvh/kbzQ+FMnivT91Ae
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from Lumen Analytics
+Date: Tue, 03 Feb 2026 06:53:00 -0800
+Message-ID: <df8d5d5bfc86a8c7.daeeab05@stripe.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_768735_b3c139e3dd06"
+
+------=_Part_768735_b3c139e3dd06
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Lumen Analytics
+
+We've refunded your payment for Lumen Analytics Growth.
+
+Refund amount: $52.55
+Receipt number: 8037-8088
+Refunded to: Visa ending in 4242
+
+Refunds take 5-10 business days to appear.
+------=_Part_768735_b3c139e3dd06
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your refund from Lumen Analytics=
+</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Lumen Analytics</h1>
+<p>Hi Sam,</p>
+<p>Lumen Analytics</p>
+<p>We've refunded your payment for Lumen Analytics Growth.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Refund amount</td><td style=3D"text-align:right">$52.55</td></tr>
+<tr><td>Receipt number</td><td style=3D"text-align:right">8037-8088</td></t=
+r>
+<tr><td>Refunded to</td><td style=3D"text-align:right">Visa ending in 4242<=
+/td></tr>
+</table>
+<p>Refunds take 5-10 business days to appear.</p>
+</body></html>
+------=_Part_768735_b3c139e3dd06--

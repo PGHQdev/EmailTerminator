@@ -1,0 +1,15 @@
+{
+  "from_address": "weekly@news.harbor.test",
+  "from_name": "Harbor Weekly",
+  "subject": "Harbor Weekly: tides, ferries and a new pier",
+  "date": "2026-04-12T06:30:00Z",
+  "message_id": "b6cf874cc9cdc9df.463582b0@news.harbor.test",
+  "list_unsubscribe": "<https://t.news.harbor.test/unsubscribe?d=ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov 29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3 ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz6dkry5cjqx4bipw3ahov29gnu18fmt07elsz>",
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": true,
+  "dkim_domains": [
+    "news.harbor.test"
+  ],
+  "receipt": null
+}

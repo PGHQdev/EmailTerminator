@@ -1,0 +1,54 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=k1; t=1777052377;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=NZFUCNiPI/BplA/AlEW3taK7/NkgIwg2vZNr5WVCTEJ=;
+	b=olIkC58VxJMtmYU/BwlIWj2D4AG/M+jazydiCbo8I0kBKHkbsD8HUVqcpgrKrA0xs9E0VadP
+	 6+v0WMsstUJItYOv4sb7+6WI0qlAgtU4V/VptYVEp3J2bXs2UliNEuX5/xLlK12DflqvFm5G
+	 Ickxr89fDopaTXYHxm/hafQ8sQ+2oXCv+q1y4hXa7lTTwf/vK5oLXi8EyjJRATPedAmvblWK
+	 aWrRjDCQaq3+Dxg4le+Lo3pAPqcN0TDUpbXa12duLgsI2NWeI+CUNiyUehn8B5wQdtFlhUaW
+	 2oB/QnYmBBj7rHcEgtuxPVsBOAQXRgc/Xk1HbZtQHMbbUHiYqRjTJpgU
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your Puzzle Den Premium payment
+Date: Wed, 04 Feb 2026 08:02:00 -0500
+Message-ID: <44d04a0c167f4f97.e663329b@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_591293_8a6688565292"
+
+------=_Part_591293_8a6688565292
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+We've refunded part of your payment for Puzzle Den Premium.
+
+Original charge: US$4.99
+Refund amount: US$2.50
+Order number: GPA.9848-2769-1045-63559
+Refunded to: Mastercard ending in 5454
+------=_Part_591293_8a6688565292
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Partial refund for your Puzzle Den Premium payment</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>We've refunded part of your payment for Puzzle Den Premium.</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Original charge</td><td style="text-align:right">US$4.99</td></tr>
+<tr><td>Refund amount</td><td style="text-align:right">US$2.50</td></tr>
+<tr><td>Order number</td><td style="text-align:right">GPA.9848-2769-1045-63559</td></tr>
+<tr><td>Refunded to</td><td style="text-align:right">Mastercard ending in 5454</td></tr>
+</table>
+</body></html>
+------=_Part_591293_8a6688565292--

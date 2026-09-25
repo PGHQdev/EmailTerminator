@@ -1,0 +1,47 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=s1; t=1781647234;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=7b7XUTMsXeCXYJWDNm2sdSH/7G076nzxFM/jY0lhKPB=;
+	b=EfISaYX3dYsfdik0jyFAcS/7xT9X4UwjHe5ZxdIBKsBngmWkAaQKjIC9fuN7EJCA1ri+oyxf
+	 r8gi1+InyBxF0YWXmdEaRMnozXkb0PLLX1ChlvIPnR0hMs3Zj8y7SUUFaZKx4XrvX6G69RET
+	 yN7yGrV2iNfSisQy7V8OZMwmIosSa6d4j822RCgzlIRgS9NsJwWTtqBKaHm+CBqOyziVlou+
+	 mI0iqNViUntUv3NdemJl6XNniiVhyV1MhRvUYncxnzkweCB1pxaGdNbM34Q4DMXqSMqc/Bo5
+	 lQP9zMaiyIyfjPhqADjygMhMgVtLIy6DNYE09yc9dt9y9VL3YajvAfLY
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 18:14:00 -0800
+Message-ID: <010fc2ae70cae86d.537a485b@stripe.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_609305_a0d201b1793c"
+
+------=_Part_609305_a0d201b1793c
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Lumen Analytics
+
+The Visa ending in 4242 on your Lumen Analytics account expires at the end =
+of this month.
+
+Update your card to avoid an interruption to Lumen Analytics Growth.
+------=_Part_609305_a0d201b1793c
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your card on file expires soon</=
+title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Lumen Analytics</h1>
+<p>Hi Sam,</p>
+<p>Lumen Analytics</p>
+<p>The Visa ending in 4242 on your Lumen Analytics account expires at the e=
+nd of this month.</p>
+<p>Update your card to avoid an interruption to Lumen Analytics Growth.</p>
+</body></html>
+------=_Part_609305_a0d201b1793c--

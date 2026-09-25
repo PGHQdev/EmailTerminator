@@ -1,0 +1,28 @@
+Return-Path: <bounces@hostlane.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hostlane.test;
+	s=20230601; t=1772770004;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=JHYgD1BA5zNaNrYDMRP1SwLCzlUHP0XHkVP86XJTWgd=;
+	b=5KRCSxgiAcwBI+MFF6y4O+vFu93Q6kS+4oGj/CiqLB1Etuld3czhuJZr8KsWCN+GBHOp4sl4
+	 EBjSfVJTDwFzx4NBFDBF9iBccmmYuyLfH+BirPLWApaezRZiun7g4PVHb1rGtgPTGPrIgaHJ
+	 mTi3JbedhqPDbgP30aeF/UWoTrQwSTjOTcUyEUlDl/2/+LFZ+XD+pLcbS7BdFTlcPTmggrgI
+	 ILU1JiHbv28uM6jZIBhiaRj4hNxfG4/C4cFrgePX2TGB8sNwxiUOxgmdk4X89JtJYYNmb9z7
+	 Xi8uWcUhh4LHvmdNK915HeJSXm1nOXUiF5Tr8TeVW9pmhgGkKY+zYk7q
+From: Hostlane <billing@hostlane.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Hostlane receipt
+Date: Wed, 05 Jun 2024 09:21:00 -0500
+Message-ID: <c61b5e80daa0bbf8.1acc8189@hostlane.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Hostlane Starter.
+
+Date: Jun 5, 2024
+Billing period: Jun 5 =E2=80=93 Jul 5, 2024
+Total: $12.00
+Invoice number: INV-080985
+Payment method: Visa ending in 4242

@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "Your Puzzle Den Premium trial ends in 3 days",
+  "date": "2025-12-29T16:55:00Z",
+  "message_id": "50c2202759a3d62a.ee969c69@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "trial_ending",
+    "amount_minor_units": 499,
+    "currency": "USD",
+    "merchant": "Puzzle Den",
+    "invoice_ref": null
+  }
+}

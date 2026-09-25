@@ -1,0 +1,8 @@
+{
+  "group_key": "hostlane.test",
+  "cadence": "monthly",
+  "charge_count": 24,
+  "price_increase": false,
+  "latest_amount_minor_units": 1200,
+  "currency": "USD"
+}

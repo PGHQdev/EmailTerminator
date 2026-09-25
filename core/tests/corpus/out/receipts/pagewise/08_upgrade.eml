@@ -1,0 +1,33 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=20230601; t=1768049989;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=0Yg6WlOTN5MHxb15oVs6ODl6qfk3o9nzj0f2S4HyVJk=;
+	b=LaXUGi0nK3lkAq7qWGn65jiEAiD33nFuu2xSKo1FlbQoUivHhHMirtEnT+y01KICmlJ9f3rU
+	 8U65aai05rq96YAYsGReMn+xoO1Bl60xjraSJSekLnVkVhUdK+5tpYD430BgeNGeyWhM/Omi
+	 iDCtda8JIkQxkr494NenY01SNK3q+tAjky0H1n2e+j+FTEbhOtahGIrm6fwlFyZyGapRzHP+
+	 BjvH5I1xV6UWOtmsLLsW6g1hMBgy28gkTVLFPoIRnVtm18wvY7p0GDafV/oBM4etImMxpwhR
+	 5eNj/srmg19KyScQOBkjqmNERULG0X45Sw8pjNcFPxKy94DrcckCLy1g
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: You've upgraded to Pagewise Team Plus
+Date: Mon, 16 Feb 2026 18:07:00 +0100
+Message-ID: <cc714ca6c39f85af.81350919@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+You moved from Pagewise Team to Pagewise Team Plus today.
+
+Pagewise Team Plus, 15 days (prorated): 10,00 €
+Unused time on Pagewise Team, 15 days: -6,00 €
+Subtotal: 4,00 €
+VAT 0% (reverse charge): 0,00 €
+Total: 4,00 €
+
+Customer VAT ID: DE811569869. VAT is due from the customer under the reverse-charge rule.
+
+Invoice number: PW-550056
+Payment method: Mastercard ending in 0005

@@ -1,0 +1,23 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=s1; t=1772807036;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=3zGDolV0lZ4oc+GgzG0xokL41Rh/36jGiLdF7HFRSnp=;
+	b=/cRyYi1rFqO6YGBPemwOWE87yEu8Kf3NHyzhZbIeVyiv2AGjqF/c9sd84W0kD6z+vi3y3gYC
+	 42sUkACO1oAd1YbiIekQJL6DCz6dxfA1ZdDDX1s7GMyJywc/yLZh1uzr2Hsu5ej+MRBeI05T
+	 7kLjNKwMWj/0snVWG56YWfN0tj8dpAY7f4ab0B5A3ZX07tdrATxKhULXJV80tzBXrhjYEVyc
+	 CEm1RPprBbQQhHlsPpyYQp+/SRcDmCixOru7KXzyx+1Cu4rBGurvZ+VEwn12JcqrJFH2A6WK
+	 9W/g6xYDlUJwZTXuVrETETulnWbEXLI0YGjL1ssi3awYOKbXesSzokSK
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from Tunebox
+Date: Tue, 03 Feb 2026 18:20:00 +0800
+Message-ID: <2226368656189bbb.4fe0d05a@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKV2UndmUgcmVmdW5kZWQgeW91ciBwYXltZW50IGZvciBUdW5lYm94IFByZW1pdW0u
+CgpSZWZ1bmQgYW1vdW50OiBVUyQxMy4wOApPcmRlciBJRDogVEItNDU4MjY5MTgKUmVmdW5kZWQg
+dG86IEFtZXggZW5kaW5nIGluIDEwMDUKClJlZnVuZHMgdGFrZSA1LTEwIGJ1c2luZXNzIGRheXMg
+dG8gYXBwZWFyLgo=

@@ -1,0 +1,22 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=k1; t=1772748261;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=jcbFE2RD9AW9PY3Hd1eFbBI9m3CLXyFqHZWi0hxTQy1=;
+	b=vNoOZJ6tIFVU8WaxUquhw/M0Ur6MYrBZVOWw0+5wnUbtGdsVEq0CFFWdasGoF023wbFMZK/z
+	 yxOLV1sxVQbcKeuVSOyO+BbTV7pSBtG4OJxJE3JJfQq9vg8Tj5ljb5yMEc+NgQBNeltvXwVK
+	 p3m0BLaPzLHwiC3OklWBd0gj0y54JuAF2+A3Aq+Cp+nhRr56ICjEqSsae9971C3DMQwizkV3
+	 OrpwABM7v1El+iSKk1y8iX6Xq7w4ggPT+OlNhnzgnbqJUb4a0Hkl5MODeqklrxUNG9+rD1N4
+	 oAMo+cqKkgNj7eH7w/lfINipnlq66HQfB08k0EHR0qFsvgqnSqTBaiRN
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 15:08:00 +0800
+Message-ID: <ba78d1380458fe61.97d30ca1@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKVGhlIEFtZXggZW5kaW5nIGluIDEwMDUgb24geW91ciBUdW5lYm94IGFjY291bnQg
+ZXhwaXJlcyBhdCB0aGUgZW5kIG9mIHRoaXMgbW9udGguCgpVcGRhdGUgeW91ciBjYXJkIHRvIGF2
+b2lkIGFuIGludGVycnVwdGlvbiB0byBUdW5lYm94IFByZW1pdW0uCg==

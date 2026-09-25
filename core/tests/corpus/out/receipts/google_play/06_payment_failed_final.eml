@@ -1,0 +1,53 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=s1; t=1777333050;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=9X3JgD1auuc0FxTd0hB7PmA5+rhtULqtfp9b/KDjaTN=;
+	b=TwR79NkjCn/DxFKv30iPvd04lecn9s8s+I9Ko/ZF8kmJASt+JrAPOhGBNqMhCSgVcY2D1oes
+	 S8mzlfSmP/BKu50380fi3RPI8aLoWSWcAMIG6198qPGYwjtOZFWBntAGjnbw8YKLLPTOvNte
+	 Emg0XQ9+IYnqyFpC6sHb01A2bmkDPakE1LAXF9/csAiBszSolOlZwoq75G6FWqIzWEI+Gd1C
+	 MwjSxuxuTcAYW9f95N7nAClpILBh90JPfNG7eQkoq7+PHYXhdalyvCIKV8QofOLPMgtQFjVg
+	 EOep/7AaIJeTi10dihEtPqOfyIZvrQYyG/Q8yiFGdLCJnYUYQfSyNPuJ
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your Puzzle Den Premium subscription will be suspended
+Date: Fri, 08 May 2026 11:35:00 -0500
+Message-ID: <e969ba7704fc9c56.94cb2ab5@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_236827_11f623b29f64"
+
+------=_Part_236827_11f623b29f64
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+We still can't collect payment for Puzzle Den Premium.
+
+Amount due: US$4.99
+Order number: GPA.6153-3786-9290-13319
+
+If payment fails again on May 15, 2026, we'll suspend your subscription.
+------=_Part_236827_11f623b29f64
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Final notice: your Puzzle Den Premium subscription will be suspended</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>We still can't collect payment for Puzzle Den Premium.</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Amount due</td><td style="text-align:right">US$4.99</td></tr>
+<tr><td>Order number</td><td style="text-align:right">GPA.6153-3786-9290-13319</td></tr>
+</table>
+<p>If payment fails again on May 15, 2026, we'll suspend your subscription.</p>
+</body></html>
+------=_Part_236827_11f623b29f64--

@@ -1,0 +1,21 @@
+{
+  "from_address": "orders@northpeak.test",
+  "from_name": "Northpeak Outfitters",
+  "subject": "Your Northpeak order NP-100251",
+  "date": "2026-06-04T20:00:00Z",
+  "message_id": "eef26557e5dc9e82.2a3feee2@northpeak.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "northpeak.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 12900,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "NP-100251"
+  }
+}

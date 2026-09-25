@@ -1,0 +1,21 @@
+{
+  "from_address": "invoice+statements@stripe.com",
+  "from_name": "Lumen Analytics",
+  "subject": "Partial refund for your Lumen Analytics Growth payment",
+  "date": "2026-02-04T18:52:00Z",
+  "message_id": "44fb28a8b9f7c09d.4184f495@stripe.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "stripe.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 2628,
+    "currency": "USD",
+    "merchant": "Lumen Analytics",
+    "invoice_ref": "5676-6108"
+  }
+}

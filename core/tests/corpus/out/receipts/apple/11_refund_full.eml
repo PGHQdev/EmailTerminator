@@ -1,0 +1,33 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=smtpapi; t=1782871979;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=A/i2h/8Mkjn0qydjrBQWRc73c6HPZoyAkcJw2vso6yo=;
+	b=PrUFr5KmoDLB0G22AKThPr/8FAF1hbO215LsiRHM2Zg5qrVpjvAVZ7AIQ9VgsEs6HjnrCR8p
+	 DJN7RnvzPi/U6QbO+YTeX0J5P5TD1RovBMwWHmMiYdmUDwwjyD1xRB5nlDFB3p5CI9erRzUU
+	 /XxI4cbeZ6Rem74tTn603XEnl488qfC7cYkv5ipl4gjci4As8csJJQ3QnrAyJrSQyIt4uUUT
+	 ED2Zs4ldyyd3hTnxSAXZkCpOAT48MeVhz17dnSD6iL+I9OwN33TgHLs4+xrZmQEJ3MDaAG3B
+	 aI5LQWaQCji9fphACzZD5Gw2mcdllN6T9NJ1enrFWJL8sGaJOI2vyYu+
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from Skyline Weather
+Date: Tue, 03 Feb 2026 08:38:00 +0900
+Message-ID: <205f56da0cfc4550.acd148d6@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+WW91ciByZWZ1bmQgZnJvbSBTa3lsaW5lIFdlYXRoZXI8L3RpdGxlPjwvaGVhZD4KPGJvZHkgc3R5
+bGU9ImZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO2NvbG9yOiMyMjIiPgo8
+aDEgc3R5bGU9ImZvbnQtc2l6ZToyMHB4Ij5BcHBsZTwvaDE+CjxwPkhpIFNhbSw8L3A+Cjx0YWJs
+ZSByb2xlPSJwcmVzZW50YXRpb24iIGNlbGxwYWRkaW5nPSI0Ij4KPHRyPjx0ZD5BcHA8L3RkPjx0
+ZCBzdHlsZT0idGV4dC1hbGlnbjpyaWdodCI+U2t5bGluZSBXZWF0aGVyPC90ZD48L3RyPgo8L3Rh
+YmxlPgo8cD5XZSd2ZSByZWZ1bmRlZCB5b3VyIHBheW1lbnQgZm9yIFNreWxpbmUgV2VhdGhlciBQ
+cmVtaXVtLjwvcD4KPHRhYmxlIHJvbGU9InByZXNlbnRhdGlvbiIgY2VsbHBhZGRpbmc9IjQiPgo8
+dHI+PHRkPlJlZnVuZCBhbW91bnQ8L3RkPjx0ZCBzdHlsZT0idGV4dC1hbGlnbjpyaWdodCI+wqUx
+LDIwMDwvdGQ+PC90cj4KPHRyPjx0ZD5PcmRlciBJRDwvdGQ+PHRkIHN0eWxlPSJ0ZXh0LWFsaWdu
+OnJpZ2h0Ij5NSFAyNFc2MVNMPC90ZD48L3RyPgo8dHI+PHRkPlJlZnVuZGVkIHRvPC90ZD48dGQg
+c3R5bGU9InRleHQtYWxpZ246cmlnaHQiPlZpc2EgZW5kaW5nIGluIDAzMTA8L3RkPjwvdHI+Cjwv
+dGFibGU+CjxwPlJlZnVuZHMgdGFrZSA1LTEwIGJ1c2luZXNzIGRheXMgdG8gYXBwZWFyLjwvcD4K
+PC9ib2R5PjwvaHRtbD4K

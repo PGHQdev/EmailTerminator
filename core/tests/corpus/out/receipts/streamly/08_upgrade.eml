@@ -1,0 +1,62 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=20230601; t=1767441031;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=Q6l37IdSEQ8hiKKSZZCJ4PGXaVueqlUtp7CBN8mHeX8=;
+	b=UW0zNUscyZGWSFNrbPgkpOm4qKrt19NnX5HsRMXazfUiZwxGtSqCHVz9/KX8kkomFVoESsF4
+	 dQlMQBySzXgL12pX2xXFVBD3sX90oSz+IxnWARVlPaZId4eIDf2FCxXqW9PBskfHdyClHhZH
+	 GOoI+Vit3oEJNnAkQ2QAnf1Zc7nMcAshP3v2S1mhHwtgOi8QeJYv09MHMmdiCQPqn/Zf4aCr
+	 js/pnsHY5Hir7IPIRSsXBAVO3oufwnx41UmeDyu8RwXr8pIl2pxjMTBiYFAZtaB3LMYrRszf
+	 qILhrTdMcofPn/92OxVd0qHM5PklkWiFleqXMh/v7jhpz2PLQmB+r+o2
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: You've upgraded to Streamly Standard Plus
+Date: Mon, 16 Feb 2026 16:38:00 +0000
+Message-ID: <040440a3fe8b0a8e.493c2b33@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_294960_33bb061ea132"
+
+------=_Part_294960_33bb061ea132
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+You moved from Streamly Standard to Streamly Standard Plus today.
+
+Streamly Standard Plus, 15 days (prorated): =E2=82=AC9
+Unused time on Streamly Standard, 15 days: -=E2=82=AC6
+Total: =E2=82=AC3
+Includes VAT (23%): =E2=82=AC0.56
+
+VAT number: IE3668997OH
+
+Payment method: Visa ending in 1881
+------=_Part_294960_33bb061ea132
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>You've upgraded to Streamly Stan=
+dard Plus</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>You moved from Streamly Standard to Streamly Standard Plus today.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Streamly Standard Plus, 15 days (prorated)</td><td style=3D"text-al=
+ign:right">=E2=82=AC9</td></tr>
+<tr><td>Unused time on Streamly Standard, 15 days</td><td style=3D"text-ali=
+gn:right">-=E2=82=AC6</td></tr>
+<tr><td>Total</td><td style=3D"text-align:right">=E2=82=AC3</td></tr>
+<tr><td>Includes VAT (23%)</td><td style=3D"text-align:right">=E2=82=AC0.56=
+</td></tr>
+</table>
+<p>VAT number: IE3668997OH</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 18=
+81</td></tr>
+</table>
+</body></html>
+------=_Part_294960_33bb061ea132--

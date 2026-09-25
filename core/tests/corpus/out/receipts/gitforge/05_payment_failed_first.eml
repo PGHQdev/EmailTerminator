@@ -1,0 +1,54 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=20230601; t=1780046538;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=TMAhXAiDMZp+Ga+RYxNTQLw0Kgfb8P3zoGfszC/ckwM=;
+	b=G2flJ1ZwEuRuQhofRfWzwGf0GO2qdsVmxE/kZV+yfjH4SveQdBFy2zew9cYLDn9goVu6/N4T
+	 BiX2r0ES6OP5ZWr9WLSH3IGdl0k/0RFS/zdhv7/PbgXez+e11KUpsDaYDD/f0m+H8S6o2zG7
+	 3pDmqcWqGZ07tMXsE7spu3NR4FY3YK7mVlYTAA7j/K9tkMNARaIMkGAoMR52DkLkJU/nlHBx
+	 1oCOlt1QpkXj9LNQafxnZ5Wms3gQi+O6IH3QTpGSASe+gcTMogw2y/OO74h2UmQq7JZmup4g
+	 eB6TKOZJz5/dgVwxGIBqtx0wl1llVzqLFzK+HR22/n4kuveO3Wy18FNN
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your GitForge payment
+Date: Fri, 01 May 2026 10:28:00 -0800
+Message-ID: <6764506c7004bffd.0a3464d7@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_278940_b4849e2bc524"
+
+------=_Part_278940_b4849e2bc524
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your payment for GitForge Team failed. Your bank declined the charge to you=
+r Visa ending in 4242.
+
+Amount due: $13.07
+Invoice number: GF-2026-32251
+
+We'll try again in 3 days. Update your payment method to keep your subscrip=
+tion.
+------=_Part_278940_b4849e2bc524
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>We couldn't process your GitForg=
+e payment</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>Your payment for GitForge Team failed. Your bank declined the charge to =
+your Visa ending in 4242.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due</td><td style=3D"text-align:right">$13.07</td></tr>
+<tr><td>Invoice number</td><td style=3D"text-align:right">GF-2026-32251</td=
+></tr>
+</table>
+<p>We'll try again in 3 days. Update your payment method to keep your subsc=
+ription.</p>
+</body></html>
+------=_Part_278940_b4849e2bc524--

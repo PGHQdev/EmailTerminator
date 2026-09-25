@@ -1,0 +1,28 @@
+Return-Path: <bounces@brightline.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=brightline.test;
+	s=pm; t=1774582960;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=CiXJsg6e7JGOYE4jDbIUC14CzdXJLb84M2VgfBHnMtg=;
+	b=UeYYdBa9wHxOT2X6RSXRzL/Rk62QZVFBn9ACamExgE+r6vcP+wE906dkxISzB7evoda2bKXc
+	 QZlu5/TNjKpvNk+4wEc6t96apKtvT+LHHwx0Ix5hsJH0jy1sNW3L4RuzG1X3KSUFNJSO6thL
+	 LfuWi/g/1V1Pg47uQtJUeyFp/NVCl0WG3scYuCF45j79cjWelMJCGx36aLsBcqAUMjPTRuI8
+	 NUH6C7jnI1cMi/ppH8Fb7zf3B4CQ8biSTX+EVsUaDSYBJP1USbI+ZK7DgdLPDkTr0ULohpOY
+	 BsFc6TlzDi4Yp7i8hmXiKaxUCkprQnTdkP/M5gL25XU615BmrGwZwIfw
+From: Brightline <billing@brightline.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Brightline VPN subscription has renewed
+Date: Tue, 03 Feb 2026 09:21:00 -0500
+Message-ID: <86d7850433a394e9.37869bcf@brightline.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your monthly subscription to Brightline VPN has renewed.
+
+Date: Feb 3, 2026
+Billing period: Feb 3 =E2=80=93 Mar 3, 2026
+Total: $9.00
+Invoice number: INV-743500
+Payment method: Visa ending in 4242

@@ -1,0 +1,27 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=pm; t=1771646658;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=yIRkFCkpy5TYOZhV/tNfN2PmdaLk/dM1OyoYJb41KOT=;
+	b=9FMcMEhu5CPs6d1XMQ36M7BLI04Epcu+7RNMLJWqYArCAV+EF91sbP7qAR4acJDaAZjtq8bK
+	 EBhB8ObR0aCAaWSds2lWh5h9T+PtMjW+71vEFNprxDVNqV2SniEMRTlx7CHEAcZ+rLjWHwiE
+	 wHiXbgqU2X921hJAac0YLb/FEB62SOyfctdl/y3rLRXKcop1H7yqPU8e80oU7WbMLiwMZCEZ
+	 5ev0fdxB9zw6O+TOlqKk7q38ObGE0CfBayVgOiN0xwb8+QtsulzuiQcMKMUtkHJ1UqX1ryyf
+	 0ASL+Hcqaa7NJZK4seORrHWxs13WYIDMkgFVqQWDSn6sYqXn9So3jol0
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to Pagewise Team Lite
+Date: Mon, 16 Mar 2026 11:24:00 +0100
+Message-ID: <a030bf5224aa047a.99adbe1f@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+You moved from Pagewise Team to Pagewise Team Lite today.
+
+New price: 6,00 € per month
+Credit added to your account: 3,00 €
+
+We'll apply the credit to your next invoices.

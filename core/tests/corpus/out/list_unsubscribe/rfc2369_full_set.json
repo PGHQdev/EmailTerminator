@@ -1,0 +1,15 @@
+{
+  "from_address": "jokafor@quill.test",
+  "from_name": "Jane Okafor",
+  "subject": "[DISCUSS] Release Quill 2.4.0",
+  "date": "2026-04-19T15:02:00Z",
+  "message_id": "02a3d077b54e97e7.06931369@mail.quill.test",
+  "list_unsubscribe": "<mailto:dev-unsubscribe@quill.apache.test>",
+  "list_unsubscribe_post": false,
+  "list_id": "dev.quill.apache.test",
+  "is_list": true,
+  "dkim_domains": [
+    "quill.test"
+  ],
+  "receipt": null
+}

@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "We couldn't process your GitForge payment",
+  "date": "2026-05-01T18:28:00Z",
+  "message_id": "6764506c7004bffd.0a3464d7@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 1307,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "GF-2026-32251"
+  }
+}

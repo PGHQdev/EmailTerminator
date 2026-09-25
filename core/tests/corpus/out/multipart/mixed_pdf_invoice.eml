@@ -1,0 +1,47 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fieldnote.test;
+	s=s1; t=1780488111;
+	h=from:to:subject:date:message-id;
+	bh=nWKzlVUN8mkJX5dHiiB9Yglu+FXMkGtTFotIJeuJeuA=;
+	b=PyabjUBSxiybk132uPHz+cjQs9jzZQ+INYyyUChUXrBgiHELrhK0jcwjEB1yzP4dM5RZbdiS
+	 b5dCn8c9s5VBgiaXj5bO4dXbQaJoAm/Dgbr/ARJHt/VDcz5OxzgOesKcq7OhNYyJppEP3Sf/
+	 1SKmGphj9xysz8wu7G7arLbSbFXPBPnJI8E94d0jeCu+EcKhzSKaRCeQyQJebCOvRGrM9Rrf
+	 iORFQ1bzQShcrKLlvKibbb6kx0Jp5fZOgJYp139sDa/FoECea0EtYGUQNkMyW8oiTHrZlTIc
+	 /XEi58UbwA9RdDG7EEHd1DzW4RGWFUgYqVEVC5VQHfniaEek4dw2er9E
+From: Fieldnote Accounting <invoices@fieldnote.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Invoice FN-2026-0042 (paid)
+Date: Wed, 03 Jun 2026 09:00:00 +0000
+Message-ID: <9d2014898a785413.b6dfc32b@fieldnote.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="----=_Part_367796_f509eafa6881"
+
+------=_Part_367796_f509eafa6881
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Thanks for your payment. The invoice is attached.
+
+Invoice: FN-2026-0042
+Amount paid: $240.00
+Paid on: Jun 3, 2026
+------=_Part_367796_f509eafa6881
+Content-Type: application/pdf; name="FN-2026-0042.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="FN-2026-0042.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAg
+MCA2MTIgNzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAw
+IFIgPj4gPj4gPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCAxMDcgPj4Kc3RyZWFtCkJUIC9G
+MSAxMSBUZiA3MiA3MjAgVGQgMTQgVEwKKEZpZWxkbm90ZSBBY2NvdW50aW5nKSAnCihJbnZvaWNl
+IEZOLTIwMjYtMDA0MikgJwooQW1vdW50IHBhaWQ6ICQyNDAuMDApICcKRVQKZW5kc3RyZWFtCmVu
+ZG9iago1IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hl
+bHZldGljYSA+PgplbmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1
+IDAwMDAwIG4gCjAwMDAwMDAwNjQgMDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAowMDAwMDAw
+MjQ3IDAwMDAwIG4gCjAwMDAwMDA0MDQgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA2IC9Sb290
+IDEgMCBSID4+CnN0YXJ0eHJlZgo0NzQKJSVFT0YK
+------=_Part_367796_f509eafa6881--

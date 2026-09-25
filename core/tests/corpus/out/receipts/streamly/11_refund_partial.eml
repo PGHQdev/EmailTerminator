@@ -1,0 +1,51 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=s1; t=1774469258;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=GTTwmy1wJqA2pwZ+S8A6YBp1YSBIP0p1bTBxHYMODWM=;
+	b=Xb3L9+mr9cU0o+hc4q+DZVG6ocTeXJUpmj6FnCzdOIU+9fATuNHMHRgJsQf3cvIJ9vhRGN68
+	 R/wxVkk9xAJahVSsvQXM6qVa4a81MuZvGxtmiVp8/STxS8q1BH0lF+pkv/IUY/+3AVFjm+c8
+	 XsEBz9BkuHY3RkVXukvequ4tHXecUJTc0nqBOqpuGOXyhquoQe4pZSkAt1BzuiRXyIkuszTN
+	 4jKyamAAF0D+HCR86W8qPfGqJkp/SPoI+FaCmarOTyD87cHYusXfzlek/7ob5Hev5JvWzP/J
+	 F6w/lXJW4UE5EXkN0P6L9WGUErGgHBHVZgwBltapGkjUWGogM/Wmrgac
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your Streamly Standard payment
+Date: Wed, 04 Feb 2026 09:25:00 +0000
+Message-ID: <ed0d6657a55ed93a.eb92d184@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_974575_292d4e658569"
+
+------=_Part_974575_292d4e658569
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We've refunded part of your payment for Streamly Standard.
+
+Original charge: =E2=82=AC12
+Refund amount: =E2=82=AC6
+Refunded to: Visa ending in 1881
+------=_Part_974575_292d4e658569
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Partial refund for your Streamly=
+ Standard payment</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>We've refunded part of your payment for Streamly Standard.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Original charge</td><td style=3D"text-align:right">=E2=82=AC12</td>=
+</tr>
+<tr><td>Refund amount</td><td style=3D"text-align:right">=E2=82=AC6</td></t=
+r>
+<tr><td>Refunded to</td><td style=3D"text-align:right">Visa ending in 1881<=
+/td></tr>
+</table>
+</body></html>
+------=_Part_974575_292d4e658569--

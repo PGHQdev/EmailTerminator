@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "You've upgraded to Tunebox Premium Plus",
+  "date": "2026-02-16T02:50:00Z",
+  "message_id": "4666f7c6e8c86822.38fce228@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "upgrade",
+    "amount_minor_units": 327,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "TB-65452319"
+  }
+}

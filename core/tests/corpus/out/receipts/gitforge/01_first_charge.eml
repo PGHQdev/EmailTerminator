@@ -1,0 +1,60 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=s1; t=1786684955;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=aL0MabZ3xYR0qlN5dDQJI2QbuRqqROlOyUBNSdYELbq=;
+	b=jNGDFQku2InqlksEt4nQdqN3nxhqvFWhyR2vyxloV9IxoNH94IkpUZQelRh2YQRfFPGeisRe
+	 fymVrLuCLMD9+Cc9nFpJ5u3bM77zTq3ce1CU95ab65Jxi2IITxjY6cDYiAThxmKAWRAJviHx
+	 TJsik9GxBT7cIceNSgwV924cOG7kB98v4qaqlODcSk4jIrRE0wQb/zsB6izKcwoqbotuIe0c
+	 kUvJ2yrNBd4ipEqWcIqlmt4VYyESvqbpZBPw5Jqy7h8EdyChYXR2GKXLCn1np2l50jRQGuyw
+	 efJBqkJzI+xNNIRS42GtSwyv8D19TW1B51TZpbP753nUCQ4SXUsSW0jb
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your GitForge receipt
+Date: Thu, 01 Jan 2026 13:58:00 -0800
+Message-ID: <d4a3ca9af3d4dd49.1e94ad3e@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_473801_eb86485ec2dc"
+
+------=_Part_473801_eb86485ec2dc
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to GitForge Team.
+
+Date: Jan 1, 2026
+Billing period: Jan 1 =E2=80=93 Feb 1, 2026
+Subtotal: $12.00
+Sales tax (NY 8.875%): $1.07
+Total: $13.07
+Invoice number: GF-2026-13418
+Payment method: Visa ending in 4242
+------=_Part_473801_eb86485ec2dc
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your GitForge receipt</title></h=
+ead>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>Thanks for subscribing to GitForge Team.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Date</td><td style=3D"text-align:right">Jan 1, 2026</td></tr>
+<tr><td>Billing period</td><td style=3D"text-align:right">Jan 1 =E2=80=93 F=
+eb 1, 2026</td></tr>
+<tr><td>Subtotal</td><td style=3D"text-align:right">$12.00</td></tr>
+<tr><td>Sales tax (NY 8.875%)</td><td style=3D"text-align:right">$1.07</td>=
+</tr>
+<tr><td>Total</td><td style=3D"text-align:right">$13.07</td></tr>
+<tr><td>Invoice number</td><td style=3D"text-align:right">GF-2026-13418</td=
+></tr>
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 42=
+42</td></tr>
+</table>
+</body></html>
+------=_Part_473801_eb86485ec2dc--

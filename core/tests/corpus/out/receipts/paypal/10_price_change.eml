@@ -1,0 +1,55 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=smtpapi; t=1772908734;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=TVn3n1RHjJZl4ONnP7zpkd1KcXdJrY8C3mBMoYlsmm2=;
+	b=ZCOJO2QGE67+6iZqGN3TMSkrA0pjhMBDt/aun2rBCKtLEM4A83vSnX2of+VNn1tJGwEY4OMd
+	 s1fIGNP3W0pApGSXF/ENFpaKVCTnyb2Z5yDvWdjPT8Ol70vtCqD1sKK5O6XVcM6N8JL1NWWw
+	 uW0s6nPm8sQCajuwWnUyEPFhGqZKOAVQf3t5Wz/rCLQCM+1SVarHg3FbEvOcEdg05LB0ONTf
+	 YELTJ/OyCC6fGFRyzkVdljj/2iGtTmqNH9isGM6tNDdiVrq/jWT5BOZtgiDpi5f8wxn/oc4V
+	 O0CEz+M90qFGWz1iQmTZkWyOSmbkQlS6JLk87FeWcFYphT/OelFDk0S8
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Northwind Hosting VPS-2 price
+Date: Thu, 02 Apr 2026 12:21:00 -0700
+Message-ID: <34c2b08e7558fa1d.7f42d0fd@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_588641_3e66ac9c8c50"
+
+------=_Part_588641_3e66ac9c8c50
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Automatic payments to Northwind Hosting
+
+We're changing the price of Northwind Hosting VPS-2.
+
+Current price: $15.00 USD per month
+New price from May 1, 2026: $18.00 USD per month
+
+You don't need to do anything. To cancel, visit your account settings.
+------=_Part_588641_3e66ac9c8c50
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>An update to your Northwind Host=
+ing VPS-2 price</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Automatic payments to Northwind Hosting</p>
+<p>We're changing the price of Northwind Hosting VPS-2.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Current price</td><td style=3D"text-align:right">$15.00 USD per mon=
+th</td></tr>
+<tr><td>New price from May 1, 2026</td><td style=3D"text-align:right">$18.0=
+0 USD per month</td></tr>
+</table>
+<p>You don't need to do anything. To cancel, visit your account settings.</=
+p>
+</body></html>
+------=_Part_588641_3e66ac9c8c50--

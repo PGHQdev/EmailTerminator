@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Your receipt from Apple.",
+  "date": "2026-02-16T00:43:00Z",
+  "message_id": "d57918b8094c7cff.7c41b914@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "upgrade",
+    "amount_minor_units": 400,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": "MA715TSPZZ"
+  }
+}

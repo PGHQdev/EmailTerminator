@@ -1,0 +1,37 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=k1; t=1777223757;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=/4Sp7pdCEivOJck6VkY/Kj39nlF2XkBDUAn3syCLBWx=;
+	b=Ke2cZdF3Kzzox+LfctbJBGPuI2FoNTGq1ynL52508GZfpr9BFQa2hev8NlMrHFyPgF1V7TSc
+	 AF4rUkhWZwO4rSI/9zLyTy2WOEoYD1yAI4A0ClcJL9YOd00RsexAHGhf0cXPEMvM6idkg+Y1
+	 /mBmzPSe4/2/0Ahtntouj1oY/m9WpmEwKRIigBl02xvGg3W1esMfI5S/62S9j26w9Oofpfo0
+	 38qMBZT3V6Gtf3bXMMFkiNUtrXwqx39WuRBAHejT8OUhznPYGjgTXLUPkSW9N6RW6W1ckSbS
+	 NUbaa7kSOLb0qvz/P9MnHed/r1WfIGowM2YNIm4v6mpmRbIjrpRVpR9z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=pm; t=1773023567;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=v1e+Utuht0Qoywb2UO/FwpAppuciCncaXoTYWjr+WGO=;
+	b=t+fWOY6nGJF6MroVdsRM+nfDOx/mECC1d4hXCv9/MRCUQd+okWuJjwLZaUEDchwt0g3A4tY/
+	 fuB/N7hzViaAWmRxXM5M2GlOYhcKJXhqpIU0W+zZC4orG/spzYqmdF+kvMFyxH0slkg8q+Ob
+	 PIFE8EXQif2DzI1HpPGzXNxOaF2Bxmv9ArWI+9MoGeqyEMOMNYbPBz9dVNThDwFuymzjLFd7
+	 LMf8QQKJ8bhjZWXhUvklk9uicxpDuYuYkhQjJNKXwtT9Mh3ossqIvtUxFf4VQpdZaCxdNQ8t
+	 D7J5nKhfMoJZwrLxWuNpBXhYoGxi3APpPCVenPf2xI4Jtwox2ZyGCoUB
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: You've upgraded to Cloudbarn Business Support Plus
+Date: Mon, 16 Feb 2026 13:34:00 +0000
+Message-ID: <2d7b152339f96970.7c092de3@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+You moved from Cloudbarn Business Support to Cloudbarn Business Support Plus today.
+
+Cloudbarn Business Support Plus, 15 days (prorated): USD 900.00
+Unused time on Cloudbarn Business Support, 15 days: -USD 617.28
+Total: USD 282.72
+Invoice ID: 9885573075
+Payment method: Mastercard ending in 5454

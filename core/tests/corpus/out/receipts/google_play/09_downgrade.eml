@@ -1,0 +1,53 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=smtpapi; t=1781433355;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=alHx5lycthGVFAoNaKOsnoyMRPnNmmvkfzFpB1jghTn=;
+	b=hwTsBzCogFT9e1s61+4zYu2jMHXyyg5sPqp6KpWmrMlMiTgNH9x8aPx6ZbORdoHPzvdlClvk
+	 0Sh7f5PQAXMaEh6EKcokHiQ8jG4HvM5ktc6Zu7yCLGTjKbceSj0dNjb/J1bbntpUkpkkP/HM
+	 v4D7xyUaXUShe25o5EzBG0JdTk3JIjcLb5lEjong1wIHgY92wdSxq+y3PPaqRe0qRKjJkUsm
+	 gEPTg80iS6LURSQHgpXRideUqCKg0dDqj6WvQ7OhXZlJC+stII8DmNw+6mw9kiA/A30kLsVY
+	 9JTRt/NmjS5HLiL40afZ5qPQf2FhYj02uMDyCugA48rKiq+6oJPUv9jP
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to Puzzle Den Premium Lite
+Date: Mon, 16 Mar 2026 06:17:00 -0500
+Message-ID: <b89a27e2741189fb.8bb0829d@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_891119_2c74168a7e1d"
+
+------=_Part_891119_2c74168a7e1d
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+You moved from Puzzle Den Premium to Puzzle Den Premium Lite today.
+
+New price: US$1.99 per month
+Credit added to your account: US$1.50
+
+We'll apply the credit to your next invoices.
+------=_Part_891119_2c74168a7e1d
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Your plan has changed to Puzzle Den Premium Lite</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>You moved from Puzzle Den Premium to Puzzle Den Premium Lite today.</p>
+<table role="presentation" cellpadding="4">
+<tr><td>New price</td><td style="text-align:right">US$1.99 per month</td></tr>
+<tr><td>Credit added to your account</td><td style="text-align:right">US$1.50</td></tr>
+</table>
+<p>We'll apply the credit to your next invoices.</p>
+</body></html>
+------=_Part_891119_2c74168a7e1d--

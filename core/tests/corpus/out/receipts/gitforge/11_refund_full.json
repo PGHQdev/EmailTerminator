@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "Your refund from GitForge",
+  "date": "2026-02-03T22:39:00Z",
+  "message_id": "7f3f33ed105e13a8.30deee18@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 1307,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "GF-2026-95198"
+  }
+}

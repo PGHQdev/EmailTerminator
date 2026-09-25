@@ -1,0 +1,27 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=pm; t=1782165844;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=tjJj1Q2Hynm0hHePjEsfmg2aYuPiHMynMesDEL7KjyH=;
+	b=9jyk9w06naBVt2aIDkVt7URaRVsFxZ13V0PZnfK2DED+Tfyn6D87ebuhfovrEM0ZU6qz3pbX
+	 q/tZb6pcBj1MlALJuvLC6KAJcddwPjq0vigD3YaGSKBFzl1sgAIO8T5NxckAjh9NVs/1TOmN
+	 h/jeCJpkz/+rADBh5wKEhcuuPJLR7CK25QNxnro6GOEw0rc5KEvyWa5bNxF2aN6UJBdqXkw2
+	 wO9uQXTSk8gbgmw6J8r4qqfpKIZYxulrbajLY/al8vyaLkvh0uEkXcoeO6lwYQyUSxRyC29b
+	 KhwtUiUrbBQ5yQ6DfIHutkQNnm9+w8adPugRdH2E2QBCdiQ++EqvQhn9
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Pagewise Team price
+Date: Thu, 02 Apr 2026 14:24:00 +0100
+Message-ID: <742f9a6a4fcef252.e839807a@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+We're changing the price of Pagewise Team.
+
+Current price: 12,00 € per month
+New price from May 1, 2026: 15,00 € per month
+
+You don't need to do anything. To cancel, visit your account settings.

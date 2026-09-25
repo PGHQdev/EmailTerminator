@@ -1,0 +1,56 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=20230601; t=1773768127;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=DrS+i7OzAAX9Ld5Kebj3U1LM0kR2ViqcmiXhpFmWpBL=;
+	b=KbZRMglYqzq4WDrWWnb05Hxz9ubwuCvKGnt6nocuCoHUbGflTxV8zQlibCsP3+B9Nv2Qr/yK
+	 wZ6yaHAHs6s6/fHF12FVnqorqR6pKXC3N29x679DkXp5gFgdmgHV1nsj17f+D3Wxkb2ahu0B
+	 zK05gkgxKXeN5LpsZcBMRnlaRl1ppVLTowVv7+hZRgj/xzXnOmAguJS8cEQwl1gRyfp0Pm0q
+	 yBfWRkgjDR2ofDLTL04AIurUd8qOkzfI47NYvAUSX0/anRFlHaY2sXFQ1c6OGjgPzZkQbLLN
+	 P9AEJzep9OKVt95vyDccThmx/wqk4WhEuWOPkctwKR2Crw9UCjORP/U5
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your Northwind Hosting VPS-2 payment
+Date: Wed, 04 Feb 2026 15:11:00 -0700
+Message-ID: <e1d5092417739ec5.8fa713dc@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_015505_d7670489db33"
+
+------=_Part_015505_d7670489db33
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Refund from Northwind Hosting
+
+We've refunded part of your payment for Northwind Hosting VPS-2.
+
+Original charge: $15.00 USD
+Refund amount: $7.50 USD
+Invoice ID: NH-03583
+Refunded to: Visa ending in 1111
+------=_Part_015505_d7670489db33
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Partial refund for your Northwin=
+d Hosting VPS-2 payment</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Refund from Northwind Hosting</p>
+<p>We've refunded part of your payment for Northwind Hosting VPS-2.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Original charge</td><td style=3D"text-align:right">$15.00 USD</td><=
+/tr>
+<tr><td>Refund amount</td><td style=3D"text-align:right">$7.50 USD</td></tr=
+>
+<tr><td>Invoice ID</td><td style=3D"text-align:right">NH-03583</td></tr>
+<tr><td>Refunded to</td><td style=3D"text-align:right">Visa ending in 1111<=
+/td></tr>
+</table>
+</body></html>
+------=_Part_015505_d7670489db33--

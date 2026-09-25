@@ -1,0 +1,13 @@
+{
+  "from_address": "post@kanzlei-weber.test",
+  "from_name": "Kanzlei Weber",
+  "subject": "Ihre Unterlagen",
+  "date": "2026-05-22T08:15:00Z",
+  "message_id": "952d9e38395f2e0c.23ce42c0@kanzlei-weber.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "Your plan has changed to Cloudbarn Business Support Lite",
+  "date": "2026-03-16T07:58:00Z",
+  "message_id": "e32c31d1ce60ed0f.c89daf33@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "downgrade",
+    "amount_minor_units": 41728,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

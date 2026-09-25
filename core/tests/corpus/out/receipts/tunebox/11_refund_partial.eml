@@ -1,0 +1,22 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=pm; t=1779203185;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=dLbRB5VBmm9YJsSwVKpYF9lLXk83K4j9fnAdd/lJxXX=;
+	b=Rmq4G2PQCig0emKhk343p7JkNL5aagVAiJzZNfLDInqrnDTnp1+zibRGos+2JTlTqhIDo7/H
+	 buRf32WufgZl2aFyADx8vzBQ7Wpw2q1c8G95GJa3YImpVp2qtjx8HBdGkKm+/1o3YTX1RFYS
+	 PeIgo//U3WzJ73fSgrcXf2FdB+7l4hmFI8gXZtAXcfSCUokSS9MggbhKqfeQ1oqkxs/fv8f+
+	 lQKNuT+flc67Z16r+0c/F/undoWACd56IhS+dpWkrqDTN8SVyG2edrv/MVpIAqK/tiXe6bUk
+	 TyJIEmm/Xysp9mc1SUy3S7fYub3cl7MOc87cZWMAjjYYprODx17gFksa
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your Tunebox Premium payment
+Date: Wed, 04 Feb 2026 19:10:00 +0800
+Message-ID: <513d724454ba266d.a3cd494b@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKV2UndmUgcmVmdW5kZWQgcGFydCBvZiB5b3VyIHBheW1lbnQgZm9yIFR1bmVib3gg
+UHJlbWl1bS4KCk9yaWdpbmFsIGNoYXJnZTogVVMkMTMuMDgKUmVmdW5kIGFtb3VudDogVVMkNi41
+NApPcmRlciBJRDogVEItMjUxNDgwOTEKUmVmdW5kZWQgdG86IEFtZXggZW5kaW5nIGluIDEwMDUK

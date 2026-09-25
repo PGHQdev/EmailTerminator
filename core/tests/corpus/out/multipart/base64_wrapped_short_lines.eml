@@ -1,0 +1,25 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=northpeak.test;
+	s=selector1; t=1786583062;
+	h=from:to:subject:date:message-id;
+	bh=VmXz5xt9wM3sLmbjryKPnAQZfST7Eq7MKaozmluT2RE=;
+	b=a4dyj1vaOWn/16+uWFBsRXV27etmIqbzVVALh6pEXy6aVzpVr5ozE2+psqbeVDdOVDtxqpoI
+	 j823jBZDk/+O9zr2w1h8IpSD6OBzgLajRFDzlBCiUXo8SB/4fyziI/zjbuy9T6w3oKHYjZNL
+	 7gkU7cypAL5dHZYYKssNYITpZN0DJFvwuG8527e1w0NaiMuchjTxkU4p3WGqV7kDhDT+TsCc
+	 iN28tn7pH+mGIvqHyIpCTX3s++0raGXOlU/8fdWV9vmmEY1yeUHh4OfY8dmftmrV2sH8nmmA
+	 uvqucmHOfq42C4a30gOgiSEzA/gihiv+sb1EG1E6V8BJJz9UJJCycBH5
+From: Northpeak Outfitters <orders@northpeak.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Northpeak order NP-100302
+Date: Sun, 14 Jun 2026 14:00:00 -0600
+Message-ID: <8a45da3e81fd0286.44669cd9@northpeak.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKVGhhbmtzIGZvciB5b3VyIG9yZGVy
+LiBXZSdsbCBlbWFpbCB5b3Ugd2hlbiBpdCBzaGlw
+cy4KCk9yZGVyIG51bWJlcjogTlAtMTAwMzAyClRy
+YWlsIFJ1bm5lciAyIChzaXplIDEwKTogJDY0LjAw
+ClNoaXBwaW5nOiBmcmVlClRvdGFsOiAkNjQuMDAK
+UGF5bWVudCBtZXRob2Q6IFZpc2EgZW5kaW5nIGlu
+IDQyNDIKCg==

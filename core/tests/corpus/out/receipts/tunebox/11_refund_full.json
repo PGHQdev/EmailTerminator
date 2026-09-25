@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "Your refund from Tunebox",
+  "date": "2026-02-03T10:20:00Z",
+  "message_id": "2226368656189bbb.4fe0d05a@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 1308,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "TB-45826918"
+  }
+}

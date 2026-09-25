@@ -1,0 +1,13 @@
+{
+  "from_address": "notices@library.test",
+  "from_name": "Town Library",
+  "subject": "Library hours this week",
+  "date": "2026-06-09T09:00:00Z",
+  "message_id": "6147d641fd16cb20.2f6b0fbf@library.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

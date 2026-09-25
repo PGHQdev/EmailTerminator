@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "Your plan has changed to GitForge Team Lite",
+  "date": "2026-03-16T14:57:00Z",
+  "message_id": "7f19cac624dc12d5.2fb2365e@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "downgrade",
+    "amount_minor_units": 400,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

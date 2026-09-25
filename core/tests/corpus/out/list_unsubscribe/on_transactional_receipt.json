@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@kiteworks.test",
+  "from_name": "Kiteworks",
+  "subject": "Your Kiteworks Studio subscription has renewed",
+  "date": "2026-04-18T14:00:00Z",
+  "message_id": "f1eeacfb48b107d5.84ecff4a@kiteworks.test",
+  "list_unsubscribe": "<https://kiteworks.test/email-preferences?u=8a1f2c>",
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "kiteworks.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 900,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "INV-670192"
+  }
+}

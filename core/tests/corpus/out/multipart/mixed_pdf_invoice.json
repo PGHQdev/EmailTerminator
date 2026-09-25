@@ -1,0 +1,21 @@
+{
+  "from_address": "invoices@fieldnote.test",
+  "from_name": "Fieldnote Accounting",
+  "subject": "Invoice FN-2026-0042 (paid)",
+  "date": "2026-06-03T09:00:00Z",
+  "message_id": "9d2014898a785413.b6dfc32b@fieldnote.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "fieldnote.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 24000,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "FN-2026-0042"
+  }
+}

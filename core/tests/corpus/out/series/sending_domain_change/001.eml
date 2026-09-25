@@ -1,0 +1,28 @@
+Return-Path: <bounces@brightline.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=brightline.test;
+	s=pm; t=1784142617;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=sxaa9rKEo5CQn76d3Dhaj/HCgyEq3JtchXnRjyTDE4A=;
+	b=WmBE5S+IiWzljOjGimyutJC3h66R8iyks58TyzG4eRE3Qjg/vnsItPAhX6pb85mlw64W1cAO
+	 MA9H0KqgPhDRbUgmQrTAaw9jc5N0ref8BgpKQhBpJKWZm7crPRIdZ56tapb+oAxuor30ulIC
+	 ePP+DQ1fIPKpJZ7O4mJuVSgdgxjsMvHQV6CfvIcVOamEhcwb5FbyPdKpnUA/Q/wzH99dUMFF
+	 thRPx7Qg0OQn5Fg8Z+9rMfk/Xl/Y/F9gNbwKleZn/E7np3iXRWsEi+YN88wgRWxZKIx/JQF9
+	 fzc/S8d/xuUip3m12R/2uwANg6DCrxZ2VithSRvSvLFpBrHYTsGSGFG8
+From: Brightline <billing@brightline.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Brightline receipt
+Date: Sat, 03 Jan 2026 08:14:00 -0500
+Message-ID: <1d9f4a3ef1c8d9fa.4767170b@brightline.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Brightline VPN.
+
+Date: Jan 3, 2026
+Billing period: Jan 3 =E2=80=93 Feb 3, 2026
+Total: $9.00
+Invoice number: INV-408549
+Payment method: Visa ending in 4242

@@ -1,0 +1,33 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=smtpapi; t=1777806630;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=I9azL6jyBVFz4HJEAP4eZtZcsFsIZCKZ6hvAtJ4CX9q=;
+	b=IzKMHG655OTZPi5ABoG+f9Pl4k+OQbVknntSKj2X4mkv62Oa57i1MTL+KjCfzIy9oDu7/Au4
+	 87QD31BSWEOvio7q/pNnNmFJcBtBVX9RHrEFGPS5zpWJLNsjQn66RH3kwWraSUuleZ+ok45t
+	 e0d5hNSG0JhUdCen+6kUYWvRNAOpMfsTDeiEPDUBAcRpWbTXq7k/F8ubX8P7OLxndsWexePA
+	 Vk7FeL3MM4aiM+Tv3k69nHKJSBEack6fG70knZqUX348kjHciGmuly77lzQL95WhnoCwr9E5
+	 /7tSqjLwXWP/LTO0tLW/f6qAoXOrcMbpzJSr7ToR2UZg37DSzrabbHxD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=smtpapi; t=1776582602;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=28yBH9NF/bHQMNNX5ZN5qfTKJMIRMXhcV7b+DBd6NjG=;
+	b=VbZAHl0NvVD79nIU0FkVeZ0pG7f4gCm/si2mY4PXVLrKd3XVToDukV+T1Anc+s6it2X5JtpJ
+	 HqwTPBJmSdsTg7EuNQv8B+9YMcWLcPrDGrtStsN4+/5HutHxyMxId3lHrx2s5Jp+oWfkgOR2
+	 Kf0AvLrNa5wjP0bmqUPbK5elyQ4gXE+PxUiX85Sdn3AP3q8KF96aL3Pb0Rgc1JSUm/Licgr/
+	 Y5VGYDtFhku2+D/onKqA0xtsExFTMJjlHo4gD39rgMwul39tO5Ag2AjF4DN5mipH1nWkyvxE
+	 oCwJ4fNmegGkiONk3YRd9NfTryjEHg/ZJAyQ2H4fBy7lVWAKANOAOQvs
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Cloudbarn Business Support subscription has been cancelled
+Date: Mon, 01 Jun 2026 11:36:00 +0000
+Message-ID: <443b0df329c4d7c5.f95b18b6@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Your subscription to Cloudbarn Business Support is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.

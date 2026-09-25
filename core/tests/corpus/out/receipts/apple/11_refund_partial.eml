@@ -1,0 +1,34 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=s1; t=1772464097;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=iFe0hZHtTSjZHhXCDPUWy4KTs0CSqLCoKraYdrThJ5h=;
+	b=eGJ0vP5M3nWeRVfBCslisT7rSjPoSLADSf8/UIjKv+8fQPaThgJcqhThh0GcT09/x6sG/pVg
+	 9zEqiIYmfPclyJ9SdsVTGYxXnLPqxWavzPDEEdcj1VPOEZOA+ZhrBJgSLs2ACD65yL0CfXs8
+	 1UzeUaZmBZi549O15lUWY654+Z7NhRNFsXT/99uQMNgJS+9nWYB54vshJ2MAXZFieo5/lVpZ
+	 U4qTUxxlMzf8N/01veGZ9yigxRLLq3Vw1iQA2tG1xpWEYzizTLhjK20S8kDoQeubl/sLmE4n
+	 TiqaaZFP4Nt5+bL79jV7ay0qQtU0dVDXdKG5aXfSSH174C6h7QECZu6M
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your Skyline Weather Premium payment
+Date: Wed, 04 Feb 2026 07:34:00 +0900
+Message-ID: <1cdf65accb942d30.f932f877@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+UGFydGlhbCByZWZ1bmQgZm9yIHlvdXIgU2t5bGluZSBXZWF0aGVyIFByZW1pdW0gcGF5bWVudDwv
+dGl0bGU+PC9oZWFkPgo8Ym9keSBzdHlsZT0iZm9udC1mYW1pbHk6SGVsdmV0aWNhLEFyaWFsLHNh
+bnMtc2VyaWY7Y29sb3I6IzIyMiI+CjxoMSBzdHlsZT0iZm9udC1zaXplOjIwcHgiPkFwcGxlPC9o
+MT4KPHA+SGkgU2FtLDwvcD4KPHRhYmxlIHJvbGU9InByZXNlbnRhdGlvbiIgY2VsbHBhZGRpbmc9
+IjQiPgo8dHI+PHRkPkFwcDwvdGQ+PHRkIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0Ij5Ta3lsaW5l
+IFdlYXRoZXI8L3RkPjwvdHI+CjwvdGFibGU+CjxwPldlJ3ZlIHJlZnVuZGVkIHBhcnQgb2YgeW91
+ciBwYXltZW50IGZvciBTa3lsaW5lIFdlYXRoZXIgUHJlbWl1bS48L3A+Cjx0YWJsZSByb2xlPSJw
+cmVzZW50YXRpb24iIGNlbGxwYWRkaW5nPSI0Ij4KPHRyPjx0ZD5PcmlnaW5hbCBjaGFyZ2U8L3Rk
+Pjx0ZCBzdHlsZT0idGV4dC1hbGlnbjpyaWdodCI+wqUxLDIwMDwvdGQ+PC90cj4KPHRyPjx0ZD5S
+ZWZ1bmQgYW1vdW50PC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPsKlNjAwPC90ZD48
+L3RyPgo8dHI+PHRkPk9yZGVyIElEPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPk1Z
+WkpTVVlWMEM8L3RkPjwvdHI+Cjx0cj48dGQ+UmVmdW5kZWQgdG88L3RkPjx0ZCBzdHlsZT0idGV4
+dC1hbGlnbjpyaWdodCI+VmlzYSBlbmRpbmcgaW4gMDMxMDwvdGQ+PC90cj4KPC90YWJsZT4KPC9i
+b2R5PjwvaHRtbD4K

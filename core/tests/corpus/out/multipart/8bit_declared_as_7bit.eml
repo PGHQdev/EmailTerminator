@@ -1,0 +1,24 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=selector1; t=1783056757;
+	h=from:to:subject:date:message-id;
+	bh=RQ7G7Da4rwJb3eHif/hCSOcEgdj/fobVMJOaDINPlLO=;
+	b=KLwUYNn38c58C5yfry/mGJ1NZrSzEiMhDrg1OiTThc1tpW0wODlMuxPngR7AKnTIaf8Rs9Fu
+	 +XA/YaZN3cfbYU8oiI0glsNtiwB4MXmwARXVWzWJNzEzO9HoHXJjjdeuXiXwvBtBkilqD8rk
+	 30Wxyc4z7oqhxN0jtngZ1M2HIbg/9M4QBR2R4BeTCShhniVu4vd8cPcONs325anrhdHCFXAv
+	 WPZM/jR4vpOfY+1LTrH3Sa1Ux6kl+n2e3/V9kO/Q9B6dxg5z9RbK586tf4gbT2sEFH9N5c74
+	 LvL/FSVBir/og2UmaR6Z230SRN3fhqQaZwPnjojmHKTe+kAvkHuMHK2T
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Pagewise receipt
+Date: Thu, 11 Jun 2026 10:00:00 +0200
+Message-ID: <3fc790e57dd4b7e6.ef230a52@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hallo Sam,
+
+thanks for your payment for Pagewise Plus.
+
+Invoice number: PW-770012
+Total: 12,00 €

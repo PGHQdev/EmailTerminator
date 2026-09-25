@@ -1,0 +1,51 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=s1; t=1784022542;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=1G4VKwyE9M/PsWAnzkHnZxesUu+V9w8lXIoz3lPQKTE=;
+	b=T9mqV+Ge7KzRjaWl1N1/TA0AYGf1ITHOTxyMnKAe7en9FUWYDQxu+ib5/4RGRwCcXbEG9rcq
+	 XHBWojaWW06M7jhTTJ7ENpeCvZkL9FuoITJSpq8StlVK34+FGXS8ITLn2u/n5J7nSIm5wuv+
+	 Egkenwbo+CykRy26wGV/LozpwpIhCfAfbfFCIHiOQFXLLgnNFAcKZWu3gh455OlNzttxEKa5
+	 2deOWrqiA+9aO9JLkJKNjgrEIXbucg0dH4Y4I6pNEia1FtJTirQ/5hp7TP41stYqk2JSrTTY
+	 2iMz3s5YdzVIejoZcobbQUJvC8bUNVPMIF15v+sXQUn2ze490Uny8KDV
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Streamly payment
+Date: Fri, 01 May 2026 10:18:00 +0000
+Message-ID: <a72561a502c3b23d.247cdd5d@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_323259_d7f4034786f2"
+
+------=_Part_323259_d7f4034786f2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your payment for Streamly Standard failed. Your bank declined the charge to=
+ your Visa ending in 1881.
+
+Amount due: =E2=82=AC12
+
+We'll try again in 3 days. Update your payment method to keep your subscrip=
+tion.
+------=_Part_323259_d7f4034786f2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>We couldn't process your Streaml=
+y payment</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>Your payment for Streamly Standard failed. Your bank declined the charge=
+ to your Visa ending in 1881.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due</td><td style=3D"text-align:right">=E2=82=AC12</td></tr>
+</table>
+<p>We'll try again in 3 days. Update your payment method to keep your subsc=
+ription.</p>
+</body></html>
+------=_Part_323259_d7f4034786f2--

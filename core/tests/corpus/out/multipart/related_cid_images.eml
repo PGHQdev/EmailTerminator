@@ -1,0 +1,59 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=news.northpeak.test;
+	s=20230601; t=1775084186;
+	h=from:to:subject:date:message-id:list-unsubscribe;
+	bh=bSWLzSepCoaVZrHwiECSGihYzvYK1BDXHfIT9fbN9eX=;
+	b=m+rg3KErl+hiX+gn7JXCxET8PJJkVORXGwO//sFJxw7B7dcgobKTRf7eAx7esDbB472rG1R/
+	 QzGCwsorvysMILawI5ybqoxDdRKgWDn0/ijWTpaJ6Q7xK4Z994tXdwpDVJrjLVEbwAYBBDFB
+	 E8mviY3u0HCGunU4gznYs/89w2YOmMY3mQotEokqSB7VGIaaI5EDnmlQWduUtVKa/DJpz2O1
+	 NurBSWG8scUmxv53gOq0RcTI3K4TdZnf9yXChtAgM4s8lsSDMzWCvlgxkxeL7uWZ8WqLBRtA
+	 tOXZBGp5qPb2CJSzrnx/Oi4PsajJNq7XHlR4o7nfDYMjaqCOrsP7gBVt
+From: Northpeak Outfitters <news@news.northpeak.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: New trail shoes are in
+Date: Tue, 02 Jun 2026 10:00:00 -0600
+Message-ID: <724565a1ba5b220b.73a0c9d5@news.northpeak.test>
+List-Unsubscribe: <https://news.northpeak.test/unsubscribe/8a1f2c>
+MIME-Version: 1.0
+Content-Type: multipart/related;
+ boundary="----=_Part_901891_6b8a3884f71e"
+
+------=_Part_901891_6b8a3884f71e
+Content-Type: multipart/alternative;
+ boundary="----=_Part_325133_e6f92a01c460"
+
+------=_Part_325133_e6f92a01c460
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+New trail shoes are in. See them on our site.
+------=_Part_325133_e6f92a01c460
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><body>
+<img src="cid:logo@northpeak.test" alt="Northpeak">
+<p>Hi Sam,</p>
+<p>New trail shoes are in.</p>
+<img src="cid:hero@northpeak.test" alt="">
+</body></html>
+------=_Part_325133_e6f92a01c460--
+------=_Part_901891_6b8a3884f71e
+Content-Type: image/png; name="logo.png"
+Content-Transfer-Encoding: base64
+Content-ID: <logo@northpeak.test>
+Content-Disposition: inline; filename="logo.png"
+
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAA
+AABJRU5ErkJggg==
+------=_Part_901891_6b8a3884f71e
+Content-Type: image/png; name="logo.png"
+Content-Transfer-Encoding: base64
+Content-ID: <hero@northpeak.test>
+Content-Disposition: inline; filename="logo.png"
+
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAA
+AABJRU5ErkJggg==
+------=_Part_901891_6b8a3884f71e--

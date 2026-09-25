@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "Final notice: your Puzzle Den Premium subscription will be suspended",
+  "date": "2026-05-08T16:35:00Z",
+  "message_id": "e969ba7704fc9c56.94cb2ab5@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 499,
+    "currency": "USD",
+    "merchant": "Puzzle Den",
+    "invoice_ref": "GPA.6153-3786-9290-13319"
+  }
+}

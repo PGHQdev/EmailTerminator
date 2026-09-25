@@ -1,0 +1,8 @@
+{
+  "group_key": "atlasbook.test",
+  "cadence": "annual",
+  "charge_count": 3,
+  "price_increase": false,
+  "latest_amount_minor_units": 9900,
+  "currency": "USD"
+}

@@ -1,0 +1,23 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=smtpapi; t=1771044449;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=wzmGaXk4+cG1qAoxa+RdqxFJvu7tbudYVHQuCf5xBxR=;
+	b=0eHvLFruC1MXq6JsHp2ajW9+bYK2VGWt1Uu+sXGS8WT1XNHCn6btIGJ/vNeRVTUoM00ZT3NW
+	 jOOOTEBm56TkKIs4M14/ebA8jaETCYUbj/CP6xpaLDAUpuUYxjr5xG8rSReFjv0dtbHZkqCD
+	 uAhXoXTfiB4If4yIxP04sRlDldB1LQcFnlu/hZXvHmctXXJD7ZVSRyVdv7pmQBf2RnOw41q0
+	 /+Qdc1GD23hlN6UCcbbIULtYFeaCjlSmhDcMIIlznTvc4Har53L5gKpzKV3zFuh7CG9K3vmV
+	 aNmA/PrQn4w2q3oUXxKusPiY1abzsWVIcjCOmb3G/4LRfXSji+pjECdi
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Tunebox Premium price
+Date: Thu, 02 Apr 2026 06:05:00 +0800
+Message-ID: <9855a9cc25b84c7e.1b752851@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKV2UncmUgY2hhbmdpbmcgdGhlIHByaWNlIG9mIFR1bmVib3ggUHJlbWl1bS4KCkN1
+cnJlbnQgcHJpY2U6IFVTJDEyLjAwIHBlciBtb250aApOZXcgcHJpY2UgZnJvbSBNYXkgMSwgMjAy
+NjogVVMkMTMuMDAgcGVyIG1vbnRoCgpZb3UgZG9uJ3QgbmVlZCB0byBkbyBhbnl0aGluZy4gVG8g
+Y2FuY2VsLCB2aXNpdCB5b3VyIGFjY291bnQgc2V0dGluZ3MuCg==

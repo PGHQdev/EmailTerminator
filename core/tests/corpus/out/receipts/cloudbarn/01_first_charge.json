@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "Your Cloudbarn receipt",
+  "date": "2026-01-01T06:17:00Z",
+  "message_id": "bab9bda71d7da91f.41645eef@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 123456,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "5686509986"
+  }
+}

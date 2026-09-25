@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@lattice.test",
+  "from_name": "Lattice Notes",
+  "subject": "Your Lattice Notes receipt",
+  "date": "2026-01-06T14:00:00Z",
+  "message_id": "eb31b5bffa2ce09a.02242839@lattice.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "lattice.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 900,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "INV-320009"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "from_address": "notices@library.test",
+  "from_name": "Town Library",
+  "subject": "Date header test",
+  "date": "1999-03-01T14:30:00Z",
+  "message_id": "732839825f72cd13.e11d40b7@library.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

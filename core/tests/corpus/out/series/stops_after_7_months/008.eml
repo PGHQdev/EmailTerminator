@@ -1,0 +1,24 @@
+Return-Path: <bounces@snapclip.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=snapclip.test;
+	s=smtpapi; t=1767598476;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=ZY9tHVRgv6XfWRLYEkepzW3NKiiM2zzIOB2ej6JrTEl=;
+	b=zae6yTn+qOW8RgadjeUE0YlPidfLlMtjC1xLcYwsGgiytsgpD8g/Yvg3RFsp6Q/lelDXOZTF
+	 hN4AbODhyO8zwXkIJCAdnaDDnODGaKq3c1LZOpt+mFw/zkWbozjMndKahnPgs0IFR5i5Pkp9
+	 mctGWuSU1SAAHJRY7nHS305hXgxfzB0Do9CSl9kPAOVr0OGJKjff8prhl1B3nToJwCz0pypB
+	 iRCdr7eppMv1LQdnYhUR3RuCrQ4UlS9i1yDfcy9oCbBb6oHYGpbX41eefZw+EGxag9tep+Oh
+	 /n6seaAryvPZxzib1P/cAS/Pu5Dmw+3cDJ8GHPBxAZbx9xOEU0KiOp17
+From: Snapclip <billing@snapclip.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Snapclip Pro subscription has been cancelled
+Date: Fri, 10 Oct 2025 08:14:00 -0800
+Message-ID: <dd67959df37ac06c.15f114c5@snapclip.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your subscription to Snapclip Pro is cancelled.
+
+You keep access until Oct 30, 2025. You won't be charged again.

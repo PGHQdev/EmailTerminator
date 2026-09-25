@@ -1,0 +1,25 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lumenfield.test;
+	s=pm; t=1770809449;
+	h=from:to:subject:date:message-id;
+	bh=U0A4+nLjdF9eQHrZwRekA51yv5RZvH/sB1engcIQ6oA=;
+	b=K8g5Ma+2H0Ndr06W8Sm3cI07qy8pnVwHck9oDiiQSlM8svlXAtR1NcccLU61LpRDyrss5r7x
+	 wZq+Nrjv98pQEVaupwWwvwwiYn8SxyJMJytNA+bUOontsyOLOqAm5knkWEV34gNJ0bbw/YQF
+	 n7JOcivJM0j+E42PIqzHd/wemDRf3cRFhY1b0lJqcdO0YE/JhcpRK+HgVKSr3jWIViEnPO1f
+	 nDGkt0DneSikgNn/eaJqxTb4WkbTYc6tYIZEcEAB95hnn+nMh0wlj/OvbHjEJHoNNr4qKI8a
+	 bHD9JiJnPd25ltg3g9EWHFCQ1yGrF8FUDAtmtqGG+4L81QSqtrPphGQ9
+From: Lumenfield Prints <orders@lumenfield.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Order confirmation ORD-50110
+Date: Mon, 03 Feb 2025 20:01:00 -0500
+Message-ID: <cceb5a91e5277a55.64552405@lumenfield.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Thanks for your order. Your order ships in 3-5 days.
+
+Order number: ORD-50110
+Total: $18.00
+Payment method: Visa ending in 4242

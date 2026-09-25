@@ -1,0 +1,34 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=selector1; t=1774547654;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=y3/b+1neO0o06zIO7g54gNyCfMq5CUk1xCgWj+1AHmK=;
+	b=6A3KsJKo4/e294wWWNi/g/zUz++YlCJUM1J1p/o8d7BzqMsPE/c810n7ho9LCBR8I5S8AAvu
+	 bVPmNS6HFsD+6rpmWzLXbmhfJC/BIRFPlZw9zOL8xglb9lNDjpq6PTFXgMUq62Le3N1jeufJ
+	 +wL1Y4TKsyrGifAlCzXoRyYSbRe8U/Df+G+yg5sQlsynEWn0lvCx9nFJP3Y81LyHwL6Yt4PB
+	 zKhIj8t9Bnej/oFUzscJtFnYiHWvc4lb/oVPKzxZZGBYW1aw51ZMUpebdjGt788SNYqOc+fp
+	 dt1SuGg0UAROn9dGrvpbSkMWMrqX2VmRjAu6Yj+qwQW+A0SU9I/iwiKQ
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your receipt from Apple.
+Date: Thu, 01 Jan 2026 09:49:00 +0900
+Message-ID: <a279d74c2db7872b.fdb0a09e@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+WW91ciByZWNlaXB0IGZyb20gQXBwbGUuPC90aXRsZT48L2hlYWQ+Cjxib2R5IHN0eWxlPSJmb250
+LWZhbWlseTpIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtjb2xvcjojMjIyIj4KPGgxIHN0eWxl
+PSJmb250LXNpemU6MjBweCI+QXBwbGU8L2gxPgo8cD5IaSBTYW0sPC9wPgo8dGFibGUgcm9sZT0i
+cHJlc2VudGF0aW9uIiBjZWxscGFkZGluZz0iNCI+Cjx0cj48dGQ+QXBwPC90ZD48dGQgc3R5bGU9
+InRleHQtYWxpZ246cmlnaHQiPlNreWxpbmUgV2VhdGhlcjwvdGQ+PC90cj4KPC90YWJsZT4KPHA+
+VGhhbmtzIGZvciBzdWJzY3JpYmluZyB0byBTa3lsaW5lIFdlYXRoZXIgUHJlbWl1bS48L3A+Cjx0
+YWJsZSByb2xlPSJwcmVzZW50YXRpb24iIGNlbGxwYWRkaW5nPSI0Ij4KPHRyPjx0ZD5EYXRlPC90
+ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPkphbiAxLCAyMDI2PC90ZD48L3RyPgo8dHI+
+PHRkPkJpbGxpbmcgcGVyaW9kPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPkphbiAx
+IOKAkyBGZWIgMSwgMjAyNjwvdGQ+PC90cj4KPHRyPjx0ZD5Ub3RhbDwvdGQ+PHRkIHN0eWxlPSJ0
+ZXh0LWFsaWduOnJpZ2h0Ij7CpTEsMjAwPC90ZD48L3RyPgo8dHI+PHRkPk9yZGVyIElEPC90ZD48
+dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPk1DS1dERlJURTE8L3RkPjwvdHI+Cjx0cj48dGQ+
+UGF5bWVudCBtZXRob2Q8L3RkPjx0ZCBzdHlsZT0idGV4dC1hbGlnbjpyaWdodCI+VmlzYSBlbmRp
+bmcgaW4gMDMxMDwvdGQ+PC90cj4KPC90YWJsZT4KPC9ib2R5PjwvaHRtbD4K

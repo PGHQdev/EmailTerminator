@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@orbitmaps.test",
+  "from_name": "Orbit Maps",
+  "subject": "Your Orbit Maps receipt",
+  "date": "2026-01-09T14:00:00Z",
+  "message_id": "b4def7903af05acd.e5f77162@orbitmaps.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "sendgrid.net"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 900,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "INV-232618"
+  }
+}

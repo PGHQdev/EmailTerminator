@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@pagewise.test",
+  "from_name": "Pagewise",
+  "subject": "Final notice: your Pagewise Team subscription will be suspended",
+  "date": "2026-05-08T18:51:00Z",
+  "message_id": "b1e8fe382853c667.b5fed50d@pagewise.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "pagewise.test"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 1200,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": "PW-159703"
+  }
+}

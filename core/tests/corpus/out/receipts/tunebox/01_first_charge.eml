@@ -1,0 +1,23 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=20230601; t=1785018552;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=4khtnXo0Cv5ADHEo50DTDf1h+7ZxZi8wz4cRubIRCgD=;
+	b=tKPZq1gpuC04qE3/DcUHN5AvJLhcP/GB9NYf+VeDUv2/i5zqNJtLL6YOsNd76F0mY4C1gFjb
+	 b4bodowpYOAQDYZvij+B+CuXHwtKOMmcbhHjqyqjjmwOR3uNADQLU01IYJQy4Jzh7ix+GWDq
+	 Ilkf8DIpfMI1PBW98YOPBsrxEe/AIlCfDKkFpjIwVPc5hubdR7h+agZxBE8Mp2m5Tpf65Cff
+	 8uFKUsUP8gHthrc2oYPGfu857+JUrPQSJA5aRd9zeNNc/7TfiPY+cvJ71Ag7mmQ4lCBoKSWE
+	 ct/FXgsnk1l1BXC7lgqIvmGRsB68wkfkQPaquJGHBpdYTxm+UH2a7XyI
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Tunebox receipt
+Date: Thu, 01 Jan 2026 10:29:00 +0800
+Message-ID: <bb837af07cedda84.c38ff0a6@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKVGhhbmtzIGZvciBzdWJzY3JpYmluZyB0byBUdW5lYm94IFByZW1pdW0uCgpEYXRl
+OiBKYW4gMSwgMjAyNgpCaWxsaW5nIHBlcmlvZDogSmFuIDEg4oCTIEZlYiAxLCAyMDI2ClN1YnRv
+dGFsOiBVUyQxMi4wMApHU1QgKDklKTogVVMkMS4wOApUb3RhbDogVVMkMTMuMDgKT3JkZXIgSUQ6
+IFRCLTE2MTk2MTkzClBheW1lbnQgbWV0aG9kOiBBbWV4IGVuZGluZyBpbiAxMDA1Cg==

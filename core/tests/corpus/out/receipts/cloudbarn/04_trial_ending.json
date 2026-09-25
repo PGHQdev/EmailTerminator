@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "Your Cloudbarn Business Support trial ends in 3 days",
+  "date": "2025-12-29T06:34:00Z",
+  "message_id": "5e6b71f16251f9d8.35c0ffca@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "trial_ending",
+    "amount_minor_units": 123456,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

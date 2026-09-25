@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "Your Tunebox receipt",
+  "date": "2026-01-01T02:29:00Z",
+  "message_id": "bb837af07cedda84.c38ff0a6@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1308,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "TB-16196193"
+  }
+}

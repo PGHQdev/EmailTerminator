@@ -1,0 +1,23 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xn--caf-crme-60ag.test;
+	s=smtpapi; t=1781386221;
+	h=from:to:subject:date:message-id;
+	bh=P+FfC6wypzlaw5Bjnh5cM5INGwHe/oGTxeNlUcu0MVE=;
+	b=yYUOGqsZ2mTqum8nzE9QUXD1J6CNepa3EODyR8Hiop2MUSQrnPyv9IEX6Xr3kYeCXE85lWPN
+	 TKe8T63MhKkz1fBSOSenHI5HaMf/hYVTsVsh2SvmehU23FBwVI6oAHPdInvINDNKe3QVTr3K
+	 tZnYHg/yv94WshVp+G2rhcvXprRDHMYMw6AZmvIfjr2qbJHaKmW8n3lR1BAwUl+HEjyo6HgV
+	 ZCHoDdwToH8njGsFfD7pwIUuH5WmPKpkW35qUPQXe9O4W6kcrgdDQ7do8h/a5zjJ0rW3QKIz
+	 RQp/73+YHfTOEZrYlX4svG/ooWwFSkXPYjUWygiW8gL5g0RiGBUuC0N8
+From: Café Crème <nouvelles@café-crème.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Our spring menu is here
+Date: Sat, 21 Mar 2026 10:00:00 +0100
+Message-ID: <100de7e63dda27a5.646c1919@xn--caf-crme-60ag.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Bonjour Sam,
+
+Our spring menu starts on Monday.
+
+Café Crème

@@ -1,0 +1,15 @@
+{
+  "from_address": "newsletter@fernleaf.test",
+  "from_name": "Fernleaf Journal",
+  "subject": "This week at Fernleaf: spring planting",
+  "date": "2026-03-19T11:00:00Z",
+  "message_id": "c61ef2f58911d176.49477608@email.amazonses.com",
+  "list_unsubscribe": "<https://fernleaf.test/unsubscribe?u=sam%40inbox.test&t=8a1f>",
+  "list_unsubscribe_post": true,
+  "list_id": null,
+  "is_list": true,
+  "dkim_domains": [
+    "amazonses.com"
+  ],
+  "receipt": null
+}

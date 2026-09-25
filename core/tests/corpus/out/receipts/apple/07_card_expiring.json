@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Your card on file expires soon",
+  "date": "2026-05-19T22:32:00Z",
+  "message_id": "9ba0bcd2e37c5b88.c91d2ec5@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "card_expiring",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

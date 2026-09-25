@@ -1,0 +1,13 @@
+{
+  "from_address": "hello@mailroom.test",
+  "from_name": "Mailroom",
+  "subject": "Save 50% =? today only",
+  "date": "2026-05-16T12:00:00Z",
+  "message_id": "b1b447414844b57a.6a6a3b85@mailroom.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [],
+  "receipt": null
+}

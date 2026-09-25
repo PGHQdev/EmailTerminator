@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "Your Cloudbarn Business Support subscription has renewed",
+  "date": "2026-02-01T13:57:00Z",
+  "message_id": "0c4bfa7532b6e201.67e937f5@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 123456,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "8624594978"
+  }
+}

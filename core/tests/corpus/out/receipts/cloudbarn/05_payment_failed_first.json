@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "We couldn't process your Cloudbarn payment",
+  "date": "2026-05-01T06:51:00Z",
+  "message_id": "73852c4ff3b7d6c0.18d51e3b@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 123456,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "3332777575"
+  }
+}

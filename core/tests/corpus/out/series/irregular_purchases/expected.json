@@ -1,0 +1,8 @@
+{
+  "group_key": "lumenfield.test",
+  "cadence": "irregular",
+  "charge_count": 4,
+  "price_increase": false,
+  "latest_amount_minor_units": 4500,
+  "currency": "USD"
+}

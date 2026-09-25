@@ -1,0 +1,21 @@
+{
+  "from_address": "service@paypal.com",
+  "from_name": "PayPal",
+  "subject": "Receipt for your payment to Northwind Hosting",
+  "date": "2026-02-01T14:14:00Z",
+  "message_id": "c05b7b8951c2e929.ce5943bd@paypal.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paypal.com"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1500,
+    "currency": "USD",
+    "merchant": "Northwind Hosting",
+    "invoice_ref": "NH-13860"
+  }
+}

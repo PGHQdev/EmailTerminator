@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "You've upgraded to Cloudbarn Business Support Plus",
+  "date": "2026-02-16T13:34:00Z",
+  "message_id": "2d7b152339f96970.7c092de3@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "upgrade",
+    "amount_minor_units": 28272,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "9885573075"
+  }
+}

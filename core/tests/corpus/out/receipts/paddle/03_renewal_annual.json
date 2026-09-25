@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "Your annual Inkwell Fonts Studio renewal",
+  "date": "2026-06-15T07:09:00Z",
+  "message_id": "b79b8d6c07e5e65d.fb213f3e@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 14400,
+    "currency": "USD",
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": "340850467"
+  }
+}

@@ -1,0 +1,28 @@
+Return-Path: <bounces@lattice.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lattice.test;
+	s=selector1; t=1774951026;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=PF5tOY4PLieZjAnHHNcJlL7uCiY9sFysBIsu/ldb2FL=;
+	b=LgY1zau29ZSsP8U0dbGw8heypi7dROF5hOfQD3s9tNBF5ybu3GJmRkJ8AlGGSATPVm0gn5Pz
+	 bvopNeIq+6nRqnU1E6MCl8Rvn4xpR/pRXI5P5dF7jXcPyaPfVJuB4NYTpJpHICfIGQolLQej
+	 P3VqsA7YdjUN4kKyPofIthDZzEVBGBK3mgjRkwKvxwEMXzF4ogPbTNww01ZcYz7vLZBSHncn
+	 beRSEVIpKaddtO1C/MXyt0tF3BsdGpewpy4b1fFEfYrYACRML9n81XQLSx25Dh3pk1uUr9r5
+	 O7sheFC8z9QqoI1dk2C4Gt1MJoMWHoZ78crlsxunfONnrmKKjxnKA2JR
+From: Lattice Notes <receipts@lattice.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Lattice Notes receipt
+Date: Tue, 06 Jan 2026 09:00:00 -0500
+Message-ID: <eb31b5bffa2ce09a.02242839@lattice.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Lattice Notes Plus.
+
+Date: Jan 6, 2026
+Billing period: Jan 6 =E2=80=93 Feb 6, 2026
+Total: $9.00
+Invoice number: INV-320009
+Payment method: Visa ending in 4242

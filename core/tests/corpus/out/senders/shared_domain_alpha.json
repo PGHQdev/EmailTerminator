@@ -1,0 +1,15 @@
+{
+  "from_address": "alphaweekly@letterpost.test",
+  "from_name": "Alpha Weekly",
+  "subject": "Issue 41: the state of home robotics",
+  "date": "2026-03-20T07:30:00Z",
+  "message_id": "a2acc7da17138c9e.1e41e90f@letterpost.test",
+  "list_unsubscribe": "<https://letterpost.test/alphaweekly/unsubscribe?r=sam>, <mailto:alphaweekly+unsubscribe@letterpost.test>",
+  "list_unsubscribe_post": false,
+  "list_id": "alphaweekly.letterpost.test",
+  "is_list": true,
+  "dkim_domains": [
+    "letterpost.test"
+  ],
+  "receipt": null
+}

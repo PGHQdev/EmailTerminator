@@ -1,0 +1,57 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=s1; t=1771948564;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=HSn6mFUegwf7ypLaKMgVj8r7Mp607gRHQz88JJOLWk5=;
+	b=g/ZqKuv3IeMPym9R2DJdbfCkNAR19IwEgJ0axtZtLVqeC6z3Ul3It1J8HLAAJYiTUQZ1wlBp
+	 VCuOfVfJzBFlq7+34CV9F62sVwFGfaIPTeejxxoGizdBDhXZAgr+jqMbcHnjrd/DmG0cN/b3
+	 t6Bn8jMxPQBIn+MjH9ymMllkfA+2Eqg3/TJIli88ZLPRboM3ue8W0e1rx+lL8CeozRTWvcJK
+	 h+dnUTiYItanRav33HzUXFw51U7Zyc7byvsAM/5XjDWXWRmsS0cLvo75VVRDbFZlx/QxPu7j
+	 64KlwVUO78+rAHuIS0pWlh7GMXjgEMMV4Q/M5NDbgEdb9ndid6Aa2Cjs
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=selector1; t=1775543905;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=9cERFlec80tlOOjsM5Vn3vv3qeuQV0KQdPYwndtWtH0=;
+	b=NQWeIeFSDiMPVOveWlw23VOyQhjVHg7e5DJ0Nmw/0V6VEY4ijKH6ZQuEgBK52W7Qqrrt1cI3
+	 dp33rukbzuB95pLP6IxlIukCbQMng0mdLoIM+p2/CtzvKN2B2/pre82k3BNZrsuVgrh03OLF
+	 y6DhHSPJ9G0K/O1G9qU91bNfPIXvZUi0FCa2C7njOyyF6fAWn57UfuH7OIk3hzogSBtovxOm
+	 nXPgIbwGjx+IKwTDyB26iusGyi1p5zKTdY4LTh+nAugqnTjINw1M347J+MjWWIYctJTRi8gA
+	 QxSFtC4shfsl9L+/OefW2QA+ycAduca5JyefdGZn5Nu49bTphs4C6Cj4
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Cloudbarn invoice available
+Date: Mon, 02 Feb 2026 08:00:00 +0000
+Message-ID: <46fc6ea3b1b726aa.9ee33b39@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="----=_Part_468677_5b801facb15b"
+
+------=_Part_468677_5b801facb15b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+Your Cloudbarn invoice for January 2026 is attached. You can also view
+it in the Billing console.
+
+Cloudbarn Billing
+------=_Part_468677_5b801facb15b
+Content-Type: application/pdf; name="2620703817.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="2620703817.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAg
+MCA2MTIgNzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAw
+IFIgPj4gPj4gPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCAxNTQgPj4Kc3RyZWFtCkJUIC9G
+MSAxMSBUZiA3MiA3MjAgVGQgMTQgVEwKKENsb3VkYmFybiBXZWIgU2VydmljZXMpICcKKEludm9p
+Y2UgSUQ6IDI2MjA3MDM4MTcpICcKKEJpbGxpbmcgcGVyaW9kOiAwMS8wMS8yMDI2IC0gMDIvMDEv
+MjAyNikgJwooVG90YWw6IFVTRCAxLDIzNC41NikgJwpFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBv
+YmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhID4+
+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMTUgMDAwMDAgbiAK
+MDAwMDAwMDA2NCAwMDAwMCBuIAowMDAwMDAwMTIxIDAwMDAwIG4gCjAwMDAwMDAyNDcgMDAwMDAg
+biAKMDAwMDAwMDQ1MSAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDYgL1Jvb3QgMSAwIFIgPj4K
+c3RhcnR4cmVmCjUyMQolJUVPRgo=
+------=_Part_468677_5b801facb15b--

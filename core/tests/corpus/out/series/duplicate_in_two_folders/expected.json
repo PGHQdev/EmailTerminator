@@ -1,0 +1,8 @@
+{
+  "group_key": "quillpad.test",
+  "cadence": "monthly",
+  "charge_count": 6,
+  "price_increase": false,
+  "latest_amount_minor_units": 500,
+  "currency": "USD"
+}

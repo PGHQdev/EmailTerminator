@@ -1,0 +1,61 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=20230601; t=1772068219;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=MYi0IX+dfcHaHG7VYHn3G+wXyZ+jDP3ojd2L5IWCBgB=;
+	b=7eJiPiFT97xIL9uFky2DvTw4o/hXfyFATv9hYUXgVMmeLDN92Usqss6J4OODI332FVARnLXn
+	 r0iNtQ3sucNUtJyHWJt2Ae3pHwnnc4+IqH/rIt6KkxMz8qlYcvqXm/V9Lmxgu8RYfY3euxID
+	 AEthnUbPYsQR2YA42mUFYvU97Ww8F+2M9s++8RClARp7UWKBjCx6VQASNsBcL26lQXO95WF+
+	 +DCXJtmwcPQBG90CdCDFFdiLYRE/gZD8MJEqA6qBW1r8DJuGVjks7b6PMmK2NlzfXV8OjNKx
+	 esruydmtxH2DDKc6kKRhgs15phqTvjwFlEoEjvn+VgSoQuwwcIFuA1MZ
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: You've upgraded to GitForge Team Plus
+Date: Mon, 16 Feb 2026 18:12:00 -0800
+Message-ID: <bdb6cdf2a80f99bf.fc5d19ab@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_293597_ab521ea35b48"
+
+------=_Part_293597_ab521ea35b48
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+You moved from GitForge Team to GitForge Team Plus today.
+
+GitForge Team Plus, 15 days (prorated): $10.50
+Unused time on GitForge Team, 15 days: -$6.00
+Subtotal: $4.50
+Sales tax (NY 8.875%): $0.40
+Total: $4.90
+Invoice number: GF-2026-36522
+Payment method: Visa ending in 4242
+------=_Part_293597_ab521ea35b48
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>You've upgraded to GitForge Team=
+ Plus</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>You moved from GitForge Team to GitForge Team Plus today.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>GitForge Team Plus, 15 days (prorated)</td><td style=3D"text-align:=
+right">$10.50</td></tr>
+<tr><td>Unused time on GitForge Team, 15 days</td><td style=3D"text-align:r=
+ight">-$6.00</td></tr>
+<tr><td>Subtotal</td><td style=3D"text-align:right">$4.50</td></tr>
+<tr><td>Sales tax (NY 8.875%)</td><td style=3D"text-align:right">$0.40</td>=
+</tr>
+<tr><td>Total</td><td style=3D"text-align:right">$4.90</td></tr>
+<tr><td>Invoice number</td><td style=3D"text-align:right">GF-2026-36522</td=
+></tr>
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 42=
+42</td></tr>
+</table>
+</body></html>
+------=_Part_293597_ab521ea35b48--

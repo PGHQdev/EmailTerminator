@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "Your plan has changed to Tunebox Premium Lite",
+  "date": "2026-03-16T06:55:00Z",
+  "message_id": "09f5acc6fd11daa7.6e22727b@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "downgrade",
+    "amount_minor_units": 300,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

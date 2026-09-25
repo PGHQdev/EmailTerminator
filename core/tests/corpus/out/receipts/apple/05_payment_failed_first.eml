@@ -1,0 +1,33 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=20230601; t=1781631126;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=K7B7p6QkZ3LGJdRdA4sCjXAzFASY8M2jUl1cUFkKnp/=;
+	b=S3AgXfXWZK0F6SrYKQW29p60LCBYdAaobLIEKGd/jLQ0PovBfiD4EQSAOMXF4zxnJRn/VXZl
+	 2PcFsEOPo54/h6sVx7c1z0kdPWi+/EWdKur5Y2Xc3ZpLEDZUUgsOqJJMs34raKvxS4aOlV9T
+	 F0g65RDy55A+m/qT2JRPKWNKgxAiBiiZsI3MW7S2t4TL3jMxIbJUMmSDc6QRYcZIaubfvqvf
+	 FLcoUnAnvNzXO6PMiFwYx4XWw7B7AxHRw7CjtQ+YkUc/tPWFHBme5TBoGVBI6kqeaRZ2PmpZ
+	 SYjenK8Msh8s8uM8YkHHXUA5YZFg4kG9ZrhHkILr3pOU8Vx9IRr4l2Jf
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Skyline Weather payment
+Date: Fri, 01 May 2026 13:37:00 +0900
+Message-ID: <109be569eefa4029.37bb0981@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+V2UgY291bGRuJ3QgcHJvY2VzcyB5b3VyIFNreWxpbmUgV2VhdGhlciBwYXltZW50PC90aXRsZT48
+L2hlYWQ+Cjxib2R5IHN0eWxlPSJmb250LWZhbWlseTpIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJp
+Zjtjb2xvcjojMjIyIj4KPGgxIHN0eWxlPSJmb250LXNpemU6MjBweCI+QXBwbGU8L2gxPgo8cD5I
+aSBTYW0sPC9wPgo8dGFibGUgcm9sZT0icHJlc2VudGF0aW9uIiBjZWxscGFkZGluZz0iNCI+Cjx0
+cj48dGQ+QXBwPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPlNreWxpbmUgV2VhdGhl
+cjwvdGQ+PC90cj4KPC90YWJsZT4KPHA+WW91ciBwYXltZW50IGZvciBTa3lsaW5lIFdlYXRoZXIg
+UHJlbWl1bSBmYWlsZWQuIFlvdXIgYmFuayBkZWNsaW5lZCB0aGUgY2hhcmdlIHRvIHlvdXIgVmlz
+YSBlbmRpbmcgaW4gMDMxMC48L3A+Cjx0YWJsZSByb2xlPSJwcmVzZW50YXRpb24iIGNlbGxwYWRk
+aW5nPSI0Ij4KPHRyPjx0ZD5BbW91bnQgZHVlPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmln
+aHQiPsKlMSwyMDA8L3RkPjwvdHI+Cjx0cj48dGQ+T3JkZXIgSUQ8L3RkPjx0ZCBzdHlsZT0idGV4
+dC1hbGlnbjpyaWdodCI+TTExSk1GRlgzWjwvdGQ+PC90cj4KPC90YWJsZT4KPHA+V2UnbGwgdHJ5
+IGFnYWluIGluIDMgZGF5cy4gVXBkYXRlIHlvdXIgcGF5bWVudCBtZXRob2QgdG8ga2VlcCB5b3Vy
+IHN1YnNjcmlwdGlvbi48L3A+CjwvYm9keT48L2h0bWw+Cg==

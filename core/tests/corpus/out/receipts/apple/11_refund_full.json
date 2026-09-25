@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Your refund from Skyline Weather",
+  "date": "2026-02-02T23:38:00Z",
+  "message_id": "205f56da0cfc4550.acd148d6@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 1200,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": "MHP24W61SL"
+  }
+}

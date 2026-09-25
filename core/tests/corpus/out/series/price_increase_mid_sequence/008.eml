@@ -1,0 +1,28 @@
+Return-Path: <bounces@brewbox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=brewbox.test;
+	s=pm; t=1771643218;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=IeMU1fKB3329sCi4jc8P9iAhTRO+5OnuOIfCcLIbf4D=;
+	b=XQE5EN50ypUdMIjFta37BMfy0TNZm/0V1iCg0Df5KU9t9xTYfPFZUdJYyvQuqBRDHMxsUvcZ
+	 dOTFpcCRqrQ7sGCVNleHnGTQiCShIEKKxxseG7fwMiGZmkWCkrH4vkpwCXHogPftmyutfVh2
+	 KpGVT28ESpDEQtIw6nlsafqE6ly2+WDUGSjd3aYpgU9EEyKo5zuego0l+CHxcboICQiJLxuR
+	 YgGxL60mEMbMVDUUvgSA67R8i8MXJ2ESjnBCDL3y08xehMebZjlQd/hM6ZjI8DrYf+nQXqJn
+	 9KCzYKkWhUfuzgDa6r0hItqtrQgzyN8wcR8exX4KQJAik8t74Tv7CNfn
+From: Brewbox <billing@brewbox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Brewbox Coffee Club subscription has renewed
+Date: Thu, 20 Nov 2025 12:42:00 -0500
+Message-ID: <180a66116ee536c3.9069efa1@brewbox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your monthly subscription to Brewbox Coffee Club has renewed.
+
+Date: Nov 20, 2025
+Billing period: Nov 20 =E2=80=93 Dec 20, 2025
+Total: $12.00
+Invoice number: INV-760484
+Payment method: Visa ending in 4242

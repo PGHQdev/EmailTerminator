@@ -1,0 +1,22 @@
+{
+  "from_address": "no-reply@billing.cloudbarn.test",
+  "from_name": "Cloudbarn Billing",
+  "subject": "Your refund from Cloudbarn",
+  "date": "2026-02-03T15:59:00Z",
+  "message_id": "73dec865236d8110.7192ddfc@billing.cloudbarn.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "billing.cloudbarn.test",
+    "amazonses.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 123456,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "1523108583"
+  }
+}

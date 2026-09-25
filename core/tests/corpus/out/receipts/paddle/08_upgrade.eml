@@ -1,0 +1,35 @@
+Return-Path: <bounces@mail.paddle.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paddle.com;
+	s=20230601; t=1775168102;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=miQUOJgvufeOrxR5jKjbKDayBXHHGPVfepLjt7aNscQ=;
+	b=gwVQwVCCg1DLpQg1lUlzfO9AJX5lljdCz0AKdIbE9CaTC1RzoKtdpAXRaBf3XDtwQ5aBb1cq
+	 rjKJ+2n0O0lO+WAkb9j39dsO9mu3I+CO3csexchyKNg6ihYIOHTS4hJS+avuDHaOb2lL6N8M
+	 lL+gGKix2EgoJcF5fx3/tI0Pi+zdBXNL6PJvxBB9bqM7bKH8Huv5RV2Fap0TFPnrkysJQTGK
+	 K5oHho00JlOdBUrGodrPmn2T40S8FyvM6PGreRC93SL9CsIOR5tvWHZALm0WYRbgM2A02wax
+	 n3Ty3sODNpbnuyQ4Wh/fpyFT3rNDCgnyZEkV0/OMoxr5VeBbJWnNlmzO
+From: Paddle <help@paddle.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: You've upgraded to Inkwell Fonts Studio Plus
+Date: Mon, 16 Feb 2026 17:24:00 +0000
+Message-ID: <29979bc6f70c3528.d065514f@paddle.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for your purchase from Inkwell Fonts.
+
+You moved from Inkwell Fonts Studio to Inkwell Fonts Studio Plus today.
+
+Inkwell Fonts Studio Plus, 15 days (prorated): 12.00 USD
+Unused time on Inkwell Fonts Studio, 15 days: -6.00 USD
+Subtotal: 6.00 USD
+VAT (20%): 1.20 USD
+Total: 7.20 USD
+
+VAT number: GB 123 4567 89
+
+Order number: 741452222
+Payment method: Visa ending in 1111

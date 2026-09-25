@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@pagewise.test",
+  "from_name": "Pagewise",
+  "subject": "Your plan has changed to Pagewise Team Lite",
+  "date": "2026-03-16T10:24:00Z",
+  "message_id": "a030bf5224aa047a.99adbe1f@pagewise.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "pagewise.test"
+  ],
+  "receipt": {
+    "kind": "downgrade",
+    "amount_minor_units": 300,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

@@ -1,0 +1,24 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=k1; t=1767854495;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=1+qIx/WDh9vsoLS97xOtYt0aD13viVvOikl0bQWFw5w=;
+	b=7NsNRATJU6fQeClxhGMg5akmDwLMZAbd6WANGkTSOmaQp7y9OAFQHhrfohYMmtRPJamecqxc
+	 mssM/xL15pLppJw7KMAXzPsYtdgmng4fFtIXWEkPk0YYGt5yW7Ut7Oht+JF/LFo67Cus5Mut
+	 JaEd/KrkbX+nyPfOJ8FCWn3zognu1iBwBfYCfURTggWHtB4wvOs31lk/Hs4eyYsJN95MBq3K
+	 unVRTQ0gXNKphrrl1duyDsYYetxJwAIPEvY6yNcpdVEb5xEWopXpUvdSTEX+/jIcajmDQd/7
+	 vwbA3KeK1Stc0JAh0e+mN4aAbFwyTR6DgWvvda/D8WO0Ue2/KXycyulE
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Tunebox Premium subscription has renewed
+Date: Sun, 01 Feb 2026 08:41:00 +0800
+Message-ID: <d91e60f836ec1c19.f607a943@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKWW91ciBtb250aGx5IHN1YnNjcmlwdGlvbiB0byBUdW5lYm94IFByZW1pdW0gaGFz
+IHJlbmV3ZWQuCgpEYXRlOiBGZWIgMSwgMjAyNgpCaWxsaW5nIHBlcmlvZDogRmViIDEg4oCTIE1h
+ciAxLCAyMDI2ClN1YnRvdGFsOiBVUyQxMi4wMApHU1QgKDklKTogVVMkMS4wOApUb3RhbDogVVMk
+MTMuMDgKT3JkZXIgSUQ6IFRCLTExOTY0NTY2ClBheW1lbnQgbWV0aG9kOiBBbWV4IGVuZGluZyBp
+biAxMDA1Cg==

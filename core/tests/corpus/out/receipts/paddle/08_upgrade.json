@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "You've upgraded to Inkwell Fonts Studio Plus",
+  "date": "2026-02-16T17:24:00Z",
+  "message_id": "29979bc6f70c3528.d065514f@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "upgrade",
+    "amount_minor_units": 720,
+    "currency": "USD",
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": "741452222"
+  }
+}

@@ -1,0 +1,82 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=northpeak.test;
+	s=pm; t=1770439879;
+	h=from:to:subject:date:message-id;
+	bh=IuMtCL3rbqY60IJ48fOosOz5NRTWDRU52WU+alzZZZF=;
+	b=u5V9yy76SQA5BvJgCdfAo44Jqg+fBjg5wuYyXWHyHW5qvEOtJckt/dcwntbTMce0v42SsGaU
+	 VE1cctcrSf9y9wN8jZbyZLv7IaaRKbB5suM7bGhsknbylsi7LtJEMRpSXDEDeh+0+ukG3Kbv
+	 nzL5lpVn1ihdxDx8nmKQjorn8qv8dCCeuMpavXTSODVJLBeE2dtg43muFnMlynW63JQZYjzr
+	 2trMN28eMYPi3B9dSVPmAmvsyR81A9PF37X6eo6PXtY+IpwjjjwCT6zAMb/BDSa+Wsohv/0S
+	 d70j06905Dlc0DtmkMHPupHfrz1aNb1SaCpOTEhfPqRgmKD9lQM1Evx6
+From: Northpeak Outfitters <orders@northpeak.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Northpeak order NP-100251
+Date: Thu, 04 Jun 2026 14:00:00 -0600
+Message-ID: <eef26557e5dc9e82.2a3feee2@northpeak.test>
+MIME-Version: 1.0
+Content-Type: multipart/related;
+ boundary="----=_Part_693008_583b647ad637"
+
+------=_Part_693008_583b647ad637
+Content-Type: multipart/mixed;
+ boundary="----=_Part_997479_528ac43a952d"
+
+------=_Part_997479_528ac43a952d
+Content-Type: multipart/alternative;
+ boundary="----=_Part_113619_acf12c706709"
+
+------=_Part_113619_acf12c706709
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for your order. We'll email you when it ships.
+
+Order number: NP-100251
+Trail Runner 2 (size 10): $129.00
+Shipping: free
+Total: $129.00
+Payment method: Visa ending in 4242
+------=_Part_113619_acf12c706709
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"></head><body>
+<img src=3D"cid:logo@northpeak.test" alt=3D"Northpeak">
+<p>Hi Sam,</p>
+<p>Thanks for your order. We'll email you when it ships.</p>
+<table>
+<tr><td>Order number</td><td>NP-100251</td></tr>
+<tr><td>Trail Runner 2 (size 10)</td><td>$129.00</td></tr>
+<tr><td>Shipping</td><td>free</td></tr>
+<tr><td><b>Total</b></td><td><b>$129.00</b></td></tr>
+</table>
+</body></html>
+------=_Part_113619_acf12c706709--
+------=_Part_997479_528ac43a952d
+Content-Type: application/pdf; name="NP-100251.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="NP-100251.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAg
+MCA2MTIgNzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAw
+IFIgPj4gPj4gPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCA3MSA+PgpzdHJlYW0KQlQgL0Yx
+IDExIFRmIDcyIDcyMCBUZCAxNCBUTAooT3JkZXIgTlAtMTAwMjUxKSAnCihUb3RhbDogJDEyOS4w
+MCkgJwpFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUg
+L1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhID4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAw
+IDY1NTM1IGYgCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDA2NCAwMDAwMCBuIAowMDAwMDAw
+MTIxIDAwMDAwIG4gCjAwMDAwMDAyNDcgMDAwMDAgbiAKMDAwMDAwMDM2NyAwMDAwMCBuIAp0cmFp
+bGVyCjw8IC9TaXplIDYgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjQzNwolJUVPRgo=
+------=_Part_997479_528ac43a952d--
+------=_Part_693008_583b647ad637
+Content-Type: image/png; name="logo.png"
+Content-Transfer-Encoding: base64
+Content-ID: <logo@northpeak.test>
+Content-Disposition: inline; filename="logo.png"
+
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAA
+AABJRU5ErkJggg==
+------=_Part_693008_583b647ad637--

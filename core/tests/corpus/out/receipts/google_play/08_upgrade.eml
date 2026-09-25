@@ -1,0 +1,56 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=s1; t=1777477872;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=W5J58l/8SYWOFWNgnhqINw00BxrMlXRjSd1g8ZrqSMn=;
+	b=wY/COEtj2iyoVNsiZ/+njd859jv2F9MjPR425wb17Wo6PkCVRmYvbro6JOoZ/fSOIC7K84SK
+	 2oBchBIFbEKsNh7/NfllvLe6LCKpJTmgMPYM6CtPAkoGVeTdW2TkIiXeyoai87zvHG7VtaLv
+	 TSji6if5uQXwJ8QcaQ5DV0e/+AdxiOtlY/valhbeeWUbup5+w3WyADnVRKnpBXIOHNKo2EE7
+	 IoxLGqYKsanfZA7MY2PVUKQFVGIqRg67MaB8vx3TttPvPbiVWolCpQeMGqfgHzYR9kgKKWUM
+	 X0gU7lI7NaECilCM31ZGHivO9PO7OiL0CArIwRXB1Sh1OYWwDB2oIp8j
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Google Play Order Receipt from Feb 16, 2026
+Date: Mon, 16 Feb 2026 08:54:00 -0500
+Message-ID: <d329493a84e452cb.ecb80d1a@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_922661_e17d253949a9"
+
+------=_Part_922661_e17d253949a9
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+You moved from Puzzle Den Premium to Puzzle Den Premium Plus today.
+
+Puzzle Den Premium Plus, 15 days (prorated): US$5.00
+Unused time on Puzzle Den Premium, 15 days: -US$2.50
+Total: US$2.50
+Order number: GPA.6654-8548-0890-20839
+Payment method: Mastercard ending in 5454
+------=_Part_922661_e17d253949a9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Your Google Play Order Receipt from Feb 16, 2026</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>You moved from Puzzle Den Premium to Puzzle Den Premium Plus today.</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Puzzle Den Premium Plus, 15 days (prorated)</td><td style="text-align:right">US$5.00</td></tr>
+<tr><td>Unused time on Puzzle Den Premium, 15 days</td><td style="text-align:right">-US$2.50</td></tr>
+<tr><td>Total</td><td style="text-align:right">US$2.50</td></tr>
+<tr><td>Order number</td><td style="text-align:right">GPA.6654-8548-0890-20839</td></tr>
+<tr><td>Payment method</td><td style="text-align:right">Mastercard ending in 5454</td></tr>
+</table>
+</body></html>
+------=_Part_922661_e17d253949a9--

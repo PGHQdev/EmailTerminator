@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "We couldn't process your Inkwell Fonts payment",
+  "date": "2026-05-01T09:48:00Z",
+  "message_id": "0de9893c304aa5fd.e66da8d3@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 1440,
+    "currency": "USD",
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": "211486708"
+  }
+}

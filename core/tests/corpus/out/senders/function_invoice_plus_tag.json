@@ -1,0 +1,21 @@
+{
+  "from_address": "invoice+acct123@ledgerly.test",
+  "from_name": "Ledgerly",
+  "subject": "Your Ledgerly receipt",
+  "date": "2026-01-07T14:00:00Z",
+  "message_id": "d6fa734d3057fe6f.73be5878@ledgerly.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "ledgerly.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 900,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "INV-396244"
+  }
+}

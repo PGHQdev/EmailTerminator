@@ -1,0 +1,15 @@
+{
+  "from_address": "weekly@news.harbor.test",
+  "from_name": "Harbor Weekly",
+  "subject": "Harbor Weekly: tides, ferries and a new pier",
+  "date": "2026-04-10T06:30:00Z",
+  "message_id": "1084b90b65b28667.fa0b7f42@news.harbor.test",
+  "list_unsubscribe": "https://news.harbor.test/u/8a1f2c, mailto:leave-8a1f2c@news.harbor.test",
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": true,
+  "dkim_domains": [
+    "news.harbor.test"
+  ],
+  "receipt": null
+}

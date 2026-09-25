@@ -1,0 +1,21 @@
+{
+  "from_address": "invoice+statements@stripe.com",
+  "from_name": "Lumen Analytics",
+  "subject": "Your Lumen Analytics Growth subscription has renewed",
+  "date": "2026-02-01T21:16:00Z",
+  "message_id": "82ddb7115e65dca2.ccb52424@stripe.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "stripe.com"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 5255,
+    "currency": "USD",
+    "merchant": "Lumen Analytics",
+    "invoice_ref": "2477-3860"
+  }
+}

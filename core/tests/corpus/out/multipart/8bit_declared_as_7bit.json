@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@pagewise.test",
+  "from_name": "Pagewise",
+  "subject": "Your Pagewise receipt",
+  "date": "2026-06-11T08:00:00Z",
+  "message_id": "3fc790e57dd4b7e6.ef230a52@pagewise.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "pagewise.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1200,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": "PW-770012"
+  }
+}

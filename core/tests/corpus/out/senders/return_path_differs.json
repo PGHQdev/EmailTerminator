@@ -1,0 +1,15 @@
+{
+  "from_address": "orders@acmerobotics.test",
+  "from_name": "Acme Robotics Store",
+  "subject": "Your order has shipped",
+  "date": "2026-02-11T20:04:00Z",
+  "message_id": "20f2082ccb0a25dd.850ee217@acmerobotics.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "acmerobotics.test"
+  ],
+  "receipt": null
+}

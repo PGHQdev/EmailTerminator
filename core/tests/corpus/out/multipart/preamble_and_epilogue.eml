@@ -1,0 +1,21 @@
+From: Town Library <notices@library.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your hold is ready
+Date: Sun, 07 Jun 2026 09:00:00 -0600
+Message-ID: <9c107784a15ff585.3dad0c7d@library.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="----=_Part_721450_9d9f0f7fd01e"
+
+This is a multi-part message in MIME format.
+If you can read this, your mail client does not support MIME.
+------=_Part_721450_9d9f0f7fd01e
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+The book you reserved is ready at the front desk.
+------=_Part_721450_9d9f0f7fd01e--
+This epilogue is not part of any body part.
+Total: $999.00 (ignore me)

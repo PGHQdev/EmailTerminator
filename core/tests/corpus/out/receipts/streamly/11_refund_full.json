@@ -1,0 +1,21 @@
+{
+  "from_address": "info@account.streamly.test",
+  "from_name": "Streamly",
+  "subject": "Your refund from Streamly",
+  "date": "2026-02-03T16:54:00Z",
+  "message_id": "56d3745ab6e7cb0e.5d8523cd@account.streamly.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "streamly.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 1200,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

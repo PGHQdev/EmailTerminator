@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "Your Skyline Weather Premium subscription has been cancelled",
+  "date": "2026-05-31T22:35:00Z",
+  "message_id": "c6bfbd4717c42ce8.7b147cb4@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "cancellation",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": "Skyline Weather",
+    "invoice_ref": null
+  }
+}

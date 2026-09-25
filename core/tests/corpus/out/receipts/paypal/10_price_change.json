@@ -1,0 +1,21 @@
+{
+  "from_address": "service@paypal.com",
+  "from_name": "PayPal",
+  "subject": "An update to your Northwind Hosting VPS-2 price",
+  "date": "2026-04-02T19:21:00Z",
+  "message_id": "34c2b08e7558fa1d.7f42d0fd@paypal.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paypal.com"
+  ],
+  "receipt": {
+    "kind": "price_change",
+    "amount_minor_units": 1800,
+    "currency": "USD",
+    "merchant": "Northwind Hosting",
+    "invoice_ref": null
+  }
+}

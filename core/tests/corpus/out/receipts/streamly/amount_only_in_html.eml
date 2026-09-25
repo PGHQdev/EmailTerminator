@@ -1,0 +1,47 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=s1; t=1781877892;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=NGfUrXB9DtU55TIOaWxmDigwyr3Q8hmyiAsJoEF7tOC=;
+	b=01CbKSXq6M8eaRj6GohimL0AI9lA9DejBcttqt+pHfE/riR1eBh/6awi/GyLO2mlGqKVFu2E
+	 dHvecvy6KbOzC0hXuM+e1LxBgoEFU6gfgK4oWW73bsrAJ7IVgzMVZEfZEBdW09NhqdGcbcfe
+	 0l8TZEHbb0mFUwEql9yOqoAsopH9Qb4/ob+D36kzlQtH3ENqSMDUFtDdB5QIfgLbbggG5cS1
+	 eLbuwlYz9LCkmYYspCHjalc5RdJZGGYots1R0Xs+JApGxCGO7HuYeOHUde6CbzKBw//NiWjd
+	 BP1Y05JJPpmvexPfFfAKb+gQIEV/P19NC0O01zGHK5S7DmspN8jkT7ek
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your annual Streamly Standard renewal
+Date: Wed, 01 Jul 2026 07:03:00 +0000
+Message-ID: <7a89f27acced8996.026245bb@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_393246_2cfd4856e731"
+
+------=_Part_393246_2cfd4856e731
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+------=_Part_393246_2cfd4856e731
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your annual Streamly Standard re=
+newal</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>Your annual subscription to Streamly Standard has renewed.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Date</td><td style=3D"text-align:right">Jul 1, 2026</td></tr>
+</table>
+<p>Your plan now covers the next 12 months.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Total</td><td style=3D"text-align:right">=E2=82=AC120</td></tr>
+<tr><td>Includes VAT (23%)</td><td style=3D"text-align:right">=E2=82=AC22.4=
+4</td></tr>
+</table>
+<p>VAT number: IE3668997OH</p>
+</body></html>
+------=_Part_393246_2cfd4856e731--

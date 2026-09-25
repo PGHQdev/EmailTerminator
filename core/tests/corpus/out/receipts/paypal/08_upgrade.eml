@@ -1,0 +1,60 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=selector1; t=1768112830;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=M7LQlnQp6FS33KW85ZqEStlY61dKM7y5oAKPVweOYcn=;
+	b=/1HjXESNP/0cu7TZKYD/PjvpD5b9rySfILSsqGsE3t3j6gn2rH0kA1k44ik6lPld/b/nXWRq
+	 gbtNWrti4JgJRuzXkXsRUoZk3s3lEZKHOxXtX1F+zlJd0Kx/LLc9b1N6IV/5Z7pwHsg+dGnf
+	 2i1ZUrg3/KDQQhleMb1X4fWZxvmbpkNF0+zg77sSKrfEdEXPnTZSentoSGPFyzD7bVUM+9UW
+	 tu8XVohRV2Jrys9TXB/sl8fv/Feb7UY/4LYJzrZ7SvgObc1WfvUMOmC2y1gtFa84zg6c59vW
+	 qEnj+Or/xbVNAfMWHz1XNnWgGDZuxsBIpGC6PYHpFlDoMrnt0Abue769
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Receipt for your payment to Northwind Hosting
+Date: Mon, 16 Feb 2026 09:57:00 -0700
+Message-ID: <26ed284359059dce.af828e38@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_107881_ce0829b25652"
+
+------=_Part_107881_ce0829b25652
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Payment to Northwind Hosting
+
+You moved from Northwind Hosting VPS-2 to Northwind Hosting VPS-2 Plus toda=
+y.
+
+Northwind Hosting VPS-2 Plus, 15 days (prorated): $15.00 USD
+Unused time on Northwind Hosting VPS-2, 15 days: -$7.50 USD
+Total: $7.50 USD
+Invoice ID: NH-00957
+Payment method: Visa ending in 1111
+------=_Part_107881_ce0829b25652
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Receipt for your payment to Nort=
+hwind Hosting</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Payment to Northwind Hosting</p>
+<p>You moved from Northwind Hosting VPS-2 to Northwind Hosting VPS-2 Plus t=
+oday.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Northwind Hosting VPS-2 Plus, 15 days (prorated)</td><td style=3D"t=
+ext-align:right">$15.00 USD</td></tr>
+<tr><td>Unused time on Northwind Hosting VPS-2, 15 days</td><td style=3D"te=
+xt-align:right">-$7.50 USD</td></tr>
+<tr><td>Total</td><td style=3D"text-align:right">$7.50 USD</td></tr>
+<tr><td>Invoice ID</td><td style=3D"text-align:right">NH-00957</td></tr>
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 11=
+11</td></tr>
+</table>
+</body></html>
+------=_Part_107881_ce0829b25652--

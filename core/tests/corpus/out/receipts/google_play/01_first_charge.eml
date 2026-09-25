@@ -1,0 +1,56 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=s1; t=1783710323;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=nwjKjzohhTdpctodJxlBya2CNIUPqrIiJdg2JME5P21=;
+	b=AEB4/v+a75qd+6UaynMo9EvQ/EMg9+9bPV8QZrO95vfMzNU4q9ZjKPZwcTApqEnY//74XIao
+	 NMdL0VnUhCEVNnT5bbe0G2O/phLqw3wO6sghOlDbPQjnSEXY2XEU+xlPN0pxMG0Q1z0LWMEX
+	 6eNsnfkf0HcHwtpfjSviT29ib2i4Vg1fZ9fBXRLrQ4e/iJiySE4c4/9Afcz7dRXToLfpdbu3
+	 Vo0qpGM2zvbzNmIxQf17LSKrnkG2BASDBQSYb+hE/uSRpLopGr1ZqTAgnzAneBKc0hv0+psM
+	 bdkGTdZow0ct0+j2TM9usJyjSyvewVQTKSYXMPc7qt+SbsSbmNJBkrgC
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Google Play Order Receipt from Jan 1, 2026
+Date: Thu, 01 Jan 2026 18:14:00 -0500
+Message-ID: <03a7a62fda0c7629.7a94be12@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_048809_aa7286ee727b"
+
+------=_Part_048809_aa7286ee727b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+Thanks for subscribing to Puzzle Den Premium.
+
+Date: Jan 1, 2026
+Billing period: 01/01/2026 - 02/01/2026
+Total: US$4.99
+Order number: GPA.3014-3407-9502-92873
+Payment method: Mastercard ending in 5454
+------=_Part_048809_aa7286ee727b
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Your Google Play Order Receipt from Jan 1, 2026</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>Thanks for subscribing to Puzzle Den Premium.</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Date</td><td style="text-align:right">Jan 1, 2026</td></tr>
+<tr><td>Billing period</td><td style="text-align:right">01/01/2026 - 02/01/2026</td></tr>
+<tr><td>Total</td><td style="text-align:right">US$4.99</td></tr>
+<tr><td>Order number</td><td style="text-align:right">GPA.3014-3407-9502-92873</td></tr>
+<tr><td>Payment method</td><td style="text-align:right">Mastercard ending in 5454</td></tr>
+</table>
+</body></html>
+------=_Part_048809_aa7286ee727b--

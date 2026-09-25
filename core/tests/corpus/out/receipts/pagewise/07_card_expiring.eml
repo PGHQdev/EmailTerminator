@@ -1,0 +1,24 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=smtpapi; t=1771524188;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=VfczYcl/d6VjHWBM0y7mdQm/RmlOzudWqLAHFLatmX7=;
+	b=f2CVy79HUxwMZ5T2I3jHziREOvc03csG0QbU+JQ2yXLOypsN2EXKBT0TbA4x5LjUJ+NcWVtY
+	 ba9N2URaY5tFUrY/cinFm9YkfnLVpA1zjGJ8rJtfiATq+350N8TRHgb/SIhrRDi6MSDAnUdG
+	 IFz5fOXvZMv1JktIfeqIUx0QpbrpDjkAKe2QixB1wX9PES+bCGvMckSaRfU/5wo8SqhI70+F
+	 tE+XdVx48L68ZGcsH7fIlQlqd0o0N+KRHUTVqLSeEVWg1ft1nTsn+/vB/hltQ+F6dBpZd1ZR
+	 lf7B0YE7zKAmPK9U80eFJ7YU4HqIDBP7bP4DJulVmAPr8BlScNg37Dhb
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 17:43:00 +0100
+Message-ID: <ae27ce6413355336.aed668c8@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+The Mastercard ending in 0005 on your Pagewise account expires at the end of this month.
+
+Update your card to avoid an interruption to Pagewise Team.

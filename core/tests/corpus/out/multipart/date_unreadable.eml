@@ -1,0 +1,12 @@
+From: Town Library <notices@library.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Date header test
+Date: sometime next week
+Message-ID: <d7608a76930339c7.f5731e51@library.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+The Date header of this message is the test.

@@ -1,0 +1,51 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=20230601; t=1772479223;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=m8uyVDvU7QgKpoU4BMDzKiPtiYwn6RCA3BEKfVK5q4f=;
+	b=rzQx2eh/RHocpi3h+WIz6lNfNhT48r762TKLjDvWCU+gdeMMMxAeDgO9/7mFCT8VgYl45NIx
+	 09XeSviSXaCE0oTMHHjxiQGB8tjDc8TWk2/68jwP/4zCQ71RdttA2x94pVWmP4PcJbOq3cEn
+	 TK5Ex2rUqWYiijgzDGTG3kmM3gBEqQEgpIX45u/Sm7wJt/aASgtNDfHpqOGSC6xzE39b8v2H
+	 s7HC/sOQEKk/vRx9skB0BOO6j/TUx+DhlorCX4yBX2bssExhz15oidUn6UoNsH0W7H6rPWey
+	 emv/Inb41CFIw/wfyJNjCKEBHJGBMO9ylDzrm1YtPJCcVz9epkHw2CPg
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to GitForge Team Lite
+Date: Mon, 16 Mar 2026 06:57:00 -0800
+Message-ID: <7f19cac624dc12d5.2fb2365e@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_861039_87b93abc4225"
+
+------=_Part_861039_87b93abc4225
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+You moved from GitForge Team to GitForge Team Lite today.
+
+New price: $4.00 per month
+Credit added to your account: $4.00
+
+We'll apply the credit to your next invoices.
+------=_Part_861039_87b93abc4225
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your plan has changed to GitForg=
+e Team Lite</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>You moved from GitForge Team to GitForge Team Lite today.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>New price</td><td style=3D"text-align:right">$4.00 per month</td></=
+tr>
+<tr><td>Credit added to your account</td><td style=3D"text-align:right">$4.=
+00</td></tr>
+</table>
+<p>We'll apply the credit to your next invoices.</p>
+</body></html>
+------=_Part_861039_87b93abc4225--

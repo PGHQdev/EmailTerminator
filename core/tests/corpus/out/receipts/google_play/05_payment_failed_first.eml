@@ -1,0 +1,53 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=pm; t=1770176792;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=6MR41g+JC+eHOcK4hjTxRBRnBtDKoVJlsnwlteJgI4v=;
+	b=dNkSO+RctRBbCTrMkmA5Buw2WCCB6Dp90WoaxBUJQEoMv5vnvS9VHXdXT3qd3zCvk/v334Km
+	 9ohFDBUNfQIyr2FzKKu1JCYdqBxLW7g7AdIFofMUWzOj5v2JeQ0jdeyVnOQypCDUhiWQZCxB
+	 5HDn1KyMELQ0/tecRRctYw9lljV/FcFsX+FPqRVFXTEs+wgvEVf+JWeZdjQF6i5I+8ApuGWH
+	 gA/G6GUomgpzYz6YpI6xA7EKJFBsnl5Sqw/cJWssz6LePcvDH3dynX9qzrsgDo1vQOfMxTCs
+	 W1XMEt1FkscHx0iEMl710AUz1i+ZobZA9qcjX4WqJoXEbwIan9vlE0Hx
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Puzzle Den payment
+Date: Fri, 01 May 2026 11:36:00 -0500
+Message-ID: <8f17b64e9ecdb6bc.3e308d24@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_838222_2e30203243fc"
+
+------=_Part_838222_2e30203243fc
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+Your payment for Puzzle Den Premium failed. Your bank declined the charge to your Mastercard ending in 5454.
+
+Amount due: US$4.99
+Order number: GPA.7202-2403-6665-80230
+
+We'll try again in 3 days. Update your payment method to keep your subscription.
+------=_Part_838222_2e30203243fc
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>We couldn't process your Puzzle Den payment</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>Your payment for Puzzle Den Premium failed. Your bank declined the charge to your Mastercard ending in 5454.</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Amount due</td><td style="text-align:right">US$4.99</td></tr>
+<tr><td>Order number</td><td style="text-align:right">GPA.7202-2403-6665-80230</td></tr>
+</table>
+<p>We'll try again in 3 days. Update your payment method to keep your subscription.</p>
+</body></html>
+------=_Part_838222_2e30203243fc--

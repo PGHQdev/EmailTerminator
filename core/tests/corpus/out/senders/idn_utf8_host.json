@@ -1,0 +1,15 @@
+{
+  "from_address": "nouvelles@café-crème.test",
+  "from_name": "Café Crème",
+  "subject": "Our spring menu is here",
+  "date": "2026-03-21T09:00:00Z",
+  "message_id": "100de7e63dda27a5.646c1919@xn--caf-crme-60ag.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "xn--caf-crme-60ag.test"
+  ],
+  "receipt": null
+}

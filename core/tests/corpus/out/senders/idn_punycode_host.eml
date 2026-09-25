@@ -1,0 +1,21 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=XN--BCHER-KVA.TEST;
+	s=s1; t=1767037319;
+	h=from:to:subject:date:message-id;
+	bh=kvdZMNDBoL3ZmJSeMkgwQm3SqJyXvKNSTUTFfUImGn7=;
+	b=1T1N0iNj4FbZGm+GzREpC8UmPWEvLIaCKYWoiVMTHS2QkMQAYwS0cGbLZVLH+63tVvHFh4Xl
+	 5CXDCpyWCt7S7wWSgg6lRDUjrbhqsipKBmOlnIPGXF06aun5xAcnyXUNzZ5Q8qmM7AWyrL5j
+	 K/kiC7C/InpA0MZRTlAHtoebb1B5MPA+H5T03qFElpyy7tliLDHX1SrWWMfsg1nss+PzWkIw
+	 AL81rUlsbOvj++JnCTeiYcfwx9eblJtJCk4hP+oZoS01BGhBKoJ0sl3mGw356u7/TuHDCjgs
+	 y2Q4VMlHDqZClP774Y+CcywrlNyDJUMWRbcN6sAg/C7oUvK4Dp5glWwM
+From: Buecher Versand <Versand@XN--BCHER-KVA.TEST>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your order is on its way
+Date: Sun, 22 Mar 2026 10:00:00 +0100
+Message-ID: <27741b0a52ef4d5c.ba38a897@xn--bcher-kva.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Your books left our warehouse today.

@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "Partial refund for your GitForge Team payment",
+  "date": "2026-02-04T19:09:00Z",
+  "message_id": "3404298c0801cec8.b827e7e8@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 654,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "GF-2026-68523"
+  }
+}

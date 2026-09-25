@@ -1,0 +1,28 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=20230601; t=1781500576;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=9yOS39vSPsNeIJ/WsH3uwUh9pmWNUs07+I6Bjatg8GI=;
+	b=UwAgu+MNgKOD2iFdq1JVL2mz8zKn7+F31vBfvmsfsDXufTtkQ8+3YBBblQ+l3pyENX+nEcV6
+	 QVlYGLtUc1NQDHVLIaiMIp9tsOapzQvuyI6QXreeKFbfujD8gnYkqozJVtMUlsqQw7lIK9wb
+	 aoxtQBfAGGeqjog80VfszkABSrFn7fD/wJTyfYZ20fz3JwFnnf/yKwdz6+SUgkvy3k8NOBTu
+	 a1ZK8DgpbxQXQ0OzLN/OE0hxqkaOF6C/Ori64yvIwwph7IGSo3WFtn8uks9RdcxRgV6aa+V9
+	 At3y0aNJCnr5pCjS9S9StpsvbbF/G2sAD2K33ja3Bf5s0kgEyfrOyYyc
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from Pagewise
+Date: Tue, 03 Feb 2026 12:30:00 +0100
+Message-ID: <db095b39e6d1ed15.f0f6b3fb@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+We've refunded your payment for Pagewise Team.
+
+Refund amount: 12,00 €
+Invoice number: PW-917156
+Refunded to: Mastercard ending in 0005
+
+Refunds take 5-10 business days to appear.

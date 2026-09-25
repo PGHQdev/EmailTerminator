@@ -1,0 +1,29 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=northpeak.test;
+	s=selector1; t=1779169501;
+	h=from:to:subject:date:message-id;
+	bh=6XqowLqmBmUjonnsvpI24/9I6fu8M7xjKLBikj/GBWh=;
+	b=IkyQa3OMhOzMas2Qz1JGmg0zvVzRSanfoVaM5KcPisdb/HS+AlDc9ROsojgbPxx+H74N+UUW
+	 mPc5zGbGoVUcuBV2aYXhqxP7eeJCr4B7LpAQVkwszjwph5rPKSILRvY5G+aT7rMyNN40BOPO
+	 2bf+XOMu8V810UpZz7FQehrVbcMZI+ZJMVYnT5MHJW2GmEuLTgz4vo9CVe0mYvFqxHPCKVKW
+	 g9Ya9o5mDvMzL3a6kBEcsgJDuzV4J7GqZhrlm8nEmWJswrumlkSdJ2Wkz9krWdzVrDyGYLKL
+	 zDy5rgK9NzAv7opfN8VSd2Is03nyNMgyVIRwglVDWTHDWir+/M+7E1Ah
+From: Northpeak Outfitters <orders@northpeak.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Northpeak order NP-100277
+Date: Sat, 06 Jun 2026 14:00:00 -0600
+Message-ID: <9017514e7ca77fee.2239d780@northpeak.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="NPB"
+
+--NPB
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Thanks for your order. Reference: see --NPB in your account.
+
+Order number: NP-100277
+Total: $19.00
+--NPB--

@@ -1,0 +1,21 @@
+{
+  "from_address": "receipts@pagewise.test",
+  "from_name": "Pagewise",
+  "subject": "Partial refund for your Pagewise Team payment",
+  "date": "2026-02-04T12:55:00Z",
+  "message_id": "7094bb4d5c5db70b.15bba0c3@pagewise.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "pagewise.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 600,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": "PW-654029"
+  }
+}

@@ -1,0 +1,35 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=k1; t=1775559538;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=hIesUNQyHIw7KTU2fyMUZLXX7ERFHAkwKoifElVT1Wm=;
+	b=QWvhxHdVbkN96ctwKe0vp7Iff8bN6yCBIDKd8zJEd1yLiFhEw3e9ZQYtK5ig/WScsxOCn3BV
+	 i1mDvrn/FWj1tUFSrVH/u6RCh6oVW2ZjkbtJAnrwjPUG9qUwWSJGh+QmA0YXc7s6S4NyqjWV
+	 difmRfA/pkqkoWZLphgYZsleZB3IadKtiHXs5GBLFtqpB/sMiL4JW0J4eRHfAmT7PyT2RRGl
+	 wubJe7I1qh+MaYGdse+wFXpzkM0awl5+ZLORU4ZWris89AgMwXhZhm7LiKpYH0cjREsuBgJz
+	 iaTK+2qNZg2O4inmZ0IeneCzp5i2pSNkgIGLKYoMS00jCx0gtIZHmrcM
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=s1; t=1780117024;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=b/ZWkhuYWkVLTgYEKi9PRHu4gaxnm6+oTjmbH0xHg/8=;
+	b=E0/0x8sQLkDK3OOuDn/VnIMPIYAsJDuNi1ooSsSN1fm3t3iqjwhusg/hjUAoCtXD5lMFooOh
+	 /rsAVetoKBYhx7XNaVlz7uQMKyaxQY6Lsw0ANDwsRkCkakYwwpRosprNrta1G0iizFW8BbCR
+	 RqQcFJRMDj/T9mdOFO4CLckRryr7dBtK74RZCeHjZk8WLuROFIRzyaGqyaLfyleZtvnc4m9l
+	 01dtaAm88iUHlUgDmhAdJBfoB6aXmh1OIjZD2qulvxBUCcEhSC5RjnD5YwnwBfwEldAKo5Yf
+	 U0bDvwCcAAuY4BaGK9ycgJ5JIhDu2rPwge07/Ne3cyRRw+IcfRi3S6Eh
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Cloudbarn Business Support trial ends in 3 days
+Date: Mon, 29 Dec 2025 06:34:00 +0000
+Message-ID: <5e6b71f16251f9d8.35c0ffca@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Your free trial of Cloudbarn Business Support ends on Jan 1, 2026.
+
+Amount due on Jan 1, 2026: USD 1,234.56
+
+We'll charge your Mastercard ending in 5454 unless you cancel before then.

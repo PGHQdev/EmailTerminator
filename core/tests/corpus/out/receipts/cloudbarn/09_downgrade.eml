@@ -1,0 +1,36 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=k1; t=1769870701;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=GdmbwdhbbjBtspRMQ9tmSB+OTyd2+6sGTq4uS53/89+=;
+	b=c0ESlbDKiGmVt6HZUiQnJSnhRa/hlU4osq6QE1iZO2TuDyRjtVMRiGhEO+8y88DyR8tbhv76
+	 JQ1daoBa2oh1Gpd/Nq5bt8q5OgNr+X3K9TSrq2vSIWDvZqGxW1Lt+oyI7W2lU0i+O4Ap2i/u
+	 GhRvNlJHphkOGAnxIsWqacxy86Wb1ooNmWZYUlZGQwhRIG6zgCMy8UeZ4gYxOwT4NP8iAKGJ
+	 uARWsRGUQeoVez5hs8EL//pwWK47Hk4DI50rqKSApu4wUuhSsqWEeJb3yr+Z7+r2tA+ib1yP
+	 y+UUHAU0XhTyKTHz0P9gAPPy0ZIN4Z9ctIG/6yuFSyL/mK+8PLN9H/3v
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=k1; t=1778408988;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=FdLp482GO3asBFWNTuz8F7v0sM/iE8r1Pa3a/QRB8SI=;
+	b=u9Fo9pWE1dOtqSLvvxcnMA9WBdfS79jT3YmaekchNdSa5JWwmH7rOMYAZgvvic+v019yKVa5
+	 +Ia5N9OjBhoFDYENboiUn7rCKTGQjBYC0toQIxzIkOpwn3kdXR/ZEAe/ZE9djCnUGV6laU2S
+	 yVPF7rWY8WrQS0KR3l8Fxyk2N75QJBwNIw7kQBA4GrT2kUTUivyJNyddR1lAXA8bNNpkrJWf
+	 1NbSAhXDznmAzO6z8DArm1tj8PXVHIH+dSgY0A5OBefKtGZyhZSLosWN5Y3Nn8H7CtMefdCO
+	 IrpraFHNbvwv0T1loAaEZc/Oi9yJvu42wQYSiNvhdh13DLIceEsNRxm+
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your plan has changed to Cloudbarn Business Support Lite
+Date: Mon, 16 Mar 2026 07:58:00 +0000
+Message-ID: <e32c31d1ce60ed0f.c89daf33@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+You moved from Cloudbarn Business Support to Cloudbarn Business Support Lite today.
+
+New price: USD 400.00 per month
+Credit added to your account: USD 417.28
+
+We'll apply the credit to your next invoices.

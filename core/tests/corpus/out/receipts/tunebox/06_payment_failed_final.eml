@@ -1,0 +1,23 @@
+Return-Path: <bounces+sam=inbox.test@em1234.tunebox.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tunebox.test;
+	s=20230601; t=1775816096;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=/vavcEqmL+osvs5BjCoXWTRdphe1dSrjOXBYe0Ciivv=;
+	b=lWFaTzZ+6CUjDGLf8flUzaRm822V2VBGHKrTny7+z9WL3bCTEhYdj7oA4GNdicthKuIK13Oe
+	 vVq2p2wWcvAtcz37AcsyzLpOF3By9JUwMmo9f7eUDvjUwzHMMNkWw1oHfo4rkyA3ePGgeOmq
+	 Wat/SP3+y/5Y5wTNfq/Q1bQaIVLfJk+2OrjV1cx0BZv7wnYK+eyDsZ3IJ+apoQn1g1CTnPmV
+	 1i6m2FPb92TQEogx5PooXii5aJ15K4UOyCwkxgLU/QMWNnKk4h8g+0kFviky2ChFwAc4/aol
+	 pQGQh2CRbZFh/bEVjlek4k/TIZEGhqhnWNhTxEGX94sNdQzRWS7ridyW
+From: Tunebox <no-reply@tunebox.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your Tunebox Premium subscription will be suspended
+Date: Fri, 08 May 2026 10:37:00 +0800
+Message-ID: <c42124b6169c16cf.a0094bd3@tunebox.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+SGkgU2FtLAoKV2Ugc3RpbGwgY2FuJ3QgY29sbGVjdCBwYXltZW50IGZvciBUdW5lYm94IFByZW1p
+dW0uCgpBbW91bnQgZHVlOiBVUyQxMy4wOApPcmRlciBJRDogVEItMDI2MDMwNDQKCklmIHBheW1l
+bnQgZmFpbHMgYWdhaW4gb24gTWF5IDE1LCAyMDI2LCB3ZSdsbCBzdXNwZW5kIHlvdXIgc3Vic2Ny
+aXB0aW9uLgo=

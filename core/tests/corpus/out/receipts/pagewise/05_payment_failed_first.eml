@@ -1,0 +1,27 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=smtpapi; t=1779052091;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=Ku6kG9gG3VcUtk2GnyIzh86wpFI1XMxV0qD8H7HkXZV=;
+	b=r5an+7ePNDk99t28fEK+yovf5ZMK7YeF0J6JRm79tAAGbR5VBfE5apALzLbcoqn2xTZ85Uba
+	 eEPpO96YmnbWy6NrO2EuWXyADH9IHhhEyMj8EHLYpwPj1+J1wBxYBoxA3fNiHlxIJGwf2gN7
+	 vwE3SVRxEX4wTz1dOsPPdGsjGVMSQM88io/k2BAFy6enIao2gJggQXkWTLYVcdF+HzAFtcet
+	 zw51Z2e1nI6TrEf4f+EXI2fdzXxApz13qPswr6S3DpxzTgr34GnGL3+1oMM5Bn263wrIMAAz
+	 2cZNoGsasCcJ+nCjQJL4/et9O7oVcdIpfEcrVsHyKxAnhTPFkxhd5toe
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: We couldn't process your Pagewise payment
+Date: Fri, 01 May 2026 13:36:00 +0100
+Message-ID: <725008fd0e1466e2.cd6311c6@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+Your payment for Pagewise Team failed. Your bank declined the charge to your Mastercard ending in 0005.
+
+Amount due: 12,00 €
+Invoice number: PW-082036
+
+We'll try again in 3 days. Update your payment method to keep your subscription.

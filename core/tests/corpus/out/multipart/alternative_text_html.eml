@@ -1,0 +1,47 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=northpeak.test;
+	s=20230601; t=1771138130;
+	h=from:to:subject:date:message-id;
+	bh=DkrCuhVIh7HArM1jdU5YcpYNWQvYK3HEYameSNY9onm=;
+	b=aKG+9DT1wjROmZcFiCPtYWLf23HKjL7lpt1QLwbQE4yfRaY2uw8K0nr4LOKhJEW36iD8h+iq
+	 5/eQRBVTcx1+r/9QHHPoEu2VRc1zmCTsVrDF4Ja6OfjoOLTG9JDQPinNcgJno5liCwSdbJp9
+	 fbxMyQ2Rl4/hdg8wiWSqzDJKyklOc6pELQfXJLs4UcJJ7ZbOWATEw9uN7K53Ku39jDj0EK3W
+	 gIywpPjtju4HZ/fom/Wci4ino4DW4XIdBfDQ7sfrQ7b8CFMi/XQRzjw+S0CITQTk4n90mKfw
+	 BILzDDFzDUsGFxxFlksBuwlEduvb9wStBNhpTOJXHbxippuegocA9ANy
+From: Northpeak Outfitters <orders@northpeak.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Northpeak order NP-100234
+Date: Mon, 01 Jun 2026 14:00:00 -0600
+Message-ID: <67ba2775efa2548d.6848a09f@northpeak.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_122595_1628e68b8ecf"
+
+------=_Part_122595_1628e68b8ecf
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for your order. We'll email you when it ships.
+
+Order number: NP-100234
+Trail Runner 2 (size 10): $84.50
+Shipping: free
+Total: $84.50
+Payment method: Visa ending in 4242
+------=_Part_122595_1628e68b8ecf
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"></head><body>
+<p>Hi Sam,</p>
+<p>Thanks for your order. We'll email you when it ships.</p>
+<table>
+<tr><td>Order number</td><td>NP-100234</td></tr>
+<tr><td>Trail Runner 2 (size 10)</td><td>$84.50</td></tr>
+<tr><td>Shipping</td><td>free</td></tr>
+<tr><td><b>Total</b></td><td><b>$84.50</b></td></tr>
+</table>
+</body></html>
+------=_Part_122595_1628e68b8ecf--

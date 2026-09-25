@@ -1,0 +1,8 @@
+{
+  "group_key": "Brightline",
+  "cadence": "monthly",
+  "charge_count": 6,
+  "price_increase": false,
+  "latest_amount_minor_units": 900,
+  "currency": "USD"
+}

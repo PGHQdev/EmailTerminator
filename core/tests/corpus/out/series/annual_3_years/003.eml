@@ -1,0 +1,28 @@
+Return-Path: <bounces@atlasbook.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=atlasbook.test;
+	s=pm; t=1786880960;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=OyeHxHNjD3CCIrZH61l0+QU2IMQJ2A9FEHoE+JyLBBO=;
+	b=xfUzO5OJzpTXTxg327BL8x/oSgdIKacF8/44YnGkubhXCVb3ST5WgCG487OowUREf03fDA4Z
+	 0LR3M1gLlTs4lEyrXs2UFkPiWZwPK0ssZPrDa1To27DsUpo7a9akmunMxcOtra/zY3CcLJZM
+	 czGW8w7XWAYQmCdk2YCeYZGPZY3Fbqz/K0MmIE0rWZSqmq3OnqdLm+yPdlY8KUGfKTlVMfNo
+	 ZROs4Uka6awDTXtGKdrMs/+1MzlhdGhEXPTDL+Wh19bseBw/VZqyVr9X5VsTmgADVDaSBTR2
+	 fnTcfaeeedYM4fuO3OnHY5ztMjxfnhreG1NJRllabMcCHVWUTZcpXTfD
+From: Atlasbook <receipts@atlasbook.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your annual Atlasbook Annual renewal
+Date: Wed, 10 Sep 2025 09:21:00 +0000
+Message-ID: <8d46957c1d8c9459.6b671cde@atlasbook.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your annual subscription to Atlasbook Annual has renewed.
+
+Date: Sep 10, 2025
+Billing period: Sep 10, 2025 =E2=80=93 Sep 10, 2026
+Total: $99.00
+Invoice number: INV-292322
+Payment method: Visa ending in 4242

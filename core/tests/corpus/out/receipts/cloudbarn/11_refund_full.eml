@@ -1,0 +1,37 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=k1; t=1768037581;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=WzIPHLZCJhg8ceOWjWD2RC7Iv22JDDcTl6WUiBQ26av=;
+	b=AQkepb1i7dygvpIFA6Gu8b9vw1lKSNLrPKBTjt678QN48ueir4q6nNMeo2G/zXQACbimhwDm
+	 msVB9qD0/J8AoLf0dr7QqX210N+Xal0O+/lv7t3BZVr++z2D83hcl+veKWHlTTsPsU+uwoX8
+	 8PuIUCXDhxOoSmpByy2Ix7CnkqjxrcJkmT77A+7vd509Wl2KTMkKcVbEU5v/zVHT2/pYB82Y
+	 BVLJx7bDb8ckmFjIsR10pm50EZTByxSYvt4ZxS3bS3mVCgvtnQ6FZoVM43KTyEbtPa8K+5Ru
+	 fD8++5aUMdhpxypUS+Yf3WLH+Jkxlca1Siak+DxrNJP8X9QvVewpLuDL
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=s1; t=1767328743;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=sxI0jQc0pYe28E6g0n3uEs64UNE7qdrzLx8Dsy27FlO=;
+	b=1iC84vDzG84na1zm5Oga8rL8fmMMLKx7h6wrsRqa17Og+G5w3a0Qty5AJ4/c+jymRi02egh7
+	 441oRrYYVvnIIGu1VvWejM7Xc8EU46+0ckL/G+Co8/owdAMS3JQlFP4ppwV9bqB0zLJ8WDaD
+	 cuCleKuMvt6GNX62v338Cynt05upGn5D9TaYGOMfAqFotklzVlA8eujwdNQ55b4oYE8FkJ4Z
+	 /eJ2cgSIwHFgmAUhxKi5RpascJT8uKnpCtjacWOKnlN5dnY85AZcKM7Cgfcp9mPlrqq27bj5
+	 OhxPqdioNUnaC+2kk3tsDv2Ntt/xtgK7VoPPS1Va7HdhIpnr+gMOE1fd
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your refund from Cloudbarn
+Date: Tue, 03 Feb 2026 15:59:00 +0000
+Message-ID: <73dec865236d8110.7192ddfc@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+We've refunded your payment for Cloudbarn Business Support.
+
+Refund amount: USD 1,234.56
+Invoice ID: 1523108583
+Refunded to: Mastercard ending in 5454
+
+Refunds take 5-10 business days to appear.

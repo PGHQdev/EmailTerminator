@@ -1,0 +1,37 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=pm; t=1786910731;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=CjG+FAsW58GmBsN340fcS6S9lPzARby0XwbxWkPYpRg=;
+	b=Cy5jyk4ix73DXTXXEwiBA55691PnhG5OHA4fzx+dj4Aynnfip5yKU4xINCdXDtS969jVcLLz
+	 uVET7uErxFbFrHtTRT4QxQPPxIXZba5HD508Dg1ScVnB4lUJxNqI9Zffq/G8uV3UlUlQF68/
+	 C8gIr8gQeYa+zyCkQRszIEmCntP3ZdSK8fNABzyXDGy0GJ6tFMyz9C674IgyAOIPKeA0H/Y3
+	 A1HPsiW+SNkEykOSF3fAVwhLXgqntMZ+LL6HUpesrW6pp0f59h8mKu4v5Vud03bPUHsMBc8U
+	 NDnOW3Jnhz0/jgH78Eu+UWSfQE6SaIAzUzEsZ7mA14iwpleLcyU+5CNP
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=pm; t=1786055108;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=feZHluyrjRzw0J8brP6kHptbNI0ViePTppjc8LdeTPc=;
+	b=anX1gJVsK+v92zSdOVyXOJWlEtafilPxaAxKS1Lm+7zoOVTa9vkaKAj4hGwJcVL08++pAZyy
+	 9LYpQnZaiqV1ginMnA5fV3ALzk/mmo4tmVDz9++3ZRg6UOUNfE1YxB7PDqNOFfLHFtDqNHP9
+	 OHZoHZH8DXLdwOEckQB6P4+9hvtVCAX/P3W3V7BnU9n0Nq6ip7aJE88HXFIRjI1kNulKUZKy
+	 5tMmZtoCslr/OUqxyO0FfqUbje3WfpxdnkEPuy5nXylb2YBUK7sv7n4z+H1y2vxzTClhKlWF
+	 mqXJ3kZZ1bXrAlV4tM57HKFWQw0ea/Tw203tzqp5o2cj8osIuiKOyXJC
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Cloudbarn receipt
+Date: Thu, 01 Jan 2026 06:17:00 +0000
+Message-ID: <bab9bda71d7da91f.41645eef@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Thanks for subscribing to Cloudbarn Business Support.
+
+Date: Jan 1, 2026
+Billing period: 01/01/2026 - 02/01/2026
+Total: USD 1,234.56
+Invoice ID: 5686509986
+Payment method: Mastercard ending in 5454

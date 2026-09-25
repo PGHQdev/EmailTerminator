@@ -1,0 +1,53 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=k1; t=1769405427;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=UXpgTwqVkWAoaOk7hZTlANhRjQEGmwlDO6pB5ZPy72U=;
+	b=aO0thbtOfjL3Z+Gr+KVWwK67mr8CHoaPWQ0+6pkdy2DdXKWl6zE47CnsGLkAqOfaI8BuwSxC
+	 QzePc1okojEtq0E7m9WGq0UHvbMjTQGQgg4XGF5bhHoGvuFEGV43qIJqIR7Bn1qcjhNEPu2S
+	 yGjIoELwCLil/8mrZ5BXYovSOKIQjj9CjE99dJZpED7NgfS+9bv+DFKbAxXdY6qVlUhYrJmB
+	 2nLvdmhcwMwFEiVS9ZjDy7d631xnIAMV07zMivzg0zckZFU6NjNkAmymOrH4U+TBy2BYgsSn
+	 rlYLo3RNDubTUYjs/GlUqb7Ti+3jy5HgXysmhylGWOa7taeFFo7/zOi+
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your Northwind Hosting VPS-2 subscription will be suspended
+Date: Fri, 08 May 2026 09:20:00 -0700
+Message-ID: <41fc85f51d254882.65db1fd1@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_902190_3c623509c18e"
+
+------=_Part_902190_3c623509c18e
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Automatic payments to Northwind Hosting
+
+We still can't collect payment for Northwind Hosting VPS-2.
+
+Amount due: $15.00 USD
+Invoice ID: NH-13756
+
+If payment fails again on May 15, 2026, we'll suspend your subscription.
+------=_Part_902190_3c623509c18e
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Final notice: your Northwind Hos=
+ting VPS-2 subscription will be suspended</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Automatic payments to Northwind Hosting</p>
+<p>We still can't collect payment for Northwind Hosting VPS-2.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due</td><td style=3D"text-align:right">$15.00 USD</td></tr>
+<tr><td>Invoice ID</td><td style=3D"text-align:right">NH-13756</td></tr>
+</table>
+<p>If payment fails again on May 15, 2026, we'll suspend your subscription.=
+</p>
+</body></html>
+------=_Part_902190_3c623509c18e--

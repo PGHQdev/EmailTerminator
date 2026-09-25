@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "Your GitForge receipt",
+  "date": "2026-01-01T21:58:00Z",
+  "message_id": "d4a3ca9af3d4dd49.1e94ad3e@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "charge",
+    "amount_minor_units": 1307,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": "GF-2026-13418"
+  }
+}

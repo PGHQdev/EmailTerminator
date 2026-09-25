@@ -1,0 +1,21 @@
+{
+  "from_address": "info@account.streamly.test",
+  "from_name": "Streamly",
+  "subject": "Partial refund for your Streamly Standard payment",
+  "date": "2026-02-04T09:25:00Z",
+  "message_id": "ed0d6657a55ed93a.eb92d184@account.streamly.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "streamly.test"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 600,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

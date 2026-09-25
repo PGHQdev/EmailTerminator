@@ -1,0 +1,45 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=s1; t=1785408771;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=6mawVFABljth28UZv/DOc+9zSzHwHM2uHtOoqKCtLpD=;
+	b=iWdbUefRi8h4fBxw3b3p3xTVxAVAYyrjfZratKhMDjvnf36sEdljWB0wmXWwsNEcVMjJ3wTL
+	 8clgBRWhvuMM//nYc4HOmqiyuwSoitr0EQcfhXFzJn6RMdtfqDFnFCFh1j97X+1x5ZP4RsFD
+	 y+ZvQEeyGsqwTKgwdlqz9fBbm16i0h+EiXcWaIpP/dZ8Zzf6yG8dgcB9Xh74xm1r398kg46B
+	 fE6WH7Fge4mFiahQfs+pNVA6jKg6TufF06g5fBDTCDUjw42IUlYw8Zo+JNK9LhA1isfXV93r
+	 J9fyRjgs34e27BRDUUh3AsQcHM58bAbY37+m2Q6Mek0euucCXqbzW3NE
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Northwind Hosting VPS-2 subscription has been cancelled
+Date: Mon, 01 Jun 2026 08:34:00 -0700
+Message-ID: <64aceec2dbf86dd1.a087e0f3@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_460529_ae6181b6bf2d"
+
+------=_Part_460529_ae6181b6bf2d
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Automatic payments to Northwind Hosting
+
+Your subscription to Northwind Hosting VPS-2 is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.
+------=_Part_460529_ae6181b6bf2d
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your Northwind Hosting VPS-2 sub=
+scription has been cancelled</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Automatic payments to Northwind Hosting</p>
+<p>Your subscription to Northwind Hosting VPS-2 is cancelled.</p>
+<p>You keep access until Jun 21, 2026. You won't be charged again.</p>
+</body></html>
+------=_Part_460529_ae6181b6bf2d--

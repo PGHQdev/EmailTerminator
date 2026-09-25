@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "Your Inkwell Fonts Studio subscription has been cancelled",
+  "date": "2026-06-01T06:16:00Z",
+  "message_id": "75d1e70b85ef2e14.67af17fe@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "cancellation",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": null
+  }
+}

@@ -1,0 +1,26 @@
+Return-Path: <0100019a4e2f1b7c-6c1d2e3f-4a5b-6c7d-8e9f-0a1b2c3d4e5f-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=pm; t=1769402216;
+	h=from:to:subject:date:message-id:list-unsubscribe:list-unsubscribe-post;
+	bh=Zbpkd62eQR/s+YpN776f8VtPUNS1Ywe2cbYSU0MDbcr=;
+	b=zKtTJw5dMmbN8YVtEVDj3LUErfcLYy5gGZTo1553zo2/umhXsdy8SaIHoHhgYT7PZLIbd5wd
+	 IIq3dfA4e+0hrTcfL3IIDKd1qaF8TPRLRLZsOJkqcvNfUmVP/1/K3FviBCntzilFGJLuj6dK
+	 lcY1GYQc8m8lp1Br+PFGMP10mh33R39PFaj6XypLgI/BxbBqVGbrsZyUpYES67rQpbg+DKGR
+	 o3pc/T0p4DvbS+gnCDCongJI+AzBc77AMqWu+1QC3VcwCd73BPYluZTlWEUpJtJR/zbRaefl
+	 m/9dJWkBJolcu5INdEbHoE2w3PkZ/8/Nm6U4qIexk9pSYxyAqMS7pXrd
+From: Fernleaf Journal <newsletter@fernleaf.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: This week at Fernleaf: spring planting
+Date: Thu, 19 Mar 2026 11:00:00 +0000
+Message-ID: <c61ef2f58911d176.49477608@email.amazonses.com>
+List-Unsubscribe: <https://fernleaf.test/unsubscribe?u=sam%40inbox.test&t=8a1f>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Spring planting starts now. Read the guide on our site.
+
+Fernleaf Journal

@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "Partial refund for your Inkwell Fonts Studio payment",
+  "date": "2026-02-04T15:40:00Z",
+  "message_id": "10754f1bbc8bc1f9.097fb7c1@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "refund",
+    "amount_minor_units": 720,
+    "currency": "USD",
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": "829435545"
+  }
+}

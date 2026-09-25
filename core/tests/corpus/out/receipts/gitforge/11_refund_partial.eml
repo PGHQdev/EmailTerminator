@@ -1,0 +1,52 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=k1; t=1785288835;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=rAZft8IvDjQzr/4sUSetek34PIYcKJzERusmHESD7sy=;
+	b=x6eAmuzqI8VZVoXjbhuf74jjRyMLoCGnk6PpB1kAp+n45zXH8p6gxvtFBf7WNl/0FSJVuwkY
+	 lCGV/NX8vgIv+wIyuNEt1Nizbwh3BbcVOiLrhZxXk4vs+ckNA1Nf4yV/lADwoVjILdWAQTX4
+	 3kokObMqGyZ4zPG1x/KvVpBpL82D/vVoRW0+1iu08gIhzDPcV6ZbBB8MsiXFsB/aphHerZQt
+	 mPJB3LqWBSkMKIv5IZue1UOotJrpNI6wk4hyIr+WIlXAZ4XZrAUWoKwBh9CwbRF+8OhVQA7s
+	 ecOMqbNNpKUopkJfclPutQM45MJDBwmOCCB9R1vTpou1AuNFjPFkkpGd
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your GitForge Team payment
+Date: Wed, 04 Feb 2026 11:09:00 -0800
+Message-ID: <3404298c0801cec8.b827e7e8@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_123457_4a944eb8b913"
+
+------=_Part_123457_4a944eb8b913
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We've refunded part of your payment for GitForge Team.
+
+Original charge: $13.07
+Refund amount: $6.54
+Invoice number: GF-2026-68523
+Refunded to: Visa ending in 4242
+------=_Part_123457_4a944eb8b913
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Partial refund for your GitForge=
+ Team payment</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>We've refunded part of your payment for GitForge Team.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Original charge</td><td style=3D"text-align:right">$13.07</td></tr>
+<tr><td>Refund amount</td><td style=3D"text-align:right">$6.54</td></tr>
+<tr><td>Invoice number</td><td style=3D"text-align:right">GF-2026-68523</td=
+></tr>
+<tr><td>Refunded to</td><td style=3D"text-align:right">Visa ending in 4242<=
+/td></tr>
+</table>
+</body></html>
+------=_Part_123457_4a944eb8b913--

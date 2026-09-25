@@ -1,0 +1,65 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=s1; t=1771894575;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=8AZ1KmP24T573BunTV70C8oN6diRMDFzLpnhZFiGfyf=;
+	b=trAFEN6ez3CYF4Y8Eg3CxHwuYfhIawlFxipO8qU0yvwDYsp2a/grGuigvXjahUgyik1XUkrV
+	 vIk8ZB90SdinHc0/05GFLgbVLy8bETupUN2gfLAI+0AESi55EI9f01LiQ1kgLn5Ou/xbaBpB
+	 0H5kMymKiyjrXZccMtxcheblxN2KHa122mkugHfmu45qWDXR5GyNby/X/KmoMR4acpu/ZUb6
+	 pWxN+ZHExIcym9WvewlaL88F1uMchmwLMzzaZYT0r8HY/Tlqslsw9ZZCWJ7nzyImsH9fJlUu
+	 0N4JaDxzA5aSkFAggWxZ/vosV0YbqFWtsX8Ys57CDRvtFYJnSj1lgRgp
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: You've upgraded to Lumen Analytics Growth Plus
+Date: Mon, 16 Feb 2026 09:11:00 -0800
+Message-ID: <7725075c8a06b3af.09376982@stripe.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_876003_28cbe7ecfc9d"
+
+------=_Part_876003_28cbe7ecfc9d
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Receipt from Lumen Analytics
+
+You moved from Lumen Analytics Growth to Lumen Analytics Growth Plus today.
+
+Lumen Analytics Growth Plus, 15 days (prorated): $49.50
+Unused time on Lumen Analytics Growth, 15 days: -$24.50
+Subtotal: $25.00
+Sales tax (CA 7.25%): $1.81
+Total: $26.81
+Receipt number: 3155-9634
+Payment method: Visa ending in 4242
+------=_Part_876003_28cbe7ecfc9d
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>You've upgraded to Lumen Analyti=
+cs Growth Plus</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Lumen Analytics</h1>
+<p>Hi Sam,</p>
+<p>Receipt from Lumen Analytics</p>
+<p>You moved from Lumen Analytics Growth to Lumen Analytics Growth Plus tod=
+ay.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Lumen Analytics Growth Plus, 15 days (prorated)</td><td style=3D"te=
+xt-align:right">$49.50</td></tr>
+<tr><td>Unused time on Lumen Analytics Growth, 15 days</td><td style=3D"tex=
+t-align:right">-$24.50</td></tr>
+<tr><td>Subtotal</td><td style=3D"text-align:right">$25.00</td></tr>
+<tr><td>Sales tax (CA 7.25%)</td><td style=3D"text-align:right">$1.81</td><=
+/tr>
+<tr><td>Total</td><td style=3D"text-align:right">$26.81</td></tr>
+<tr><td>Receipt number</td><td style=3D"text-align:right">3155-9634</td></t=
+r>
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 42=
+42</td></tr>
+</table>
+</body></html>
+------=_Part_876003_28cbe7ecfc9d--

@@ -1,0 +1,21 @@
+{
+  "from_address": "billing@gitforge.test",
+  "from_name": "GitForge",
+  "subject": "Your GitForge Team subscription has been cancelled",
+  "date": "2026-06-01T16:19:00Z",
+  "message_id": "765df4a06be2624b.f478b89c@gitforge.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "gitforge.test"
+  ],
+  "receipt": {
+    "kind": "cancellation",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

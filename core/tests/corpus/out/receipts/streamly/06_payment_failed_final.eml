@@ -1,0 +1,48 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=k1; t=1769424451;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=cmknMG1wIOOY/IqQ1m/fM3XVJYimhyBAvzRSS2QGaMk=;
+	b=Uk2gcBnglGD6DPnA57rdFCs6mxUPUA3axekoQJXTAepHDbEI6GgiIalQUbVkrK4BSKmOKuWB
+	 aHuxQaITogn/mz+PQ77zJOMIimpWNyV3yBmj0X40r7150pJzsyuo1BVNXMWiHSe7Fqeu/i07
+	 S5JFoUZ9X1R/D6pr4uq9Q1o0ZbfQjb3irmc2C2Hxl3rEvYuoQmV1kAIVEUB+/XAVRZNcDJ/i
+	 UPbPPrBtH4EK8jQAHaCweaQ6M30TGHwcbBNCGI9i0DZ8ZBf3ZZFxyPNRLXi3ISnMT69TzfRu
+	 BjMnRIQVcLmvM2cVUmfnyBKj0ugaXLijfuGQODlqzUzwWEr9IOFBImKt
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your Streamly Standard subscription will be suspended
+Date: Fri, 08 May 2026 06:56:00 +0000
+Message-ID: <933fe4363ec0b208.bd4eaa97@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_743761_b98a74eb8f6c"
+
+------=_Part_743761_b98a74eb8f6c
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We still can't collect payment for Streamly Standard.
+
+Amount due: =E2=82=AC12
+
+If payment fails again on May 15, 2026, we'll suspend your subscription.
+------=_Part_743761_b98a74eb8f6c
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Final notice: your Streamly Stan=
+dard subscription will be suspended</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>We still can't collect payment for Streamly Standard.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due</td><td style=3D"text-align:right">=E2=82=AC12</td></tr>
+</table>
+<p>If payment fails again on May 15, 2026, we'll suspend your subscription.=
+</p>
+</body></html>
+------=_Part_743761_b98a74eb8f6c--

@@ -1,0 +1,21 @@
+{
+  "from_address": "help@paddle.com",
+  "from_name": "Paddle",
+  "subject": "Your card on file expires soon",
+  "date": "2026-05-20T16:05:00Z",
+  "message_id": "b1700f5270839bfc.cbd790ce@paddle.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "paddle.com"
+  ],
+  "receipt": {
+    "kind": "card_expiring",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": "Inkwell Fonts",
+    "invoice_ref": null
+  }
+}

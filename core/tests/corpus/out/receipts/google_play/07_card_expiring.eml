@@ -1,0 +1,41 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=selector1; t=1778738296;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=g3kumd6AAMAP5Z6Zx27nKhUn3YlpwOkaIRRLpfYCa7M=;
+	b=EshDP87KtqIZAsV3Ya++wQcYI4/nlHWcc4cIc5r9dmSxCfeP1kwpfVyvFnlr1IaA1aVgz1lD
+	 TwL9mMwwQR1H0p0qBLQ44e5X5pVfCafY13Ldcg9eS5r+rL5gaYXmdwG9OvxPJMEsejQEQJ7G
+	 qE3jsBZpZVK/P+Q4/1wzBpdiU7e1Kr5I0FspYbB8icJ2na7hocCBQmK2gPRbBVhF0Cng7BXY
+	 LdqryN7k/voLv/fFMdYnGfl2tEYMfA1C/vDtB71oTcNMZndraV+JOT0kzdfdfPz2fhW2mIOr
+	 CSLL2wE2AN8mcnwjlbsvH2IEJh0DKIcAliLy/JwLalbGCyDFH4rbQqOD
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your card on file expires soon
+Date: Wed, 20 May 2026 11:59:00 -0500
+Message-ID: <5a7f9e736ee0be4a.d9f25ee1@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_102206_bb1ba0eef508"
+
+------=_Part_102206_bb1ba0eef508
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+The Mastercard ending in 5454 on your Google Play account expires at the end of this month.
+
+Update your card to avoid an interruption to your subscriptions.
+------=_Part_102206_bb1ba0eef508
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Your card on file expires soon</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<p>The Mastercard ending in 5454 on your Google Play account expires at the end of this month.</p>
+<p>Update your card to avoid an interruption to your subscriptions.</p>
+</body></html>
+------=_Part_102206_bb1ba0eef508--

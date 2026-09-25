@@ -1,0 +1,52 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=20230601; t=1778058958;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=JbP0vSpoJPei9HHjqQoF46AilQxCWk/SpQ7CmAAiT3x=;
+	b=42f/3kYneudVcQavkB0J9hVP7t3ant6dDZg2Ft5Gb4CEX+Ih5q4aulecuFrNR3IflIjYUHBU
+	 rXOUxAxTQZWmczUn8i7X8hjOTo9mgHWYbsGSQgdfcFtL1zl4T95Z+Vc7QOKt4GMI+5rWE74+
+	 yEziqXs+mJWViI6tpPVaWtyQ5787qcu9QWDt2llDSjZob8pp7PV26pIFmEk3Mij/EQyCc5QS
+	 YSGh94d7VkekcKExBtXiwQzVA7QbrRZQ3nK0MhDXThJGSaaN8fr7ZoLICSG025qyUUhb25TC
+	 PxbgW4S8ZPULHFnSUsN2tKOLkcRM3x+Py5LB7EFphmie2v16a7CmtV3r
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your Streamly Standard price
+Date: Thu, 02 Apr 2026 18:02:00 +0000
+Message-ID: <de443da7ca4a3293.5291894e@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_275073_a1d103e53953"
+
+------=_Part_275073_a1d103e53953
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We're changing the price of Streamly Standard.
+
+Current price: =E2=82=AC12 per month
+New price from May 1, 2026: =E2=82=AC14 per month
+
+You don't need to do anything. To cancel, visit your account settings.
+------=_Part_275073_a1d103e53953
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>An update to your Streamly Stand=
+ard price</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>We're changing the price of Streamly Standard.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Current price</td><td style=3D"text-align:right">=E2=82=AC12 per mo=
+nth</td></tr>
+<tr><td>New price from May 1, 2026</td><td style=3D"text-align:right">=E2=
+=82=AC14 per month</td></tr>
+</table>
+<p>You don't need to do anything. To cancel, visit your account settings.</=
+p>
+</body></html>
+------=_Part_275073_a1d103e53953--

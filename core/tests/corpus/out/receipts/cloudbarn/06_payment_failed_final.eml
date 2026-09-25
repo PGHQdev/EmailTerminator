@@ -1,0 +1,36 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=smtpapi; t=1772907952;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=3fE9MrVi9d0x6sGk8zfcf4gc9a4E+iUc9/wrY6835fc=;
+	b=hLUfuhSea6Z2D4yNQB4H2AMOyZp/5QW6f8jz6hN0UeybTpyDIxtja+k2aWmEnEJ5T9H8RaP5
+	 5+657RX6Fe3mzVc8uhJHdyInt4s378cwk1E+nP6sOU5lzbg968HZdkQrstwki0pVKdY7X5Sc
+	 RGzRBbefiTgj+RSz5l1Y6Fqz5A6fgJNSkJgys8Aqugw2p1sftsJhZCdjDEjDfMwc1hg0u6Iu
+	 uuURG57aoUELzZRIQYqdZ6g0qE2XjeqRYPLN2vne49KxTr03vsfMotsOfD81rf2EeYqEnoKZ
+	 58FtfuryHH+iwd5rQdvzsepEKppVVV/ud5bv9bf5y6GOSV5ws/EeixOE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=pm; t=1780502022;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=7mI4ZBh1c1M3Jciarhz0dzHqHAoZahV8UGVJyq/zz88=;
+	b=8SL4JImEdBBMsucLCzNkm1J2vMzMlOOjBy8U2JaHbtry3bfNjUW9jXrkw6X6vHZ/I3lJdEt6
+	 7BAMgxepsjaBJeFygdWTbmjDGpZioaSobHBBbaYNFjmoqgQUwPbhZBADN4kZPaY9iatb4k+x
+	 KKTsQv1OMqJFtVcNpojv7NXWX46zyB6J6YvfzDQF8LXlW9ehSd90sqqHOOZVmZulj3CrnRr/
+	 qRD8uPgM1yKz2KeYtkI9HsPPLgEwqDn+guuPKk61TPLpZTv257xbvmtIHUlXbSxL3z3CqOYf
+	 hWkXr3xd5b0x4RTcoJnDzEZisPy5SJwXHm2PQoELED1bFHGO/GhxRsCR
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your Cloudbarn Business Support subscription will be suspended
+Date: Fri, 08 May 2026 07:01:00 +0000
+Message-ID: <57f3c5f49dabd9ed.2de117f5@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+We still can't collect payment for Cloudbarn Business Support.
+
+Amount due: USD 1,234.56
+Invoice ID: 3498080061
+
+If payment fails again on May 15, 2026, we'll suspend your subscription.

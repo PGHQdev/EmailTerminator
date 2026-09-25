@@ -1,0 +1,46 @@
+Return-Path: <3xYz-googleplay-noreply=google.com@google.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=s1; t=1781931304;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=4sO4PCgB1KofrOh9H1mmyCWy2cF7beesa6WTZxcXXrf=;
+	b=q0xUGThM2PfYoq56PwHSZBaLijMARHp3T9AkS4aDN2Kcyn5w/ahW+5tHm6xs0GDMH29dghgZ
+	 ZJj8xOYnqpW+7RGEpFsRbntLgGLTJ27garfW0vFRzR92ObjTaTVkpKVcir2ui8qDUBSBbVAC
+	 zdy2UHzZXWGOJegiolNorMlipOa27zsMNNp4xfxMj+ElSaeDNMDxPtm6oJg/5ZMPDJXtbaax
+	 AGtfOvSv5VnLKdG8/XXu5waM8paSIY0ThrJ+4bwINOsQyFelCJh/WjX5sYfjIr5gzYZseJ01
+	 yt8N+otal8uX7e3diN3la7R0jKDdsP1ROQgIuYfKih374Gy0H2JH5HoI
+From: Google Play <googleplay-noreply@google.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Puzzle Den Premium subscription has been cancelled
+Date: Mon, 01 Jun 2026 16:35:00 -0500
+Message-ID: <c6cae693e7985562.bcd16e13@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_011147_50a7faccfc6e"
+
+------=_Part_011147_50a7faccfc6e
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Seller: Puzzle Den
+
+Your subscription to Puzzle Den Premium is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.
+------=_Part_011147_50a7faccfc6e
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Your Puzzle Den Premium subscription has been cancelled</title></head>
+<body style="font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style="font-size:20px">Google Play</h1>
+<p>Hi Sam,</p>
+<table role="presentation" cellpadding="4">
+<tr><td>Seller</td><td style="text-align:right">Puzzle Den</td></tr>
+</table>
+<p>Your subscription to Puzzle Den Premium is cancelled.</p>
+<p>You keep access until Jun 21, 2026. You won't be charged again.</p>
+</body></html>
+------=_Part_011147_50a7faccfc6e--

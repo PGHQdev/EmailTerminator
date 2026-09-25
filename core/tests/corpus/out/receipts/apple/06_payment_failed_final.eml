@@ -1,0 +1,33 @@
+Return-Path: <bounce@email.apple.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=pm; t=1775597094;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=/2l5IyHsdPSCjuIVtFHbsjhCRQOQPlzVbjapQGuIOP2=;
+	b=zld+yLgbOBBOVNE1DIAbXKo5nvf3H+GipozHuDF8fCQboPjKiJ44pR2gTBesijeM4sZXxvGg
+	 csN5EcoFdr1gtCBek2kTd6mvb5K7edkRQswwuV7WIvGuOiXiW2bd7gU6nsGiWlnjXjv2ZiOc
+	 6O8w+lEGxOEqNstwNhT3P68QdO95RdNxrEk0RmZMKrjO0T1gIPXog/PJORusGtalGUVdTFzK
+	 pMfst3qNdq3vNfG+SODXWUYqXb1Btk5n+v+c6WfUUwlwLeyAnwoAVMLHhuT13BR03dfnCtI9
+	 rYRiaSwJ2a8Y3Ydil29esWVMR/OBwoTqcorIJraY/Hq63seeCl15mNjY
+From: Apple <no_reply@email.apple.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Final notice: your Skyline Weather Premium subscription will be suspended
+Date: Fri, 08 May 2026 16:41:00 +0900
+Message-ID: <078829215b14225c.1308449f@email.apple.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48dGl0bGU+
+RmluYWwgbm90aWNlOiB5b3VyIFNreWxpbmUgV2VhdGhlciBQcmVtaXVtIHN1YnNjcmlwdGlvbiB3
+aWxsIGJlIHN1c3BlbmRlZDwvdGl0bGU+PC9oZWFkPgo8Ym9keSBzdHlsZT0iZm9udC1mYW1pbHk6
+SGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Y29sb3I6IzIyMiI+CjxoMSBzdHlsZT0iZm9udC1z
+aXplOjIwcHgiPkFwcGxlPC9oMT4KPHA+SGkgU2FtLDwvcD4KPHRhYmxlIHJvbGU9InByZXNlbnRh
+dGlvbiIgY2VsbHBhZGRpbmc9IjQiPgo8dHI+PHRkPkFwcDwvdGQ+PHRkIHN0eWxlPSJ0ZXh0LWFs
+aWduOnJpZ2h0Ij5Ta3lsaW5lIFdlYXRoZXI8L3RkPjwvdHI+CjwvdGFibGU+CjxwPldlIHN0aWxs
+IGNhbid0IGNvbGxlY3QgcGF5bWVudCBmb3IgU2t5bGluZSBXZWF0aGVyIFByZW1pdW0uPC9wPgo8
+dGFibGUgcm9sZT0icHJlc2VudGF0aW9uIiBjZWxscGFkZGluZz0iNCI+Cjx0cj48dGQ+QW1vdW50
+IGR1ZTwvdGQ+PHRkIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0Ij7CpTEsMjAwPC90ZD48L3RyPgo8
+dHI+PHRkPk9yZGVyIElEPC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQiPk1TUVE0MDFG
+MkM8L3RkPjwvdHI+CjwvdGFibGU+CjxwPklmIHBheW1lbnQgZmFpbHMgYWdhaW4gb24gTWF5IDE1
+LCAyMDI2LCB3ZSdsbCBzdXNwZW5kIHlvdXIgc3Vic2NyaXB0aW9uLjwvcD4KPC9ib2R5PjwvaHRt
+bD4K

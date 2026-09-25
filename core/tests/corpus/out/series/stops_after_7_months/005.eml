@@ -1,0 +1,28 @@
+Return-Path: <bounces@snapclip.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=snapclip.test;
+	s=selector1; t=1775132774;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=2PV/muy05iaeX5J+kBPEmWU6hfxCmZ+8CIeKrOSjz+K=;
+	b=8NK64a3QE0wZbqjm6YVDVl+9ODvXqYPVOvI7w8CgvxF6l4i3J8tNQB7XXsSN/+3J0fl13RI9
+	 /S/J/cMAE+/biFf8eG02ZbwHVp2+0Zu4296WGI3i5TThSQkBYXe6TjThC/FDbuBB9wnD7kiS
+	 4RHyz8PHDG7wucAWIjwLLMX42piX40kqsd8XvnZ31YGqfHoU5cKMDhEGq6VeFieDHsuV+aXT
+	 +qkWwXFl20dBCQudhA3DO1qzZ7yW4B6j0Uneo+1UQ/tOlIsr2gRfVe8Iw2QekeIviVabusS4
+	 Uv9CNOEUcxkHl8dGviV4Ocnw6B5GDBECpM5e0wizjImStzqpbPX0S2+Z
+From: Snapclip <billing@snapclip.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Snapclip Pro subscription has renewed
+Date: Mon, 14 Jul 2025 17:41:00 -0800
+Message-ID: <f19e099f4cbbba89.5a42a64c@snapclip.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your monthly subscription to Snapclip Pro has renewed.
+
+Date: Jul 14, 2025
+Billing period: Jul 14 =E2=80=93 Aug 14, 2025
+Total: $7.99
+Invoice number: INV-372812
+Payment method: Visa ending in 4242

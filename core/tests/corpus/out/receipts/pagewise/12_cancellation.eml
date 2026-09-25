@@ -1,0 +1,24 @@
+Return-Path: <bounces+sam=inbox.test@pagewise.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pagewise.test;
+	s=s1; t=1774843795;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=vojQ0FVCfci6DR4wXSoucENE8urvicarQlmrD1bqMbY=;
+	b=PugflyOz8p+iPJXk3PH45TIxo8PLFKeGXDA1GYCaCW/6lLY4madjNbprdJaUHSZmZ+J7b4mZ
+	 XqxjCQDtojErJ9BUwq4Uz52ft4dqg8RHxFD0zbcbH6LyuLdrcuAm+EGjaUWDg2NJNzazlCJ/
+	 Rv1w4OBisX+ZkUIkxklS9zn2tgjoQHe3/18qoTPObCR2kagfHpUoX8m8eCquUdQU81WM+Lcl
+	 PRwXpRZC2fyMWIUXgxCmvdEYvozCANk8mZuFdqBwTUPKOSCHb1AxKUeJ+iglEA7pbRcMZ9tK
+	 w3Hshg1v49+2XJfp+Jxl2ErkiceG3lTUWx+u4yPTr1be/MRZ6L8nN1Ic
+From: Pagewise <receipts@pagewise.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Pagewise Team subscription has been cancelled
+Date: Mon, 01 Jun 2026 10:35:00 +0100
+Message-ID: <5b7e7f9e21adf5dc.c772cec7@pagewise.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hi Sam,
+
+Your subscription to Pagewise Team is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.

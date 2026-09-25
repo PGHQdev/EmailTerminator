@@ -1,0 +1,27 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=pm; t=1775091481;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=cv43WKJ9rVmShq2Ef5eHpcdfYZbVJ2XZxTZqWdNsrKg=;
+	b=SNufT2TNoWNbu435nX+X4cCEhrhTpp3im2L4n515Zmj4xxLVTHI681v6LAhnus3eI6Hxv3IV
+	 nwS8oymQm6u8uJmrIsNzPiGhXDSAcxCm6mF5jq9cF9gBtxAqk/L/vtRYYZW2/y8Fg5EsM4H8
+	 T/zwFhX4ZeFbxTKa3miOV01yOCGlPZdt7oOvKMDvnjo0YcIR3C3j4nsp1STggfEe/Ejae0uf
+	 40cXd8QlhAS2S8Unly7mePJGYxirCIVdkvj9mEjnEq1NHFVDRhciNmJ83sN0gM3sz8MTgDmq
+	 23QBa30A/apM73ZSse/ABy7c+fclGriHe8fqZ3DGQaEg4OlnbHtvOCmm
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your receipt from Lumen Analytics
+Date: Sun, 01 Mar 2026 16:45:00 -0800
+Message-ID: <2cd52750a379a607.a033ed89@stripe.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Receipt from Lumen Analytics
+
+Lumen Analytics Starter, 1 seat, billed monthly. Tax exempt customer, n=
+o tax applied. Amount paid: $12=
+.00
+Date paid: Mar 1, 2026
+Receipt number: 1643-6426
+Payment method: Visa ending in 4242

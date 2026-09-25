@@ -1,0 +1,28 @@
+Return-Path: <bounces@quarry.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quarry.test;
+	s=k1; t=1779634143;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=WJZDn9r0zCOkNMdiY2iWC2XtGKBcjunWe39jcVgYb4G=;
+	b=ZSjWw2BUFr8Oq1V8a8fuGD/cUpvMacw62PedoAE7lL2Y04vGxtPk5/oFLAhwgODKJPdw1JH0
+	 XtBP1jgU/1eYNH9/BtlFHFtWAOx3v38PTceGt8QT+oCDSOFTnj2UW1zDOzFb2mMH3lCogzH8
+	 aMtrn2Rnanf3VoHy8tu7PzTy4l74D88t/rwuKzMELR7qsyvi55nj5qfGGmkNLtVKBu9UNcXq
+	 Kq5gjzlnfNkCxbEWW9QNixTNtw9GU7qeOBTsTylgtBGcWYKg0lrlwHoNVHOxZlmvxN6izEaP
+	 mZb8Gz/dcirHohRwaSIAFJBievkHfAdSqk5Aldkn5opq6RocizPLxRHw
+From: Quarry <billing@quarry.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Quarry receipt
+Date: Mon, 05 Jan 2026 09:00:00 -0500
+Message-ID: <e31a8d50b06f9673.65ef3820@quarry.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Quarry Pro.
+
+Date: Jan 5, 2026
+Billing period: Jan 5 =E2=80=93 Feb 5, 2026
+Total: $9.00
+Invoice number: INV-844820
+Payment method: Visa ending in 4242

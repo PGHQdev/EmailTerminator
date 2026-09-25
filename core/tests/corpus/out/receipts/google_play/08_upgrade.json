@@ -1,0 +1,21 @@
+{
+  "from_address": "googleplay-noreply@google.com",
+  "from_name": "Google Play",
+  "subject": "Your Google Play Order Receipt from Feb 16, 2026",
+  "date": "2026-02-16T13:54:00Z",
+  "message_id": "d329493a84e452cb.ecb80d1a@google.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "google.com"
+  ],
+  "receipt": {
+    "kind": "upgrade",
+    "amount_minor_units": 250,
+    "currency": "USD",
+    "merchant": "Puzzle Den",
+    "invoice_ref": "GPA.6654-8548-0890-20839"
+  }
+}

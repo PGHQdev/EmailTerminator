@@ -1,0 +1,28 @@
+Return-Path: <bounces+2231417-8f2a-sam=inbox.test@em4417.orbitmaps.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.net;
+	s=pm; t=1785584363;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=8GyrOzzvLDtDrZRzmy8xdzfmRs7lLPRmGdFxmXMYSXy=;
+	b=fOv9x3lzvs1hTA3mDlWwHQTPN+TzHzoJb8eRKfbVQ3W2h/wdNGl8a5dra0T51FsSmY0LKRrA
+	 ERBnobTOg+TXMzrR+k0xWMjs9InEyt6YvDHZ+sBeo4Zot4dJZ9jbeqofo5k9tvKoAiTMNzcq
+	 /FeLt21kFvS6eHLqedEiIkAi2xOMSCgEsc7U3JQcZe0N0XprhZYxrCtcwbxJl5O7s0ROcz2L
+	 j3gyNuR0y50IVeO8Hev5a9US+twSrE13k/jqCU4Czgqvv+zzicQcSbaQoDyN9GrxENX4hYf9
+	 bNgr2XcStGmB/F3KuKVo3jQlNfRtMWNzo+kotfUPmTbH5kN+72IzanFo
+From: Orbit Maps <billing@orbitmaps.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Orbit Maps receipt
+Date: Fri, 09 Jan 2026 09:00:00 -0500
+Message-ID: <b4def7903af05acd.e5f77162@orbitmaps.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Orbit Maps Pro.
+
+Date: Jan 9, 2026
+Billing period: Jan 9 =E2=80=93 Feb 9, 2026
+Total: $9.00
+Invoice number: INV-232618
+Payment method: Visa ending in 4242

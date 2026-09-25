@@ -1,0 +1,21 @@
+{
+  "from_address": "info@account.streamly.test",
+  "from_name": "Streamly",
+  "subject": "Your card on file expires soon",
+  "date": "2026-05-20T12:20:00Z",
+  "message_id": "1e3a87f2fa8050ee.031106a7@account.streamly.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "streamly.test"
+  ],
+  "receipt": {
+    "kind": "card_expiring",
+    "amount_minor_units": null,
+    "currency": null,
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

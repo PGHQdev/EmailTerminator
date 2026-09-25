@@ -1,0 +1,25 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kestrelkites.test;
+	s=smtpapi; t=1782438643;
+	h=from:to:subject:date:message-id;
+	bh=kEApUFW4CNJ7fbjUVFxm5eNrOtq059dR5yS5s5/MwFw=;
+	b=knleu1bIHDw6zST14dIXhzDkdNJz/ttZYCUd93IOfKcINJWKAdTJvere/mJQl1kXtcTK8nLA
+	 IKERKAlZl8q8dOUheD5psrP21UahfTOcQFZLJ/OGitxBvVfrSHoLMIBv9MPe2+tgIiQIGcHD
+	 lvr0j5CDiP/NDTvbsDXzxkzdrkqNmvCsODzqlPubKBWLJ81IidNo2VoKRsM9kkF2Hcfd7QX2
+	 9C5UPqujMSyF6IOfub4nX2hAL1lygiisOxnqv/k9JeWwQ2thNmC4N7P/jmSX6hq22Wb6/btV
+	 7eniN74RJyONe3GTSdBNwcvnR+vwxsBg9RhoPH7NBRDPjTkj2zBKcCjY
+From: Kestrel Kites <orders@kestrelkites.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Order confirmation KK-2025-0917
+Date: Fri, 28 Nov 2025 19:12:00 -0500
+Message-ID: <ac7e95f6a27b086e.6d35243d@kestrelkites.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+Thanks for your order. Your order ships in 3-5 days.
+
+Order number: KK-2025-0917
+Total: $45.00
+Payment method: Visa ending in 4242

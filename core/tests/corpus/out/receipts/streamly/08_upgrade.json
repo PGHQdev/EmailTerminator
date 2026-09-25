@@ -1,0 +1,21 @@
+{
+  "from_address": "info@account.streamly.test",
+  "from_name": "Streamly",
+  "subject": "You've upgraded to Streamly Standard Plus",
+  "date": "2026-02-16T16:38:00Z",
+  "message_id": "040440a3fe8b0a8e.493c2b33@account.streamly.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "streamly.test"
+  ],
+  "receipt": {
+    "kind": "upgrade",
+    "amount_minor_units": 300,
+    "currency": "EUR",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

@@ -1,0 +1,24 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lattice.test;
+	s=k1; t=1778182834;
+	h=from:to:subject:date:message-id;
+	bh=PDoka0pXJBhArAezS2Q9gK/LXQJXMLy3qgoyf6fpOKU=;
+	b=XxJXMaZLkXgRLslKzbV5ZKAPf8dRD/2GGfoLWJuZlWgOd3dSQbYrnWKwO5ZpL2J+Jri5KbRl
+	 6oC1YncuL5iCDkldVZSUdMx3W1uMxU2Onta1mgP4B3eCEN+usM4WT942plJ08PSgyVU92PgI
+	 bRPoV5FLRPi2wjjw4q/wvVBntXZP+REQKEfWQe0cqkylNiNe2yVyT18auGAILO+LmxcLhEiW
+	 8dSqv9fqW26kxndRZX9AK7Zx+Bsz+RHb7l9E6EBnzW/ZttHJiJklEjiOdvV5snIK/hyE/1gi
+	 iFRgUOS/Az0yfQuJixlCsyD41W03B8BnjNSRewP8DWFi3eGVhBjw31dU
+From: Lattice Notes <no-reply@lattice.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: New sign-in to your Lattice Notes account
+Date: Thu, 08 Jan 2026 22:17:00 -0500
+Message-ID: <0d223cff4f68a876.adbfbb0f@lattice.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+We noticed a new sign-in from Firefox on Linux. If this was you, you can
+ignore this message.
+
+Lattice Notes

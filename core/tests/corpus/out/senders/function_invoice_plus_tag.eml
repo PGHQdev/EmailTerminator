@@ -1,0 +1,28 @@
+Return-Path: <bounces@ledgerly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ledgerly.test;
+	s=selector1; t=1786140054;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=nAO4TkmSU4Ihj+vdvBxkTjNGAYyylzmljXoFnA6V/Xz=;
+	b=P2GKNz4KrZguNAuhz9G049bjRk23YEZBFG5fng25MkAy+J5X5XXL3m8Fcf+faDvhafAO8OH9
+	 ZBVuGa/2yMR9/sCIPaMOQZzHH28bYxqQXlXxmhf7W2nvauRBlVo+iC6p2hOg0Xf6M9k8ofBE
+	 EHRxiUbYZk0rWXp58Hfyl/5CkGyiBz5BGgnsy3/Bu8YPHnRl09c5JCBdRjIobPZxFvQV/1U2
+	 V1iCRdAXdFdaLANWdcVS08dslLtGuTH6OddL4wvtHvHHmFrJKIsRDXmmgBZTMK9U1GNZJhSM
+	 qg9pCzvjqP7RBcQE+Lji0oQpiSe/ym4/j1Pqiz5F6SEBnO1cWJKWTemG
+From: Ledgerly <invoice+acct123@ledgerly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Ledgerly receipt
+Date: Wed, 07 Jan 2026 09:00:00 -0500
+Message-ID: <d6fa734d3057fe6f.73be5878@ledgerly.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Thanks for subscribing to Ledgerly Solo.
+
+Date: Jan 7, 2026
+Billing period: Jan 7 =E2=80=93 Feb 7, 2026
+Total: $9.00
+Invoice number: INV-396244
+Payment method: Visa ending in 4242

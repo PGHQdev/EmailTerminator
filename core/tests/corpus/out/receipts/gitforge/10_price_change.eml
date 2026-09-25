@@ -1,0 +1,52 @@
+Return-Path: <bounces+sam=inbox.test@em.gitforge.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gitforge.test;
+	s=s1; t=1785536818;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=Xf6yn64Rzb33a5FmizfYIwGg3h9MIEnW2hdDC307I+o=;
+	b=Qmd1GjqgYIlVYC2dSd0/f2SnbILoXe2x3sF8qomjQXIw8SKiZXP4+oEJyTLN7ZDYCaqbcPY+
+	 gh6Yq2CB1ivnwWOPnXRR8iyo2Lpk92arqp6m1FsCJiPBa3lX3Af3Vh2+uVYZZ53RNyrl5e5H
+	 yK4IN41a3c+Eb2K0jcZJj6I4gw/OLtdGJ+Lz0nBHAtWQFM/zsx4OCaZ9L78rnjEtIIz/YEGX
+	 2ItPjcUBW/OMXm8LN51v6IB4gnYkRjS/xfUTXW+m1kBy4qiJyMgsvjCUgx7LUwbgDVHES0cc
+	 naj5e2JzFX0xMjv2PNCg9wPIE5mIWVFoFkJ0U3Nkf5QKMESvzG66Wxwk
+From: GitForge <billing@gitforge.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: An update to your GitForge Team price
+Date: Thu, 02 Apr 2026 09:38:00 -0800
+Message-ID: <9ef3c890f594fbe5.74f78658@gitforge.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_751257_2bb0361f3ab7"
+
+------=_Part_751257_2bb0361f3ab7
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+We're changing the price of GitForge Team.
+
+Current price: $12.00 per month
+New price from May 1, 2026: $15.00 per month
+
+You don't need to do anything. To cancel, visit your account settings.
+------=_Part_751257_2bb0361f3ab7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>An update to your GitForge Team =
+price</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">GitForge</h1>
+<p>Hi Sam,</p>
+<p>We're changing the price of GitForge Team.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Current price</td><td style=3D"text-align:right">$12.00 per month</=
+td></tr>
+<tr><td>New price from May 1, 2026</td><td style=3D"text-align:right">$15.0=
+0 per month</td></tr>
+</table>
+<p>You don't need to do anything. To cancel, visit your account settings.</=
+p>
+</body></html>
+------=_Part_751257_2bb0361f3ab7--

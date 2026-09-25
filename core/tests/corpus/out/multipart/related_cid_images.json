@@ -1,0 +1,15 @@
+{
+  "from_address": "news@news.northpeak.test",
+  "from_name": "Northpeak Outfitters",
+  "subject": "New trail shoes are in",
+  "date": "2026-06-02T16:00:00Z",
+  "message_id": "724565a1ba5b220b.73a0c9d5@news.northpeak.test",
+  "list_unsubscribe": "<https://news.northpeak.test/unsubscribe/8a1f2c>",
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": true,
+  "dkim_domains": [
+    "news.northpeak.test"
+  ],
+  "receipt": null
+}

@@ -1,0 +1,48 @@
+Return-Path: <bounces+sam=inbox.test@mail.streamly.test>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=streamly.test;
+	s=smtpapi; t=1784519147;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=+uahOF1OpmoGwdiLB5KkThdvLSagck88gpu+sBwCzpV=;
+	b=xFqD5GAKaq5s5l9fxgiE2M+m/+mZDKJA8Lb0lU6+CLTJFvTzj2pF9o/VKJRaZfjjwSV6nxNO
+	 KJ9znZauFfJJ34M/S/tSyg5gKtxEoUguvKuKCxTaMtfZe2GPTZnBFdcDH6ggJXg+PvAhAWsj
+	 ufWQl4UDzhZ7LKa1ZiDlL+IeKajZQygbByJUKX0oQf1Ed4YlbNe5BPilPozUXXoIhOiC47jr
+	 6eSBWQziO0HoA2yLAEoCuNlGkmgg9+LoS5GO/lEmC/H5qEa4uG7k8oUXvbOKHASRZGDFOJ1i
+	 hINnTCtZJwYN8/Amuhj//jcc2GDAre9GKMH7+quwXb/vee5RHLoFLyRc
+From: Streamly <info@account.streamly.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Streamly Standard trial ends in 3 days
+Date: Mon, 29 Dec 2025 17:08:00 +0000
+Message-ID: <2e64650a699036c3.5a25c4ce@account.streamly.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_060978_0bae6dfb4a09"
+
+------=_Part_060978_0bae6dfb4a09
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Your free trial of Streamly Standard ends on Jan 1, 2026.
+
+Amount due on Jan 1, 2026: =E2=82=AC12
+
+We'll charge your Visa ending in 1881 unless you cancel before then.
+------=_Part_060978_0bae6dfb4a09
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your Streamly Standard trial end=
+s in 3 days</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Streamly</h1>
+<p>Hi Sam,</p>
+<p>Your free trial of Streamly Standard ends on Jan 1, 2026.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Amount due on Jan 1, 2026</td><td style=3D"text-align:right">=E2=82=
+=AC12</td></tr>
+</table>
+<p>We'll charge your Visa ending in 1881 unless you cancel before then.</p>
+</body></html>
+------=_Part_060978_0bae6dfb4a09--

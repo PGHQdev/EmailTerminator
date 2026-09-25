@@ -1,0 +1,45 @@
+Return-Path: <bounce+acct_1Abc@stripe.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stripe.com;
+	s=20230601; t=1780920030;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=8bHD7jWs5UTqLjH7fuiMnYZcuBQKW3gAmV1SpIXND+Q=;
+	b=8PhsaHeKcXTF16av5p7C//3WjAdKlABYbHj2pUEJJ4zm/8ew7UneYyhIxjpUrXmNquCEY5+Q
+	 G3o3PIcOw22pFHyCj6X1PkaA4/vvT8dfQPNyFgUnW3Eyn4pIkmdRpTfg7eNT0GMnstB1we/p
+	 d7SCfIBwTbwl4ZlFkJQ+iZoMHku1LRByU6ea5rUzoVqsPnAJdNo7b3nU80YDi086s/BCL5Ky
+	 Fj0kvIkQ7OZjYEhfNRm4Fdr87TB/n3/nvBMar7qIUfQzITEb6XC6WjQT/jFanPszxyjg9W4q
+	 FGs7AUOK4cXX4jxPDnoDbI9Z5yJ0Vo+u5GTqFnFG1Z5oeHgchtDpwgAZ
+From: Lumen Analytics <invoice+statements@stripe.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Your Lumen Analytics Growth subscription has been cancelled
+Date: Mon, 01 Jun 2026 19:24:00 -0800
+Message-ID: <c157c832136f2176.1ed0f478@stripe.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_735689_9d6fe308cf6b"
+
+------=_Part_735689_9d6fe308cf6b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Lumen Analytics
+
+Your subscription to Lumen Analytics Growth is cancelled.
+
+You keep access until Jun 21, 2026. You won't be charged again.
+------=_Part_735689_9d6fe308cf6b
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Your Lumen Analytics Growth subs=
+cription has been cancelled</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">Lumen Analytics</h1>
+<p>Hi Sam,</p>
+<p>Lumen Analytics</p>
+<p>Your subscription to Lumen Analytics Growth is cancelled.</p>
+<p>You keep access until Jun 21, 2026. You won't be charged again.</p>
+</body></html>
+------=_Part_735689_9d6fe308cf6b--

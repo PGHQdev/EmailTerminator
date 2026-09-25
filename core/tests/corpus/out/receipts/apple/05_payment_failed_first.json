@@ -1,0 +1,21 @@
+{
+  "from_address": "no_reply@email.apple.com",
+  "from_name": "Apple",
+  "subject": "We couldn't process your Skyline Weather payment",
+  "date": "2026-05-01T04:37:00Z",
+  "message_id": "109be569eefa4029.37bb0981@email.apple.com",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "email.apple.com"
+  ],
+  "receipt": {
+    "kind": "payment_failed",
+    "amount_minor_units": 1200,
+    "currency": "JPY",
+    "merchant": "Skyline Weather",
+    "invoice_ref": "M11JMFFX3Z"
+  }
+}

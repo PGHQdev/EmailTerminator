@@ -1,0 +1,36 @@
+Return-Path: <0100019a2b3c4d5e-1f2a3b4c-5d6e-7f80-9a0b-1c2d3e4f5a6b-000000@amazonses.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=billing.cloudbarn.test;
+	s=s1; t=1772239362;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=rIMBEGmclZdZ5fgXlcPY+l2wsME8RS4jBFHRiEXS7Y+=;
+	b=hn4LSQsQsMP8ctMLvLVLPvdvJs80hAkIKS1Q0tS8UBmJc9RzmlmZ1BLFd/FV7Myd68hwsgAW
+	 B+wwY7couzbeQUDYu5j0YQhYDnaz2qGFHZ2+a3cUds5ul8/wq7aaZ6vuEZd6KErQbX6YN+Sz
+	 Qe8iSQBAB2iWu9TkDBTKIzb3/0AZAYmmbqanNxXnID3ogOaIWP0JjO0aN3AbNC/08CZcJJoi
+	 Uu1FV2K8moAyuMTz6ZxaY5Ob2Ixv2XJQA51qt9K3XCXrt8NsxQ7XewGEWhd1W2r17DmaTJKg
+	 auq3ibUlBDbYho70foexjE4K2yXrUMq007Iajvw2Ezw5e6G4zqbwOyh3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com;
+	s=20230601; t=1782010477;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=zlKKFP4c4fUzs7U4JuLcfX/sS1tjRSXFRpUFjHUgJib=;
+	b=l7Z6/KOnHBEr68IGwAGSVbZLX70aatZuA0rZtzQyYbfSdOUHIxKe1ZKXkD0Ar7StPo0gnA4J
+	 YN3RIcuF34xvDHdqJzI3JQHd27P+YJcQigvX43AifrO5u36mmurT/5VKdGlSTEKFZsas0FGa
+	 ys01EF0+S/zdIwVMYVhImCrAwa1conmOUTY1+iAsb10de+R9PeyDa6wJeQIFSz/sZHAa3rv8
+	 OhUWNBEEiaLBOfPWaTyEWc5OUaxJR+p5rD22zH6AozpeXq/WyL958x+HxaraNkToDM9M88wM
+	 KubOjhm0MOknb9SKK/R05ZdpP3r8L4n+mzN4+2mqkv0ukpE8LjUZWbQG
+From: Cloudbarn Billing <no-reply@billing.cloudbarn.test>
+To: Sam Rivera <sam@inbox.test>
+Subject: Partial refund for your Cloudbarn Business Support payment
+Date: Wed, 04 Feb 2026 12:32:00 +0000
+Message-ID: <5359682084214b2e.7ee58965@billing.cloudbarn.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Sam,
+
+We've refunded part of your payment for Cloudbarn Business Support.
+
+Original charge: USD 1,234.56
+Refund amount: USD 617.28
+Invoice ID: 2822905963
+Refunded to: Mastercard ending in 5454

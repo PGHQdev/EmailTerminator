@@ -1,0 +1,21 @@
+{
+  "from_address": "no-reply@tunebox.test",
+  "from_name": "Tunebox",
+  "subject": "An update to your Tunebox Premium price",
+  "date": "2026-04-01T22:05:00Z",
+  "message_id": "9855a9cc25b84c7e.1b752851@tunebox.test",
+  "list_unsubscribe": null,
+  "list_unsubscribe_post": false,
+  "list_id": null,
+  "is_list": false,
+  "dkim_domains": [
+    "tunebox.test"
+  ],
+  "receipt": {
+    "kind": "price_change",
+    "amount_minor_units": 1300,
+    "currency": "USD",
+    "merchant": null,
+    "invoice_ref": null
+  }
+}

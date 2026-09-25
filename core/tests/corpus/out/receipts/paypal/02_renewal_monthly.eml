@@ -1,0 +1,57 @@
+Return-Path: <bounce@paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypal.com;
+	s=selector1; t=1772953218;
+	h=from:to:subject:date:message-id:mime-version:content-type;
+	bh=T1VhRZO2WvodhZXYXLk6mTtn3uIA8/T7hSucn21F0IV=;
+	b=dXkQ0r9N1J3zjejmYtKZRLa1yk0MRA7PoM1KB0O9pAhERq7ZBw/Z3Eg2hJjguLoIreBEL+u3
+	 IeFLw6zXYQ4D9hivtXTcA7suBhs+tTPFYwAwZsJMAADnrmmNZqW+ACHzTThNJYCeoJSQD8Wp
+	 jbCzoUMO5Mi6Bz+0EMzaGzOdnZwTmYWlxKPtwZZ4Gnsz63atdgMNwNPBgEd6a2C5VYZzRojf
+	 PnHOFth3SfQjQLvU9rqYRgXhY61tlvEcIhj8gGjH6Ag1huCP29B/onxzHoQTESuyb4Uo821v
+	 IlNUet3cORk9p4l4DGyMM8AtvKXBlV7u7LwozIymoPtxrdfQaf6MIYZo
+From: PayPal <service@paypal.com>
+To: Sam Rivera <sam@inbox.test>
+Subject: Receipt for your payment to Northwind Hosting
+Date: Sun, 01 Feb 2026 07:14:00 -0700
+Message-ID: <c05b7b8951c2e929.ce5943bd@paypal.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="----=_Part_202791_16c8357cc47f"
+
+------=_Part_202791_16c8357cc47f
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+Payment to Northwind Hosting
+
+Your monthly subscription to Northwind Hosting VPS-2 has renewed.
+
+Date: Feb 1, 2026
+Billing period: Feb 1 =E2=80=93 Mar 1, 2026
+Total: $15.00 USD
+Invoice ID: NH-13860
+Payment method: Visa ending in 1111
+------=_Part_202791_16c8357cc47f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html><head><meta charset=3D"utf-8"><title>Receipt for your payment to Nort=
+hwind Hosting</title></head>
+<body style=3D"font-family:Helvetica,Arial,sans-serif;color:#222">
+<h1 style=3D"font-size:20px">PayPal</h1>
+<p>Hi Sam,</p>
+<p>Payment to Northwind Hosting</p>
+<p>Your monthly subscription to Northwind Hosting VPS-2 has renewed.</p>
+<table role=3D"presentation" cellpadding=3D"4">
+<tr><td>Date</td><td style=3D"text-align:right">Feb 1, 2026</td></tr>
+<tr><td>Billing period</td><td style=3D"text-align:right">Feb 1 =E2=80=93 M=
+ar 1, 2026</td></tr>
+<tr><td>Total</td><td style=3D"text-align:right">$15.00 USD</td></tr>
+<tr><td>Invoice ID</td><td style=3D"text-align:right">NH-13860</td></tr>
+<tr><td>Payment method</td><td style=3D"text-align:right">Visa ending in 11=
+11</td></tr>
+</table>
+</body></html>
+------=_Part_202791_16c8357cc47f--
