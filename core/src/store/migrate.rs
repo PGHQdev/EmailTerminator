@@ -4,7 +4,10 @@ use super::StoreError;
 
 /// Forward-only migrations, applied at open (PLAN.md 2.1). The file at index
 /// `i` moves `user_version` from `i` to `i + 1`.
-const MIGRATIONS: &[&str] = &[include_str!("../../migrations/001-initial.sql")];
+const MIGRATIONS: &[&str] = &[
+    include_str!("../../migrations/001-initial.sql"),
+    include_str!("../../migrations/002-price-increase.sql"),
+];
 
 pub(super) fn migrate(conn: &mut Connection) -> Result<(), StoreError> {
     let current: i64 = conn.pragma_query_value(None, "user_version", |row| row.get(0))?;

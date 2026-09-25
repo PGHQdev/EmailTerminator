@@ -156,12 +156,15 @@ fn services(tx: &Transaction<'_>) -> Result<(), StoreError> {
 
         let summary = summarize(&charges);
         tx.execute(
-            "UPDATE service SET cadence = ?2, monthly_minor_units = ?3, currency = ?4 WHERE id = ?1",
+            "UPDATE service SET cadence = ?2, monthly_minor_units = ?3, currency = ?4,
+                                price_increase = ?5
+             WHERE id = ?1",
             params![
                 service_id,
                 summary.cadence.map(|c| c.as_str()),
                 summary.monthly_minor_units,
                 summary.latest.map(|(_, c)| c),
+                summary.price_increase,
             ],
         )?;
 

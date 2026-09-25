@@ -2,8 +2,9 @@
 //! what it costs per month, and whether the price went up.
 
 use serde::{Deserialize, Serialize};
+use specta::Type;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Type)]
 #[serde(rename_all = "snake_case")]
 pub enum Cadence {
     Monthly,
@@ -52,14 +53,7 @@ const DAY: i64 = 86_400;
 /// `charges` in any order; charges on the same day with the same amount count
 /// once, which is how one receipt delivered to two folders reads.
 pub fn summarize(charges: &[Charge]) -> Summary {
-    let mut sorted: Vec<&Charge> = charges.iter().collect();
-    sorted.sort_by_key(|c| (c.at, c.minor_units));
-    sorted.dedup_by(|b, a| {
-        b.at.div_euclid(DAY) == a.at.div_euclid(DAY)
-            && b.minor_units == a.minor_units
-            && b.currency == a.currency
-    });
-
+    let sorted = dedup(charges);
     let plans = plans(&sorted);
     let cadences: Vec<Option<Cadence>> = plans.iter().map(|p| cadence(p)).collect();
     let cadence = match cadences.first() {
@@ -78,19 +72,65 @@ pub fn summarize(charges: &[Charge]) -> Summary {
     Summary {
         cadence,
         charge_count: sorted.len(),
-        // Only a regular plan has a price to raise; one-off purchases just differ.
-        price_increase: plans.iter().zip(&cadences).any(|(plan, cadence)| {
-            matches!(cadence, Some(Cadence::Monthly | Cadence::Annual))
-                && plan.windows(2).any(|w| {
-                    w[0].currency == w[1].currency
-                        && w[1].minor_units > w[0].minor_units
-                        && w[0].minor_units > 0
-                })
-        }),
+        price_increase: changes(&plans, &cadences).any(|c| c.to > c.from),
         latest: sorted.last().map(|c| (c.minor_units, c.currency.clone())),
         monthly_minor_units,
         plans: plans.len(),
     }
+}
+
+fn dedup(charges: &[Charge]) -> Vec<&Charge> {
+    let mut sorted: Vec<&Charge> = charges.iter().collect();
+    sorted.sort_by_key(|c| (c.at, c.minor_units));
+    sorted.dedup_by(|b, a| {
+        b.at.div_euclid(DAY) == a.at.div_euclid(DAY)
+            && b.minor_units == a.minor_units
+            && b.currency == a.currency
+    });
+    sorted
+}
+
+/// A regular plan's price moving from one charge to the next.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct PriceChange {
+    /// Seconds since the epoch of the first charge at the new price.
+    pub at: i64,
+    pub from: i64,
+    pub to: i64,
+    pub currency: String,
+}
+
+/// Every price change in `charges`, oldest first: S06's history.
+pub fn price_changes(charges: &[Charge]) -> Vec<PriceChange> {
+    let sorted = dedup(charges);
+    let plans = plans(&sorted);
+    let cadences: Vec<Option<Cadence>> = plans.iter().map(|p| cadence(p)).collect();
+    let mut found: Vec<PriceChange> = changes(&plans, &cadences).collect();
+    found.sort_by_key(|c| c.at);
+    found
+}
+
+/// Only a regular plan has a price to change; one-off purchases just differ.
+fn changes<'a>(
+    plans: &'a [Vec<&'a Charge>],
+    cadences: &'a [Option<Cadence>],
+) -> impl Iterator<Item = PriceChange> + 'a {
+    plans
+        .iter()
+        .zip(cadences)
+        .filter(|(_, cadence)| matches!(cadence, Some(Cadence::Monthly | Cadence::Annual)))
+        .flat_map(|(plan, _)| plan.windows(2))
+        .filter(|w| {
+            w[0].currency == w[1].currency
+                && w[0].minor_units != w[1].minor_units
+                && w[0].minor_units > 0
+        })
+        .map(|w| PriceChange {
+            at: w[1].at,
+            from: w[0].minor_units,
+            to: w[1].minor_units,
+            currency: w[1].currency.clone(),
+        })
 }
 
 /// Splits charges into plans billed side by side. Charges are grouped by
@@ -167,6 +207,29 @@ mod tests {
         assert_eq!(s.cadence, Some(Cadence::Monthly));
         assert!(s.price_increase);
         assert_eq!(s.monthly_minor_units, Some(1200));
+    }
+
+    #[test]
+    fn price_changes_list_rises_and_cuts_in_order() {
+        let charges = monthly(12, |m| match m {
+            0..4 => 800,
+            4..8 => 999,
+            _ => 900,
+        });
+        let changes = price_changes(&charges);
+        let moves: Vec<(i64, i64)> = changes.iter().map(|c| (c.from, c.to)).collect();
+        assert_eq!(moves, vec![(800, 999), (999, 900)]);
+        assert_eq!(changes[0].at, charges[4].at);
+    }
+
+    #[test]
+    fn side_by_side_plans_have_no_price_changes() {
+        let mut charges = monthly(8, |_| 1500);
+        charges.extend(monthly(8, |_| 400).into_iter().map(|mut c| {
+            c.at += 5 * DAY;
+            c
+        }));
+        assert!(price_changes(&charges).is_empty());
     }
 
     #[test]
