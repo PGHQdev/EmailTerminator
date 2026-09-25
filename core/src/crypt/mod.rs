@@ -63,6 +63,11 @@ pub fn load_or_create_key(store: &dyn SecretStore) -> Result<DbKey, CryptError> 
     Ok(key)
 }
 
+/// Deletes the database key. The database it opened can no longer be read.
+pub fn forget_key(store: &dyn SecretStore) -> Result<(), CryptError> {
+    store.delete(DB_KEY)
+}
+
 pub(crate) fn random_32() -> Result<Zeroizing<[u8; 32]>, CryptError> {
     let mut bytes = Zeroizing::new([0u8; 32]);
     getrandom::fill(bytes.as_mut()).map_err(CryptError::Random)?;

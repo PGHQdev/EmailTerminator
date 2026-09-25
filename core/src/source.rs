@@ -30,12 +30,16 @@ pub fn password_secret(source_id: i64) -> String {
     format!("imap:{source_id}")
 }
 
-pub fn now() -> String {
-    let secs = SystemTime::now()
+/// Seconds since the epoch.
+pub fn unix_now() -> i64 {
+    SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .map(|d| d.as_secs() as i64)
-        .unwrap_or(0);
-    rfc3339_utc(secs)
+        .unwrap_or(0)
+}
+
+pub fn now() -> String {
+    rfc3339_utc(unix_now())
 }
 
 pub fn add_imap(store: &Store, label: &str, config: &ImapConfig) -> Result<i64, StoreError> {
