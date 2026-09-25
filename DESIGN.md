@@ -71,9 +71,9 @@ accent uses `--color-accent-700` on the light ground.
 ### Two things in the bundle that are not usable as shipped
 
 - `_ds_bundle.js` declares `"components":[]`. It is an empty shim.
-- `_adherence.oxlintrc.json` targets React and names Caprasimo. Port its two
-  useful rules — no raw hex, no raw px — into the project's own oxlint config
-  and correct the font list. See `PLAN.md` 2.4.
+- `_adherence.oxlintrc.json` targets React, names Caprasimo, and uses a rule
+  oxlint lacks. Its intent — no raw hex, no raw px, no foreign font — is
+  enforced by `ui/scripts/check-tokens.ts`. See `PLAN.md` 2.4.
 
 The system's component classes (`.btn`, `.card`, `.table`) are not used by any
 mockup and are not adopted. The tokens and the alias layer are what carry over.

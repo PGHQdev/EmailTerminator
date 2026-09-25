@@ -575,9 +575,11 @@ Therefore:
   `Channel` into a store per stream. No client-side state library.
 - **`_adherence.oxlintrc.json` is not adopted as shipped.** It targets React
   (`plugins: ["react"]`, `react/forbid-elements`) and its font rule names
-  Caprasimo, which the mockups override. Port its two useful rules into the
-  project's oxlint config, applied to `.svelte`: no raw hex colour, no raw
-  `px` literal. Correct the font list to Bricolage Grotesque and Figtree.
+  Caprasimo, which the mockups override. Its rules use `no-restricted-syntax`,
+  which oxlint does not implement, and oxlint does not read CSS in any case.
+  So `ui/scripts/check-tokens.ts` enforces them on every `.svelte` file as part
+  of `bun run lint`: no raw hex colour, no raw `px` value, and no font family
+  other than `var(--font-heading)` or `var(--font-body)`. Found at M0.
 
 ### 2.5 Type sharing (was 20)
 
@@ -841,22 +843,24 @@ app update and a data-location change (1.4).
 
 ### Dependency baseline
 
-Checked against crates.io and npm on 2026-08-10. Pin these at M0 and let
+Checked against crates.io and npm on 2026-08-10; the rows M0 pinned were
+re-checked on 2026-09-26. Pin each row when its milestone adds it, and let
 Dependabot move them.
 
 | Dependency | Version | Note |
 |---|---|---|
 | `mail-parser` | 0.11.5 | Pin exactly; carries issues #155 and #156 (M1) |
 | `async-imap` | 0.11.3 | Brings `tokio` into `core` (2.3) |
-| `rusqlite` | 0.40.2 | Feature `bundled-sqlcipher-vendored-openssl`; confirm FTS5 at M0 (2.1) |
+| `rusqlite` | 0.40.2 | Feature `bundled-sqlcipher-vendored-openssl`; FTS5 confirmed at M0 (2.1) |
 | `chacha20poly1305`, `hkdf`, `ed25519-dalek` | pin at M0 | Sealed files and the licence token (1.7, 2.1) |
 | `machine-uid`, `hmac`, `sha2` | pin at M0 | Device hash (1.7) |
-| `hono` | pin at M0 | `server/` only |
-| `keyring` | 4.1.6 | |
+| `hono` | 4.13.9 | `server/` only |
+| `tauri` | 2.11.6 | With `tauri-plugin-single-instance` 2.4.5 |
+| `keyring` | 4.2.0 | Default `v1` feature |
 | `specta` / `tauri-specta` | 2.0.0-rc.25 | Release candidate — see 2.5 |
 | `insta` | 1.48.0 | |
 | `wiremock` | 0.6.5 | |
-| `dirs` | 6.0.0 | |
+| `dirs` | 7.0.0 | |
 | `@sveltejs/adapter-static` | 3.0.10 | |
 | `bits-ui` | 2.18.1 | |
 | `lucide-svelte` | 1.0.1 | |
