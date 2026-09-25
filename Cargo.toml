@@ -30,6 +30,7 @@ specta = { version = "=2.0.0-rc.25", features = ["derive"] }
 specta-typescript = "=0.0.12"
 tauri = "=2.11.6"
 tauri-build = "=2.6.3"
+tauri-plugin-opener = "=2.5.5"
 tauri-plugin-single-instance = "=2.4.5"
 tauri-specta = { version = "=2.0.0-rc.25", features = ["derive", "typescript"] }
 tempfile = "=3.27.0"
