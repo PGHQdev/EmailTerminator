@@ -5,6 +5,11 @@
    no dark value in the mockups. */
 
 :root {
+  /* Stroke widths the mockups use for card borders and outline buttons. */
+  --stroke: 1px;
+  --stroke-strong: 2px;
+  --pill: 999rem;
+
   --bg: var(--color-bg);
   --fg: var(--color-text);
   --hd: var(--color-text);
