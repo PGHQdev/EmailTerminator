@@ -4,4 +4,5 @@ pub mod crypt;
 pub mod extract;
 pub mod ingest;
 pub mod scan;
+pub mod source;
 pub mod store;

@@ -25,6 +25,42 @@ use tokio_rustls::client::TlsStream;
 const MAX_BYTES: u32 = 2 * 1024 * 1024;
 const BATCH: usize = 200;
 
+/// Servers for the app-password providers (PLAN.md 1.6). Outlook.com takes
+/// OAuth only and arrives at M5.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Preset {
+    pub label: &'static str,
+    pub host: &'static str,
+    pub port: u16,
+    /// Where the provider explains app passwords.
+    pub guide: &'static str,
+}
+
+pub const GMAIL: Preset = Preset {
+    label: "Gmail",
+    host: "imap.gmail.com",
+    port: 993,
+    guide: "https://support.google.com/accounts/answer/185833",
+};
+pub const ICLOUD: Preset = Preset {
+    label: "iCloud Mail",
+    host: "imap.mail.me.com",
+    port: 993,
+    guide: "https://support.apple.com/en-us/102654",
+};
+pub const FASTMAIL: Preset = Preset {
+    label: "Fastmail",
+    host: "imap.fastmail.com",
+    port: 993,
+    guide: "https://www.fastmail.help/hc/en-us/articles/360058752854",
+};
+pub const YAHOO: Preset = Preset {
+    label: "Yahoo Mail",
+    host: "imap.mail.yahoo.com",
+    port: 993,
+    guide: "https://help.yahoo.com/kb/SLN15241.html",
+};
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Account {
     pub host: String,
