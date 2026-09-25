@@ -111,6 +111,12 @@ Actions, IMAP first: connect a mailbox over IMAP with an app password;
 bring-your-own OAuth client with guided setup; import an mbox file or
 *(no mockup yet)* a Maildir folder.
 
+*(no mockup yet)* The IMAP connect form that "Connect via IMAP" opens:
+provider presets (Gmail, iCloud Mail, Fastmail, Yahoo Mail, other IMAP with
+server and port), the address, the app password, a link to the provider's
+app-password guide, and S16's sign-in failure card in place of the form when
+the server refuses. Built at M1 from S01's cards and S16's error card.
+
 ### S02 — Scan progress
 
 [Mockup](docs/design/S02%20Scan.dc.html)
