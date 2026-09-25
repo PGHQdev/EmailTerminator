@@ -1,9 +1,21 @@
 //! Header fields the classifier and the list layer read.
 
-use mail_parser::{HeaderName, Message};
+use mail_parser::{HeaderName, HeaderValue, Message};
 
+use super::words;
+
+/// The first `From`: when a message carries two, the first is the one the
+/// author's client wrote.
 pub(super) fn from(msg: &Message<'_>) -> (Option<String>, Option<String>) {
-    let Some(addr) = msg.from().and_then(|a| a.first()) else {
+    let first = msg
+        .headers()
+        .iter()
+        .find(|h| h.name == HeaderName::From)
+        .and_then(|h| match &h.value {
+            HeaderValue::Address(address) => address.first(),
+            _ => None,
+        });
+    let Some(addr) = first else {
         return (None, None);
     };
     let address = addr
@@ -15,6 +27,19 @@ pub(super) fn from(msg: &Message<'_>) -> (Option<String>, Option<String>) {
         .map(|n| n.trim().to_owned())
         .filter(|n| !n.is_empty());
     (address, name)
+}
+
+/// The first `Subject`, decoded (see `words`).
+pub(super) fn subject(msg: &Message<'_>) -> Option<String> {
+    let raw_message = msg.raw_message();
+    let header = msg
+        .headers()
+        .iter()
+        .find(|h| h.name == HeaderName::Subject)?;
+    let bytes = raw_message.get(header.offset_start as usize..header.offset_end as usize)?;
+    let value = words::decode(&unfold(&String::from_utf8_lossy(bytes)));
+    let value = value.trim();
+    (!value.is_empty()).then(|| value.to_owned())
 }
 
 /// A header's raw value, unfolded and trimmed.

@@ -60,25 +60,45 @@ static PATTERN: LazyLock<Regex> = LazyLock::new(|| {
     .expect("money pattern")
 });
 
-/// Every amount in `text`, in order.
+/// Every amount in `text`, in order. A sign written after a number belongs to
+/// the next number instead when digits follow it: in "Jan 1, 2026 ¥1,200" the
+/// yen is 1,200's, not 2026's.
 pub fn find_all(text: &str) -> Vec<Money> {
-    PATTERN
-        .captures_iter(text)
-        .filter_map(|caps| {
-            let whole = caps.get(0)?;
-            let (sign, amount) = match (caps.name("pre"), caps.name("pa")) {
-                (Some(sign), Some(amount)) => (sign.as_str(), amount.as_str()),
-                _ => (caps.name("suf")?.as_str(), caps.name("sa")?.as_str()),
-            };
-            let currency = currency_of(sign)?;
-            Some(Money {
-                minor_units: minor_units(amount, currency)?,
+    let mut found = Vec::new();
+    let mut at = 0;
+    while let Some(caps) = PATTERN.captures_at(text, at) {
+        let whole = caps.get(0).expect("match");
+        let (sign, amount) = match (caps.name("pre"), caps.name("pa")) {
+            (Some(sign), Some(amount)) => (sign, amount),
+            _ => {
+                let (Some(sign), Some(amount)) = (caps.name("suf"), caps.name("sa")) else {
+                    at = whole.end();
+                    continue;
+                };
+                if text[sign.end()..]
+                    .trim_start()
+                    .starts_with(|c: char| c.is_ascii_digit())
+                {
+                    at = sign.start();
+                    continue;
+                }
+                (sign, amount)
+            }
+        };
+        at = whole.end();
+        let Some(currency) = currency_of(sign.as_str()) else {
+            continue;
+        };
+        if let Some(minor_units) = minor_units(amount.as_str(), currency) {
+            found.push(Money {
+                minor_units,
                 currency,
                 start: whole.start(),
                 end: whole.end(),
-            })
-        })
-        .collect()
+            });
+        }
+    }
+    found
 }
 
 fn currency_of(sign: &str) -> Option<&'static str> {
@@ -159,6 +179,12 @@ mod tests {
     fn plain_numbers_are_not_money() {
         assert!(find_all("Order 12345 shipped on 2026-01-05, 3 items").is_empty());
         assert!(find_all("USDA approved").is_empty());
+    }
+
+    #[test]
+    fn a_year_does_not_take_the_next_amounts_sign() {
+        assert_eq!(one("Amount due on Jan 1, 2026 ¥1,200"), (1200, "JPY"));
+        assert_eq!(one("Due Jan 1, 2026 €12,00"), (1200, "EUR"));
     }
 
     #[test]

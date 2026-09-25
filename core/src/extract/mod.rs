@@ -3,10 +3,12 @@
 //! `Extraction` values, so a change here is a change to every golden.
 
 mod headers;
+mod html;
 mod money;
 mod receipt;
+mod words;
 
-use mail_parser::{MessageParser, PartType};
+use mail_parser::{MessageParser, MimeHeaders, PartType};
 use serde::{Deserialize, Serialize};
 
 pub use headers::{parse_rfc3339_utc, rfc3339_utc};
@@ -85,7 +87,7 @@ pub fn extract(raw: &[u8]) -> Extraction {
         return Extraction::empty();
     };
     let (from_address, from_name) = headers::from(&msg);
-    let subject = msg.subject().map(|s| s.trim().to_owned());
+    let subject = headers::subject(&msg);
     let list_unsubscribe = headers::raw(&msg, "List-Unsubscribe");
     let list_id = headers::list_id(&msg);
     let listish = list_unsubscribe.is_some() || list_id.is_some() || headers::is_bulk(&msg);
@@ -99,6 +101,14 @@ pub fn extract(raw: &[u8]) -> Extraction {
         text: &body_text(&msg),
         from_name: from_name.as_deref(),
         from_domain,
+        has_pdf: msg.attachments().any(|part| {
+            part.content_type().is_some_and(|ct| {
+                ct.ctype().eq_ignore_ascii_case("application")
+                    && ct.subtype().is_some_and(|s| s.eq_ignore_ascii_case("pdf"))
+            }) || part
+                .attachment_name()
+                .is_some_and(|n| n.to_ascii_lowercase().ends_with(".pdf"))
+        }),
     });
 
     Extraction {
@@ -142,7 +152,7 @@ fn body_text(msg: &mail_parser::Message<'_>) -> String {
     for part in msg.text_bodies().chain(msg.html_bodies()) {
         let chunk = match &part.body {
             PartType::Text(t) => t.to_string(),
-            PartType::Html(h) => mail_parser::decoders::html::html_to_text(h),
+            PartType::Html(h) => html::to_text(h),
             _ => continue,
         };
         if !text.contains(chunk.trim()) {
