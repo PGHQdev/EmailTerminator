@@ -1,0 +1,26 @@
+# Source: https://help.dropbox.com/plans/downgrade-dropbox-individual-plans
+name = "Dropbox"
+domains = ["dropbox.com"]
+
+[playbook]
+source = "https://help.dropbox.com/plans/downgrade-dropbox-individual-plans"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Log in to dropbox.com."
+link = "https://www.dropbox.com/login"
+
+[[playbook.steps]]
+text = "Click your avatar in the bottom-left corner, then click Manage account."
+
+[[playbook.steps]]
+text = "Click Cancel plan at the bottom of the page and select a reason for canceling."
+
+[[playbook.steps]]
+text = "Click Continue canceling or Confirm change and follow the prompts."
+
+[[playbook.steps]]
+text = "Your account changes to Dropbox Basic at the end of the current billing cycle, and you are not charged again."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

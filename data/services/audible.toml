@@ -1,0 +1,23 @@
+# Source: https://help.audible.com/s/article/cancel-membership?language=en_US
+name = "Audible"
+domains = ["audible.com"]
+
+[playbook]
+source = "https://help.audible.com/s/article/cancel-membership?language=en_US"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in at audible.com and select your name on the top navigation."
+
+[[playbook.steps]]
+text = "Select Membership details."
+
+[[playbook.steps]]
+text = "Select the Cancel membership link, then select Confirm cancellation."
+link = "https://www.audible.com/account/membership/cancel/show-offers"
+
+[[playbook.steps]]
+text = "Unused credits are lost at the end of your final billing cycle. Use them first, or check if you can pause instead."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

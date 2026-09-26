@@ -1,0 +1,20 @@
+# Source: https://help.headspace.com/hc/en-us/articles/115008364988-How-do-I-cancel-my-subscription
+name = "Headspace"
+domains = ["headspace.com"]
+
+[playbook]
+source = "https://help.headspace.com/hc/en-us/articles/115008364988-How-do-I-cancel-my-subscription"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in at headspace.com in a desktop or mobile browser, not the mobile app."
+
+[[playbook.steps]]
+text = "Open the subscription management page and click Cancel Membership."
+link = "https://www.headspace.com/subscription/manage"
+
+[[playbook.steps]]
+text = "If the Cancel Membership link is missing, email help@headspace.com for help."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

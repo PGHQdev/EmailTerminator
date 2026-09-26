@@ -1,0 +1,25 @@
+# Source: https://www.canva.com/help/cancel-canva-plan/
+name = "Canva"
+domains = ["canva.com"]
+
+[playbook]
+source = "https://www.canva.com/help/cancel-canva-plan/"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Log in to the right Canva account, then select your account profile on the homepage."
+
+[[playbook.steps]]
+text = "Select Settings, then go to Billing."
+
+[[playbook.steps]]
+text = "On your plan, select Cancel plan, then select Continue cancellation."
+
+[[playbook.steps]]
+text = "Choose why you want to cancel, select Continue cancellation, then select Cancel subscription."
+
+[[playbook.steps]]
+text = "You keep paid features until the end of your current billing period."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

@@ -1,0 +1,27 @@
+# Source: https://helpx.adobe.com/account/individual/subscriptions-and-plans/renewals-and-cancellations/cancel-adobe-subscription.html
+name = "Adobe Creative Cloud"
+domains = ["adobe.com", "adobe.net"]
+unsubscribe = "https://account.adobe.com/communication"
+
+[playbook]
+source = "https://helpx.adobe.com/account/individual/subscriptions-and-plans/renewals-and-cancellations/cancel-adobe-subscription.html"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in to your Adobe account and open Plans and payment."
+link = "https://account.adobe.com/plans"
+
+[[playbook.steps]]
+text = "Select Manage plan for the plan you want to cancel, then select Cancel your plan."
+
+[[playbook.steps]]
+text = "Check your plan details and select Continue to cancel."
+
+[[playbook.steps]]
+text = "Select the reason for cancellation, select Continue, then review the details and select Confirm cancellation."
+
+[[playbook.steps]]
+text = "Access to paid apps continues until the end of your billing period. Cancel within 14 days of purchase for a full refund on most plans."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

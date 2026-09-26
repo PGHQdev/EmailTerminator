@@ -1,0 +1,22 @@
+# Source: https://help.netflix.com/en/node/407
+name = "Netflix"
+domains = ["netflix.com"]
+unsubscribe = "https://www.netflix.com/notificationsettings/email"
+
+[playbook]
+source = "https://help.netflix.com/en/node/407"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in and go to the Manage your membership page."
+link = "https://www.netflix.com/cancelplan"
+
+[[playbook.steps]]
+text = "Select Cancel, then select Finish Cancellation."
+
+[[playbook.steps]]
+text = "You can keep watching until the account cancels at the end of the billing period."
+
+[[playbook.steps]]
+text = "No cancel option? Check Membership on your Account page. If a payment partner bills you, cancel with that partner instead."
+link = "https://www.netflix.com/account"

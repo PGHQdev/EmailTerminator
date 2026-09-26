@@ -1,0 +1,27 @@
+# Source: https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066687
+name = "Zoom"
+domains = ["zoom.us", "zoom.com"]
+
+[playbook]
+source = "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066687"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in to the Zoom web portal as the account owner, an admin, or a user with billing privileges."
+link = "https://zoom.com/signin"
+
+[[playbook.steps]]
+text = "Click your profile picture or initials in the top-right corner, then click Plans and billing."
+link = "https://zoom.us/billing"
+
+[[playbook.steps]]
+text = "Cancel any add-ons first: click Cancel Plan next to each add-on and confirm."
+
+[[playbook.steps]]
+text = "Find your plan, click Cancel Plan, and confirm the cancellation."
+
+[[playbook.steps]]
+text = "Paid services stay until the end of the current term. Cloud recordings are deleted 30 days after the subscription ends."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

@@ -1,0 +1,23 @@
+# Source: https://help.disneyplus.com/article/disneyplus-cancel
+name = "Disney+"
+domains = ["disneyplus.com"]
+
+[playbook]
+source = "https://help.disneyplus.com/article/disneyplus-cancel"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Log in at DisneyPlus.com in a computer or mobile browser."
+link = "https://www.disneyplus.com/"
+
+[[playbook.steps]]
+text = "Select your Profile, then select Account."
+
+[[playbook.steps]]
+text = "Under Subscription, select your Disney+ subscription, then select Cancel Subscription."
+
+[[playbook.steps]]
+text = "You keep access until the end of your current subscription term."
+
+[[playbook.steps]]
+text = "Billed through a third-party partner? Cancel with that partner instead."

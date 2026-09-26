@@ -1,0 +1,23 @@
+# Source: https://help.hulu.com/article/hulu-cancel-hulu-subscription
+name = "Hulu"
+domains = ["hulu.com"]
+
+[playbook]
+source = "https://help.hulu.com/article/hulu-cancel-hulu-subscription"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Open your Account page in a computer or mobile browser."
+link = "https://secure.hulu.com/account"
+
+[[playbook.steps]]
+text = "Under Your Subscription, select Cancel."
+
+[[playbook.steps]]
+text = "If Hulu offers a pause, select Continue to Cancel, then select Cancel Subscription."
+
+[[playbook.steps]]
+text = "You keep access until the end of the current billing cycle. Hulu + Live TV free trials end immediately."
+
+[[playbook.steps]]
+text = "Billed through Apple, Google Play or another partner? Cancel with that partner instead."

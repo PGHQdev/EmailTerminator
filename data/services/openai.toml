@@ -1,0 +1,23 @@
+# Source: https://help.openai.com/en/articles/7232927-canceling-your-chatgpt-subscription
+name = "ChatGPT Plus"
+domains = ["openai.com"]
+
+[playbook]
+source = "https://help.openai.com/en/articles/7232927-canceling-your-chatgpt-subscription"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in to ChatGPT."
+link = "https://chatgpt.com/"
+
+[[playbook.steps]]
+text = "Open your account menu and select Settings."
+
+[[playbook.steps]]
+text = "Select Billing, then under Cancel plan, select Cancel."
+
+[[playbook.steps]]
+text = "Cancel at least 24 hours before your next billing date. Paid features stay until the end of the billing period."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

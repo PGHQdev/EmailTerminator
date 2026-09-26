@@ -1,0 +1,21 @@
+# Source: https://help.nytimes.com/115003007668-Manage-Account/360003499613-Cancel-Your-Subscription
+name = "The New York Times"
+domains = ["nytimes.com"]
+
+[playbook]
+source = "https://help.nytimes.com/115003007668-Manage-Account/360003499613-Cancel-Your-Subscription"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in to your New York Times account."
+link = "https://www.nytimes.com/account"
+
+[[playbook.steps]]
+text = "Select Subscription Overview."
+
+[[playbook.steps]]
+text = "In Manage Subscription, select Cancel your Subscription and follow the instructions."
+link = "https://www.nytimes.com/account/cancel"
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

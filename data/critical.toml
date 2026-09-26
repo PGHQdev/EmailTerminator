@@ -1,0 +1,79 @@
+# Services whose mail a user relies on: unsubscribing or cancelling needs a typed confirmation.
+[[service]]
+name = "Amazon Web Services"
+domains = ["aws.com", "aws.eu", "amazonaws.com", "amazonaws.eu"]
+senders = ["no-reply-aws@amazon.com", "aws-noreply@amazon.com", "aws-no-reply@amazon.com"]
+
+[[service]]
+name = "Google Cloud"
+senders = ["cloudplatform-noreply@google.com", "alerting-noreply@google.com", "google-cloud-compliance+noreply@google.com"]
+
+[[service]]
+name = "Microsoft Azure"
+domains = ["windowsazure.com"]
+senders = ["azure-noreply@microsoft.com", "azureemail-noreply@microsoft.com"]
+
+[[service]]
+name = "Stripe"
+domains = ["stripe.com"]
+
+[[service]]
+name = "PayPal"
+domains = ["paypal.com"]
+
+[[service]]
+name = "Square"
+domains = ["squareup.com"]
+
+[[service]]
+name = "Wise"
+domains = ["wise.com"]
+
+[[service]]
+name = "GoDaddy"
+domains = ["godaddy.com"]
+
+[[service]]
+name = "Namecheap"
+domains = ["namecheap.com"]
+
+[[service]]
+name = "Porkbun"
+domains = ["porkbun.com"]
+
+[[service]]
+name = "Cloudflare"
+domains = ["cloudflare.com"]
+
+[[service]]
+name = "Gandi"
+domains = ["gandi.net"]
+senders = ["noreply@domainnameverification.net"]
+
+[[service]]
+name = "Hover"
+domains = ["hover.com"]
+
+[[service]]
+name = "Squarespace Domains"
+domains = ["squarespace.com"]
+
+[[service]]
+name = "Name.com"
+domains = ["name.com"]
+
+[[service]]
+name = "Dynadot"
+domains = ["dynadot.com"]
+
+[[service]]
+name = "Network Solutions"
+domains = ["networksolutions.com"]
+
+[[service]]
+name = "IONOS"
+domains = ["ionos.com"]
+
+[[service]]
+name = "DNSimple"
+domains = ["dnsimple.com"]

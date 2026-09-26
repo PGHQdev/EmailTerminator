@@ -1,0 +1,26 @@
+# Source: https://help.crunchyroll.com/article/how-do-i-cancel-my-membership
+name = "Crunchyroll"
+domains = ["crunchyroll.com"]
+
+[playbook]
+source = "https://help.crunchyroll.com/article/how-do-i-cancel-my-membership"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "In a web browser, sign in to your Crunchyroll account and select your profile."
+
+[[playbook.steps]]
+text = "Click your profile picture, choose Settings, then open Membership Info."
+link = "https://www.crunchyroll.com/account/membership"
+
+[[playbook.steps]]
+text = "Choose Cancel Subscription, then click No thanks, Finish Cancellation."
+
+[[playbook.steps]]
+text = "Share feedback and click Submit and exit, or click Skip and exit."
+
+[[playbook.steps]]
+text = "You keep your Premium perks until the end of your billing period."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

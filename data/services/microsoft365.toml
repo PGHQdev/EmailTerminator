@@ -1,0 +1,20 @@
+# Source: https://support.microsoft.com/en-us/accounts-billing/subscriptions/cancel-a-microsoft-365-subscription
+name = "Microsoft 365"
+domains = ["microsoft.com"]
+
+[playbook]
+source = "https://support.microsoft.com/en-us/accounts-billing/subscriptions/cancel-a-microsoft-365-subscription"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Go to your Microsoft 365 services page and sign in with the Microsoft account that bought the subscription."
+link = "https://account.microsoft.com/services/microsoft365"
+
+[[playbook.steps]]
+text = "Select Cancel subscription (it might say Upgrade or Cancel). If you see Turn on recurring billing, the subscription already ends on the date shown."
+
+[[playbook.steps]]
+text = "Review the Please review section and the page, then select I don't want my subscription."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

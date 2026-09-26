@@ -1,0 +1,20 @@
+# Source: https://www.amazon.com/gp/help/customer/display.html?nodeId=GTJQ7QZY7QL2HK4Y
+name = "Amazon Prime"
+domains = ["amazon.com"]
+
+[playbook]
+source = "https://www.amazon.com/gp/help/customer/display.html?nodeId=GTJQ7QZY7QL2HK4Y"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in at amazon.com and open the Cancel Your Prime Membership page."
+link = "https://www.amazon.com/mm/pipeline/cancellation"
+
+[[playbook.steps]]
+text = "Follow the prompts to end your membership."
+
+[[playbook.steps]]
+text = "Paid members who have not used their benefits get a full refund of the current period."
+
+[[playbook.steps]]
+text = "Billed through Google Play? Cancel in Google Play's subscription settings instead."

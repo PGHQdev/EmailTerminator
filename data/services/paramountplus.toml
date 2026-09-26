@@ -1,0 +1,20 @@
+# Source: https://support.paramountplus.com/s/article/PI-How-do-I-cancel-my-subscription?language=en_US
+name = "Paramount+"
+domains = ["paramountplus.com"]
+
+[playbook]
+source = "https://support.paramountplus.com/s/article/PI-How-do-I-cancel-my-subscription?language=en_US"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in at paramountplus.com and open your account page."
+link = "https://www.paramountplus.com/account"
+
+[[playbook.steps]]
+text = "Click the Cancel Subscription link, then follow the online prompts."
+
+[[playbook.steps]]
+text = "You keep access until the end of your current billing period. Paid fees are not refunded."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

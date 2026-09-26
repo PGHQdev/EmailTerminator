@@ -1,0 +1,19 @@
+# Source: https://www.notion.com/help/upgrade-or-downgrade-your-plan
+name = "Notion"
+domains = ["notion.com", "notion.so", "makenotion.com"]
+
+[playbook]
+source = "https://www.notion.com/help/upgrade-or-downgrade-your-plan"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "In Notion on desktop or web, click Settings in the sidebar, then Billing, then Change plan."
+
+[[playbook.steps]]
+text = "Select the Free Plan, then click Continue."
+
+[[playbook.steps]]
+text = "Give feedback, then click Downgrade. Paid features stay until the end of your billing cycle."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

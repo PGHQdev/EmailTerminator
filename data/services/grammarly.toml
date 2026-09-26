@@ -1,0 +1,23 @@
+# Source: https://support.grammarly.com/hc/en-us/articles/115000090172-How-do-I-cancel-my-subscription
+name = "Grammarly"
+domains = ["grammarly.com"]
+
+[playbook]
+source = "https://support.grammarly.com/hc/en-us/articles/115000090172-How-do-I-cancel-my-subscription"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in to Grammarly and open Account, then Your account, then Subscription."
+link = "https://account.grammarly.com/subscription"
+
+[[playbook.steps]]
+text = "Click Cancel Subscription at the bottom of the page, then click Continue."
+
+[[playbook.steps]]
+text = "Choose a reason for cancellation and click Cancel Subscription."
+
+[[playbook.steps]]
+text = "You keep all paid features until the end of your current subscription period."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

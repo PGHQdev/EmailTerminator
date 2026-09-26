@@ -1,0 +1,25 @@
+# Source: https://www.linkedin.com/help/linkedin/answer/a545578
+name = "LinkedIn Premium"
+domains = ["linkedin.com"]
+
+[playbook]
+source = "https://www.linkedin.com/help/linkedin/answer/a545578"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in on desktop, click the Me icon at the top of your homepage, and select Premium features."
+
+[[playbook.steps]]
+text = "Click Manage subscription under Plan Details. LinkedIn opens the LinkedIn Admin Center."
+
+[[playbook.steps]]
+text = "Click Purchases on the left pane, then select your active subscription."
+
+[[playbook.steps]]
+text = "Click Cancel subscription under Actions, then click Confirm cancel."
+
+[[playbook.steps]]
+text = "Premium stays active until the end of your current billing cycle. Cancel at least one day before your billing date."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."

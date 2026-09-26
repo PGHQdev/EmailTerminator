@@ -1,0 +1,21 @@
+# Source: https://support.spotify.com/us/article/cancel-premium/
+name = "Spotify Premium"
+domains = ["spotify.com"]
+unsubscribe = "https://www.spotify.com/account/notifications/"
+
+[playbook]
+source = "https://support.spotify.com/us/article/cancel-premium/"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in and go to Manage your plan."
+link = "https://www.spotify.com/account/subscription/manage/"
+
+[[playbook.steps]]
+text = "Select Cancel subscription."
+
+[[playbook.steps]]
+text = "Premium stays until your next billing date, then the account switches to free. A cancelled zero-priced free trial switches to free immediately."
+
+[[playbook.steps]]
+text = "No cancel option? A partner company bills your plan. Check Payment on Manage your plan for their contact link."

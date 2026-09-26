@@ -1,0 +1,21 @@
+# Source: https://www.duolingo.com/help/cancel-my-super-duolingo-subscription
+name = "Super Duolingo"
+domains = ["duolingo.com"]
+
+[playbook]
+source = "https://www.duolingo.com/help/cancel-my-super-duolingo-subscription"
+checked = 2026-09-26
+
+[[playbook.steps]]
+text = "Sign in to Duolingo in a web browser, click your profile picture, and choose Settings."
+link = "https://www.duolingo.com/settings"
+
+[[playbook.steps]]
+text = "Select Super Duolingo."
+link = "https://www.duolingo.com/settings/super"
+
+[[playbook.steps]]
+text = "Select Cancel subscription and confirm. Super features stay available for the rest of the subscription period."
+
+[[playbook.steps]]
+text = "Billed through Apple or Google Play? Cancel in that store's subscription settings instead."
