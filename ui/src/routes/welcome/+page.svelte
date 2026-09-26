@@ -40,10 +40,9 @@
     </button>
 
     <div class="card off" aria-disabled="true">
-      <span class="tag">guided setup</span>
       <div class="icon"><KeyRound size={22} strokeWidth={2.75} /></div>
-      <h2>Connect Gmail</h2>
-      <p>Bring your own OAuth client — we walk you through it.</p>
+      <h2>Sign in to Outlook.com</h2>
+      <p>Outlook, Hotmail and Live. Sign in with Microsoft. Stays in sync.</p>
       <span class="cta">Coming in a later version</span>
     </div>
   </div>
@@ -180,18 +179,6 @@
     font-size: 0.84rem;
     font-weight: 700;
     color: var(--accDeep);
-  }
-
-  .tag {
-    position: absolute;
-    top: 1.125rem;
-    right: 1.125rem;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    background: var(--card2);
-    color: var(--mut);
-    padding: 0.1875rem 0.625rem;
-    border-radius: var(--pill);
   }
 
   .home {
