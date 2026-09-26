@@ -1,10 +1,11 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import { ArrowLeft, ShieldAlert } from 'lucide-svelte';
   import { commands, type ServiceDetail } from '$lib/bindings';
   import Button from '$lib/components/Button.svelte';
   import Marker from '$lib/components/Marker.svelte';
-  import { count, initials, longDate, money, monthLabel, shortDate } from '$lib/format';
+  import { ago, count, initials, longDate, money, monthLabel, shortDate } from '$lib/format';
   import { priceRise, stepLine } from '$lib/history';
   import { sweep } from '$lib/sweep.svelte';
 
@@ -166,9 +167,15 @@
     <aside>
       <section class="card">
         <h2>End it</h2>
-        <!-- Playbooks arrive in M4, the agent in M7. -->
+        <!-- The agent arrives in M7. -->
         <div class="actions">
-          <Button size="medium" disabled>Cancel via playbook</Button>
+          <Button
+            size="medium"
+            disabled={!detail.playbook || detail.status === 'canceled'}
+            onclick={() => detail && goto(`/playbook?id=${detail.id}`)}
+          >
+            Cancel via playbook
+          </Button>
           <Button
             size="medium"
             variant="outline"
@@ -182,8 +189,16 @@
           </Button>
         </div>
         <p class="quiet">
-          Unsubscribing stops its list mail; receipts keep coming. Cancelling arrives in a later
-          version.
+          {#if detail.status === 'canceled'}
+            You recorded this as cancelled.
+          {:else if detail.playbook}
+            Playbook: {detail.playbook.steps} steps{detail.playbook.minutes
+              ? `, ~${detail.playbook.minutes} minutes`
+              : ''}. Checked against the vendor's help {ago(detail.playbook.checked)}.
+          {:else}
+            No playbook for {detail.name} yet.
+          {/if}
+          Unsubscribing stops its list mail; receipts keep coming.
         </p>
       </section>
       {#if detail.isCritical}

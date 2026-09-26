@@ -5,7 +5,7 @@
   // Rail.dc.html: the navigation 12 screens share.
   const items = [
     { label: 'Home', href: '/home', icon: House, also: [] },
-    { label: 'Subs', href: '/subscriptions', icon: CreditCard, also: ['/service'] },
+    { label: 'Subs', href: '/subscriptions', icon: CreditCard, also: ['/service', '/playbook'] },
     { label: 'News', href: '/newsletters', icon: Mail, also: [] },
     { label: 'Log', href: '/activity', icon: Clock, also: [] },
     { label: 'Set', href: '/settings', icon: Sun, also: ['/report'] },

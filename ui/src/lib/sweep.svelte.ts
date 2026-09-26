@@ -19,15 +19,20 @@ let problem = $state<string | null>(null);
 /** S07's rows after a sweep that ran without S11. */
 let result = $state<Row[] | null>(null);
 /** The critical item S10 is asking about. */
-let asking = $state<{ name: string; answer: (yes: boolean) => void } | null>(null);
+let asking = $state<{
+  name: string;
+  action: 'unsubscribe' | 'cancel';
+  answer: (yes: boolean) => void;
+} | null>(null);
 /** Bumped after every sweep, so lists reload what changed. */
 let version = $state(0);
 
 /** S10: resolves true when the user typed the phrase and confirmed. */
-function confirm(name: string): Promise<boolean> {
+function confirm(name: string, action: 'unsubscribe' | 'cancel' = 'unsubscribe'): Promise<boolean> {
   return new Promise((resolve) => {
     asking = {
       name,
+      action,
       answer: (yes) => {
         asking = null;
         resolve(yes);
@@ -122,6 +127,8 @@ export const sweep = {
     return version;
   },
   begin,
+  /** S10 for one action outside a sweep, such as opening a playbook (S08). */
+  confirm,
   /** S11's checkbox. Including a critical row asks S10 first. */
   async toggle(row: Row) {
     if (running || row.state !== 'queued') return;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { MonthSpend } from '$lib/bindings';
-import { priceRise, stepLine } from './history';
+import { paidThrough, priceRise, stepLine } from './history';
 
 const usd = (minorUnits: number) => ({ minorUnits, currency: 'USD' });
 
@@ -38,5 +38,20 @@ describe('priceRise', () => {
   it('is null for a cut or an old rise', () => {
     expect(priceRise([{ at: '2026-05-01T00:00:00Z', from: usd(1700), to: usd(1300) }], now)).toBeNull();
     expect(priceRise([{ at: '2024-05-01T00:00:00Z', from: usd(1300), to: usd(1700) }], now)).toBeNull();
+  });
+});
+
+describe('paidThrough', () => {
+  const now = new Date('2026-09-26T00:00:00Z');
+
+  it('adds one cadence to the last charge', () => {
+    expect(paidThrough('2026-09-01T10:00:00Z', 'monthly', now)).toBe('2026-10-01T10:00:00.000Z');
+    expect(paidThrough('2026-03-15T00:00:00Z', 'annual', now)).toBe('2027-03-15T00:00:00.000Z');
+  });
+
+  it('knows nothing without a cadence or once the period has passed', () => {
+    expect(paidThrough('2026-09-01T10:00:00Z', 'irregular', now)).toBeNull();
+    expect(paidThrough('2026-07-01T10:00:00Z', 'monthly', now)).toBeNull();
+    expect(paidThrough(null, 'monthly', now)).toBeNull();
   });
 });

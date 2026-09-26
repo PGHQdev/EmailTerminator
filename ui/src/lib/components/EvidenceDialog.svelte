@@ -41,6 +41,9 @@
           {#if entry.kind === 'unsubscribe'}
             <dt>Sent</dt>
             <dd class="mono">{entry.request ?? 'Nothing. The app sent no request.'}</dd>
+          {:else if entry.kind === 'playbook'}
+            <dt>Steps</dt>
+            <dd class="mono">{entry.request ?? 'The playbook bundled with the app.'}</dd>
           {/if}
           {#if e}
             <dt>Email</dt>

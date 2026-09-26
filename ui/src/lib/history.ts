@@ -1,4 +1,4 @@
-import type { Amount, MonthSpend, PriceMove } from '$lib/bindings';
+import type { Amount, Cadence, MonthSpend, PriceMove } from '$lib/bindings';
 
 const MONTH = /^(\d{4})-(\d{2})/;
 
@@ -42,4 +42,20 @@ export function priceRise(changes: PriceMove[], now: number): number | null {
   const to = recent.at(-1)!.to.minorUnits;
   if (from <= 0 || to <= from || recent[0].from.currency !== recent.at(-1)!.to.currency) return null;
   return Math.round(((to - from) / from) * 100);
+}
+
+/**
+ * S08: the day the paid period ends, one cadence after the last charge, or
+ * null when the cadence is unknown or the day has passed.
+ */
+export function paidThrough(
+  lastCharge: string | null,
+  cadence: Cadence | null,
+  now = new Date(),
+): string | null {
+  const months = cadence === 'monthly' ? 1 : cadence === 'annual' ? 12 : 0;
+  if (!lastCharge || months === 0) return null;
+  const end = new Date(lastCharge);
+  end.setUTCMonth(end.getUTCMonth() + months);
+  return end > now ? end.toISOString() : null;
 }

@@ -7,7 +7,7 @@
   // the phrase, so a confirmation is never one careless click.
   let typed = $state('');
   let asking = $derived(sweep.asking);
-  let phrase = $derived(asking ? `unsubscribe ${asking.name.toLowerCase()}` : '');
+  let phrase = $derived(asking ? `${asking.action} ${asking.name.toLowerCase()}` : '');
   let matches = $derived(typed.trim().toLowerCase() === phrase);
 
   $effect(() => {
@@ -29,8 +29,13 @@
       </div>
       <div class="body">
         <AlertDialog.Description class="critical-text">
-          Unsubscribing could stop mail you rely on from {asking?.name}, such as security alerts,
-          sign-in codes or billing notices. Receipts keep arriving either way.
+          {#if asking?.action === 'cancel'}
+            Cancelling could break things you rely on at {asking?.name}, such as security alerts,
+            sign-in codes, billing notices or the service itself.
+          {:else}
+            Unsubscribing could stop mail you rely on from {asking?.name}, such as security alerts,
+            sign-in codes or billing notices. Receipts keep arriving either way.
+          {/if}
         </AlertDialog.Description>
         <label class="prompt" for="critical-phrase">
           Type <strong>{phrase}</strong> to confirm you understand.
@@ -45,7 +50,7 @@
         <div class="buttons">
           <AlertDialog.Cancel class="critical-keep">Keep it</AlertDialog.Cancel>
           <AlertDialog.Action class="critical-go" disabled={!matches} onclick={() => answer(true)}>
-            Unsubscribe anyway
+            {asking?.action === 'cancel' ? 'Cancel anyway' : 'Unsubscribe anyway'}
           </AlertDialog.Action>
         </div>
       </div>
