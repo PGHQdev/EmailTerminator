@@ -7,7 +7,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use et_core::action::bulk::{self, Event, Item, RunItem, Target};
 use et_core::action::{self, Entry, unsubscribe};
 use et_core::extract::{Preview, preview};
-use et_core::ingest::imap::{self, Account, Security};
+use et_core::ingest::imap;
 use et_core::source::{self, unix_now};
 use serde::Serialize;
 use specta::Type;
@@ -15,6 +15,7 @@ use tauri::ipc::Channel;
 
 use crate::AppState;
 use crate::settings::read_sweep;
+use crate::sources::{SignInError, credentials};
 
 #[tauri::command]
 #[specta::specta]
@@ -109,40 +110,39 @@ pub async fn evidence_original(
     action_id: u32,
 ) -> Result<Original, String> {
     let store = state.store()?;
+    let reader = store.clone();
     let found = tauri::async_runtime::spawn_blocking(move || {
-        let conn = store.read()?;
+        let conn = reader.read()?;
         let Some(message_id) = action::get(&conn, action_id)?
             .and_then(|entry| entry.evidence)
             .and_then(|evidence| evidence.message_id)
         else {
             return Ok(None);
         };
-        let Some(locator) = action::locate(&conn, message_id)? else {
-            return Ok(None);
-        };
-        let config = source::imap_config(&store, locator.source_id)?;
-        Ok::<_, et_core::store::StoreError>(config.map(|c| (locator, c)))
+        action::locate(&conn, message_id)
     })
     .await
     .map_err(|e| e.to_string())?
     .map_err(|e| e.to_string())?;
-    let Some((locator, config)) = found else {
+    let Some(locator) = found else {
         return Ok(Original::Gone);
     };
-    let password = state
-        .secrets
-        .get(&source::password_secret(locator.source_id))
-        .map_err(|e| e.to_string())?
-        .ok_or("the app password is missing from the keychain")?;
-    let account = Account {
-        host: config.host,
-        port: config.port,
-        username: config.username,
-        security: Security::Tls,
+    let signed_in = match credentials(&state, &store, locator.source_id).await {
+        Ok(signed_in) => signed_in,
+        Err(SignInError::Refused { server_says, .. }) => {
+            return Ok(Original::Unreachable {
+                message: format!("sign-in refused: {server_says}"),
+            });
+        }
+        Err(SignInError::Unreachable(message)) => return Ok(Original::Unreachable { message }),
+        Err(SignInError::Failed(message)) => return Err(message),
+    };
+    let Some((account, secret)) = signed_in else {
+        return Ok(Original::Gone);
     };
     match imap::fetch_one(
         &account,
-        &String::from_utf8_lossy(&password),
+        &secret,
         &locator.folder,
         locator.uid_validity,
         locator.uid,

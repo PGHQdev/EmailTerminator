@@ -6,10 +6,12 @@ use rusqlite::{OptionalExtension, params};
 use serde::{Deserialize, Serialize};
 
 use crate::extract::rfc3339_utc;
+use crate::ingest::imap::Auth;
 use crate::store::{Store, StoreError};
 
-/// An IMAP source's settings. The password lives in the secret store under
-/// [`password_secret`], never in the database.
+/// A mailbox source's settings. Its secret lives in the secret store, never
+/// in the database: an app password under [`password_secret`], an Outlook
+/// refresh token under [`refresh_secret`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ImapConfig {
     pub host: String,
@@ -26,8 +28,19 @@ pub struct Source {
     pub message_count: i64,
 }
 
+/// A mailbox source and how it signs in.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Mailbox {
+    pub config: ImapConfig,
+    pub auth: Auth,
+}
+
 pub fn password_secret(source_id: i64) -> String {
     format!("imap:{source_id}")
+}
+
+pub fn refresh_secret(source_id: i64) -> String {
+    format!("outlook:{source_id}")
 }
 
 /// Seconds since the epoch.
@@ -43,14 +56,23 @@ pub fn now() -> String {
 }
 
 pub fn add_imap(store: &Store, label: &str, config: &ImapConfig) -> Result<i64, StoreError> {
-    let (label, config) = (
+    add(store, "imap", label, config)
+}
+
+pub fn add_outlook(store: &Store, label: &str, config: &ImapConfig) -> Result<i64, StoreError> {
+    add(store, "outlook", label, config)
+}
+
+fn add(store: &Store, kind: &str, label: &str, config: &ImapConfig) -> Result<i64, StoreError> {
+    let (kind, label, config) = (
+        kind.to_owned(),
         label.to_owned(),
         serde_json::to_string(config).unwrap_or_default(),
     );
     store.write(move |conn| {
         conn.execute(
-            "INSERT INTO source (kind, label, config, created_at) VALUES ('imap', ?1, ?2, ?3)",
-            params![label, config, now()],
+            "INSERT INTO source (kind, label, config, created_at) VALUES (?1, ?2, ?3, ?4)",
+            params![kind, label, config, now()],
         )?;
         Ok(conn.last_insert_rowid())
     })
@@ -74,16 +96,25 @@ pub fn list(store: &Store) -> Result<Vec<Source>, StoreError> {
     Ok(rows)
 }
 
-pub fn imap_config(store: &Store, id: i64) -> Result<Option<ImapConfig>, StoreError> {
-    let config: Option<String> = store
+pub fn mailbox(store: &Store, id: i64) -> Result<Option<Mailbox>, StoreError> {
+    let row: Option<(String, String)> = store
         .read()?
         .query_row(
-            "SELECT config FROM source WHERE id = ?1 AND kind = 'imap'",
+            "SELECT kind, config FROM source WHERE id = ?1 AND kind IN ('imap', 'outlook')",
             [id],
-            |r| r.get(0),
+            |r| Ok((r.get(0)?, r.get(1)?)),
         )
         .optional()?;
-    Ok(config.and_then(|c| serde_json::from_str(&c).ok()))
+    Ok(row.and_then(|(kind, config)| {
+        Some(Mailbox {
+            config: serde_json::from_str(&config).ok()?,
+            auth: if kind == "outlook" {
+                Auth::XOAuth2
+            } else {
+                Auth::Password
+            },
+        })
+    }))
 }
 
 pub fn mark_synced(store: &Store, id: i64) -> Result<(), StoreError> {
@@ -111,11 +142,22 @@ mod tests {
             username: "me@fastmail.test".into(),
         };
         let id = add_imap(&store, "Fastmail", &config).unwrap();
-        assert_eq!(imap_config(&store, id).unwrap(), Some(config));
+        assert_eq!(
+            mailbox(&store, id).unwrap(),
+            Some(Mailbox {
+                config: config.clone(),
+                auth: Auth::Password
+            })
+        );
+        let outlook = add_outlook(&store, "Outlook", &config).unwrap();
+        assert_eq!(
+            mailbox(&store, outlook).unwrap().unwrap().auth,
+            Auth::XOAuth2
+        );
 
         mark_synced(&store, id).unwrap();
         let sources = list(&store).unwrap();
-        assert_eq!(sources.len(), 1);
+        assert_eq!(sources.len(), 2);
         assert_eq!(sources[0].label, "Fastmail");
         assert!(sources[0].last_sync_at.is_some());
     }

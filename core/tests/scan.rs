@@ -8,7 +8,7 @@ use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
 use et_core::crypt::DbKey;
-use et_core::ingest::imap::{self, Account, Options, Security};
+use et_core::ingest::imap::{self, Account, Auth, Options, Security};
 use et_core::scan::{ImapScan, rebuild};
 use et_core::store::Store;
 use support::imap_stub::{self, Provider};
@@ -83,6 +83,7 @@ async fn a_gmail_scan_finds_the_subscription_and_the_newsletter() {
         port: stub.port,
         username: OWNER.into(),
         security: Security::PlainLoopback,
+        auth: Auth::Password,
     };
     imap::sync(
         &account,

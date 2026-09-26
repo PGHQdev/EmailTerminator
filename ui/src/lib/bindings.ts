@@ -13,6 +13,14 @@ export const commands = {
 	 *  the password in the secret store.
 	 */
 	addImapSource: (input: NewImapSource) => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_imap_source", { input })),
+	/**
+	 *  Opens Microsoft's sign-in in the browser, waits for it to come back,
+	 *  checks the token against IMAP, then saves the source and its refresh
+	 *  token.
+	 */
+	addOutlookSource: () => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_outlook_source")),
+	/**  Stops an Outlook sign-in that is waiting for the browser. */
+	cancelOutlookSignIn: () => __TAURI_INVOKE<void>("cancel_outlook_sign_in"),
 	listSources: () => typedError<SourceSummary[], string>(__TAURI_INVOKE("list_sources")),
 	startScan: (sourceId: number, events: Channel<ScanEvent>) => typedError<ScanSummary, ScanError>(__TAURI_INVOKE("start_scan", { sourceId, events })),
 	cancelScan: () => __TAURI_INVOKE<void>("cancel_scan"),
@@ -110,7 +118,9 @@ export type Charged = {
  *  Why a mailbox could not be connected. S16 shows `SignInRefused` with the
  *  server's own words.
  */
-export type ConnectError = { kind: "signInRefused"; host: string; serverSays: string; guide: string | null } | { kind: "unreachable"; message: string } | { kind: "invalid"; message: string } | { kind: "failed"; message: string };
+export type ConnectError = { kind: "signInRefused"; host: string; serverSays: string; guide: string | null } | { kind: "unreachable"; message: string } | { kind: "invalid"; message: string } | 
+/**  The user stopped a sign-in that was waiting for the browser. */
+{ kind: "cancelled" } | { kind: "failed"; message: string };
 
 export type Dashboard = {
 	sources: number,

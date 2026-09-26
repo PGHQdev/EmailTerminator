@@ -75,9 +75,10 @@ pub fn request_erase(dir: &Path) -> io::Result<()> {
     fs::write(dir.join(ERASE), b"")
 }
 
-/// Deletes each source's password and the database key, then the files. A
-/// database the key no longer opens has no readable sources; its passwords
-/// stay in the keychain until a new source reuses the name.
+/// Deletes each source's password or refresh token and the database key,
+/// then the files. A database the key no longer opens has no readable
+/// sources; their secrets stay in the keychain until a new source reuses the
+/// name.
 fn erase_now(dir: &Path, secrets: &dyn SecretStore) -> io::Result<()> {
     let other = |e: &dyn std::fmt::Display| io::Error::other(e.to_string());
     if let Ok(key) = load_or_create_key(secrets)
@@ -85,9 +86,9 @@ fn erase_now(dir: &Path, secrets: &dyn SecretStore) -> io::Result<()> {
         && let Ok(sources) = source::list(&store)
     {
         for s in sources {
-            secrets
-                .delete(&source::password_secret(s.id))
-                .map_err(|e| other(&e))?;
+            for name in [source::password_secret(s.id), source::refresh_secret(s.id)] {
+                secrets.delete(&name).map_err(|e| other(&e))?;
+            }
         }
     }
     forget_key(secrets).map_err(|e| other(&e))?;
@@ -182,7 +183,7 @@ fn remove_if_present(path: &Path) -> io::Result<()> {
 mod tests {
     use super::*;
     use crate::crypt::EncryptedFile;
-    use crate::source::{ImapConfig, add_imap};
+    use crate::source::{ImapConfig, add_imap, add_outlook};
 
     fn open(dir: &Path, secrets: &dyn SecretStore) -> Store {
         Store::open(&dir.join(DB_FILE), &load_or_create_key(secrets).unwrap()).unwrap()
@@ -201,6 +202,10 @@ mod tests {
         };
         let id = add_imap(&store, "Test", &config).unwrap();
         secrets.set(&source::password_secret(id), b"pw").unwrap();
+        let outlook = add_outlook(&store, "Outlook", &config).unwrap();
+        secrets
+            .set(&source::refresh_secret(outlook), b"rt")
+            .unwrap();
         drop(store);
 
         request_erase(dir).unwrap();
@@ -209,6 +214,12 @@ mod tests {
         assert!(!dir.join(DB_FILE).exists());
         assert!(!dir.join(ERASE).exists());
         assert!(secrets.get(&source::password_secret(id)).unwrap().is_none());
+        assert!(
+            secrets
+                .get(&source::refresh_secret(outlook))
+                .unwrap()
+                .is_none()
+        );
         assert!(secrets.get("database-key").unwrap().is_none());
         // A fresh launch starts empty under a new key.
         assert!(source::list(&open(dir, &secrets)).unwrap().is_empty());

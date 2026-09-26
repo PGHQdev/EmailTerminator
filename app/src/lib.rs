@@ -44,6 +44,8 @@ pub(crate) struct AppState {
     scan: Mutex<Option<Arc<AtomicBool>>>,
     /// The stop flag of the running sweep; one sweep at a time.
     sweep: Mutex<Option<Arc<AtomicBool>>>,
+    /// Stops the Outlook sign-in that is waiting for the browser.
+    outlook: Mutex<Option<et_core::ingest::outlook::Cancel>>,
 }
 
 impl AppState {
@@ -69,6 +71,8 @@ pub fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
         store_status,
         sources::imap_presets,
         sources::add_imap_source,
+        sources::add_outlook_source,
+        sources::cancel_outlook_sign_in,
         sources::list_sources,
         scan::start_scan,
         scan::cancel_scan,
@@ -158,6 +162,7 @@ pub fn run() {
             default_dir,
             scan: Mutex::new(None),
             sweep: Mutex::new(None),
+            outlook: Mutex::new(None),
         })
         .invoke_handler(builder.invoke_handler())
         .run(tauri::generate_context!())

@@ -5,7 +5,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 
 use et_core::action::{self, Kind, NewEntry, Outcome};
 use et_core::extract::rfc3339_utc;
-use et_core::ingest::imap::{self, Account, ImapError, Options, Security};
+use et_core::ingest::imap::{self, ImapError, Options};
 use et_core::scan::{ImapScan, rebuild};
 use et_core::source::{self, unix_now};
 use serde::Serialize;
@@ -13,6 +13,7 @@ use specta::Type;
 use tauri::ipc::Channel;
 
 use crate::AppState;
+use crate::sources::{SignInError, credentials};
 
 #[derive(Clone, Serialize, Type)]
 #[serde(tag = "kind", rename_all = "camelCase")]
@@ -110,10 +111,10 @@ async fn log(state: &AppState, source_id: i64, result: &Result<ScanSummary, Scan
         Err(ScanError::AlreadyRunning) => return,
     };
     let _ = tauri::async_runtime::spawn_blocking(move || {
-        let target = source::imap_config(&store, source_id)
+        let target = source::mailbox(&store, source_id)
             .ok()
             .flatten()
-            .map_or_else(|| "a mailbox".to_owned(), |c| c.username);
+            .map_or_else(|| "a mailbox".to_owned(), |m| m.config.username);
         store.write(move |conn| {
             action::record(
                 conn,
@@ -152,28 +153,22 @@ async fn run(
     events: Channel<ScanEvent>,
 ) -> Result<ScanSummary, ScanError> {
     let store = state.store().map_err(failed)?;
-    let config = source::imap_config(&store, source_id)
-        .map_err(failed)?
-        .ok_or_else(|| failed("no such IMAP source"))?;
-    let password = state
-        .secrets
-        .get(&source::password_secret(source_id))
-        .map_err(failed)?
-        .ok_or_else(|| failed("the app password is missing from the keychain"))?;
-    let password = String::from_utf8_lossy(&password).into_owned();
-
-    let account = Account {
-        host: config.host.clone(),
-        port: config.port,
-        username: config.username.clone(),
-        security: Security::Tls,
-    };
-    let scan = Arc::new(ImapScan::new(store.clone(), source_id, &config.username));
+    let (account, secret) = credentials(state, &store, source_id)
+        .await
+        .map_err(|err| match err {
+            SignInError::Refused { host, server_says } => {
+                ScanError::SignInRefused { host, server_says }
+            }
+            SignInError::Unreachable(message) => ScanError::Unreachable { message },
+            SignInError::Failed(message) => ScanError::Failed { message },
+        })?
+        .ok_or_else(|| failed("no such mail source"))?;
+    let scan = Arc::new(ImapScan::new(store.clone(), source_id, &account.username));
     let progress_scan = scan.clone();
     let progress_events = events.clone();
     imap::sync(
         &account,
-        &password,
+        &secret,
         scan.clone(),
         cancel,
         Options::default(),
@@ -192,7 +187,7 @@ async fn run(
     .await
     .map_err(|err| match err {
         ImapError::Auth(server_says) => ScanError::SignInRefused {
-            host: config.host.clone(),
+            host: account.host.clone(),
             server_says,
         },
         ImapError::Cancelled => ScanError::Cancelled,
