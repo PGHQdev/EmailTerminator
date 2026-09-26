@@ -13,6 +13,7 @@ rust-version = "1.93"
 [workspace.dependencies]
 async-imap = { version = "=0.11.3", default-features = false, features = ["runtime-tokio"] }
 et-core = { path = "core" }
+et-data = { path = "et-data" }
 keyring = "=4.2.0"
 chacha20poly1305 = "=0.11.0"
 dirs = "=7.0.0"

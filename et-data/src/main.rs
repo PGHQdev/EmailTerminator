@@ -1,9 +1,11 @@
-//! Validates the community data in `data/` (PLAN.md 2.6). Until M4 adds the
-//! service schema, it checks that every TOML file parses.
+//! Validates the community data in `data/` (PLAN.md 2.6): every file must
+//! parse into the schema in `lib.rs`, and no two entries may claim a sender.
 
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
+
+use et_data::{File, Problem, parse};
 
 fn main() -> ExitCode {
     let mut args = std::env::args().skip(1);
@@ -37,32 +39,28 @@ fn report(result: Result<usize, Vec<String>>) -> ExitCode {
 }
 
 fn validate(root: &Path) -> Result<usize, Vec<String>> {
-    let mut files = Vec::new();
-    collect_toml(root, &mut files).map_err(|err| vec![format!("{}: {err}", root.display())])?;
-    files.sort();
+    let mut paths = Vec::new();
+    collect_toml(root, &mut paths).map_err(|err| vec![format!("{}: {err}", root.display())])?;
 
-    let errors: Vec<String> = files
-        .iter()
-        .filter_map(|path| {
-            let text = match fs::read_to_string(path) {
-                Ok(text) => text,
-                Err(err) => return Some(format!("{}: {err}", path.display())),
-            };
-            text.parse::<toml::Table>().err().map(|err| {
-                let line = err
-                    .span()
-                    .map(|span| text[..span.start].lines().count().max(1))
-                    .unwrap_or(1);
-                format!("{}:{line}: {}", path.display(), err.message())
-            })
-        })
-        .collect();
-
-    if errors.is_empty() {
-        Ok(files.len())
-    } else {
-        Err(errors)
+    let mut texts = Vec::new();
+    for path in &paths {
+        let text =
+            fs::read_to_string(path).map_err(|err| vec![format!("{}: {err}", path.display())])?;
+        let relative = path
+            .strip_prefix(root)
+            .unwrap_or(path)
+            .to_string_lossy()
+            .replace('\\', "/");
+        texts.push((relative, text));
     }
+    let files: Vec<File<'_>> = texts
+        .iter()
+        .map(|(path, text)| File { path, text })
+        .collect();
+    let shown = |p: &Problem| format!("{}/{p}", root.display());
+    parse(&files)
+        .map(|_| files.len())
+        .map_err(|problems| problems.iter().map(shown).collect())
 }
 
 fn collect_toml(dir: &Path, out: &mut Vec<PathBuf>) -> std::io::Result<()> {
@@ -91,15 +89,19 @@ mod tests {
     }
 
     #[test]
-    fn a_malformed_file_is_reported_with_its_line() {
+    fn a_malformed_file_is_reported_with_its_path_and_line() {
         let dir = tempfile::tempdir().unwrap();
         let services = dir.path().join("services");
         fs::create_dir_all(&services).unwrap();
-        fs::write(services.join("good.toml"), "name = \"Good\"\n").unwrap();
+        fs::write(
+            services.join("good.toml"),
+            "name = \"Good\"\ndomains = [\"good.test\"]\n",
+        )
+        .unwrap();
         fs::write(services.join("bad.toml"), "name = \"Bad\"\nbroken =\n").unwrap();
 
         let errors = validate(dir.path()).unwrap_err();
-        assert_eq!(errors.len(), 1);
-        assert!(errors[0].contains("bad.toml:2:"), "{}", errors[0]);
+        assert_eq!(errors.len(), 1, "{errors:?}");
+        assert!(errors[0].contains("services/bad.toml:2:"), "{}", errors[0]);
     }
 }
