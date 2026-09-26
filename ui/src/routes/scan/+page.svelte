@@ -100,7 +100,13 @@
 
     {#if error?.kind === 'signInRefused'}
       <div class="problem-card">
-        <SignInFailed host={error.host} serverSays={error.serverSays} guide={null} onRetry={() => goto('/connect')} />
+        <SignInFailed
+          host={error.host}
+          serverSays={error.serverSays}
+          guide={null}
+          oauth={source?.kind === 'outlook'}
+          onRetry={() => goto(source?.kind === 'outlook' ? '/outlook' : '/connect')}
+        />
       </div>
     {:else}
       <div class="stats">

@@ -7,21 +7,37 @@
     serverSays,
     guide,
     onRetry,
-  }: { host: string; serverSays: string; guide: string | null; onRetry: () => void } = $props();
+    oauth = false,
+  }: {
+    host: string;
+    serverSays: string;
+    guide: string | null;
+    onRetry: () => void;
+    /** An Outlook sign-in, which has no app password to blame. */
+    oauth?: boolean;
+  } = $props();
 </script>
 
 <!-- S16, error · IMAP auth failure -->
 <div class="card" role="alert">
   <div class="title">
     <CircleAlert size={18} strokeWidth={2.75} />
-    IMAP sign-in failed
+    {oauth ? 'Outlook sign-in failed' : 'IMAP sign-in failed'}
   </div>
-  <p>
-    {host} rejected the app password ({serverSays}). Regular account passwords won't work — generate
-    an app password in your provider's settings.
-  </p>
+  {#if oauth}
+    <p>
+      {host} refused the sign-in ({serverSays}). Sign in again, and allow access when Microsoft asks.
+    </p>
+  {:else}
+    <p>
+      {host} rejected the app password ({serverSays}). Regular account passwords won't work — generate
+      an app password in your provider's settings.
+    </p>
+  {/if}
   <div class="actions">
-    <button type="button" class="dark" onclick={onRetry}>Try another password</button>
+    <button type="button" class="dark" onclick={onRetry}>
+      {oauth ? 'Sign in again' : 'Try another password'}
+    </button>
     {#if guide}
       <button type="button" class="link" onclick={() => openUrl(guide)}>provider guide</button>
     {/if}

@@ -217,6 +217,7 @@ function playbook(id: number): PlaybookView | null {
 }
 
 let stopped = false;
+let outlookCancel: (() => void) | null = null;
 
 /** Emits a started and a finished event per item, a beat apart. */
 function run(items: RunItem[], events: Channel<Event>): Promise<number> {
@@ -347,6 +348,26 @@ mockIPC((cmd, args) => {
       throw 'Erasing is off in the design preview.';
     case 'imap_presets':
       return [];
+    case 'add_outlook_source':
+      // `?outlook=refused` shows S16's card; otherwise the page waits until Cancel.
+      return new Promise((_, reject) => {
+        if (params.get('outlook') === 'refused')
+          setTimeout(
+            () =>
+              reject({
+                kind: 'signInRefused',
+                host: 'login.microsoftonline.com',
+                serverSays: 'AADSTS65004: User declined to consent to access the app.',
+                guide: null,
+              }),
+            600,
+          );
+        else outlookCancel = () => reject({ kind: 'cancelled' });
+      });
+    case 'cancel_outlook_sign_in':
+      outlookCancel?.();
+      outlookCancel = null;
+      return null;
     case 'sweep_settings':
       return sweepSettings;
     case 'set_sweep_settings':

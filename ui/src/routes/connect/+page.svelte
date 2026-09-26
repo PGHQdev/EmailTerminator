@@ -121,7 +121,7 @@
         {/if}
 
         {#if error}
-          <p class="problem" role="alert">{error.message}</p>
+          <p class="problem" role="alert">{'message' in error ? error.message : ''}</p>
         {/if}
 
         <button type="submit" class="primary" disabled={busy}>

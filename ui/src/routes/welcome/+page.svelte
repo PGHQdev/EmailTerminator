@@ -13,7 +13,7 @@
   });
 </script>
 
-<!-- S01 — Welcome / source picker. This build offers the IMAP path only. -->
+<!-- S01 — Welcome / source picker. The mbox path arrives later in M5. -->
 <main>
   <header>
     <Brand />
@@ -39,12 +39,12 @@
       <span class="cta">Connect <ArrowRight size={15} strokeWidth={2.75} /></span>
     </button>
 
-    <div class="card off" aria-disabled="true">
+    <button type="button" class="card" onclick={() => goto('/outlook')}>
       <div class="icon"><KeyRound size={22} strokeWidth={2.75} /></div>
       <h2>Sign in to Outlook.com</h2>
       <p>Outlook, Hotmail and Live. Sign in with Microsoft. Stays in sync.</p>
-      <span class="cta">Coming in a later version</span>
-    </div>
+      <span class="cta">Sign in <ArrowRight size={15} strokeWidth={2.75} /></span>
+    </button>
   </div>
 
   {#if sources.length > 0}
