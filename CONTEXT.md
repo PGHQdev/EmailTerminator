@@ -81,9 +81,10 @@ distribution, reputation, and licence revenue.
 
 - **Ingestion ladder**: (1) IMAP first — app password for Gmail, iCloud,
   Fastmail and Yahoo, and our own Microsoft OAuth client for Outlook.com,
-  which no longer accepts app passwords; (2) optional BYO Google OAuth client
-  with guided setup (Hermes/OpenClaw idiom); (3) mbox and Maildir import, in a
-  later v0 milestone. No shared Google OAuth client and no CASA audit at v0.
+  which no longer accepts app passwords; (2) mbox and Maildir import, in a
+  later v0 milestone. No Google OAuth client at v0, ours or the user's: ours
+  needs a CASA audit, and a user-supplied one asks a layperson to run a Google
+  Cloud project.
   See `PLAN.md` 1.6.
 - **Dashboard**: every subscription and newsletter, total billed, email
   volume, historical graphs, "unsubscribe all" / "cancel all" with $-saved

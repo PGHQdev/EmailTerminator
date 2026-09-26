@@ -95,6 +95,10 @@ $29 or more ($19 or more in launch week).
 Actions: copy the install command; open the repository; buy a licence through
 the Polar checkout.
 
+The mockup's step 1 and its FAQ offer a bring-your-own Gmail OAuth client.
+That path is rejected (`PLAN.md` 1.6): step 1 names IMAP with an app password,
+and the FAQ entry asks why Gmail needs an app password.
+
 ### S01 — Welcome / source picker
 
 [Mockup](docs/design/S01%20Welcome.dc.html)
@@ -106,10 +110,11 @@ activation and a check every 15 days, only on a licensed copy, sending the
 key and a hash of the machine ID; and cancel stats, off unless the user
 opts in. Each entry links to the source file that sends it. It also states
 that the local data is encrypted.
-Actions, IMAP first: connect a mailbox over IMAP with an app password;
-*(no mockup yet)* sign in to Outlook.com; connect Gmail through a
-bring-your-own OAuth client with guided setup; import an mbox file or
-*(no mockup yet)* a Maildir folder.
+Actions, IMAP first: connect a mailbox over IMAP with an app password, Gmail
+included; sign in to Outlook.com; import an mbox file or *(no mockup yet)* a
+Maildir folder. The mockup's third card, "Connect Gmail" with a
+bring-your-own OAuth client, becomes "Sign in to Outlook.com" in the same
+layout (`PLAN.md` 1.6).
 
 *(no mockup yet)* The IMAP connect form that "Connect via IMAP" opens:
 provider presets (Gmail, iCloud Mail, Fastmail, Yahoo Mail, other IMAP with
@@ -202,8 +207,8 @@ Actions: exclude or include individual items; confirm and execute.
 
 [Mockup](docs/design/S12%20Sources.dc.html)
 
-Content per source: type (IMAP / Outlook / Gmail API / mbox / Maildir), last
-sync, message count.
+Content per source: type (IMAP / Outlook / mbox / Maildir), last sync,
+message count. The mockup's "Gmail API" row reads "IMAP" (`PLAN.md` 1.6).
 **Nothing syncs while the app is closed**, so "last sync" only advances while
 the window is open and the screen must not imply otherwise.
 Actions: add a source, the same three options as S01; re-import or re-sync;

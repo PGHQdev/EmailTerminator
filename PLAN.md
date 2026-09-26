@@ -262,9 +262,9 @@ could confirm.
 |---|---|---|---|---|
 | IMAP with app password | None | Medium: enable 2SV, generate, paste | Live | Rung 1 |
 | Outlook.com through our Microsoft OAuth client | None beyond app registration | Low: sign in | Live | Rung 1 |
-| BYO Google OAuth client | On the user, not us | Medium: guided Google Cloud setup | Live, plus history and push | Rung 2 |
-| mbox / Maildir import | None | High, manual | Snapshot | Rung 3 |
+| mbox / Maildir import | None | High, manual | Snapshot | Rung 2 |
 | Our own verified Google client + CASA | Verification + annual audit | Low | Live | Deferred |
+| BYO Google OAuth client | On the user, not us | High: a Google Cloud project | Live, plus history and push | Rejected |
 
 App passwords survived the 2022–2025 "less secure apps" shutdowns and Google
 publishes no sunset date; third-party claims of a 2026 phase-out are
@@ -283,25 +283,32 @@ section counted Outlook among the app-password providers; that was wrong.
 at v0. IMAP over OAuth needs the `https://mail.google.com/` scope, which is
 restricted. Until verification passes, an app is capped at 100 test users and
 shows the unverified-app warning. Google puts restricted-scope verification at
-about six weeks, and the CASA assessment repeats every 12 months. The "local-only
-apps are exempt from CASA" reading is contradicted in practice: Mimestream is a
-local-only client and still passed CASA. At the $29 minimum, net of Polar's
+about six weeks, and the CASA assessment repeats every 12 months. A desktop
+client gets no exemption. Neither the restricted-scope verification page nor
+the API Services User Data Policy exempts an app that keeps mail on the user's
+device; their only exemptions are personal use, testing, internal Workspace
+apps and service accounts. In March 2026 Google's community team answered a
+local-only Gmail app that the policy "effectively requires a security
+assessment" at production scale, and Mimestream, a local-only client, passed
+CASA. At the $29 minimum, net of Polar's
 fee (about 5% + 50¢), the audit costs roughly 20–67 licences a year. So: apply for verification after
 launch, fund the audit from licence revenue, and ship the client as a patch once
-it passes. Until then Gmail users take rung 1 or rung 2.
+it passes. Until then Gmail users take rung 1.
 
-The user-supplied OAuth client is the dominant 2026 pattern for developer-facing
-tools — rclone, Home Assistant, gmvault, mbsync — and Hermes and OpenClaw both
-ship exactly this shape with guided setup, expecting the unverified-app warning
-and the "publish to production" step. Our users tolerate it.
+**The user-supplied OAuth client is rejected.** It is the pattern of
+developer tools such as rclone, Home Assistant, gmvault and mbsync. It asks a
+layperson to create a Google Cloud project, configure a consent screen, enable
+the Gmail API, add themselves as a test user and paste a client secret. Our
+users are not developers, and an app password is fewer steps for the same live
+IMAP access.
 
-Two escape hatches were rejected. No open-source project lends out its verified
+Two other escape hatches were rejected. No open-source project lends out its verified
 client, and doing so without consent violates Google OAuth policy. Free managed
 OAuth middlemen exist, but mail transits their servers, which is incompatible
 with local-first.
 
 **RFC 8058 one-click unsubscribe needs no mailbox access at all**, because it is
-an HTTPS POST. That is why an imported file on rung 3 still delivers the
+an HTTPS POST. That is why an imported file on rung 2 still delivers the
 product's headline action.
 
 **What would reopen it**: Google publishing an app-password sunset, which makes
@@ -498,9 +505,8 @@ fallback.
   licence token stays, because it holds no mail data and a buyer should not pay
   twice. It does not touch the browser integration files; those go through
   their own control (Part 8).
-- Stored items: the database key, IMAP app passwords (per source), Gmail OAuth
-  client secret and refresh token (per source), the Outlook refresh token (per
-  source), Tier 2 provider API keys (per provider), the evaluation start date, and
+- Stored items: the database key, IMAP app passwords (per source), the Outlook
+  refresh token (per source), Tier 2 provider API keys (per provider), the evaluation start date, and
   the licence token.
 
 ### 2.3 Rust IMAP client (was 19)
@@ -515,7 +521,7 @@ through `imap-proto`.
   connection handling, reconnect and backoff to write ourselves. It stays the
   named fallback if `async-imap` stalls.
 - **We write**: reconnect with exponential backoff, resync after disconnect,
-  `AUTHENTICATE XOAUTH2` for Outlook.com and the BYO Gmail client, and
+  `AUTHENTICATE XOAUTH2` for Outlook.com, and
   per-provider quirk handling for Gmail, iCloud, Fastmail, Yahoo and Outlook.
   Outlook.com takes OAuth only (1.6); the other four take an app password.
 - **Incremental resync is a UID range**, `UID SEARCH UID n:*` from the
@@ -816,7 +822,7 @@ disk. **The file never enters the repository.**
 Cargo.toml                  workspace: core, app, native-host, et-data
 core/                       the domain. No Tauri dependency.
   src/
-    ingest/                 IMAP client, Outlook and Gmail OAuth, mbox and Maildir readers
+    ingest/                 IMAP client, Outlook OAuth, mbox and Maildir readers
     extract/                one message to facts: headers, list signals, receipts
     scan/                   store fetched mail; rebuild senders, services, charges, rollups
     source/                 connected mailboxes and files (S12)
@@ -902,7 +908,8 @@ Tables, with the columns that carry weight. M1's DDL is
 `core/migrations/001-initial.sql`; a later milestone adds its tables in its
 own migration.
 
-- **`source`** — `id`, `kind` (`imap` | `outlook` | `gmail` | `mbox` | `maildir`), `label`,
+- **`source`** — `id`, `kind` (`imap` | `outlook` | `gmail` | `mbox` | `maildir`; `gmail` is
+  reserved for the deferred verified Google client), `label`,
   `last_sync_at`, `message_count`, plus per-kind config. Feeds S12. `last_sync_at`
   only advances while the app is open (1.2); S12 must not imply otherwise.
 - **`mailbox`** — one row per IMAP folder: `source_id`, `name`, `uid_validity`,
@@ -1062,9 +1069,8 @@ malformed one with a file and line.
 
 ### M5 — More sources
 
-The Outlook.com OAuth client (1.6), then the bring-your-own Gmail OAuth client
-flow with guided setup, then the sources screen. Then file import: the mbox
-reader (including the gzip wrapper and `X-Gmail-Labels`, which `mail-parser`
+The Outlook.com OAuth client (1.6), then the sources screen. Then file
+import: the mbox reader (including the gzip wrapper and `X-Gmail-Labels`, which `mail-parser`
 does not cover) and the Maildir reader.
 
 Screens: S01 (all paths), S12, plus S16's mbox-parse-failure error state.
@@ -1186,7 +1192,7 @@ and the other meets a real browser.
 | M2 See the results | 2–3 d | Eight dense screens against mockups, light and dark |
 | M3 Act | 1 d | |
 | M4 Community data | 1 d | Twenty seed entries is research, not code |
-| M5 More sources | 2–3 d | Two OAuth flows, plus the mbox and Maildir readers |
+| M5 More sources | 2 d | The Outlook OAuth flow, plus the mbox and Maildir readers |
 | M6 Intelligence | 1 d | |
 | M7 Agentic cancellation | 2–3 d | Extension, host, socket and CDP against a real profile |
 | M8 Licence and stats | 1 d | Polar's API in test mode |
