@@ -1000,6 +1000,13 @@ Done when: the stub server (2.9) replays every provider transcript, a real
 Gmail app-password account scans without a panic, and a disconnect mid-sync
 resumes without duplicating rows.
 
+Checked after M3, 2026-09-26: a real Gmail account connected with an app
+password and scanned. A second personal `@gmail.com` account had no App
+passwords page ("not available for your account") with 2-Step Verification
+on, passkeys set, no Advanced Protection. Google offers app passwords only
+when the second step is an authenticator app or a phone number; a passkey or
+security key alone does not count. The Gmail form says so.
+
 ### M2 — See the results
 
 Dashboard, subscriptions list, newsletters list, service detail, command

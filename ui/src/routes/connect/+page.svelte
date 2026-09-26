@@ -112,6 +112,12 @@
             How to create an app password for {chosen.label}
           </button>
         {/if}
+        {#if provider === 'gmail'}
+          <p class="hint">
+            No App passwords page? Google shows it only when your second step is an authenticator
+            app or a phone number. A passkey or security key alone is not enough.
+          </p>
+        {/if}
 
         {#if error}
           <p class="problem" role="alert">{error.message}</p>
@@ -283,6 +289,13 @@
 
   .guide:hover {
     text-decoration: underline;
+  }
+
+  .hint {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--mut);
   }
 
   .problem {
