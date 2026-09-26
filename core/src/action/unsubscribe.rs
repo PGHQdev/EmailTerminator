@@ -69,11 +69,18 @@ pub struct Attempt {
 }
 
 pub fn plan(conn: &Connection, sender_id: i64) -> Result<Option<Attempt>, StoreError> {
-    let Some((name, service_id)) = conn
+    let Some((name, address, service_id)) = conn
         .query_row(
-            "SELECT coalesce(display_name, address), service_id FROM sender WHERE id = ?1",
+            "SELECT coalesce(display_name, address), address, service_id FROM sender
+             WHERE id = ?1",
             [sender_id],
-            |r| Ok((r.get::<_, String>(0)?, r.get::<_, Option<i64>>(1)?)),
+            |r| {
+                Ok((
+                    r.get::<_, String>(0)?,
+                    r.get::<_, String>(1)?,
+                    r.get::<_, Option<i64>>(2)?,
+                ))
+            },
         )
         .optional()?
     else {
@@ -93,6 +100,15 @@ pub fn plan(conn: &Connection, sender_id: i64) -> Result<Option<Attempt>, StoreE
             (Some(id), Route::from_header(header.as_deref(), one_click))
         }
         None => (None, Route::Nothing),
+    };
+    // No header to act on: the vendor's own preferences page, where `data/`
+    // names one, is where the user finishes.
+    let route = match route {
+        Route::Nothing => crate::data::catalog()
+            .service_for(&address)
+            .and_then(|s| s.unsubscribe.clone())
+            .map_or(Route::Nothing, |url| Route::Page { url }),
+        route => route,
     };
     Ok(Some(Attempt {
         sender_id,

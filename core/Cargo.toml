@@ -10,6 +10,7 @@ publish = false
 [dependencies]
 async-imap.workspace = true
 chacha20poly1305.workspace = true
+et-data.workspace = true
 futures.workspace = true
 getrandom.workspace = true
 keyring.workspace = true
@@ -26,6 +27,9 @@ thiserror.workspace = true
 tokio.workspace = true
 tokio-rustls.workspace = true
 zeroize.workspace = true
+
+[build-dependencies]
+et-data.workspace = true
 
 [dev-dependencies]
 tempfile.workspace = true

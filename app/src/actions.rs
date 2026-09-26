@@ -158,3 +158,22 @@ pub async fn evidence_original(
         }),
     }
 }
+
+/// S08: the user finished a playbook. Returns the activity row.
+#[tauri::command]
+#[specta::specta]
+pub async fn finish_playbook(
+    state: tauri::State<'_, AppState>,
+    service_id: u32,
+) -> Result<Option<u32>, String> {
+    let store = state.store()?;
+    tauri::async_runtime::spawn_blocking(move || {
+        store.write(move |conn| {
+            action::playbook::finish(conn, i64::from(service_id), &source::now())
+        })
+    })
+    .await
+    .map_err(|e| e.to_string())?
+    .map(|id| id.map(|id| id as u32))
+    .map_err(|e| e.to_string())
+}

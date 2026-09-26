@@ -3,6 +3,7 @@
 
 pub mod bulk;
 pub mod http;
+pub mod playbook;
 pub mod unsubscribe;
 
 use rusqlite::{Connection, OptionalExtension, params};

@@ -1,10 +1,10 @@
-//! S03–S06: the read paths over a scanned mailbox.
+//! S03–S06 and S08: the read paths over a scanned mailbox.
 
 use std::sync::Arc;
 
 use et_core::source::unix_now;
 use et_core::store::{Store, StoreError};
-use et_core::view::{self, Dashboard, Newsletter, ServiceDetail, Subscription};
+use et_core::view::{self, Dashboard, Newsletter, PlaybookView, ServiceDetail, Subscription};
 
 use crate::AppState;
 
@@ -48,4 +48,13 @@ pub async fn service_detail(
         view::service_detail(store, id, unix_now())
     })
     .await
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn playbook(
+    state: tauri::State<'_, AppState>,
+    id: u32,
+) -> Result<Option<PlaybookView>, String> {
+    read(&state, move |store| view::playbook(store, id, unix_now())).await
 }

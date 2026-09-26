@@ -381,6 +381,17 @@ pub struct ServiceDetail {
     pub price_changes: Vec<PriceMove>,
     /// Newest first.
     pub receipts: Vec<ReceiptLine>,
+    /// The `data/` playbook for this service, if it has one (M4).
+    pub playbook: Option<PlaybookSummary>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Type)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaybookSummary {
+    pub steps: u32,
+    pub minutes: Option<u32>,
+    /// When someone last checked the steps against the vendor's page.
+    pub checked: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Type)]
@@ -434,7 +445,7 @@ pub fn service_detail(
     let head = conn
         .query_row(
             "SELECT name, status, is_critical, price_increase, cadence,
-                    monthly_minor_units, currency
+                    monthly_minor_units, currency, data_key
              FROM service WHERE id = ?1",
             [id],
             |r: &Row<'_>| {
@@ -445,11 +456,12 @@ pub fn service_detail(
                     r.get::<_, bool>(3)?,
                     cadence(r.get(4)?),
                     amount(r.get(5)?, r.get(6)?),
+                    r.get::<_, Option<String>>(7)?,
                 ))
             },
         )
         .optional()?;
-    let Some((name, status, is_critical, price_increase, cadence, monthly)) = head else {
+    let Some((name, status, is_critical, price_increase, cadence, monthly, data_key)) = head else {
         return Ok(None);
     };
 
@@ -589,6 +601,67 @@ pub fn service_detail(
         receipts_per_year,
         price_changes,
         receipts,
+        playbook: playbook_of(data_key.as_deref()).map(|p| PlaybookSummary {
+            steps: p.steps.len() as u32,
+            minutes: p.minutes,
+            checked: p.checked.clone(),
+        }),
+    }))
+}
+
+fn playbook_of(data_key: Option<&str>) -> Option<&'static crate::data::Playbook> {
+    crate::data::catalog().service(data_key?)?.playbook.as_ref()
+}
+
+// ---------------------------------------------------------------- S08
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Type)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaybookView {
+    pub service: ServiceDetail,
+    /// The vendor's help page the steps come from.
+    pub source: String,
+    pub steps: Vec<PlaybookStep>,
+    /// Where a correction goes: the entry's file in the repository.
+    pub improve: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Type)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaybookStep {
+    pub text: String,
+    pub link: Option<String>,
+}
+
+const REPOSITORY: &str = "https://github.com/PGHQdev/EmailTerminator";
+
+pub fn playbook(store: &Store, id: u32, now: i64) -> Result<Option<PlaybookView>, StoreError> {
+    let Some(service) = service_detail(store, id, now)? else {
+        return Ok(None);
+    };
+    let data_key: Option<String> = store.read()?.query_row(
+        "SELECT data_key FROM service WHERE id = ?1",
+        [i64::from(id)],
+        |r| r.get(0),
+    )?;
+    let Some((key, playbook)) = data_key
+        .as_deref()
+        .and_then(|key| Some((key, playbook_of(Some(key))?)))
+    else {
+        return Ok(None);
+    };
+    Ok(Some(PlaybookView {
+        service,
+        source: playbook.source.clone(),
+        steps: playbook
+            .steps
+            .iter()
+            .map(|s| PlaybookStep {
+                text: s.text.clone(),
+                link: s.link.clone(),
+            })
+            .collect(),
+        improve: format!("{REPOSITORY}/edit/main/data/services/{key}.toml"),
     }))
 }
 

@@ -41,7 +41,17 @@ export const commands = {
 	priceChanges: PriceMove[],
 	/**  Newest first. */
 	receipts: ReceiptLine[],
+	/**  The `data/` playbook for this service, if it has one (M4). */
+	playbook: PlaybookSummary | null,
 } | null, string>(__TAURI_INVOKE("service_detail", { id })),
+	playbook: (id: number) => typedError<{
+	service: ServiceDetail,
+	/**  The vendor's help page the steps come from. */
+	source: string,
+	steps: PlaybookStep[],
+	/**  Where a correction goes: the entry's file in the repository. */
+	improve: string,
+} | null, string>(__TAURI_INVOKE("playbook", { id })),
 	sweepReview: (targets: Target[]) => typedError<Item[], string>(__TAURI_INVOKE("sweep_review", { targets })),
 	/**
 	 *  Runs a sweep to its end or until `stop_sweep`; returns how many items
@@ -52,6 +62,8 @@ export const commands = {
 	activity: () => typedError<Entry[], string>(__TAURI_INVOKE("activity")),
 	/**  Re-reads the email an action came from, from its mailbox. */
 	evidenceOriginal: (actionId: number) => typedError<Original, string>(__TAURI_INVOKE("evidence_original", { actionId })),
+	/**  S08: the user finished a playbook. Returns the activity row. */
+	finishPlaybook: (serviceId: number) => typedError<number | null, string>(__TAURI_INVOKE("finish_playbook", { serviceId })),
 	/**  `system` until the user picks one, and whenever the data cannot open. */
 	appearance: () => __TAURI_INVOKE<Appearance>("appearance"),
 	setAppearance: (appearance: Appearance) => typedError<null, string>(__TAURI_INVOKE("set_appearance", { appearance })),
@@ -266,6 +278,27 @@ export type Outcome = "succeeded" | "failed" |
  */
 "needsYou";
 
+export type PlaybookStep = {
+	text: string,
+	link: string | null,
+};
+
+export type PlaybookSummary = {
+	steps: number,
+	minutes: number | null,
+	/**  When someone last checked the steps against the vendor's page. */
+	checked: string,
+};
+
+export type PlaybookView = {
+	service: ServiceDetail,
+	/**  The vendor's help page the steps come from. */
+	source: string,
+	steps: PlaybookStep[],
+	/**  Where a correction goes: the entry's file in the repository. */
+	improve: string,
+};
+
 /**
  *  What an evidence link shows of an original: the headers the app read,
  *  then the text. Built on demand from a re-read message and never stored.
@@ -344,6 +377,8 @@ export type ServiceDetail = {
 	priceChanges: PriceMove[],
 	/**  Newest first. */
 	receipts: ReceiptLine[],
+	/**  The `data/` playbook for this service, if it has one (M4). */
+	playbook: PlaybookSummary | null,
 };
 
 export type ServiceStatus = "active" | "canceling" | "canceled";

@@ -4,10 +4,43 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use super::group_key;
 use super::summary::{Charge, Summary, summarize};
+use crate::data::{Catalog, Critical, Service};
 use crate::extract::{Extraction, is_platform, parse_rfc3339_utc};
+
+/// The `data/` entry that names a sender (PLAN.md 2.6).
+#[derive(Debug, Clone, Copy)]
+pub enum Entry<'c> {
+    Service(&'c Service),
+    Critical(&'c Critical),
+}
+
+impl Entry<'_> {
+    pub fn name(&self) -> &str {
+        match self {
+            Entry::Service(s) => &s.name,
+            Entry::Critical(c) => &c.name,
+        }
+    }
+}
+
+/// The most specific entry across both collections. On a tie the service
+/// entry wins, because it carries the playbook.
+pub fn entry<'c>(catalog: &'c Catalog, address: &str) -> Option<Entry<'c>> {
+    let service = catalog
+        .service_for(address)
+        .and_then(|s| Some((s.matcher.strength(address)?, Entry::Service(s))));
+    let critical = catalog
+        .critical_for(address)
+        .and_then(|c| Some((c.matcher.strength(address)?, Entry::Critical(c))));
+    match (service, critical) {
+        (Some((s, service)), Some((c, critical))) => Some(if c > s { critical } else { service }),
+        (service, critical) => service.or(critical).map(|(_, e)| e),
+    }
+}
 
 /// One billing message's sender, as grouping sees it.
 pub struct Candidate<'a> {
+    pub address: &'a str,
     pub domain: &'a str,
     pub display_name: Option<&'a str>,
     /// The merchant a payment platform named.
@@ -42,22 +75,41 @@ fn alnum(text: &str) -> String {
         .to_ascii_lowercase()
 }
 
-/// A key per candidate. Platform receipts group by merchant. Everything else
-/// groups by registrable domain, except that domains which share a specific
-/// display name that each domain starts with are one brand that moved its
-/// mail: `Brightline` at `brightline.test` and `brightlinehq.test`.
-pub fn keys(candidates: &[Candidate<'_>]) -> Vec<String> {
+/// Whether a candidate is a payment platform relaying a merchant's receipt.
+fn relayed(c: &Candidate<'_>) -> bool {
+    c.merchant.is_some() && is_platform(c.domain)
+}
+
+/// A key per candidate. Platform receipts group by merchant. A sender a
+/// `data/` entry names groups under that entry's name, so AWS billing from
+/// amazon.com stays apart from Amazon's shop. Everything else groups by
+/// registrable domain, except that domains which share a specific display
+/// name that each domain starts with are one brand that moved its mail:
+/// `Brightline` at `brightline.test` and `brightlinehq.test`.
+pub fn keys(catalog: &Catalog, candidates: &[Candidate<'_>]) -> Vec<String> {
+    let entries: Vec<Option<Entry<'_>>> = candidates
+        .iter()
+        .map(|c| {
+            if relayed(c) {
+                None
+            } else {
+                entry(catalog, c.address)
+            }
+        })
+        .collect();
     let base: Vec<String> = candidates
         .iter()
-        .map(|c| match c.merchant {
-            Some(merchant) if is_platform(c.domain) => merchant.trim().to_owned(),
+        .zip(&entries)
+        .map(|(c, entry)| match (c.merchant, entry) {
+            (Some(merchant), _) if relayed(c) => merchant.trim().to_owned(),
+            (_, Some(entry)) => entry.name().to_owned(),
             _ => group_key(c.domain),
         })
         .collect();
 
     let mut brands: BTreeMap<String, (String, BTreeSet<String>)> = BTreeMap::new();
-    for (c, key) in candidates.iter().zip(&base) {
-        if c.merchant.is_some() && is_platform(c.domain) {
+    for ((c, key), entry) in candidates.iter().zip(&base).zip(&entries) {
+        if relayed(c) || entry.is_some() {
             continue;
         }
         let Some(name) = c.display_name.map(str::trim) else {
@@ -95,6 +147,7 @@ pub fn series(extractions: &[Extraction]) -> BTreeMap<String, Summary> {
     let candidates: Vec<Candidate<'_>> = billing
         .iter()
         .map(|e| Candidate {
+            address: e.from_address.as_deref().unwrap_or(""),
             domain: e
                 .from_address
                 .as_deref()
@@ -107,7 +160,10 @@ pub fn series(extractions: &[Extraction]) -> BTreeMap<String, Summary> {
 
     let mut charges: BTreeMap<String, Vec<Charge>> = BTreeMap::new();
     let mut seen = BTreeSet::new();
-    for (e, key) in billing.iter().zip(keys(&candidates)) {
+    for (e, key) in billing
+        .iter()
+        .zip(keys(crate::data::catalog(), &candidates))
+    {
         let entry = charges.entry(key).or_default();
         let Some(r) = &e.receipt else { continue };
         let (Some(amount), Some(currency), Some(at)) = (
@@ -142,6 +198,7 @@ mod tests {
 
     fn candidate<'a>(domain: &'a str, name: &'a str) -> Candidate<'a> {
         Candidate {
+            address: "billing@example.invalid",
             domain,
             display_name: Some(name),
             merchant: None,
@@ -150,35 +207,48 @@ mod tests {
 
     #[test]
     fn a_brand_that_moved_domains_is_one_service() {
-        let keys = keys(&[
-            candidate("brightline.test", "Brightline"),
-            candidate("mail.brightlinehq.test", "Brightline"),
-        ]);
+        let keys = keys(
+            &Catalog::default(),
+            &[
+                candidate("brightline.test", "Brightline"),
+                candidate("mail.brightlinehq.test", "Brightline"),
+            ],
+        );
         assert_eq!(keys, vec!["Brightline", "Brightline"]);
     }
 
     #[test]
     fn a_generic_name_never_merges_vendors() {
-        let keys = keys(&[
-            candidate("acme.test", "Billing"),
-            candidate("zenith.test", "Billing"),
-        ]);
+        let keys = keys(
+            &Catalog::default(),
+            &[
+                candidate("acme.test", "Billing"),
+                candidate("zenith.test", "Billing"),
+            ],
+        );
         assert_eq!(keys, vec!["acme.test", "zenith.test"]);
     }
 
     #[test]
     fn a_single_domain_keeps_its_domain_key() {
-        let keys = keys(&[candidate("billing.atlasbook.test", "Atlasbook")]);
+        let keys = keys(
+            &Catalog::default(),
+            &[candidate("billing.atlasbook.test", "Atlasbook")],
+        );
         assert_eq!(keys, vec!["atlasbook.test"]);
     }
 
     #[test]
     fn platform_receipts_group_by_merchant() {
-        let keys = keys(&[Candidate {
-            domain: "stripe.com",
-            display_name: Some("Lumen Analytics"),
-            merchant: Some("Lumen Analytics"),
-        }]);
+        let keys = keys(
+            &Catalog::default(),
+            &[Candidate {
+                address: "receipts@stripe.com",
+                domain: "stripe.com",
+                display_name: Some("Lumen Analytics"),
+                merchant: Some("Lumen Analytics"),
+            }],
+        );
         assert_eq!(keys, vec!["Lumen Analytics"]);
     }
 }

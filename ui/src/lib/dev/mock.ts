@@ -15,6 +15,7 @@ import type {
   Event,
   Item,
   Newsletter,
+  PlaybookView,
   RunItem,
   ServiceDetail,
   Subscription,
@@ -164,6 +165,9 @@ function detail(id: number): ServiceDetail | null {
       kind: 'charge',
       amount: s.monthly,
     })),
+    playbook: PLAYBOOK_NAMES.includes(s.name)
+      ? { steps: 4, minutes: null, checked: '2026-09-12' }
+      : null,
   };
 }
 
@@ -188,6 +192,28 @@ function review(targets: Target[]): Item[] {
       included: !(critical && sweepSettings.excludeCritical),
     }];
   });
+}
+
+/** Services the bundled `data/` has a playbook for. */
+const PLAYBOOK_NAMES = ['Netflix', 'Adobe Creative Cloud', 'Hulu', 'NYTimes', 'Audible', 'Spotify', 'Dropbox', 'Duolingo', 'Notion'];
+
+function playbook(id: number): PlaybookView | null {
+  const service = detail(id);
+  if (!service?.playbook) return null;
+  return {
+    service,
+    source: 'https://help.nytimes.com/115003007668-Manage-Account/360003499613-Cancel-Your-Subscription',
+    steps: [
+      { text: 'Sign in to your New York Times account.', link: 'https://www.nytimes.com/account' },
+      { text: 'Select Subscription Overview.', link: null },
+      {
+        text: 'In Manage Subscription, select Cancel your Subscription and follow the instructions.',
+        link: 'https://www.nytimes.com/account/cancel',
+      },
+      { text: "Billed through Apple or Google Play? Cancel in that store's subscription settings instead.", link: null },
+    ],
+    improve: 'https://github.com/PGHQdev/EmailTerminator/edit/main/data/services/nytimes.toml',
+  };
 }
 
 let stopped = false;
@@ -297,6 +323,10 @@ mockIPC((cmd, args) => {
       return mode === 'empty' ? [] : newsletters;
     case 'service_detail':
       return detail(Number(a.id));
+    case 'playbook':
+      return playbook(Number(a.id));
+    case 'finish_playbook':
+      return 99;
     case 'appearance':
       return theme;
     case 'set_appearance':

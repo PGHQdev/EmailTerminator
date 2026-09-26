@@ -2,6 +2,7 @@
 
 pub mod action;
 pub mod crypt;
+pub mod data;
 pub mod extract;
 pub mod ingest;
 pub mod local;
