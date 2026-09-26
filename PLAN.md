@@ -1123,6 +1123,27 @@ Done when: all five target providers (Gmail, iCloud, Fastmail, Yahoo,
 Outlook) sync incrementally; a 1 GB generated mbox scans inside the CI ceiling;
 and a real Takeout export (2.11) scans without a panic.
 
+Found at M5, the Outlook client:
+
+- The registration (Part 6, item 12) exists since 2026-09-26: client
+  `a3ccc687-2d05-4830-8d27-d2c3e2c07996`, any Entra tenant plus personal
+  accounts, redirect `http://localhost` as a public client, delegated
+  `IMAP.AccessAsUser.All`, `offline_access` and `email`. A new personal
+  Microsoft account cannot open Entra without a directory; a free Azure
+  signup creates one.
+- The app asks for `https://outlook.office.com/IMAP.AccessAsUser.All
+  offline_access openid email` at the `common` endpoint and reads the mailbox
+  address from the ID token. It keeps only the refresh token, under
+  `outlook:<source id>`, and stores the new one Microsoft sends with each
+  refresh.
+- The token request reuses the hand-written HTTPS client of the one-click
+  POST, which now reads a body. `sha2` and `base64` came in for PKCE; both
+  were already in the build through other crates.
+- Work accounts sign in when their tenant lets users approve an unverified
+  app. The business plan that would serve them is deferred (`CONTEXT.md`).
+- A refused Outlook sync sends the user to sign in again, which adds a
+  second source; S12's reconnect replaces that.
+
 ### M6 — Intelligence
 
 The `ModelClient` trait, the OpenAI-compatible and Anthropic implementations,
@@ -1288,6 +1309,7 @@ from code review.
     and default $19 for launch week, then $29, the Polar API token
     as a Worker secret, and the Worker deployed on `api.emailterminator.com`.
 12. The Microsoft app registration for Outlook.com, public client with PKCE.
+    Done 2026-09-26 (M5).
 
 **Human smoke test before publishing any draft release**, on each platform:
 install from the script, first run reaches S01 with the evaluation running, connect
