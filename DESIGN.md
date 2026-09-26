@@ -120,7 +120,8 @@ layout (`PLAN.md` 1.6).
 provider presets (Gmail, iCloud Mail, Fastmail, Yahoo Mail, other IMAP with
 server and port), the address, the app password, a link to the provider's
 app-password guide (for Gmail, a line saying the App passwords page needs an
-authenticator app or a phone number as the second step), and S16's sign-in failure card in place of the form when
+authenticator app or a phone number as the second step, and that Google hides
+it on some accounts anyway), and S16's sign-in failure card in place of the form when
 the server refuses. Built at M1 from S01's cards and S16's error card.
 
 ### S02 — Scan progress

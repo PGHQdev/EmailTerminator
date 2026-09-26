@@ -114,8 +114,9 @@
         {/if}
         {#if provider === 'gmail'}
           <p class="hint">
-            No App passwords page? Google shows it only when your second step is an authenticator
-            app or a phone number. A passkey or security key alone is not enough.
+            No App passwords page? Add an authenticator app or a phone number as a second step; a
+            passkey or security key alone is not enough. Google also hides the page on some accounts
+            without a reason. Those accounts cannot connect over IMAP.
           </p>
         {/if}
 

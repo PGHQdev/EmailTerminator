@@ -1003,9 +1003,12 @@ resumes without duplicating rows.
 Checked after M3, 2026-09-26: a real Gmail account connected with an app
 password and scanned. A second personal `@gmail.com` account had no App
 passwords page ("not available for your account") with 2-Step Verification
-on, passkeys set, no Advanced Protection. Google offers app passwords only
-when the second step is an authenticator app or a phone number; a passkey or
-security key alone does not count. The Gmail form says so.
+on, passkeys set, no Advanced Protection. Adding an authenticator app, which
+Google then listed as a second step, did not bring the page back. Google
+documents three blockers (security keys as the only second step, an
+organisation account, Advanced Protection) and this account has none, so
+some Gmail accounts cannot use IMAP for reasons Google does not state. Their
+only path at v0 is a Takeout mbox import (M5). The Gmail form says both.
 
 ### M2 — See the results
 
