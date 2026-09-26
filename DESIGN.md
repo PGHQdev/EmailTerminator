@@ -187,9 +187,13 @@ fall back to one-click unsubscribe and playbooks.
 Three variants:
 
 - **One-click** — content: the result, succeeded or failed.
-- **Playbook** — content: curated step-by-step instructions with links;
-  *(no mockup yet)* the playbook's reported success share where stats exist.
-  Actions: mark a step done; open "improve this playbook".
+- **Playbook** — content: curated step-by-step instructions with links, the
+  vendor page they come from and when they were last checked against it,
+  what the user saves; *(no mockup yet)* the playbook's reported success
+  share where stats exist. Actions: mark a step done; open "improve this
+  playbook"; once every step is done, record the cancellation, which writes an
+  S14 row. The mockup's promise to watch for the confirmation email is not
+  built (`PLAN.md` M4).
 - **Agentic (experimental)** — content: live agent progress; result, which is
   succeeded, needs-you, or failed. Actions: pause; take over control.
 

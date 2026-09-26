@@ -629,21 +629,33 @@ against the committed types, which is the same drift check with more typing.
 - TOML over YAML because indentation errors are the common contribution
   failure, and over JSON because a playbook is prose that a human writes by
   hand.
-- **The schema is the Rust `serde` struct.** There is no second schema
-  document to drift. Validation is `cargo run -p et-data -- validate`, a
-  workspace binary that deserialises every file, checks matcher uniqueness and
-  link reachability of the declared form, and prints file and line on failure.
-  CI runs it on every pull request, so a malformed contribution fails before a
-  maintainer reads it.
+- **The schema is the Rust `serde` struct** in `et-data/src/lib.rs`. There is
+  no second schema document to drift. Validation is `cargo run -p et-data --
+  validate`, which deserialises every file, refuses unknown keys, checks
+  matcher uniqueness within each collection, and checks that every link is a
+  well-formed `https://` URL, printing file and line on failure. It does not
+  fetch the links: a network check in CI fails on a vendor's outage or bot
+  wall, not on the contribution. CI runs it on every pull request, and
+  `core/build.rs` runs the same parser, so data that does not validate does not
+  build.
+- **A service entry** is `name`, `domains`, optional `senders` (address
+  patterns, `*` only before the `@`), optional `unsubscribe` (the vendor's
+  email-preferences page, used when a sender's mail has no `List-Unsubscribe`
+  header), and an optional `[playbook]` with `source` (the vendor's help page
+  the steps come from), `checked` (the date someone last compared them),
+  optional `minutes`, and `[[playbook.steps]]` of `text` and optional `link`.
 - **Matching**: each entry declares matchers explicitly — a list of domains
-  (the common case), optional sender-address patterns, optional
-  `List-Unsubscribe` host. Never inferred from the filename. Matcher collisions
-  across files are a validation error.
+  (the common case) and optional sender-address patterns. Never inferred from
+  the filename. Matcher collisions across files are a validation error. The
+  most specific matcher wins: a sender pattern beats a domain, and a longer
+  domain beats a shorter one. A sender an entry names groups under that entry,
+  so AWS billing from `amazon.com` is its own service beside Amazon's shop.
 - **One format serves S08 and S09.** A playbook step carries `text` (shown to
-  the user) and an optional `action` (a declarative instruction the agent can
-  execute: navigate, click a described target, fill, wait, confirm). A step
-  with no `action` is a human-only step, and the agent stops there and hands
-  over.
+  the user) and, from M7, an optional `action` (a declarative instruction the
+  agent can execute: navigate, click a described target, fill, wait, confirm).
+  A step with no `action` is a human-only step, and the agent stops there and
+  hands over. M4 leaves `action` out of the schema, so no entry can declare
+  one before an executor exists to test it.
 - **Four collections**: `data/services/` (cancellation playbooks and
   unsubscribe recipes, keyed per service), `data/critical.toml` (the
   critical-services warning list), `data/providers.toml` (Tier 2 endpoint
@@ -845,7 +857,7 @@ app/                        the Tauri binary. Thin command layer over core.
   src/                      commands, Channel streams, browser-file writer
   tauri.conf.json           version omitted; inherits from Cargo.toml
 native-host/                the chrome-native-host helper binary
-et-data/                    the data validator binary
+et-data/                    the data schema (lib) and its validator (bin)
 extension/                  Chrome extension (MV3), its own version
 ui/                         SvelteKit, adapter-static
   src/lib/styles/           tokens.css, theme.css
@@ -1076,6 +1088,28 @@ Screens: S08.
 
 Done when: a contributor can add a service in one file and CI rejects a
 malformed one with a file and line.
+
+Found at M4:
+
+- **Seed playbooks come from each vendor's own help page**, read on
+  2026-09-26 and named in `source`. Nobody has walked them in a live account,
+  so S08 says "checked", not the mockup's "verified by the community".
+  Peacock and Max are missing: their help sites refused a non-US address.
+  Crunchyroll and Headspace took their places.
+- **Most seed domains are the brand's registrable domain.** Few vendors
+  document their billing sender. `critical.toml` uses exact addresses where a
+  domain is shared: AWS, Google Cloud and Azure mail from `amazon.com`,
+  `google.com` and `microsoft.com`.
+- **The `List-Unsubscribe` host matcher is not built.** No seed entry needed
+  it; it returns with the first entry that does.
+- **S08 records the cancellation when the user says it is done.** The
+  mockup's "we watch for the confirmation email" needs a later scan to match
+  a cancellation receipt to the service, which no milestone owns. Finishing
+  writes a `playbook` row to S14 and sets the service to cancelled.
+- **S10 names the action**: "cancel <name>" before a playbook, "unsubscribe
+  <name>" before a sweep.
+- **The schema lives in `et-data` and `core` depends on it**, so the CI data
+  job still builds without SQLCipher.
 
 ### M5 — More sources
 
