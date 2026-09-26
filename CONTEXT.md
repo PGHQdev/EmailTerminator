@@ -127,6 +127,12 @@ distribution, reputation, and licence revenue.
 - **Our own verified Google OAuth client**: when licence revenue covers
   Google's verification and the annual CASA audit (~$540–1,800/yr). Gmail
   users sign in with one click after that. See `PLAN.md` 1.6.
+- **Business plan**: a flat-rate licence that covers many mailboxes for a
+  company or team, including work and school Microsoft accounts. It breaks
+  the "one product, one price" principle, so that principle is reopened when
+  this ships. The Microsoft client already accepts work accounts, but many
+  companies let only an admin approve an app from an unverified publisher.
+  Trigger: to be decided.
 
 ## Non-goals
 
