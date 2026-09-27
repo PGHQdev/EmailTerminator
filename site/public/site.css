@@ -1,0 +1,36 @@
+:root {
+  --bg: #f5ead8;
+  --fg: #201e1d;
+  --mut: #645c50;
+  --line: #dcd3c4;
+  --acc: #b2622d;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #2e2b25;
+    --fg: #f9f4ed;
+    --mut: #c0b6a5;
+    --line: #645c50;
+    --acc: #f6a06b;
+  }
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.6 system-ui, sans-serif;
+}
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 48px 16px 64px;
+}
+h1, h2 { line-height: 1.2; }
+h1 { font-size: 2rem; margin: 0 0 4px; }
+h2 { font-size: 1.2rem; margin: 36px 0 8px; }
+a { color: var(--acc); }
+.date, footer { color: var(--mut); font-size: 0.9rem; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 16px; }
+td, th { border-top: 1px solid var(--line); padding: 8px 12px 8px 0; text-align: left; vertical-align: top; }
+table { border-collapse: collapse; width: 100%; }

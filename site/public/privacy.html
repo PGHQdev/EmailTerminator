@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · EmailTerminator</title>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<main>
+<h1>Privacy statement</h1>
+<p class="date">Effective 28 September 2026</p>
+
+<p>EmailTerminator is a desktop app. It reads your mail on your computer and
+keeps the results on your computer. We do not receive your mail, its
+subjects, its addresses or its sender domains. We have no user accounts.</p>
+
+<h2>What stays on your computer</h2>
+<p>The app stores what it finds in a local database. The database is
+encrypted. Mailbox passwords and sign-in tokens go into your operating
+system's secret store (Keychain, Credential Manager or Secret Service). To
+remove all of it, use "Erase local data" in the app.</p>
+
+<h2>Requests the app sends</h2>
+<p>The app sends only these requests. Each one is in the
+<a href="https://github.com/PGHQdev/EmailTerminator">public source code</a>,
+and you can build the app yourself to compare.</p>
+<table>
+<tr><th>Request</th><th>Sent to</th><th>What it sends</th></tr>
+<tr><td>Update check</td><td>GitHub</td><td>A request for the latest version number. GitHub sees your IP address.</td></tr>
+<tr><td>Your mailbox</td><td>Your mail provider</td><td>Your address and app password (IMAP), or a Microsoft sign-in (Outlook.com). The app reads mail and changes nothing in the mailbox.</td></tr>
+<tr><td>Outlook.com sign-in</td><td>Microsoft</td><td>A standard Microsoft sign-in. The app asks only for permission to read mail (<code>Mail.Read</code>), to stay signed in, and for your address.</td></tr>
+<tr><td>Unsubscribe</td><td>The sender</td><td>A one-click unsubscribe request, only when you choose to unsubscribe. It is the request the sender put in its own email.</td></tr>
+<tr><td>Licence activation and check</td><td>emailterminator.com</td><td>Only on a licensed copy: the licence key and a hash of the computer's ID, at activation and every 15 days.</td></tr>
+<tr><td>Cancel stats</td><td>emailterminator.com</td><td>Only if you turn it on: the name of a known service, the action, the result and the week. Nothing for a sender that is not on the public service list.</td></tr>
+<tr><td>AI model</td><td>The endpoint you enter</td><td>Only if you set up a model. The app sends to that endpoint what the feature needs. The provider's own privacy terms apply.</td></tr>
+</table>
+<p>The app sends no crash reports, no usage analytics and no advertising
+identifiers.</p>
+
+<h2>Microsoft data</h2>
+<p>For Outlook.com, the app uses Microsoft Graph with read-only access. The
+mail it reads stays on your computer. We do not sell, share or transfer data
+from Microsoft to anyone. You can remove the app's access at any time at
+<a href="https://account.live.com/consent/Manage">account.live.com/consent/Manage</a>.</p>
+
+<h2>Purchases</h2>
+<p>Polar sells the licence as merchant of record. Polar handles your payment
+and billing details under
+<a href="https://polar.sh/legal/privacy">its privacy policy</a>. We receive
+the order and the licence key from Polar.</p>
+
+<h2>What our server keeps</h2>
+<p>For each licensed computer: the licence key, the hash of its ID, and the
+dates of activation and of the last check. For cancel stats: the counts, with
+no key and no hash. You can free a computer from the app or from Polar's
+customer portal.</p>
+
+<h2>Website</h2>
+<p>This website has no cookies and no analytics. Cloudflare serves it and
+sees your IP address.</p>
+
+<h2>Changes and contact</h2>
+<p>We record changes to this statement in the repository. For a question,
+open an issue on
+<a href="https://github.com/PGHQdev/EmailTerminator/issues">GitHub</a>.</p>
+
+<footer><a href="/tos">Terms of use</a></footer>
+</main>
+</body>
+</html>
