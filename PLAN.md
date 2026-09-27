@@ -709,23 +709,15 @@ where contributing needs nothing but a text editor.
 
 - **Tier 2** is an OpenAI-compatible chat client written against `reqwest`,
   plus a second implementation for the Anthropic Messages API. OpenRouter,
-  DeepSeek, local servers and "custom endpoint" are all the first
+  DeepSeek and "custom endpoint" (which covers a server the user runs
+  themselves, such as Ollama or LM Studio) are all the first
   implementation with a different base URL — presets live in
   `data/providers.toml` (2.6).
-- **Tier 1 is discovery first.** Probe the OpenAI-compatible endpoints a user
-  is likely to already run (Ollama, LM Studio, llama.cpp server, `mlx-lm`
-  server) on their default ports. If one answers, Tier 1 *is* the Tier 2 client pointed at
-  localhost, and we ship no runtime at all.
-- **A local endpoint is not automatically a local model.** Ollama now ships
-  cloud models, so an endpoint on `localhost` can forward mail content to a
-  vendor. Set `OLLAMA_NO_CLOUD=1` when we drive Ollama, and treat any
-  discovered endpoint as Tier 2 for the purposes of the privacy statement
-  unless we can confirm the model is resident. Getting this wrong breaks the
-  first invariant while appearing to honour it.
-- **Fallback when nothing answers**: fetch a `llama.cpp` server binary on
-  enable and manage it as a child process. Fetched, never bundled — it must
-  not be in the installer for a feature most users never turn on. One build
-  per platform, picked by the app's own target (sizes at b11221):
+- **Tier 1 is our own `llama.cpp` server, always.** On enable the app
+  fetches a `llama.cpp` server binary and the model for this machine, and
+  runs the server as a child process on loopback. Fetched, never bundled —
+  it must not be in the installer for a feature most users never turn on.
+  One build per platform, picked by the app's own target (sizes at b11221):
 
   | Platform | Build | Size |
   |---|---|---|
@@ -741,13 +733,24 @@ where contributing needs nothing but a text editor.
   **Why `llama.cpp` and not Ollama or MLX.** One small binary per platform,
   one model format (GGUF) everywhere, Metal on Apple Silicon without setup.
   Ollama is not fetched or recommended: it wraps the same engine and ships
-  cloud models (below). MLX is faster on Apple Silicon, but its server is
+  cloud models. MLX is faster on Apple Silicon, but its server is
   Python: fetching it costs `uv`, a Python runtime and about 300 MB before
   the model, plus pinned packages to keep current, and it does not run on
   Intel Macs. `mlx-rs` would embed MLX with no Python, but it leaves each
   model family's code to us and puts model crashes inside the app process.
   CUDA builds are left out: about 550 MB with `cudart`, for a speed gain on
   NVIDIA we have not measured.
+
+  **Why no discovery of servers the user already runs.** Probing Ollama, LM
+  Studio or `mlx-lm` on their ports gives an unknown version, model and
+  settings, and a local endpoint is not automatically a local model: Ollama
+  ships cloud models, so an endpoint on `localhost` can forward mail content
+  to a vendor. With our own server, Tier 1 always means the model runs on
+  this machine, with the version, model, JSON grammar, thinking switch and
+  single parallel slot the M6 test covered. A user's own server is still
+  reachable as a Tier 2 custom endpoint, and the privacy statement treats it
+  as Tier 2. The cost: a user with models already downloaded fetches one
+  more, and two servers running at once share memory.
 
   **What would reopen it**: `mlx-rs` or a native MLX server shipping the
   model families we default to, which makes MLX a single fetch; or a
@@ -1234,8 +1237,7 @@ Found at M5, file import:
 ### M6 — Intelligence
 
 The `ModelClient` trait, the OpenAI-compatible and Anthropic implementations,
-Tier 1 endpoint discovery, the `llama.cpp` fallback fetch, and the tier
-picker. Then the model stage of the skill pipeline, for long-tail
+the Tier 1 `llama.cpp` fetch and child process, and the tier picker. Then the model stage of the skill pipeline, for long-tail
 classification and messy receipts only.
 
 Screens: S13.

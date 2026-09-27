@@ -66,8 +66,9 @@ distribution, reputation, and licence revenue.
   discovery, spend, volume, and one-click unsubscribe. Models are optional
   tiers above it:
   1. No model — the complete first-run experience.
-  2. Local model (Gemma 4 / Qwen 3.5 / Ministral 3 class, all Apache-2.0
-     and ungated) — long-tail classification, messy receipt extraction.
+  2. Local model (Granite 4.1 class, Apache-2.0 and ungated, run by the
+     app's own `llama.cpp` server) — long-tail classification, messy
+     receipt extraction.
   3. BYOK cloud model — agentic browser cancellation. Providers:
      OpenAI-compatible, Anthropic-compatible, OpenRouter, DeepSeek, and
      similar endpoints.
