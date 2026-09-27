@@ -7,7 +7,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use et_core::action::bulk::{self, Event, Item, RunItem, Target};
 use et_core::action::{self, Entry, unsubscribe};
 use et_core::extract::{Preview, preview};
-use et_core::ingest::{graph, imap};
+use et_core::ingest::{graph, imap, maildir, mbox};
 use et_core::source::{self, unix_now};
 use serde::Serialize;
 use specta::Type;
@@ -15,7 +15,7 @@ use tauri::ipc::Channel;
 
 use crate::AppState;
 use crate::settings::read_sweep;
-use crate::sources::{Login, SignInError, credentials};
+use crate::sources::{Access, SignInError, access};
 
 #[tauri::command]
 #[specta::specta]
@@ -127,8 +127,8 @@ pub async fn evidence_original(
     let Some(locator) = found else {
         return Ok(Original::Gone);
     };
-    let login = match credentials(&state, &store, locator.source_id).await {
-        Ok(Some(login)) => login,
+    let source = match access(&state, &store, locator.source_id).await {
+        Ok(Some(source)) => source,
         Ok(None) => return Ok(Original::Gone),
         Err(SignInError::Refused { server_says, .. }) => {
             return Ok(Original::Unreachable {
@@ -138,8 +138,8 @@ pub async fn evidence_original(
         Err(SignInError::Unreachable(message)) => return Ok(Original::Unreachable { message }),
         Err(SignInError::Failed(message)) => return Err(message),
     };
-    let fetched = match login {
-        Login::Imap { account, password } => {
+    let fetched = match source {
+        Access::Imap { account, password } => {
             let Some(uid) = locator.uid() else {
                 return Ok(Original::Gone);
             };
@@ -153,9 +153,25 @@ pub async fn evidence_original(
             .await
             .map_err(|e| e.to_string())
         }
-        Login::Outlook { token, .. } => graph::fetch_one(&token, &locator.locator)
+        Access::Outlook { token, .. } => graph::fetch_one(&token, &locator.locator)
             .await
             .map_err(|e| e.to_string()),
+        Access::Mbox(path) => {
+            let Ok(offset) = locator.locator.parse() else {
+                return Ok(Original::Gone);
+            };
+            tauri::async_runtime::spawn_blocking(move || mbox::read_at(&path, offset))
+                .await
+                .map_err(|e| e.to_string())?
+                .map_err(|e| e.to_string())
+        }
+        Access::Maildir(root) => {
+            let wanted = locator.locator.clone();
+            tauri::async_runtime::spawn_blocking(move || maildir::read_one(&root, &wanted))
+                .await
+                .map_err(|e| e.to_string())?
+                .map_err(|e| e.to_string())
+        }
     };
     match fetched {
         Ok(Some(raw)) => Ok(Original::Found {

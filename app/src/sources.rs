@@ -1,6 +1,7 @@
 //! S01's IMAP and Outlook paths and S12's list: connect a mailbox, list what
 //! is connected, and sign in to one for a sync or an evidence link.
 
+use std::path::PathBuf;
 use std::sync::Arc;
 
 use et_core::ingest::graph::{self, GraphError};
@@ -8,7 +9,8 @@ use et_core::ingest::imap::{
     self, Account, FASTMAIL, GMAIL, ICLOUD, ImapError, Preset, Security, YAHOO,
 };
 use et_core::ingest::outlook::{self, OAuthError};
-use et_core::source::{self, ImapConfig, Mailbox, OutlookConfig};
+use et_core::ingest::{maildir, mbox};
+use et_core::source::{self, FileConfig, ImapConfig, OutlookConfig, Reader};
 use et_core::store::{Store, StoreError};
 use serde::{Deserialize, Serialize};
 use specta::Type;
@@ -199,8 +201,7 @@ pub async fn add_imap_source(
         format!("{label} · {email}"),
         config,
         source::add_imap,
-        source::password_secret,
-        password.as_bytes(),
+        Some((source::password_secret, password.as_bytes())),
     )
     .await
 }
@@ -252,10 +253,57 @@ pub async fn add_outlook_source(
         format!("Outlook · {email}"),
         OutlookConfig { username: email },
         source::add_outlook,
-        source::refresh_secret,
-        refresh.as_bytes(),
+        Some((source::refresh_secret, refresh.as_bytes())),
     )
     .await
+}
+
+#[derive(Clone, Copy, Deserialize, Type)]
+#[serde(rename_all = "camelCase")]
+pub enum FileKind {
+    Mbox,
+    Maildir,
+}
+
+/// Checks that the file or folder reads as mail, then saves it as a source.
+/// Nothing is copied: a scan reads it where it is.
+#[tauri::command]
+#[specta::specta]
+pub async fn add_file_source(
+    state: tauri::State<'_, AppState>,
+    kind: FileKind,
+    path: String,
+) -> Result<SourceSummary, ConnectError> {
+    let invalid = |message: &str| ConnectError::Invalid {
+        message: message.into(),
+    };
+    let checked = {
+        let path = std::path::PathBuf::from(&path);
+        tauri::async_runtime::spawn_blocking(move || match kind {
+            FileKind::Mbox => mbox::open(&path).map(drop).map_err(|e| match e {
+                mbox::MboxError::NotMbox => "This file is not an mbox. Choose an .mbox export.",
+                _ => "This file cannot be read.",
+            }),
+            FileKind::Maildir => maildir::open(&path).map(drop).map_err(|e| match e {
+                maildir::MaildirError::NotMaildir => {
+                    "This folder holds no Maildir: no cur or new folder inside."
+                }
+                _ => "This folder cannot be read.",
+            }),
+        })
+        .await
+        .map_err(failed)?
+    };
+    checked.map_err(invalid)?;
+
+    let label = std::path::Path::new(&path)
+        .file_name()
+        .map_or_else(|| path.clone(), |n| n.to_string_lossy().into_owned());
+    let add = match kind {
+        FileKind::Mbox => source::add_mbox,
+        FileKind::Maildir => source::add_maildir,
+    };
+    save(&state, label, FileConfig { path }, add, None).await
 }
 
 /// Stops an Outlook sign-in that is waiting for the browser.
@@ -284,14 +332,17 @@ fn oauth_error(err: OAuthError) -> ConnectError {
     }
 }
 
-/// Saves a checked source, then puts its secret in the secret store.
+/// A secret's name for a source id, and the secret.
+type Secret<'a> = (fn(i64) -> String, &'a [u8]);
+
+/// Saves a checked source, then puts its secret, if it has one, in the
+/// secret store.
 async fn save<C: Send + 'static>(
     state: &AppState,
     label: String,
     config: C,
     add: fn(&Store, &str, &C) -> Result<i64, StoreError>,
-    secret_name: fn(i64) -> String,
-    secret: &[u8],
+    secret: Option<Secret<'_>>,
 ) -> Result<SourceSummary, ConnectError> {
     let store = state.store().map_err(failed)?;
     let (id, store) = tauri::async_runtime::spawn_blocking(move || {
@@ -300,10 +351,9 @@ async fn save<C: Send + 'static>(
     .await
     .map_err(failed)?
     .map_err(failed)?;
-    state
-        .secrets
-        .set(&secret_name(id), secret)
-        .map_err(failed)?;
+    if let Some((name, secret)) = secret {
+        state.secrets.set(&name(id), secret).map_err(failed)?;
+    }
 
     source::list(&store)
         .map_err(failed)?
@@ -320,33 +370,35 @@ pub(crate) enum SignInError {
     Failed(String),
 }
 
-/// How a sync or an evidence link reads a mailbox.
-pub(crate) enum Login {
+/// How a scan or an evidence link reads a source.
+pub(crate) enum Access {
     Imap { account: Account, password: String },
     Outlook { username: String, token: String },
+    Mbox(PathBuf),
+    Maildir(PathBuf),
 }
 
-/// The login for a mailbox source, or `None` for a source that is not one.
-/// An Outlook source trades its refresh token for an access token, and keeps
-/// the new refresh token Microsoft may send with it.
-pub(crate) async fn credentials(
+/// The access to a source, or `None` for a source that is gone. An Outlook
+/// source trades its refresh token for an access token, and keeps the new
+/// refresh token Microsoft may send with it.
+pub(crate) async fn access(
     state: &AppState,
     store: &Arc<Store>,
     source_id: i64,
-) -> Result<Option<Login>, SignInError> {
+) -> Result<Option<Access>, SignInError> {
     let fail = |e: &dyn std::fmt::Display| SignInError::Failed(e.to_string());
     let missing = || SignInError::Failed("the sign-in is missing from the keychain".into());
-    let Some(mailbox) = source::mailbox(store, source_id).map_err(|e| fail(&e))? else {
+    let Some(reader) = source::reader(store, source_id).map_err(|e| fail(&e))? else {
         return Ok(None);
     };
-    match mailbox {
-        Mailbox::Imap(config) => {
+    match reader {
+        Reader::Imap(config) => {
             let password = state
                 .secrets
                 .get(&source::password_secret(source_id))
                 .map_err(|e| fail(&e))?
                 .ok_or_else(missing)?;
-            Ok(Some(Login::Imap {
+            Ok(Some(Access::Imap {
                 account: Account {
                     host: config.host,
                     port: config.port,
@@ -356,7 +408,7 @@ pub(crate) async fn credentials(
                 password: String::from_utf8_lossy(&password).into_owned(),
             }))
         }
-        Mailbox::Outlook(config) => {
+        Reader::Outlook(config) => {
             let name = source::refresh_secret(source_id);
             let refresh = state
                 .secrets
@@ -379,11 +431,13 @@ pub(crate) async fn credentials(
                     .set(&name, refresh.as_bytes())
                     .map_err(|e| fail(&e))?;
             }
-            Ok(Some(Login::Outlook {
+            Ok(Some(Access::Outlook {
                 username: config.username,
                 token: tokens.access.to_string(),
             }))
         }
+        Reader::Mbox(config) => Ok(Some(Access::Mbox(config.path.into()))),
+        Reader::Maildir(config) => Ok(Some(Access::Maildir(config.path.into()))),
     }
 }
 

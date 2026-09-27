@@ -1,13 +1,16 @@
-//! The performance test (PLAN.md 2.9): 1 GB of generated messages through
-//! extraction and the encrypted store, with a wall-clock and a peak-memory
-//! ceiling. Run in release: `cargo test --release -p et-core --test perf -- --ignored`.
+//! The performance test (PLAN.md 2.9): a generated 1 GB mbox through the mbox
+//! reader, extraction and the encrypted store, with a wall-clock and a
+//! peak-memory ceiling. Run in release:
+//! `cargo test --release -p et-core --test perf -- --ignored`.
 
+use std::io::{BufWriter, Write};
 use std::sync::Arc;
+use std::sync::atomic::AtomicBool;
 use std::time::Instant;
 
 use et_core::crypt::DbKey;
-use et_core::ingest::imap::{Fetched, SyncTarget};
-use et_core::scan::{MailScan, rebuild};
+use et_core::ingest::mbox;
+use et_core::scan::{ImportError, MailScan, rebuild};
 use et_core::store::Store;
 
 const TARGET_BYTES: usize = 1 << 30;
@@ -64,28 +67,42 @@ fn one_gigabyte_scans_inside_the_ceiling() {
         .write(|conn| {
             conn.execute_batch(
                 "INSERT INTO source (id, kind, label, config, created_at)
-                     VALUES (1, 'imap', 'perf', '{}', '2026-01-01T00:00:00Z');",
+                     VALUES (1, 'mbox', 'perf', '{}', '2026-01-01T00:00:00Z');",
             )?;
             Ok(())
         })
         .unwrap();
-    let scan = MailScan::new(store.clone(), 1, "me@example.test");
-    scan.resume("INBOX", 1).unwrap();
-
-    let started = Instant::now();
-    let (mut bytes, mut n, mut uid) = (0, 0, 0);
+    // The file is written before the clock starts.
+    let path = dir.path().join("generated.mbox");
+    let mut out = BufWriter::new(std::fs::File::create(&path).unwrap());
+    let (mut bytes, mut n) = (0, 0);
     while bytes < TARGET_BYTES {
-        let batch: Vec<Fetched> = (0..200)
-            .map(|_| {
-                n += 1;
-                uid += 1;
-                let raw = message(n);
-                bytes += raw.len();
-                Fetched { uid, raw }
-            })
-            .collect();
-        scan.commit("INBOX", 1, batch).unwrap();
+        n += 1;
+        let raw = message(n);
+        bytes += raw.len();
+        out.write_all(b"From billing@vendor.test Mon Jan  5 10:00:00 2026\r\n")
+            .unwrap();
+        out.write_all(&raw).unwrap();
+        out.write_all(b"\r\n").unwrap();
     }
+    out.flush().unwrap();
+    drop(out);
+
+    let scan = MailScan::new(store.clone(), 1, "me@example.test");
+    let started = Instant::now();
+    let file = mbox::open(&path).unwrap();
+    scan.import(
+        "mbox",
+        file.map(|m| {
+            m.map_err(|e| ImportError::Stopped {
+                message: 0,
+                reason: e.to_string(),
+            })
+        }),
+        &AtomicBool::new(false),
+        |_| {},
+    )
+    .unwrap();
     let totals = rebuild(&store).unwrap();
     let elapsed = started.elapsed();
 

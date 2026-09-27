@@ -6,16 +6,33 @@ mod rebuild;
 pub mod summary;
 
 use std::collections::HashSet;
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
 
 use rusqlite::{OptionalExtension, Transaction, params};
 
 use crate::extract::{Extraction, extract};
-use crate::ingest::graph::{self, GraphTarget};
+use crate::ingest::Message;
+use crate::ingest::graph::GraphTarget;
 use crate::ingest::imap::{Fetched, SyncTarget};
 use crate::store::{Store, StoreError};
 
 pub use rebuild::rebuild;
+
+/// Messages per commit in a file import.
+const IMPORT_BATCH: usize = 200;
+
+/// Why a file import stopped. What was committed before it stays.
+#[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
+pub enum ImportError {
+    #[error("cancelled")]
+    Cancelled,
+    /// The file could not be read past `message` (S16's parse failure).
+    #[error("stopped at message {message}: {reason}")]
+    Stopped { message: u64, reason: String },
+    #[error("storing messages: {0}")]
+    Store(String),
+}
 
 /// S02's live figures. Senders, newsletters and subscriptions are counted as
 /// they first appear; the rebuild after the scan settles them.
@@ -177,21 +194,26 @@ impl GraphTarget for MailScan {
 
     fn stored(&self, folder: &str, ids: Vec<String>) -> Result<HashSet<String>, String> {
         let conn = self.store.read().map_err(|e| e.to_string())?;
-        let known: HashSet<String> = conn
-            .prepare(
-                "SELECT m.locator FROM message m JOIN mailbox b ON b.id = m.mailbox_id
-                 WHERE b.source_id = ?1 AND b.name = ?2",
+        let mut stmt = conn
+            .prepare_cached(
+                "SELECT 1 FROM message m JOIN mailbox b ON b.id = m.mailbox_id
+                 WHERE b.source_id = ?1 AND b.name = ?2 AND m.locator = ?3",
             )
-            .and_then(|mut stmt| {
-                stmt.query_map(params![self.source_id, folder], |r| r.get(0))?
-                    .collect()
-            })
             .map_err(|e| e.to_string())?;
-        Ok(ids.into_iter().filter(|id| known.contains(id)).collect())
+        let mut known = HashSet::new();
+        for id in ids {
+            if stmt
+                .exists(params![self.source_id, folder, id])
+                .map_err(|e| e.to_string())?
+            {
+                known.insert(id);
+            }
+        }
+        Ok(known)
     }
 
-    fn commit(&self, folder: &str, batch: Vec<graph::Fetched>) -> Result<(), String> {
-        let rows = self.extract(batch.into_iter().map(|f| (f.id, f.raw)));
+    fn commit(&self, folder: &str, batch: Vec<Message>) -> Result<(), String> {
+        let rows = self.extract(batch.into_iter().map(|m| (m.locator, m.raw)));
         let (source_id, folder) = (self.source_id, folder.to_owned());
         self.store
             .write(move |conn| {
@@ -223,6 +245,57 @@ impl GraphTarget for MailScan {
 }
 
 impl MailScan {
+    /// Stores what a file import reads into one folder row, in batches.
+    /// Messages already stored are skipped before extraction, so a retry
+    /// after a stop resumes. `progress` gets the number of messages read.
+    pub fn import(
+        &self,
+        folder: &str,
+        messages: impl Iterator<Item = Result<Message, ImportError>>,
+        cancel: &AtomicBool,
+        progress: impl Fn(u64),
+    ) -> Result<(), ImportError> {
+        self.delta_link(folder).map_err(ImportError::Store)?;
+        let mut messages = messages.peekable();
+        let mut read = 0;
+        loop {
+            if cancel.load(Ordering::Relaxed) {
+                return Err(ImportError::Cancelled);
+            }
+            let mut batch = Vec::with_capacity(IMPORT_BATCH);
+            let mut stopped = None;
+            while batch.len() < IMPORT_BATCH {
+                match messages.next() {
+                    Some(Ok(message)) => batch.push(message),
+                    Some(Err(err)) => {
+                        stopped = Some(err);
+                        break;
+                    }
+                    None => break,
+                }
+            }
+            read += batch.len() as u64;
+            let last = batch.is_empty() || messages.peek().is_none();
+            let batch = self.unstored(folder, batch).map_err(ImportError::Store)?;
+            GraphTarget::commit(self, folder, batch).map_err(ImportError::Store)?;
+            progress(read);
+            if let Some(err) = stopped {
+                return Err(err);
+            }
+            if last {
+                return Ok(());
+            }
+        }
+    }
+
+    fn unstored(&self, folder: &str, batch: Vec<Message>) -> Result<Vec<Message>, String> {
+        let known = self.stored(folder, batch.iter().map(|m| m.locator.clone()).collect())?;
+        Ok(batch
+            .into_iter()
+            .filter(|m| !known.contains(&m.locator))
+            .collect())
+    }
+
     /// Extracts each message, drops the account's own, and counts the rest.
     fn extract(&self, raw: impl Iterator<Item = (String, Vec<u8>)>) -> Vec<(String, Extraction)> {
         let rows: Vec<(String, Extraction)> = raw

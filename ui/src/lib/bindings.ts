@@ -19,6 +19,11 @@ export const commands = {
 	 *  token.
 	 */
 	addOutlookSource: () => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_outlook_source")),
+	/**
+	 *  Checks that the file or folder reads as mail, then saves it as a source.
+	 *  Nothing is copied: a scan reads it where it is.
+	 */
+	addFileSource: (kind: FileKind, path: string) => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_file_source", { kind, path })),
 	/**  Stops an Outlook sign-in that is waiting for the browser. */
 	cancelOutlookSignIn: () => __TAURI_INVOKE<void>("cancel_outlook_sign_in"),
 	listSources: () => typedError<SourceSummary[], string>(__TAURI_INVOKE("list_sources")),
@@ -191,6 +196,8 @@ export type Field = {
 	value: string,
 };
 
+export type FileKind = "mbox" | "maildir";
+
 export type ImapProvider = "gmail" | "icloud" | "fastmail" | "yahoo" | "other";
 
 /**  One S11 row. */
@@ -352,7 +359,12 @@ export type RunItem = {
 	criticalConfirmed: boolean,
 };
 
-export type ScanError = { kind: "signInRefused"; host: string; serverSays: string } | { kind: "unreachable"; message: string } | { kind: "cancelled" } | { kind: "alreadyRunning" } | { kind: "failed"; message: string };
+export type ScanError = { kind: "signInRefused"; host: string; serverSays: string } | { kind: "unreachable"; message: string } | { kind: "cancelled" } | { kind: "alreadyRunning" } | 
+/**
+ *  S16's parse failure: a file could not be read past `message`. What
+ *  came before it is kept and rebuilt.
+ */
+{ kind: "stopped"; message: number; reason: string } | { kind: "failed"; message: string };
 
 export type ScanEvent = { kind: "progress"; fetched: number; total: number; senders: number; subscriptions: number; newsletters: number; latestFind: string | null } | 
 /**  Fetching is done; senders, services and rollups are being rebuilt. */

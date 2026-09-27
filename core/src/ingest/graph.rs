@@ -19,10 +19,9 @@ use futures::{StreamExt, TryStreamExt};
 use serde::Deserialize;
 
 use super::outlook::encode;
+use super::{MAX_BYTES, Message};
 
 const GRAPH: &str = "https://graph.microsoft.com/v1.0";
-/// Messages are read up to this size, as over IMAP.
-const MAX_BYTES: usize = 2 * 1024 * 1024;
 /// Messages per commit.
 const BATCH: usize = 50;
 /// Microsoft's limit of concurrent requests per mailbox.
@@ -39,19 +38,13 @@ const SKIPPED: &[&str] = &[
     "conversationhistory",
 ];
 
-#[derive(Debug)]
-pub struct Fetched {
-    pub id: String,
-    pub raw: Vec<u8>,
-}
-
 /// Where fetched messages go. Blocking: the store has one writer thread.
 pub trait GraphTarget: Send + Sync + 'static {
     /// The delta link the folder's last finished pass ended with.
     fn delta_link(&self, folder: &str) -> Result<Option<String>, String>;
     /// Which of `ids` the folder already stores.
     fn stored(&self, folder: &str, ids: Vec<String>) -> Result<HashSet<String>, String>;
-    fn commit(&self, folder: &str, batch: Vec<Fetched>) -> Result<(), String>;
+    fn commit(&self, folder: &str, batch: Vec<Message>) -> Result<(), String>;
     /// Records that the folder's pass is done; the next one starts at `link`.
     fn finish(&self, folder: &str, link: &str) -> Result<(), String>;
 }
@@ -374,10 +367,10 @@ async fn run(
             check(&cancel)?;
             // Owned ids: a borrowed item makes the future's lifetime too
             // general for a Tauri command to prove it `Send`.
-            let batch: Vec<Fetched> = futures::stream::iter(chunk.to_vec())
+            let batch: Vec<Message> = futures::stream::iter(chunk.to_vec())
                 .map(|id| async move {
                     match graph.mime(&id).await {
-                        Ok(raw) => Ok(Some(Fetched { id, raw })),
+                        Ok(raw) => Ok(Some(Message { locator: id, raw })),
                         // Deleted between the delta query and the fetch.
                         Err(GraphError::NotFound) => Ok(None),
                         Err(err) => Err(err),
@@ -530,10 +523,10 @@ mod tests {
                 .filter(|id| stored.contains_key(id))
                 .collect())
         }
-        fn commit(&self, _: &str, batch: Vec<Fetched>) -> Result<(), String> {
+        fn commit(&self, _: &str, batch: Vec<Message>) -> Result<(), String> {
             let mut stored = self.stored.lock().unwrap();
-            for f in batch {
-                stored.insert(f.id, f.raw);
+            for m in batch {
+                stored.insert(m.locator, m.raw);
             }
             Ok(())
         }

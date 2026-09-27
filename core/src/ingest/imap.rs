@@ -365,38 +365,44 @@ fn choose_folders(names: &[(String, Vec<Kind>)]) -> Vec<String> {
     if let Some((name, _)) = names.iter().find(|(_, kinds)| kinds.contains(&Kind::All)) {
         return vec![name.clone()];
     }
-    const SKIPPED: &[&str] = &[
-        "sent",
-        "sent items",
-        "sent mail",
-        "sent messages",
-        "drafts",
-        "draft",
-        "trash",
-        "deleted",
-        "deleted items",
-        "deleted messages",
-        "bin",
-        "junk",
-        "junk email",
-        "junk e-mail",
-        "spam",
-        "bulk mail",
-        "outbox",
-    ];
     names
         .iter()
         .filter(|(_, kinds)| !kinds.contains(&Kind::NoSelect) && !kinds.contains(&Kind::Skip))
-        .filter(|(name, _)| {
-            let leaf = name
-                .rsplit(['/', '.'])
-                .next()
-                .unwrap_or(name)
-                .to_lowercase();
-            !SKIPPED.contains(&leaf.as_str())
-        })
+        .filter(|(name, _)| !skipped_name(name))
         .map(|(name, _)| name.clone())
         .collect()
+}
+
+/// Folder names that hold no mail someone sent the user, for servers and
+/// Maildirs that carry no special-use attribute.
+const SKIPPED: &[&str] = &[
+    "sent",
+    "sent items",
+    "sent mail",
+    "sent messages",
+    "drafts",
+    "draft",
+    "trash",
+    "deleted",
+    "deleted items",
+    "deleted messages",
+    "bin",
+    "junk",
+    "junk email",
+    "junk e-mail",
+    "spam",
+    "bulk mail",
+    "outbox",
+];
+
+/// Whether a folder's last path segment is one of [`SKIPPED`].
+pub(crate) fn skipped_name(name: &str) -> bool {
+    let leaf = name
+        .rsplit(['/', '.'])
+        .next()
+        .unwrap_or(name)
+        .to_lowercase();
+    SKIPPED.contains(&leaf.as_str())
 }
 
 async fn connect(account: &Account, password: &str) -> Result<Session, ImapError> {
