@@ -194,22 +194,7 @@ impl GraphTarget for MailScan {
 
     fn stored(&self, folder: &str, ids: Vec<String>) -> Result<HashSet<String>, String> {
         let conn = self.store.read().map_err(|e| e.to_string())?;
-        let mut stmt = conn
-            .prepare_cached(
-                "SELECT 1 FROM message m JOIN mailbox b ON b.id = m.mailbox_id
-                 WHERE b.source_id = ?1 AND b.name = ?2 AND m.locator = ?3",
-            )
-            .map_err(|e| e.to_string())?;
-        let mut known = HashSet::new();
-        for id in ids {
-            if stmt
-                .exists(params![self.source_id, folder, id])
-                .map_err(|e| e.to_string())?
-            {
-                known.insert(id);
-            }
-        }
-        Ok(known)
+        stored_in(&conn, self.source_id, folder, ids)
     }
 
     fn commit(&self, folder: &str, batch: Vec<Message>) -> Result<(), String> {
@@ -256,6 +241,12 @@ impl MailScan {
         progress: impl Fn(u64),
     ) -> Result<(), ImportError> {
         self.delta_link(folder).map_err(ImportError::Store)?;
+        // One read connection for the whole import: opening one derives the
+        // SQLCipher key, which costs more than a batch.
+        let conn = self
+            .store
+            .read()
+            .map_err(|e| ImportError::Store(e.to_string()))?;
         let mut messages = messages.peekable();
         let mut read = 0;
         loop {
@@ -276,7 +267,9 @@ impl MailScan {
             }
             read += batch.len() as u64;
             let last = batch.is_empty() || messages.peek().is_none();
-            let batch = self.unstored(folder, batch).map_err(ImportError::Store)?;
+            let batch = self
+                .unstored(&conn, folder, batch)
+                .map_err(ImportError::Store)?;
             GraphTarget::commit(self, folder, batch).map_err(ImportError::Store)?;
             progress(read);
             if let Some(err) = stopped {
@@ -288,8 +281,18 @@ impl MailScan {
         }
     }
 
-    fn unstored(&self, folder: &str, batch: Vec<Message>) -> Result<Vec<Message>, String> {
-        let known = self.stored(folder, batch.iter().map(|m| m.locator.clone()).collect())?;
+    fn unstored(
+        &self,
+        conn: &rusqlite::Connection,
+        folder: &str,
+        batch: Vec<Message>,
+    ) -> Result<Vec<Message>, String> {
+        let known = stored_in(
+            conn,
+            self.source_id,
+            folder,
+            batch.iter().map(|m| m.locator.clone()).collect(),
+        )?;
         Ok(batch
             .into_iter()
             .filter(|m| !known.contains(&m.locator))
@@ -305,6 +308,42 @@ impl MailScan {
         self.note(&rows.iter().map(|(_, e)| e.clone()).collect::<Vec<_>>());
         rows
     }
+}
+
+/// Which of `ids` a folder of the source already stores.
+fn stored_in(
+    conn: &rusqlite::Connection,
+    source_id: i64,
+    folder: &str,
+    ids: Vec<String>,
+) -> Result<HashSet<String>, String> {
+    let mailbox_id: Option<i64> = conn
+        .query_row(
+            "SELECT id FROM mailbox WHERE source_id = ?1 AND name = ?2",
+            params![source_id, folder],
+            |r| r.get(0),
+        )
+        .optional()
+        .map_err(|e| e.to_string())?;
+    let Some(mailbox_id) = mailbox_id else {
+        return Ok(HashSet::new());
+    };
+    // All three columns, so the lookup uses the UNIQUE index and not a scan.
+    let mut stmt = conn
+        .prepare_cached(
+            "SELECT 1 FROM message WHERE source_id = ?1 AND mailbox_id = ?2 AND locator = ?3",
+        )
+        .map_err(|e| e.to_string())?;
+    let mut known = HashSet::new();
+    for id in ids {
+        if stmt
+            .exists(params![source_id, mailbox_id, id])
+            .map_err(|e| e.to_string())?
+        {
+            known.insert(id);
+        }
+    }
+    Ok(known)
 }
 
 fn store_rows(
