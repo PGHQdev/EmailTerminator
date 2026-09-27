@@ -921,7 +921,7 @@ data/                       community data: services/, critical.toml, providers.
 server/                     Cloudflare Worker (Hono, D1): /activate, /check, /deactivate, /stats. Bun.
 site/                       landing page, install scripts. Cloudflare on push to main.
 .github/workflows/          pr.yml, release.yml, extension.yml, yank.yml
-.github/FUNDING.yml         GitHub Sponsors; the same link S17 opens
+.github/FUNDING.yml         Ko-fi; the same link S17 opens
 CHANGELOG.md                single source of release notes
 ```
 

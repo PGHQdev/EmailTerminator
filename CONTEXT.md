@@ -154,7 +154,7 @@ distribution, reputation, and licence revenue.
 A one-time, pay-what-you-want licence with a $29 minimum ($19 in launch
 week), sold through Polar as merchant of record. Checkout pre-fills the
 minimum, so paying more is a choice and never a default. Donations through
-GitHub Sponsors stay open before and after a purchase, from the repository and
+Ko-fi (ko-fi.com/pghqdev) stay open before and after a purchase, from the repository and
 from S17. Indirect revenue comes through reputation, freelancing, consulting,
 and cross-promotion of our other projects (HNTerminal and others). No paid
 tiers, no subscription.

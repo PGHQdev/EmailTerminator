@@ -267,7 +267,7 @@ beside it, in plain words; erase-all-data, which keeps the licence;
 *(no mockup yet)* licence — evaluation days left, unregistered, or licensed;
 the date of the last check; this device's place among the 3 allowed;
 *(no mockup yet)* cancel stats — the opt-in switch and the exact payload one
-report sends; *(no mockup yet)* support — a GitHub Sponsors link, shown to every
+report sends; *(no mockup yet)* support — a Ko-fi link (ko-fi.com/pghqdev), shown to every
 user whether licensed or not;
 updates — current version, update state, and what a check sends (version, OS,
 architecture, and the IP any HTTPS request carries; no identifier we invent);
@@ -276,7 +276,7 @@ Actions: change appearance; configure sweep behaviour; change or reveal the
 data location; erase all local data, behind a confirmation; set update
 behaviour to Automatic (default), Notify only, or Off; check for updates now;
 remove the browser integration files; *(no mockup yet)* enter a licence key,
-open the Polar checkout, deactivate this device, switch cancel stats on or off, open GitHub Sponsors in
+open the Polar checkout, deactivate this device, switch cancel stats on or off, open Ko-fi in
 the browser.
 
 ### S18 — Command palette
