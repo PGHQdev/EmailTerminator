@@ -112,7 +112,9 @@ opts in. Each entry links to the source file that sends it. It also states
 that the local data is encrypted.
 Actions, IMAP first: connect a mailbox over IMAP with an app password, Gmail
 included; sign in to Outlook.com; import an mbox file or *(no mockup yet)* a
-Maildir folder. The mockup's third card, "Connect Gmail" with a
+Maildir folder. The mbox card takes a dropped file or folder, and a
+"or a Maildir folder" link under its action opens a folder picker. The
+mockup's third card, "Connect Gmail" with a
 bring-your-own OAuth client, becomes "Sign in to Outlook.com" in the same
 layout (`PLAN.md` 1.6).
 

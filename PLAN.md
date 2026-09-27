@@ -933,13 +933,17 @@ own migration.
   reserved for the deferred verified Google client), `label`,
   `last_sync_at`, `message_count`, plus per-kind config. Feeds S12. `last_sync_at`
   only advances while the app is open (1.2); S12 must not imply otherwise.
-- **`mailbox`** — one row per IMAP folder: `source_id`, `name`, `uid_validity`,
-  `highest_uid`. The resume point of 2.3.
+- **`mailbox`** — one row per folder: `source_id`, `name`, `uid_validity`,
+  `highest_uid`, `delta_link`. An IMAP folder resumes from its highest UID
+  (2.3); a Graph folder, named by its id, from its delta link (migration
+  004); an imported file has one row, `mbox` or `maildir`, and skips the
+  locators it already stores.
 - **`message`** — `id`, `source_id`, `mailbox_id`, `message_id` header,
   `sender_id`, `subject`, `date`, `list_unsubscribe` (raw),
   `list_unsubscribe_post` (bool), `list_id`, `is_list`, `dkim_domains`,
   `one_click` (RFC 8058 holds, M3),
-  `locator` (UID for IMAP, byte offset for mbox, file name for Maildir),
+  `locator` (UID for IMAP, Graph message id for Outlook, byte offset of the
+  `From ` line for mbox, folder and unique file name for Maildir),
   unique per source and mailbox.
   **No body is stored.** The
   locator is how evidence links re-read the original from its source.
@@ -1161,6 +1165,26 @@ Found at M5, the Outlook client:
   app. The business plan that would serve them is deferred (`CONTEXT.md`).
 - A refused Outlook scan sends the user to sign in again, which adds a
   second source; S12's reconnect replaces that.
+
+Found at M5, file import:
+
+- The mbox reader splits at a `From ` line at the top or after a blank line,
+  strips one `>` from `>From ` lines (mboxo and mboxrd alike), and reads a
+  gzip file through `flate2`, which the build already carried through Tauri.
+  A Takeout message labelled spam, trash, draft, chat or sent is skipped.
+- A gzip stream cannot seek, so an evidence link to a gzipped mbox reads
+  forward to the offset. A plain file does the same today; seeking is an
+  optimisation for when evidence links on large files feel slow.
+- A stopped import keeps what it read, rebuilds, and shows S16's card. The
+  retry skips every locator already stored, so it resumes without counting
+  twice.
+- The first version of that skip joined `mailbox` by name and never filtered
+  `message.source_id`, so SQLite could not use the unique index: 1 GB took
+  714 s. With all three index columns it takes 23.6 s on an M1 in release.
+- The perf test now reads a generated 1 GB mbox (2.9).
+- A file or folder dropped on S01 is an mbox or a Maildir by what it is.
+  Files are read in place, never copied.
+- A real Takeout export (2.11) has not been scanned yet.
 
 ### M6 — Intelligence
 
