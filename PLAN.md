@@ -261,7 +261,7 @@ could confirm.
 | Path | Verification burden | User friction | Freshness | v0 |
 |---|---|---|---|---|
 | IMAP with app password | None | Medium: enable 2SV, generate, paste | Live | Rung 1 |
-| Outlook.com through our Microsoft OAuth client | None beyond app registration | Low: sign in | Live | Rung 1 |
+| Outlook.com over Microsoft Graph through our OAuth client | None beyond app registration | Low: sign in | Live | Rung 1 |
 | mbox / Maildir import | None | High, manual | Snapshot | Rung 2 |
 | Our own verified Google client + CASA | Verification + annual audit | Low | Live | Deferred |
 | BYO Google OAuth client | On the user, not us | High: a Google Cloud project | Live, plus history and push | Rejected |
@@ -273,11 +273,21 @@ Yahoo with one implementation.
 
 **Outlook.com is the exception.** Since 16 September 2024 Microsoft refuses
 basic authentication, app passwords included, for personal Outlook.com,
-Hotmail and Live mailboxes. They need `AUTHENTICATE XOAUTH2`. Microsoft's
-identity platform lets us register one public desktop client with PKCE and the
-`IMAP.AccessAsUser.All` and `offline_access` scopes. There is no audit
-comparable to CASA, so this client ships at v0. An earlier version of this
-section counted Outlook among the app-password providers; that was wrong.
+Hotmail and Live mailboxes. Microsoft's identity platform lets us register one
+public desktop client with PKCE, and there is no audit comparable to CASA, so
+this client ships at v0. An earlier version of this section counted Outlook
+among the app-password providers; that was wrong.
+
+**Outlook reads through Microsoft Graph, not IMAP.** Microsoft's only IMAP
+permission, `IMAP.AccessAsUser.All`, grants read and write, and its consent
+screen says so. Graph's `Mail.Read` is read-only. Graph is also Microsoft's
+main mail API, while IMAP is a legacy protocol a work tenant can switch off.
+The cost is the first scan: Graph returns one message's MIME per request and
+allows 10,000 requests per 10 minutes per mailbox, so a 40,000-message
+mailbox takes about 40 minutes. IMAP fetches 200 messages per request and is
+likely much faster; neither is measured yet. Later scans read only the
+delta. This reopens if Microsoft adds a read-only IMAP permission,
+or if first scans prove too slow for users to wait for.
 
 **Can the app use its own Google OAuth client for normal users?** Yes, but not
 at v0. IMAP over OAuth needs the `https://mail.google.com/` scope, which is
@@ -521,9 +531,8 @@ through `imap-proto`.
   connection handling, reconnect and backoff to write ourselves. It stays the
   named fallback if `async-imap` stalls.
 - **We write**: reconnect with exponential backoff, resync after disconnect,
-  `AUTHENTICATE XOAUTH2` for Outlook.com, and
-  per-provider quirk handling for Gmail, iCloud, Fastmail, Yahoo and Outlook.
-  Outlook.com takes OAuth only (1.6); the other four take an app password.
+  and per-provider quirk handling for Gmail, iCloud, Fastmail and Yahoo, all
+  over an app password. Outlook.com is read over Graph instead (1.6).
 - **Incremental resync is a UID range**, `UID SEARCH UID n:*` from the
   highest UID committed per folder, reset when `UIDVALIDITY` changes. It is
   needed at v0: nothing syncs while the app is closed (1.2), so every launch
@@ -834,7 +843,7 @@ disk. **The file never enters the repository.**
 Cargo.toml                  workspace: core, app, native-host, et-data
 core/                       the domain. No Tauri dependency.
   src/
-    ingest/                 IMAP client, Outlook OAuth, mbox and Maildir readers
+    ingest/                 IMAP client, Outlook sign-in and Graph reader, mbox and Maildir readers
     extract/                one message to facts: headers, list signals, receipts
     scan/                   store fetched mail; rebuild senders, services, charges, rollups
     source/                 connected mailboxes and files (S12)
@@ -1126,22 +1135,31 @@ and a real Takeout export (2.11) scans without a panic.
 Found at M5, the Outlook client:
 
 - The registration (Part 6, item 12) exists since 2026-09-26: client
-  `a3ccc687-2d05-4830-8d27-d2c3e2c07996`, any Entra tenant plus personal
-  accounts, redirect `http://localhost` as a public client, delegated
-  `IMAP.AccessAsUser.All`, `offline_access` and `email`. A new personal
-  Microsoft account cannot open Entra without a directory; a free Azure
-  signup creates one.
-- The app asks for `https://outlook.office.com/IMAP.AccessAsUser.All
-  offline_access openid email` at the `common` endpoint and reads the mailbox
-  address from the ID token. It keeps only the refresh token, under
-  `outlook:<source id>`, and stores the new one Microsoft sends with each
-  refresh.
-- The token request reuses the hand-written HTTPS client of the one-click
-  POST, which now reads a body. `sha2` and `base64` came in for PKCE; both
-  were already in the build through other crates.
+  `a3ccc687-2d05-4830-8d27-d2c3e2c07996`, `signInAudience`
+  `AzureADandPersonalMicrosoftAccount`, `requestedAccessTokenVersion` 2,
+  redirect `http://localhost` as a public client, delegated Graph `Mail.Read`,
+  `offline_access` and `email`. A new personal Microsoft account cannot open
+  Entra without a directory; a free Azure signup creates one. Entra refuses
+  to add personal accounts while the token version is unset, and the
+  resulting sign-in error is `unauthorized_client`.
+- The app asks for `https://graph.microsoft.com/Mail.Read offline_access
+  openid email` at the `common` endpoint and reads the mailbox address from
+  the ID token. It keeps only the refresh token, under `outlook:<source id>`,
+  and stores the new one Microsoft sends with each refresh. A scan that
+  outlives its access token refreshes it and resumes.
+- The first version read Outlook over IMAP with `XOAUTH2`. Its consent
+  screen asked for read and write access, which led to the Graph reader
+  (1.6).
+- The Graph reader walks each folder's delta query, skips sent, deleted,
+  junk, draft, outbox and conversation-history folders by well-known name,
+  and stores a folder's delta link (migration 004) once its pass is done.
+  It waits out 429 answers and never sends the token to a link outside Graph.
+- `reqwest` came in for Graph and the token request, over the core's own
+  rustls setup (`ring`, the platform verifier), with no redirects and no
+  cookies. `sha2` and `base64` came in for PKCE.
 - Work accounts sign in when their tenant lets users approve an unverified
   app. The business plan that would serve them is deferred (`CONTEXT.md`).
-- A refused Outlook sync sends the user to sign in again, which adds a
+- A refused Outlook scan sends the user to sign in again, which adds a
   second source; S12's reconnect replaces that.
 
 ### M6 — Intelligence

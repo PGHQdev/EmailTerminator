@@ -79,9 +79,10 @@ distribution, reputation, and licence revenue.
 
 ## v0 scope
 
-- **Ingestion ladder**: (1) IMAP first — app password for Gmail, iCloud,
-  Fastmail and Yahoo, and our own Microsoft OAuth client for Outlook.com,
-  which no longer accepts app passwords; (2) mbox and Maildir import, in a
+- **Ingestion ladder**: (1) live mailboxes first — IMAP with an app
+  password for Gmail, iCloud, Fastmail and Yahoo, and Microsoft Graph with
+  read-only access through our own OAuth client for Outlook.com, which no
+  longer accepts app passwords; (2) mbox and Maildir import, in a
   later v0 milestone. No Google OAuth client at v0, ours or the user's: ours
   needs a CASA audit, and a user-supplied one asks a layperson to run a Google
   Cloud project.
