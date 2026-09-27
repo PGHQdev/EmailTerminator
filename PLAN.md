@@ -1534,7 +1534,10 @@ fetches.
 
 The site serves `install.sh`, `install.ps1`, `install-prerelease.sh`,
 `install-prerelease.ps1`, `uninstall.sh` and `uninstall.ps1`, plus the price
-and a link to the Polar checkout. All are static files, so the site needs no
+and a link to the Polar checkout. It also serves
+`/.well-known/microsoft-identity-association.json`, which proves to Microsoft
+that the Outlook client (Part 6, item 12) belongs to emailterminator.com.
+Microsoft reads it over HTTPS with no redirect, as `application/json`. All are static files, so the site needs no
 Function and no server-side logic. Activation and stats live in `server/` on
 their own host (1.7). A push to `main` that touches `server/` deploys it with
 `wrangler deploy`.
