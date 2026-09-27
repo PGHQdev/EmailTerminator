@@ -1163,8 +1163,11 @@ Found at M5, the Outlook client:
   cookies. `sha2` and `base64` came in for PKCE.
 - Work accounts sign in when their tenant lets users approve an unverified
   app. The business plan that would serve them is deferred (`CONTEXT.md`).
-- A refused Outlook scan sends the user to sign in again, which adds a
-  second source; S12's reconnect replaces that.
+- A refused Outlook scan sends the user to sign in again. A sign-in, IMAP
+  connect or import whose kind and settings match a saved source reuses that
+  source and replaces its secret, so reconnecting never adds a copy.
+- S12 removes a source with its messages and the senders only it held, then
+  rebuilds. The activity log keeps its rows.
 
 Found at M5, file import:
 

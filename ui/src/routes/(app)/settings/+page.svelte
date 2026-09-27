@@ -5,6 +5,7 @@
   import { appearance } from '$lib/appearance.svelte';
   import { commands, type Appearance, type DataLocation, type Sweep } from '$lib/bindings';
   import Button from '$lib/components/Button.svelte';
+  import SettingsTabs from '$lib/components/SettingsTabs.svelte';
   import { bytes } from '$lib/format';
 
   // S17 — General settings: appearance, sweep behaviour, data location,
@@ -53,14 +54,7 @@
   }
 </script>
 
-<header>
-  <h1>Settings</h1>
-  <div class="tabs" role="tablist">
-    <span class="tab off" aria-disabled="true" title="Arrives with more sources">Sources</span>
-    <span class="tab off" aria-disabled="true" title="Arrives with intelligence">Intelligence</span>
-    <span class="tab on" role="tab" aria-selected="true">General</span>
-  </div>
-</header>
+<SettingsTabs />
 
 <div class="cards">
   <section class="card row">
@@ -201,22 +195,6 @@
 </AlertDialog.Root>
 
 <style>
-  header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  h1 {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-weight: var(--font-heading-weight);
-    font-size: 1.875rem;
-    color: var(--hd);
-  }
-
-  .tabs,
   .segments {
     display: flex;
     gap: 0.25rem;
@@ -225,7 +203,6 @@
     padding: 0.25rem;
   }
 
-  .tab,
   .segments button {
     padding: 0.4375rem 1.125rem;
     border-radius: var(--pill);
@@ -234,11 +211,6 @@
     color: var(--mut);
   }
 
-  .tab.off {
-    opacity: 0.45;
-  }
-
-  .tab.on,
   .segments button.on {
     background: var(--card);
     color: var(--hd);

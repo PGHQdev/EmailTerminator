@@ -376,6 +376,8 @@ mockIPC((cmd, args) => {
     case 'choose_file_source':
     case 'add_dropped_source':
       return { id: 3, kind: 'mbox', label: 'All mail Including Spam and Trash.mbox', lastSyncAt: null, messageCount: 0 };
+    case 'remove_source':
+      return null;
     case 'cancel_outlook_sign_in':
       outlookCancel?.();
       outlookCancel = null;
