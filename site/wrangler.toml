@@ -1,6 +1,6 @@
 # The landing site and install scripts (PLAN.md Part 9): static files only,
 # no Worker script. Deployed by Cloudflare's Git integration on push to main.
-name = "emailterminator-site"
+name = 'emailterminator'
 compatibility_date = "2026-09-25"
 
 [assets]
