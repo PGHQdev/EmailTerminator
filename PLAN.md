@@ -760,19 +760,34 @@ where contributing needs nothing but a text editor.
   §3.2 restricts it to research purposes, so it cannot ship in a product we sell
   at all.
 
-  The current generation clears both problems — Gemma 4 moved to Apache-2.0,
-  and Qwen 3.5 and Ministral 3 are Apache-2.0 and ungated at the vendor org.
-  Pick the default from this set:
+  The current generation clears both problems. Checked on 2026-09-28 against
+  the Hugging Face API: every model below is ungated at the vendor and at its
+  GGUF source.
 
-  | Model | 4-bit file | Size | Context |
+  **Default: Granite 4.1, one size per machine.** Apache-2.0, IBM's own GGUF
+  files, no reasoning mode (fast, plain JSON), and the best instruction scores
+  at its size (IFEval 82.3 and 87.1, BFCL v3 60.8 and 68.3):
+
+  | Machine | Model | File | RAM, Q4 + 8K (estimate) |
   |---|---|---|---|
-  | Qwen3.5 0.8B | Q4_K_M | 0.53 GB | — |
-  | Qwen3.5 2B | Q4_K_M | 1.28 GB | — |
-  | Ministral 3 3B | Q4_K_M | 2.15 GB | 256K |
-  | Qwen3.5 4B | Q4_K_M | 2.74 GB | 262,144 |
-  | Gemma 4 E2B | q4_0 QAT | 3.35 GB | 128K |
-  | Gemma 4 E4B | q4_0 QAT | 5.15 GB | 128K |
-  | Ministral 3 8B | Q4_K_M | 5.20 GB | 256K |
+  | CPU only (Intel Mac, no usable GPU), or 8 GB RAM | `ibm-granite/granite-4.1-3b` Q4_K_M | 2.10 GB | ~3.1 GB |
+  | Apple Silicon with 16 GB+, or 8 GB+ VRAM | `ibm-granite/granite-4.1-8b` Q4_K_M | 5.35 GB | ~7.0 GB |
+  | Apple Silicon with 32 GB+, or 12 GB+ VRAM (optional) | `google/gemma-4-12B-it` QAT q4_0 | 6.98 GB | ~7.8 GB |
+
+  M6 confirms or replaces this with a test on the synthetic corpus (2.9),
+  reasoning off throughout. Candidates: Granite 4.2 3B and 8B (newer; thinking
+  on by default, scores published with it on), Qwen3.5 4B and 9B (201
+  languages; scores published with thinking on), Gemma 4 E4B, Ministral 3 3B
+  and 8B, and NuExtract3 (a Qwen3.5-4B tuned for extraction) for receipts
+  only. "Thinking off" has been ignored by `llama.cpp` before (#20182), so
+  the test checks that no reasoning tokens come back.
+
+  Ruled out: Liquid AI LFM2.5 (commercial use only under US$10M revenue),
+  Nemotron 3 Nano 4B (English only), Llama 3.2 (gated), Hunyuan (licence
+  excludes the EU, UK and South Korea), Olmo 3 (card limits it to research and
+  education), MoE models of 12 GB and more (too heavy for a background task),
+  MiniCPM-V 4.6 (a vision model on a 0.8B text model), and Laya (a classifier
+  that cannot extract receipts, on a Python runtime).
 
   **Verify ungated status at download time anyway**, since a vendor can flip a
   repository to gated after we ship. A gated response is a designed failure in
