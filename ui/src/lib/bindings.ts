@@ -38,6 +38,11 @@ export const commands = {
 	/**  Stops an Outlook sign-in that is waiting for the browser. */
 	cancelOutlookSignIn: () => __TAURI_INVOKE<void>("cancel_outlook_sign_in"),
 	listSources: () => typedError<SourceSummary[], string>(__TAURI_INVOKE("list_sources")),
+	/**
+	 *  Removes a source (S12): its sign-in from the secret store first, then its
+	 *  messages, then the dashboard is rebuilt from what is left.
+	 */
+	removeSource: (id: number) => typedError<null, string>(__TAURI_INVOKE("remove_source", { id })),
 	startScan: (sourceId: number, events: Channel<ScanEvent>) => typedError<ScanSummary, ScanError>(__TAURI_INVOKE("start_scan", { sourceId, events })),
 	cancelScan: () => __TAURI_INVOKE<void>("cancel_scan"),
 	dashboard: () => typedError<Dashboard, string>(__TAURI_INVOKE("dashboard")),

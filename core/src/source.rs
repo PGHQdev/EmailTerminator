@@ -95,6 +95,9 @@ pub fn add_maildir(store: &Store, label: &str, config: &FileConfig) -> Result<i6
     add(store, "maildir", label, config)
 }
 
+/// Saves a source, or returns the one already saved with the same kind and
+/// settings: a second sign-in to a mailbox, or a second import of a file,
+/// reuses it (S12's reconnect).
 fn add(store: &Store, kind: &str, label: &str, config: &impl Serialize) -> Result<i64, StoreError> {
     let (kind, label, config) = (
         kind.to_owned(),
@@ -102,6 +105,16 @@ fn add(store: &Store, kind: &str, label: &str, config: &impl Serialize) -> Resul
         serde_json::to_string(config).unwrap_or_default(),
     );
     store.write(move |conn| {
+        let saved = conn
+            .query_row(
+                "SELECT id FROM source WHERE kind = ?1 AND config = ?2",
+                params![kind, config],
+                |r| r.get(0),
+            )
+            .optional()?;
+        if let Some(id) = saved {
+            return Ok(id);
+        }
         conn.execute(
             "INSERT INTO source (kind, label, config, created_at) VALUES (?1, ?2, ?3, ?4)",
             params![kind, label, config, now()],
@@ -142,6 +155,22 @@ pub fn reader(store: &Store, id: i64) -> Result<Option<Reader>, StoreError> {
         "maildir" => serde_json::from_str(&config).ok().map(Reader::Maildir),
         _ => None,
     }))
+}
+
+/// Deletes a source with its folders and messages, and the senders that only
+/// it held. The activity log keeps its rows. A rebuild settles the rest.
+pub fn remove(store: &Store, id: i64) -> Result<(), StoreError> {
+    store.write(move |conn| {
+        let tx = conn.transaction()?;
+        tx.execute("DELETE FROM source WHERE id = ?1", [id])?;
+        tx.execute(
+            "DELETE FROM sender
+             WHERE NOT EXISTS (SELECT 1 FROM message m WHERE m.sender_id = sender.id)",
+            [],
+        )?;
+        tx.commit()?;
+        Ok(())
+    })
 }
 
 pub fn mark_synced(store: &Store, id: i64) -> Result<(), StoreError> {
@@ -190,5 +219,48 @@ mod tests {
         assert_eq!(sources.len(), 3);
         assert_eq!(sources[0].label, "Fastmail");
         assert!(sources[0].last_sync_at.is_some());
+    }
+
+    #[test]
+    fn a_second_sign_in_reuses_the_source() {
+        let dir = tempfile::tempdir().unwrap();
+        let store = Store::open(&dir.path().join("et.db"), &DbKey::generate().unwrap()).unwrap();
+        let config = OutlookConfig {
+            username: "me@outlook.test".into(),
+        };
+        let first = add_outlook(&store, "Outlook", &config).unwrap();
+        assert_eq!(add_outlook(&store, "Outlook", &config).unwrap(), first);
+        let other = OutlookConfig {
+            username: "you@outlook.test".into(),
+        };
+        assert_ne!(add_outlook(&store, "Outlook", &other).unwrap(), first);
+        assert_eq!(list(&store).unwrap().len(), 2);
+    }
+
+    #[test]
+    fn removing_a_source_drops_its_messages_and_lone_senders() {
+        let dir = tempfile::tempdir().unwrap();
+        let store = Store::open(&dir.path().join("et.db"), &DbKey::generate().unwrap()).unwrap();
+        let file = |path: &str| FileConfig { path: path.into() };
+        let gone = add_mbox(&store, "a.mbox", &file("/a.mbox")).unwrap();
+        let kept = add_mbox(&store, "b.mbox", &file("/b.mbox")).unwrap();
+        store
+            .write(move |conn| {
+                conn.execute_batch(&format!(
+                    "INSERT INTO sender (id, address, domain) VALUES
+                         (1, 'only@a.test', 'a.test'), (2, 'both@b.test', 'b.test');
+                     INSERT INTO message (source_id, locator, sender_id) VALUES
+                         ({gone}, '1', 1), ({gone}, '2', 2), ({kept}, '1', 2);"
+                ))?;
+                Ok(())
+            })
+            .unwrap();
+
+        remove(&store, gone).unwrap();
+        let conn = store.read().unwrap();
+        let count = |sql: &str| conn.query_row(sql, [], |r| r.get::<_, i64>(0)).unwrap();
+        assert_eq!(count("SELECT count(*) FROM message"), 1);
+        assert_eq!(count("SELECT count(*) FROM sender"), 1);
+        assert_eq!(list(&store).unwrap().len(), 1);
     }
 }

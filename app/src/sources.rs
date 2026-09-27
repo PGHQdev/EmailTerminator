@@ -1,4 +1,4 @@
-//! S01's IMAP and Outlook paths and S12's list: connect a mailbox, list what
+//! S01's paths and S12: connect a mailbox or add a file, list and remove what
 //! is connected, and sign in to one for a sync or an evidence link.
 
 use std::path::PathBuf;
@@ -10,6 +10,7 @@ use et_core::ingest::imap::{
 };
 use et_core::ingest::outlook::{self, OAuthError};
 use et_core::ingest::{maildir, mbox};
+use et_core::scan::rebuild;
 use et_core::source::{self, FileConfig, ImapConfig, OutlookConfig, Reader};
 use et_core::store::{Store, StoreError};
 use serde::{Deserialize, Serialize};
@@ -509,4 +510,23 @@ pub fn list_sources(state: tauri::State<'_, AppState>) -> Result<Vec<SourceSumma
         .into_iter()
         .map(SourceSummary::from)
         .collect())
+}
+
+/// Removes a source (S12): its sign-in from the secret store first, then its
+/// messages, then the dashboard is rebuilt from what is left.
+#[tauri::command]
+#[specta::specta]
+pub async fn remove_source(state: tauri::State<'_, AppState>, id: u32) -> Result<(), String> {
+    let store = state.store()?;
+    let id = i64::from(id);
+    for name in [source::password_secret(id), source::refresh_secret(id)] {
+        state.secrets.delete(&name).map_err(|e| e.to_string())?;
+    }
+    tauri::async_runtime::spawn_blocking(move || {
+        source::remove(&store, id)?;
+        rebuild(&store).map(drop)
+    })
+    .await
+    .map_err(|e| e.to_string())?
+    .map_err(|e| e.to_string())
 }

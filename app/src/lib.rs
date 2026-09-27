@@ -76,6 +76,7 @@ pub fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
         sources::add_dropped_source,
         sources::cancel_outlook_sign_in,
         sources::list_sources,
+        sources::remove_source,
         scan::start_scan,
         scan::cancel_scan,
         view::dashboard,
