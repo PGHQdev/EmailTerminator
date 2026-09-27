@@ -1526,7 +1526,8 @@ why it is not generated from commit messages.
 
 ### Site and scripts
 
-The landing site is a directory in this repository, built by Cloudflare's Git
+The landing site is a directory in this repository, `site/`, deployed as a
+Worker with static assets only (`site/public/`, no script) by Cloudflare's Git
 integration on push to `main`. **There is no release trigger.** Anything
 version-specific on the site is read from `latest.json` at runtime, so a site
 build can never display a version that disagrees with what the installer
