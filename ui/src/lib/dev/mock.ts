@@ -17,6 +17,7 @@ import type {
   Newsletter,
   PlaybookView,
   RunItem,
+  ScanEvent,
   ServiceDetail,
   Subscription,
   Sweep,
@@ -364,6 +365,17 @@ mockIPC((cmd, args) => {
           );
         else outlookCancel = () => reject({ kind: 'cancelled' });
       });
+    case 'start_scan': {
+      // `?scan=stopped` shows S16's mbox parse failure.
+      const events = a.events as Channel<ScanEvent>;
+      events.onmessage({ kind: 'progress', fetched: 8911, total: 12_400, senders: 612, subscriptions: 14, newsletters: 83, latestFind: 'Spotify' });
+      if (params.get('scan') === 'stopped')
+        return Promise.reject({ kind: 'stopped', message: 8912, reason: 'unexpected end of file' });
+      return { scanned: 12_400, senders: 802, subscriptions: 19, newsletters: 104 };
+    }
+    case 'choose_file_source':
+    case 'add_dropped_source':
+      return { id: 3, kind: 'mbox', label: 'All mail Including Spam and Trash.mbox', lastSyncAt: null, messageCount: 0 };
     case 'cancel_outlook_sign_in':
       outlookCancel?.();
       outlookCancel = null;

@@ -4,6 +4,7 @@
   import { Channel } from '@tauri-apps/api/core';
   import { commands, type ScanError, type ScanEvent, type ScanSummary, type SourceSummary } from '$lib/bindings';
   import Brand from '$lib/components/Brand.svelte';
+  import ParseFailed from '$lib/components/ParseFailed.svelte';
   import SignInFailed from '$lib/components/SignInFailed.svelte';
   import { count as n } from '$lib/format';
 
@@ -80,7 +81,13 @@
       <div class="figure">
         <div class="percent">{percent}%</div>
         <div class="caption">
-          {phase === 'settling' ? 'adding it up' : phase === 'done' ? 'scan complete' : 'scanning inbox'}
+          {phase === 'settling'
+            ? 'adding it up'
+            : phase === 'done'
+              ? 'scan complete'
+              : source?.kind === 'mbox' || source?.kind === 'maildir'
+                ? 'reading the file'
+                : 'scanning inbox'}
         </div>
       </div>
     </div>
@@ -107,6 +114,10 @@
           oauth={source?.kind === 'outlook'}
           onRetry={() => goto(source?.kind === 'outlook' ? '/outlook' : '/connect')}
         />
+      </div>
+    {:else if error?.kind === 'stopped'}
+      <div class="problem-card">
+        <ParseFailed message={error.message} onRetry={start} onKeep={() => goto('/home')} />
       </div>
     {:else}
       <div class="stats">

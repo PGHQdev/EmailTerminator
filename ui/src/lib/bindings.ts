@@ -20,10 +20,21 @@ export const commands = {
 	 */
 	addOutlookSource: () => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_outlook_source")),
 	/**
-	 *  Checks that the file or folder reads as mail, then saves it as a source.
-	 *  Nothing is copied: a scan reads it where it is.
+	 *  Asks for an mbox file or a Maildir folder, then adds it. `None` when the
+	 *  picker is closed.
 	 */
-	addFileSource: (kind: FileKind, path: string) => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_file_source", { kind, path })),
+	chooseFileSource: (kind: FileKind) => typedError<{
+	id: number,
+	kind: string,
+	label: string,
+	lastSyncAt: string | null,
+	messageCount: number,
+} | null, ConnectError>(__TAURI_INVOKE("choose_file_source", { kind })),
+	/**
+	 *  Adds a file or folder dropped on S01: a folder is a Maildir, a file an
+	 *  mbox.
+	 */
+	addDroppedSource: (path: string) => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_dropped_source", { path })),
 	/**  Stops an Outlook sign-in that is waiting for the browser. */
 	cancelOutlookSignIn: () => __TAURI_INVOKE<void>("cancel_outlook_sign_in"),
 	listSources: () => typedError<SourceSummary[], string>(__TAURI_INVOKE("list_sources")),

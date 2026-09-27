@@ -1,19 +1,52 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { getCurrentWebview } from '@tauri-apps/api/webview';
   import { ArrowRight, FileArchive, KeyRound, LockKeyhole, Server } from 'lucide-svelte';
-  import { commands, type SourceSummary } from '$lib/bindings';
+  import { commands, type ConnectError, type FileKind, type SourceSummary } from '$lib/bindings';
   import Brand from '$lib/components/Brand.svelte';
 
   let sources = $state<SourceSummary[]>([]);
+  let dropping = $state(false);
+  let problem = $state<string | null>(null);
 
   $effect(() => {
     commands.listSources().then((result) => {
       if (result.status === 'ok') sources = result.data;
     });
   });
+
+  // "Drop an export": a file is an mbox, a folder a Maildir.
+  $effect(() => {
+    let stop: (() => void) | undefined;
+    getCurrentWebview()
+      .onDragDropEvent(async (event) => {
+        const drag = event.payload;
+        dropping = drag.type === 'enter' || drag.type === 'over';
+        if (drag.type !== 'drop' || drag.paths.length === 0) return;
+        opened(await commands.addDroppedSource(drag.paths[0]));
+      })
+      .then((unlisten) => (stop = unlisten))
+      .catch(() => {});
+    return () => stop?.();
+  });
+
+  async function choose(kind: FileKind) {
+    const result = await commands.chooseFileSource(kind);
+    // A closed picker is `null`: nothing to do.
+    if (result.status === 'error' || result.data) opened(result);
+  }
+
+  function opened(
+    result:
+      | { status: 'ok'; data: SourceSummary | null }
+      | { status: 'error'; error: ConnectError },
+  ) {
+    if (result.status === 'ok') goto(`/scan?source=${result.data?.id}`);
+    else problem = 'message' in result.error ? result.error.message : null;
+  }
 </script>
 
-<!-- S01 — Welcome / source picker. The mbox path arrives later in M5. -->
+<!-- S01 — Welcome / source picker -->
 <main>
   <header>
     <Brand />
@@ -25,11 +58,16 @@
   </header>
 
   <div class="cards">
-    <div class="card off" aria-disabled="true">
+    <div class="card file" class:dropping>
+      <button type="button" class="cover" aria-label="Import an mbox file" onclick={() => choose('mbox')}
+      ></button>
       <div class="icon"><FileArchive size={22} strokeWidth={2.75} /></div>
       <h2>Import an mbox file</h2>
       <p>Drop an export from any mail app. Fastest, fully offline.</p>
-      <span class="cta">Coming in a later version</span>
+      <span class="cta">Choose file <ArrowRight size={15} strokeWidth={2.75} /></span>
+      <button type="button" class="maildir" onclick={() => choose('maildir')}>
+        or a Maildir folder
+      </button>
     </div>
 
     <button type="button" class="card" onclick={() => goto('/connect')}>
@@ -46,6 +84,10 @@
       <span class="cta">Sign in <ArrowRight size={15} strokeWidth={2.75} /></span>
     </button>
   </div>
+
+  {#if problem}
+    <p class="problem" role="alert">{problem}</p>
+  {/if}
 
   {#if sources.length > 0}
     <button type="button" class="home" onclick={() => goto('/home')}>
@@ -112,6 +154,9 @@
 
   .card {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 20.625rem;
     box-sizing: border-box;
     text-align: left;
@@ -141,8 +186,49 @@
     background: var(--card2);
   }
 
-  .card.off {
-    opacity: 0.45;
+  /* The mbox card holds two actions: the whole card picks a file, and its
+     Maildir link sits above that cover. */
+  .card.file:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-0.125rem);
+  }
+
+  .card.file.dropping {
+    border: var(--stroke-strong) dashed var(--sage);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cover {
+    position: absolute;
+    inset: 0;
+    border: none;
+    background: none;
+    border-radius: inherit;
+    cursor: pointer;
+  }
+
+  .maildir {
+    position: relative;
+    margin-top: var(--space-2);
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--mut);
+    cursor: pointer;
+  }
+
+  .maildir:hover {
+    color: var(--fg);
+    text-decoration: underline;
+  }
+
+  .problem {
+    margin: var(--space-6) 0 0;
+    font-size: 0.875rem;
+    color: var(--bad);
   }
 
   .icon {

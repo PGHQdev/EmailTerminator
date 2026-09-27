@@ -14,6 +14,7 @@ use et_core::source::{self, FileConfig, ImapConfig, OutlookConfig, Reader};
 use et_core::store::{Store, StoreError};
 use serde::{Deserialize, Serialize};
 use specta::Type;
+use tauri_plugin_dialog::DialogExt;
 use tauri_plugin_opener::OpenerExt;
 
 use crate::AppState;
@@ -265,20 +266,58 @@ pub enum FileKind {
     Maildir,
 }
 
-/// Checks that the file or folder reads as mail, then saves it as a source.
-/// Nothing is copied: a scan reads it where it is.
+/// Asks for an mbox file or a Maildir folder, then adds it. `None` when the
+/// picker is closed.
 #[tauri::command]
 #[specta::specta]
-pub async fn add_file_source(
+pub async fn choose_file_source(
+    app: tauri::AppHandle,
     state: tauri::State<'_, AppState>,
     kind: FileKind,
+) -> Result<Option<SourceSummary>, ConnectError> {
+    let picked = tauri::async_runtime::spawn_blocking(move || {
+        let dialog = app.dialog().file();
+        match kind {
+            FileKind::Mbox => dialog.set_title("Choose an mbox file").blocking_pick_file(),
+            FileKind::Maildir => dialog
+                .set_title("Choose a Maildir folder")
+                .blocking_pick_folder(),
+        }
+    })
+    .await
+    .map_err(failed)?;
+    let Some(path) = picked.and_then(|p| p.into_path().ok()) else {
+        return Ok(None);
+    };
+    add_file(&state, kind, path).await.map(Some)
+}
+
+/// Adds a file or folder dropped on S01: a folder is a Maildir, a file an
+/// mbox.
+#[tauri::command]
+#[specta::specta]
+pub async fn add_dropped_source(
+    state: tauri::State<'_, AppState>,
     path: String,
 ) -> Result<SourceSummary, ConnectError> {
-    let invalid = |message: &str| ConnectError::Invalid {
-        message: message.into(),
+    let path = PathBuf::from(path);
+    let kind = if path.is_dir() {
+        FileKind::Maildir
+    } else {
+        FileKind::Mbox
     };
+    add_file(&state, kind, path).await
+}
+
+/// Checks that the file or folder reads as mail, then saves it as a source.
+/// Nothing is copied: a scan reads it where it is.
+async fn add_file(
+    state: &AppState,
+    kind: FileKind,
+    path: PathBuf,
+) -> Result<SourceSummary, ConnectError> {
     let checked = {
-        let path = std::path::PathBuf::from(&path);
+        let path = path.clone();
         tauri::async_runtime::spawn_blocking(move || match kind {
             FileKind::Mbox => mbox::open(&path).map(drop).map_err(|e| match e {
                 mbox::MboxError::NotMbox => "This file is not an mbox. Choose an .mbox export.",
@@ -294,16 +333,22 @@ pub async fn add_file_source(
         .await
         .map_err(failed)?
     };
-    checked.map_err(invalid)?;
+    checked.map_err(|message| ConnectError::Invalid {
+        message: message.into(),
+    })?;
 
-    let label = std::path::Path::new(&path)
-        .file_name()
-        .map_or_else(|| path.clone(), |n| n.to_string_lossy().into_owned());
+    let label = path.file_name().map_or_else(
+        || path.display().to_string(),
+        |n| n.to_string_lossy().into_owned(),
+    );
     let add = match kind {
         FileKind::Mbox => source::add_mbox,
         FileKind::Maildir => source::add_maildir,
     };
-    save(&state, label, FileConfig { path }, add, None).await
+    let config = FileConfig {
+        path: path.to_string_lossy().into_owned(),
+    };
+    save(state, label, config, add, None).await
 }
 
 /// Stops an Outlook sign-in that is waiting for the browser.
