@@ -1,8 +1,8 @@
-//! Outlook.com sign-in (PLAN.md 1.6). Microsoft refuses app passwords for
-//! personal mailboxes, so the app signs in as a public OAuth client: the
-//! authorization code flow with PKCE (RFC 7636), the browser returning to a
-//! loopback port (RFC 8252 7.3). Only the refresh token is kept; each sync
-//! trades it for an access token that IMAP takes over `XOAUTH2`.
+//! Outlook.com sign-in (PLAN.md 1.6). The app signs in as a public OAuth
+//! client: the authorization code flow with PKCE (RFC 7636), the browser
+//! returning to a loopback port (RFC 8252 7.3). It asks for Graph's
+//! read-only `Mail.Read`. Only the refresh token is kept; each sync trades it
+//! for an access token that [`super::graph`] sends.
 
 use std::sync::Arc;
 use std::time::Duration;
@@ -16,16 +16,12 @@ use tokio::net::{TcpListener, TcpStream};
 use tokio::sync::Notify;
 use zeroize::Zeroizing;
 
-use crate::action::http::{self, HttpError};
-
 /// The app's registration in Microsoft Entra: public, so it carries no secret.
 pub const CLIENT_ID: &str = "a3ccc687-2d05-4830-8d27-d2c3e2c07996";
-pub const HOST: &str = "outlook.office365.com";
-pub const PORT: u16 = 993;
 /// `common` takes personal and work accounts alike.
 const AUTHORITY: &str = "https://login.microsoftonline.com/common/oauth2/v2.0";
-/// IMAP, a refresh token, and an ID token that names the mailbox.
-const SCOPE: &str = "https://outlook.office.com/IMAP.AccessAsUser.All offline_access openid email";
+/// Read-only mail, a refresh token, and an ID token that names the mailbox.
+const SCOPE: &str = "https://graph.microsoft.com/Mail.Read offline_access openid email";
 /// How long the browser has to come back.
 const WAIT: Duration = Duration::from_secs(10 * 60);
 /// A browser's request line and headers fit in this.
@@ -43,8 +39,8 @@ pub enum OAuthError {
     Cancelled,
     #[error("cannot open a local port for the sign-in: {0}")]
     Loopback(String),
-    #[error(transparent)]
-    Http(#[from] HttpError),
+    #[error("cannot reach Microsoft: {0}")]
+    Network(String),
     #[error("Microsoft's answer was not understood: {0}")]
     BadAnswer(String),
 }
@@ -192,8 +188,18 @@ async fn token(params: &[(&str, &str)]) -> Result<Tokens, OAuthError> {
             .collect::<Vec<_>>()
             .join("&"),
     );
-    let answer = http::post_form_read(&format!("{AUTHORITY}/token"), &body).await?;
-    tokens(answer.status, &answer.body)
+    let network = |e: &dyn std::fmt::Display| OAuthError::Network(e.to_string());
+    let answer = crate::tls::http_client()
+        .map_err(|e| network(&e))?
+        .post(format!("{AUTHORITY}/token"))
+        .header("Content-Type", "application/x-www-form-urlencoded")
+        .body(body.to_string())
+        .send()
+        .await
+        .map_err(|e| network(&e))?;
+    let status = answer.status().as_u16();
+    let body = answer.bytes().await.map_err(|e| network(&e))?;
+    tokens(status, &body)
 }
 
 #[derive(Deserialize)]
@@ -242,13 +248,6 @@ fn username(id_token: &str) -> Option<String> {
         .find(|a| a.contains('@'))
 }
 
-/// The XOAUTH2 initial response IMAP sends (base64 is added by the client).
-pub fn xoauth2(username: &str, access_token: &str) -> Zeroizing<String> {
-    Zeroizing::new(format!(
-        "user={username}\x01auth=Bearer {access_token}\x01\x01"
-    ))
-}
-
 fn random_token() -> Result<String, OAuthError> {
     let mut bytes = [0u8; 32];
     getrandom::fill(&mut bytes).map_err(|e| OAuthError::Loopback(e.to_string()))?;
@@ -260,7 +259,7 @@ fn challenge(verifier: &str) -> String {
 }
 
 /// Percent-encodes all but RFC 3986's unreserved characters.
-fn encode(text: &str) -> String {
+pub(crate) fn encode(text: &str) -> String {
     text.bytes()
         .map(|b| match b {
             b'A'..=b'Z' | b'a'..=b'z' | b'0'..=b'9' | b'-' | b'.' | b'_' | b'~' => {
@@ -360,7 +359,7 @@ mod tests {
     #[test]
     fn form_values_round_trip() {
         let scope = encode(SCOPE);
-        assert!(scope.starts_with("https%3A%2F%2Foutlook.office.com%2FIMAP"));
+        assert!(scope.starts_with("https%3A%2F%2Fgraph.microsoft.com%2FMail.Read"));
         assert!(!scope.contains(' '));
         assert_eq!(decode(&scope), SCOPE);
         assert_eq!(decode("M.C5_a%21b+c%"), "M.C5_a!b c%");
@@ -388,14 +387,6 @@ mod tests {
             tokens(502, b"<html>"),
             Err(OAuthError::BadAnswer(_))
         ));
-    }
-
-    #[test]
-    fn the_initial_response_is_xoauth2() {
-        assert_eq!(
-            xoauth2("me@outlook.test", "at").as_str(),
-            "user=me@outlook.test\x01auth=Bearer at\x01\x01"
-        );
     }
 
     async fn visit(port: u16, path: &str) -> String {

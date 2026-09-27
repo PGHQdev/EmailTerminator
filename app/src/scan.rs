@@ -5,15 +5,16 @@ use std::sync::atomic::{AtomicBool, Ordering};
 
 use et_core::action::{self, Kind, NewEntry, Outcome};
 use et_core::extract::rfc3339_utc;
+use et_core::ingest::graph::{self, GraphError};
 use et_core::ingest::imap::{self, ImapError, Options};
-use et_core::scan::{ImapScan, rebuild};
+use et_core::scan::{MailScan, rebuild};
 use et_core::source::{self, unix_now};
 use serde::Serialize;
 use specta::Type;
 use tauri::ipc::Channel;
 
 use crate::AppState;
-use crate::sources::{SignInError, credentials};
+use crate::sources::{Login, SignInError, credentials, graph_refusal};
 
 #[derive(Clone, Serialize, Type)]
 #[serde(tag = "kind", rename_all = "camelCase")]
@@ -56,6 +57,16 @@ pub enum ScanError {
     Failed {
         message: String,
     },
+}
+
+fn sign_in_error(err: SignInError) -> ScanError {
+    match err {
+        SignInError::Refused { host, server_says } => {
+            ScanError::SignInRefused { host, server_says }
+        }
+        SignInError::Unreachable(message) => ScanError::Unreachable { message },
+        SignInError::Failed(message) => ScanError::Failed { message },
+    }
 }
 
 fn failed(message: impl ToString) -> ScanError {
@@ -114,7 +125,7 @@ async fn log(state: &AppState, source_id: i64, result: &Result<ScanSummary, Scan
         let target = source::mailbox(&store, source_id)
             .ok()
             .flatten()
-            .map_or_else(|| "a mailbox".to_owned(), |m| m.config.username);
+            .map_or_else(|| "a mailbox".to_owned(), |m| m.username().to_owned());
         store.write(move |conn| {
             action::record(
                 conn,
@@ -153,49 +164,80 @@ async fn run(
     events: Channel<ScanEvent>,
 ) -> Result<ScanSummary, ScanError> {
     let store = state.store().map_err(failed)?;
-    let (account, secret) = credentials(state, &store, source_id)
+    let login = credentials(state, &store, source_id)
         .await
-        .map_err(|err| match err {
-            SignInError::Refused { host, server_says } => {
-                ScanError::SignInRefused { host, server_says }
-            }
-            SignInError::Unreachable(message) => ScanError::Unreachable { message },
-            SignInError::Failed(message) => ScanError::Failed { message },
-        })?
+        .map_err(sign_in_error)?
         .ok_or_else(|| failed("no such mail source"))?;
-    let scan = Arc::new(ImapScan::new(store.clone(), source_id, &account.username));
-    let progress_scan = scan.clone();
-    let progress_events = events.clone();
-    imap::sync(
-        &account,
-        &secret,
-        scan.clone(),
-        cancel,
-        Options::default(),
-        move |p| {
-            let c = progress_scan.counts();
-            let _ = progress_events.send(ScanEvent::Progress {
-                fetched: p.fetched as u32,
-                total: p.total as u32,
+    let username = match &login {
+        Login::Imap { account, .. } => account.username.clone(),
+        Login::Outlook { username, .. } => username.clone(),
+    };
+    let scan = Arc::new(MailScan::new(store.clone(), source_id, &username));
+    let progress = {
+        let (scan, events) = (scan.clone(), events.clone());
+        move |fetched: u64, total: u64| {
+            let c = scan.counts();
+            let _ = events.send(ScanEvent::Progress {
+                fetched: fetched as u32,
+                total: total as u32,
                 senders: c.senders as u32,
                 subscriptions: c.subscriptions as u32,
                 newsletters: c.newsletters as u32,
                 latest_find: c.latest_find,
             });
-        },
-    )
-    .await
-    .map_err(|err| match err {
-        ImapError::Auth(server_says) => ScanError::SignInRefused {
-            host: account.host.clone(),
-            server_says,
-        },
-        ImapError::Cancelled => ScanError::Cancelled,
-        ImapError::Connect { .. } | ImapError::Tls(_) => ScanError::Unreachable {
-            message: err.to_string(),
-        },
-        other => failed(other),
-    })?;
+        }
+    };
+
+    match login {
+        Login::Imap { account, password } => {
+            imap::sync(
+                &account,
+                &password,
+                scan.clone(),
+                cancel,
+                Options::default(),
+                |p| progress(p.fetched, p.total),
+            )
+            .await
+            .map_err(|err| match err {
+                ImapError::Auth(server_says) => ScanError::SignInRefused {
+                    host: account.host.clone(),
+                    server_says,
+                },
+                ImapError::Cancelled => ScanError::Cancelled,
+                ImapError::Connect { .. } | ImapError::Tls(_) => ScanError::Unreachable {
+                    message: err.to_string(),
+                },
+                other => failed(other),
+            })?;
+        }
+        Login::Outlook { mut token, .. } => {
+            // An access token lasts about an hour. A long first scan outlives
+            // it, and resumes with a fresh one from where it stopped.
+            let mut renewals = 0;
+            loop {
+                let result = graph::sync(&token, scan.clone(), cancel.clone(), |p| {
+                    progress(p.fetched, p.total)
+                })
+                .await;
+                match result {
+                    Ok(_) => break,
+                    Err(GraphError::Expired(_)) if renewals < 3 => {
+                        renewals += 1;
+                        token = match credentials(state, &store, source_id)
+                            .await
+                            .map_err(sign_in_error)?
+                        {
+                            Some(Login::Outlook { token, .. }) => token,
+                            _ => return Err(failed("the Outlook source is gone")),
+                        };
+                    }
+                    Err(GraphError::Cancelled) => return Err(ScanError::Cancelled),
+                    Err(err) => return Err(sign_in_error(graph_refusal(err))),
+                }
+            }
+        }
+    }
 
     let _ = events.send(ScanEvent::Settling);
     let totals = tauri::async_runtime::spawn_blocking(move || {

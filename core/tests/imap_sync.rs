@@ -9,9 +9,7 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
 
-use et_core::ingest::imap::{
-    self, Account, Auth, Fetched, ImapError, Options, Security, SyncTarget,
-};
+use et_core::ingest::imap::{self, Account, Fetched, ImapError, Options, Security, SyncTarget};
 use support::imap_stub::{self, Provider, Stub};
 
 const PASSWORD: &str = "abcd efgh ijkl mnop";
@@ -82,7 +80,6 @@ fn account(stub: &Stub) -> Account {
         port: stub.port,
         username: "user@example.test".into(),
         security: Security::PlainLoopback,
-        auth: Auth::Password,
     }
 }
 
@@ -275,7 +272,6 @@ async fn plain_imap_to_a_remote_host_is_refused() {
         port: 143,
         username: "u".into(),
         security: Security::PlainLoopback,
-        auth: Auth::Password,
     };
     let err = imap::check_sign_in(&remote, "p");
     // 192.0.2.0/24 is unroutable; the check must fail without sending a password.
@@ -303,36 +299,4 @@ async fn an_evidence_link_reads_one_message_or_reports_it_gone() {
         .join("\n")
         .to_uppercase();
     assert!(!commands.contains(" SELECT ") && commands.contains("BODY.PEEK[]"));
-}
-
-#[tokio::test]
-async fn outlook_signs_in_with_an_access_token() {
-    let stub = stub_with(Provider::Outlook, 3).await;
-    let outlook = Account {
-        auth: Auth::XOAuth2,
-        ..account(&stub)
-    };
-    let target = Arc::new(Memory::default());
-    let report = imap::sync(
-        &outlook,
-        PASSWORD,
-        target.clone(),
-        Arc::new(AtomicBool::new(false)),
-        fast(),
-        |_| {},
-    )
-    .await
-    .unwrap();
-    assert_eq!(report.fetched, 3);
-    let commands = stub.state.lock().unwrap().commands.clone();
-    assert!(commands.iter().any(|c| c.ends_with("AUTHENTICATE XOAUTH2")));
-    assert!(!commands.iter().any(|c| c.contains("LOGIN")));
-
-    let err = imap::check_sign_in(&outlook, "an expired token")
-        .await
-        .unwrap_err();
-    match err {
-        ImapError::Auth(text) => assert_eq!(text, "AUTHENTICATE failed."),
-        other => panic!("expected an auth error, got {other:?}"),
-    }
 }

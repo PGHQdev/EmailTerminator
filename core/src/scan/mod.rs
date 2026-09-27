@@ -11,6 +11,7 @@ use std::sync::{Arc, Mutex};
 use rusqlite::{OptionalExtension, Transaction, params};
 
 use crate::extract::{Extraction, extract};
+use crate::ingest::graph::{self, GraphTarget};
 use crate::ingest::imap::{Fetched, SyncTarget};
 use crate::store::{Store, StoreError};
 
@@ -36,8 +37,8 @@ struct Seen {
     subscriptions: HashSet<String>,
 }
 
-/// Stores what an IMAP sync fetches for one source.
-pub struct ImapScan {
+/// Stores what an IMAP or Graph sync fetches for one source.
+pub struct MailScan {
     store: Arc<Store>,
     source_id: i64,
     /// The account's own address: its sent mail in Gmail's All Mail is skipped.
@@ -45,7 +46,7 @@ pub struct ImapScan {
     seen: Mutex<Seen>,
 }
 
-impl ImapScan {
+impl MailScan {
     pub fn new(store: Arc<Store>, source_id: i64, owner: &str) -> Self {
         Self {
             store,
@@ -91,7 +92,7 @@ impl ImapScan {
     }
 }
 
-impl SyncTarget for ImapScan {
+impl SyncTarget for MailScan {
     fn resume(&self, folder: &str, uid_validity: u32) -> Result<u32, String> {
         let (source_id, folder) = (self.source_id, folder.to_owned());
         self.store
@@ -132,13 +133,7 @@ impl SyncTarget for ImapScan {
 
     fn commit(&self, folder: &str, uid_validity: u32, batch: Vec<Fetched>) -> Result<(), String> {
         let highest = batch.iter().map(|f| f.uid).max().unwrap_or(0);
-        let rows: Vec<(u32, Extraction)> = batch
-            .into_iter()
-            .map(|f| (f.uid, extract(&f.raw)))
-            .filter(|(_, e)| e.from_address.as_deref() != Some(self.owner.as_str()))
-            .collect();
-        self.note(&rows.iter().map(|(_, e)| e.clone()).collect::<Vec<_>>());
-
+        let rows = self.extract(batch.into_iter().map(|f| (f.uid.to_string(), f.raw)));
         let (source_id, folder) = (self.source_id, folder.to_owned());
         self.store
             .write(move |conn| {
@@ -148,24 +143,113 @@ impl SyncTarget for ImapScan {
                     params![source_id, folder, uid_validity],
                     |r| r.get(0),
                 )?;
-                for (uid, e) in &rows {
-                    insert(&tx, source_id, mailbox_id, &uid.to_string(), e)?;
-                }
+                store_rows(&tx, source_id, mailbox_id, &rows)?;
                 tx.execute(
                     "UPDATE mailbox SET highest_uid = max(highest_uid, ?2) WHERE id = ?1",
                     params![mailbox_id, highest],
-                )?;
-                tx.execute(
-                    "UPDATE source SET message_count =
-                         (SELECT count(*) FROM message WHERE source_id = ?1)
-                     WHERE id = ?1",
-                    [source_id],
                 )?;
                 tx.commit()?;
                 Ok(())
             })
             .map_err(|e| e.to_string())
     }
+}
+
+/// Graph folders are rows of `mailbox` named by folder id, with no UIDs; a
+/// message's locator is its Graph id.
+impl GraphTarget for MailScan {
+    fn delta_link(&self, folder: &str) -> Result<Option<String>, String> {
+        let (source_id, folder) = (self.source_id, folder.to_owned());
+        self.store
+            .write(move |conn| {
+                conn.execute(
+                    "INSERT OR IGNORE INTO mailbox (source_id, name, uid_validity) VALUES (?1, ?2, 0)",
+                    params![source_id, folder],
+                )?;
+                Ok(conn.query_row(
+                    "SELECT delta_link FROM mailbox WHERE source_id = ?1 AND name = ?2",
+                    params![source_id, folder],
+                    |r| r.get(0),
+                )?)
+            })
+            .map_err(|e| e.to_string())
+    }
+
+    fn stored(&self, folder: &str, ids: Vec<String>) -> Result<HashSet<String>, String> {
+        let conn = self.store.read().map_err(|e| e.to_string())?;
+        let known: HashSet<String> = conn
+            .prepare(
+                "SELECT m.locator FROM message m JOIN mailbox b ON b.id = m.mailbox_id
+                 WHERE b.source_id = ?1 AND b.name = ?2",
+            )
+            .and_then(|mut stmt| {
+                stmt.query_map(params![self.source_id, folder], |r| r.get(0))?
+                    .collect()
+            })
+            .map_err(|e| e.to_string())?;
+        Ok(ids.into_iter().filter(|id| known.contains(id)).collect())
+    }
+
+    fn commit(&self, folder: &str, batch: Vec<graph::Fetched>) -> Result<(), String> {
+        let rows = self.extract(batch.into_iter().map(|f| (f.id, f.raw)));
+        let (source_id, folder) = (self.source_id, folder.to_owned());
+        self.store
+            .write(move |conn| {
+                let tx = conn.transaction()?;
+                let mailbox_id: i64 = tx.query_row(
+                    "SELECT id FROM mailbox WHERE source_id = ?1 AND name = ?2",
+                    params![source_id, folder],
+                    |r| r.get(0),
+                )?;
+                store_rows(&tx, source_id, mailbox_id, &rows)?;
+                tx.commit()?;
+                Ok(())
+            })
+            .map_err(|e| e.to_string())
+    }
+
+    fn finish(&self, folder: &str, link: &str) -> Result<(), String> {
+        let (source_id, folder, link) = (self.source_id, folder.to_owned(), link.to_owned());
+        self.store
+            .write(move |conn| {
+                conn.execute(
+                    "UPDATE mailbox SET delta_link = ?3 WHERE source_id = ?1 AND name = ?2",
+                    params![source_id, folder, link],
+                )?;
+                Ok(())
+            })
+            .map_err(|e| e.to_string())
+    }
+}
+
+impl MailScan {
+    /// Extracts each message, drops the account's own, and counts the rest.
+    fn extract(&self, raw: impl Iterator<Item = (String, Vec<u8>)>) -> Vec<(String, Extraction)> {
+        let rows: Vec<(String, Extraction)> = raw
+            .map(|(locator, raw)| (locator, extract(&raw)))
+            .filter(|(_, e)| e.from_address.as_deref() != Some(self.owner.as_str()))
+            .collect();
+        self.note(&rows.iter().map(|(_, e)| e.clone()).collect::<Vec<_>>());
+        rows
+    }
+}
+
+fn store_rows(
+    tx: &Transaction<'_>,
+    source_id: i64,
+    mailbox_id: i64,
+    rows: &[(String, Extraction)],
+) -> Result<(), StoreError> {
+    for (locator, e) in rows {
+        insert(tx, source_id, mailbox_id, locator, e)?;
+    }
+    tx.execute(
+        "UPDATE source SET message_count =
+             (SELECT count(*) FROM message WHERE source_id = ?1)
+         WHERE id = ?1",
+        [source_id],
+    )?;
+    Ok(())
 }
 
 fn insert(

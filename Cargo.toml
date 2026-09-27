@@ -23,6 +23,7 @@ getrandom = "=0.4.3"
 mail-parser = { version = "=0.11.9", features = ["full_encoding"] }
 psl = "=2.1.238"
 regex = "=1.13.1"
+reqwest = { version = "=0.13.5", default-features = false, features = ["rustls-no-provider"] }
 rustls = { version = "=0.23.45", default-features = false, features = ["ring", "std", "tls12", "logging"] }
 rustls-platform-verifier = "=0.7.1"
 rusqlite = { version = "=0.40.2", features = ["bundled-sqlcipher-vendored-openssl"] }

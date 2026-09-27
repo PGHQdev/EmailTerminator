@@ -1,5 +1,4 @@
-//! IMAP sync over an app password, or over OAuth for Outlook.com (PLAN.md 1.6
-//! rung 1, 2.3).
+//! IMAP sync over an app password (PLAN.md 1.6 rung 1, 2.3).
 //!
 //! Every folder is opened with `EXAMINE` and every message is fetched with
 //! `BODY.PEEK`, so reading mail never marks it read. Only new UIDs are fetched:
@@ -27,7 +26,7 @@ const MAX_BYTES: u32 = 2 * 1024 * 1024;
 const BATCH: usize = 200;
 
 /// Servers for the app-password providers (PLAN.md 1.6). Outlook.com takes
-/// OAuth only; see [`super::outlook`].
+/// OAuth only and arrives at M5.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Preset {
     pub label: &'static str,
@@ -68,16 +67,6 @@ pub struct Account {
     pub port: u16,
     pub username: String,
     pub security: Security,
-    pub auth: Auth,
-}
-
-/// What the secret passed with an [`Account`] is.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Auth {
-    /// An app password, sent with `LOGIN`.
-    Password,
-    /// An OAuth access token, sent with `AUTHENTICATE XOAUTH2`.
-    XOAuth2,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -443,46 +432,13 @@ async fn connect(account: &Account, password: &str) -> Result<Session, ImapError
             source,
         })?
         .ok_or_else(|| ImapError::Protocol("no greeting".into()))?;
-    let signed_in = match account.auth {
-        Auth::Password => client.login(&account.username, password).await,
-        Auth::XOAuth2 => {
-            client
-                .authenticate(
-                    "XOAUTH2",
-                    XOAuth2 {
-                        response: Some(super::outlook::xoauth2(&account.username, password)),
-                    },
-                )
-                .await
-        }
-    };
-    signed_in.map_err(|(err, _)| match err {
-        async_imap::error::Error::No(text) => ImapError::Auth(server_words(text)),
-        other => other.into(),
-    })
-}
-
-/// A refused `AUTHENTICATE` comes back from async-imap as
-/// `code: None, info: Some("words")`; S16 shows only the words.
-fn server_words(text: String) -> String {
-    text.split_once(", info: Some(\"")
-        .filter(|(code, _)| code.starts_with("code: "))
-        .and_then(|(_, rest)| rest.strip_suffix("\")"))
-        .map_or(text.clone(), |words| words.replace("\\\"", "\""))
-}
-
-/// Sends the initial response once. A server that refuses answers with a
-/// challenge carrying its error, which RFC 7628 3.2.3 says to answer empty.
-struct XOAuth2 {
-    response: Option<zeroize::Zeroizing<String>>,
-}
-
-impl async_imap::Authenticator for XOAuth2 {
-    type Response = zeroize::Zeroizing<String>;
-
-    fn process(&mut self, _challenge: &[u8]) -> Self::Response {
-        self.response.take().unwrap_or_default()
-    }
+    client
+        .login(&account.username, password)
+        .await
+        .map_err(|(err, _)| match err {
+            async_imap::error::Error::No(text) => ImapError::Auth(text),
+            other => other.into(),
+        })
 }
 
 #[derive(Debug)]
@@ -539,18 +495,6 @@ mod tests {
         list.iter()
             .map(|(n, k)| (n.to_string(), k.to_vec()))
             .collect()
-    }
-
-    #[test]
-    fn a_refused_authenticate_shows_the_server_words() {
-        assert_eq!(
-            server_words(r#"code: None, info: Some("AUTHENTICATE failed.")"#.into()),
-            "AUTHENTICATE failed."
-        );
-        assert_eq!(
-            server_words("[AUTHENTICATIONFAILED] Invalid credentials".into()),
-            "[AUTHENTICATIONFAILED] Invalid credentials"
-        );
     }
 
     #[test]

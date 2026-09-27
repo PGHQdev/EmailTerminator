@@ -7,7 +7,7 @@ use std::time::Instant;
 
 use et_core::crypt::DbKey;
 use et_core::ingest::imap::{Fetched, SyncTarget};
-use et_core::scan::{ImapScan, rebuild};
+use et_core::scan::{MailScan, rebuild};
 use et_core::store::Store;
 
 const TARGET_BYTES: usize = 1 << 30;
@@ -69,7 +69,7 @@ fn one_gigabyte_scans_inside_the_ceiling() {
             Ok(())
         })
         .unwrap();
-    let scan = ImapScan::new(store.clone(), 1, "me@example.test");
+    let scan = MailScan::new(store.clone(), 1, "me@example.test");
     scan.resume("INBOX", 1).unwrap();
 
     let started = Instant::now();

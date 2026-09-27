@@ -1,7 +1,6 @@
-//! The two HTTPS requests the core sends: RFC 8058's one-click POST, whose
-//! answer is a status code, and the Outlook token request, whose answer is a
-//! JSON body. Written over the TLS stack the IMAP client already uses, so the
-//! core adds no HTTP library.
+//! The one request RFC 8058 needs: an HTTPS POST whose answer is a status
+//! code. Written over the TLS stack the IMAP client already uses, so one-click
+//! unsubscribe adds no HTTP library.
 //!
 //! RFC 8058 §3.2: the POST carries no cookies and no credentials. Redirects
 //! are not followed; only a 2xx answer counts as done.
@@ -10,18 +9,15 @@ use std::time::Duration;
 
 use tokio::io::{AsyncRead, AsyncReadExt, AsyncWrite, AsyncWriteExt};
 use tokio::net::TcpStream;
-use tokio_rustls::client::TlsStream;
 
 const TIMEOUT: Duration = Duration::from_secs(20);
 /// A status line is short; a server that sends more than this before one is
 /// not answering HTTP.
 const MAX_HEAD: usize = 8 * 1024;
-/// A token answer is a few kilobytes; more than this is not one.
-const MAX_ANSWER: usize = 256 * 1024;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum HttpError {
-    #[error("not an HTTPS address")]
+    #[error("not an HTTPS address a one-click POST can use")]
     BadUrl,
     #[error("cannot reach {host}: {message}")]
     Unreachable { host: String, message: String },
@@ -95,53 +91,30 @@ pub(crate) fn parse(url: &str) -> Result<Target, HttpError> {
 pub async fn post_form(url: &str, body: &str) -> Result<u16, HttpError> {
     let target = parse(url)?;
     let host = target.host.clone();
+    let unreachable = |message: String| HttpError::Unreachable {
+        host: host.clone(),
+        message,
+    };
     let exchange = async {
-        let tls = open(&target).await?;
+        let tcp = TcpStream::connect((target.host.as_str(), target.port))
+            .await
+            .map_err(|e| unreachable(e.to_string()))?;
+        let tls = crate::tls::connect(&target.host, tcp)
+            .await
+            .map_err(unreachable)?;
         exchange(tls, &target, body).await
     };
     tokio::time::timeout(TIMEOUT, exchange)
         .await
-        .map_err(|_| HttpError::Timeout { host })?
+        .map_err(|_| HttpError::Timeout { host: host.clone() })?
 }
 
-/// The status code and body of an answer.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Answer {
-    pub status: u16,
-    pub body: Vec<u8>,
-}
-
-/// POSTs `body` as a form to `url` and reads the whole answer.
-pub async fn post_form_read(url: &str, body: &str) -> Result<Answer, HttpError> {
-    let target = parse(url)?;
-    let host = target.host.clone();
-    let exchange = async {
-        let tls = open(&target).await?;
-        exchange_read(tls, &target, body).await
-    };
-    tokio::time::timeout(TIMEOUT, exchange)
-        .await
-        .map_err(|_| HttpError::Timeout { host })?
-}
-
-async fn open(target: &Target) -> Result<TlsStream<TcpStream>, HttpError> {
-    let unreachable = |message: String| HttpError::Unreachable {
-        host: target.host.clone(),
-        message,
-    };
-    let tcp = TcpStream::connect((target.host.as_str(), target.port))
-        .await
-        .map_err(|e| unreachable(e.to_string()))?;
-    crate::tls::connect(&target.host, tcp)
-        .await
-        .map_err(unreachable)
-}
-
-async fn send<S: AsyncWrite + Unpin>(
-    stream: &mut S,
+pub(crate) async fn exchange<S: AsyncRead + AsyncWrite + Unpin>(
+    mut stream: S,
     target: &Target,
     body: &str,
-) -> Result<(), HttpError> {
+) -> Result<u16, HttpError> {
+    let host = target.host.clone();
     let request = format!(
         "POST {} HTTP/1.1\r\nHost: {}\r\nUser-Agent: EmailTerminator\r\n\
          Content-Type: application/x-www-form-urlencoded\r\nContent-Length: {}\r\n\
@@ -154,20 +127,11 @@ async fn send<S: AsyncWrite + Unpin>(
         .write_all(request.as_bytes())
         .await
         .map_err(|e| HttpError::Unreachable {
-            host: target.host.clone(),
+            host: host.clone(),
             message: e.to_string(),
         })?;
     stream.flush().await.ok();
-    Ok(())
-}
 
-pub(crate) async fn exchange<S: AsyncRead + AsyncWrite + Unpin>(
-    mut stream: S,
-    target: &Target,
-    body: &str,
-) -> Result<u16, HttpError> {
-    send(&mut stream, target, body).await?;
-    let host = target.host.clone();
     let mut head = Vec::new();
     let mut buf = [0u8; 1024];
     while !head.windows(2).any(|w| w == b"\r\n") {
@@ -178,69 +142,6 @@ pub(crate) async fn exchange<S: AsyncRead + AsyncWrite + Unpin>(
         head.extend_from_slice(&buf[..n]);
     }
     status(&head).ok_or(HttpError::NotHttp { host })
-}
-
-/// Sends the request and reads until the server closes, as `Connection:
-/// close` asks.
-pub(crate) async fn exchange_read<S: AsyncRead + AsyncWrite + Unpin>(
-    mut stream: S,
-    target: &Target,
-    body: &str,
-) -> Result<Answer, HttpError> {
-    send(&mut stream, target, body).await?;
-    let not_http = || HttpError::NotHttp {
-        host: target.host.clone(),
-    };
-    let mut raw = Vec::new();
-    let mut buf = [0u8; 8192];
-    loop {
-        // A TLS peer that closes without close_notify still ended the answer.
-        let n = stream.read(&mut buf).await.unwrap_or(0);
-        if n == 0 {
-            break;
-        }
-        raw.extend_from_slice(&buf[..n]);
-        if raw.len() > MAX_HEAD + MAX_ANSWER {
-            return Err(not_http());
-        }
-    }
-    let split = raw
-        .windows(4)
-        .position(|w| w == b"\r\n\r\n")
-        .ok_or_else(not_http)?;
-    let (head, rest) = (&raw[..split], &raw[split + 4..]);
-    let status = status(head).ok_or_else(not_http)?;
-    let head = String::from_utf8_lossy(head).to_ascii_lowercase();
-    let header = |name: &str| {
-        head.split("\r\n")
-            .find_map(|line| line.strip_prefix(name)?.trim_start().strip_prefix(':'))
-            .map(str::trim)
-    };
-    let body = if header("transfer-encoding").is_some_and(|v| v.contains("chunked")) {
-        dechunk(rest).ok_or_else(not_http)?
-    } else if let Some(length) = header("content-length") {
-        let length: usize = length.parse().map_err(|_| not_http())?;
-        rest.get(..length).ok_or_else(not_http)?.to_vec()
-    } else {
-        rest.to_vec()
-    };
-    Ok(Answer { status, body })
-}
-
-/// Joins a chunked body (RFC 9112 7.1). Trailers are ignored.
-fn dechunk(mut rest: &[u8]) -> Option<Vec<u8>> {
-    let mut body = Vec::new();
-    loop {
-        let end = rest.windows(2).position(|w| w == b"\r\n")?;
-        let line = std::str::from_utf8(&rest[..end]).ok()?;
-        let size = usize::from_str_radix(line.split(';').next()?.trim(), 16).ok()?;
-        rest = &rest[end + 2..];
-        if size == 0 {
-            return Some(body);
-        }
-        body.extend_from_slice(rest.get(..size)?);
-        rest = rest.get(size + 2..)?;
-    }
 }
 
 /// The code in a status line such as `HTTP/1.1 204 No Content`.
@@ -336,49 +237,6 @@ mod tests {
         assert!(matches!(
             exchange(client, &target, "x").await,
             Err(HttpError::Unreachable { .. } | HttpError::NotHttp { .. })
-        ));
-    }
-
-    #[tokio::test]
-    async fn a_whole_answer_is_read() {
-        for answer in [
-            &b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 9\r\n\r\n{\"a\":\"b\"}xx"[..],
-            b"HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n4\r\n{\"a\"\r\n5;x=1\r\n:\"b\"}\r\n0\r\n\r\n",
-            b"HTTP/1.1 200 OK\r\n\r\n{\"a\":\"b\"}",
-        ] {
-            let (client, mut server) = tokio::io::duplex(4096);
-            let target = parse("https://login.test/token").unwrap();
-            tokio::spawn(async move {
-                let mut got = vec![0u8; 4096];
-                let _ = server.read(&mut got).await.unwrap();
-                server.write_all(answer).await.unwrap();
-            });
-            let got = exchange_read(client, &target, "grant_type=x").await.unwrap();
-            assert_eq!(got.status, 200);
-            assert_eq!(
-                String::from_utf8(got.body).unwrap(),
-                r#"{"a":"b"}"#,
-                "{}",
-                String::from_utf8_lossy(answer)
-            );
-        }
-    }
-
-    #[tokio::test]
-    async fn a_cut_chunk_is_not_http() {
-        let (client, mut server) = tokio::io::duplex(4096);
-        let target = parse("https://login.test/token").unwrap();
-        tokio::spawn(async move {
-            let mut got = vec![0u8; 4096];
-            let _ = server.read(&mut got).await.unwrap();
-            server
-                .write_all(b"HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n9\r\n{\"a\"")
-                .await
-                .unwrap();
-        });
-        assert!(matches!(
-            exchange_read(client, &target, "x").await,
-            Err(HttpError::NotHttp { .. })
         ));
     }
 }

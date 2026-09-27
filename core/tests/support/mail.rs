@@ -3,7 +3,7 @@
 use std::sync::Arc;
 
 use et_core::ingest::imap::{Fetched, SyncTarget};
-use et_core::scan::{ImapScan, rebuild};
+use et_core::scan::{MailScan, rebuild};
 use et_core::store::Store;
 
 const MONTHS: [&str; 12] = [
@@ -54,7 +54,7 @@ pub fn newsletter(name: &str, day: u32, one_click: bool) -> Vec<u8> {
 
 /// Stores `mail` as source 1's INBOX, UIDs from 1, then rebuilds.
 pub fn scan(store: &Arc<Store>, mail: Vec<Vec<u8>>) {
-    let scan = ImapScan::new(store.clone(), 1, "me@example.test");
+    let scan = MailScan::new(store.clone(), 1, "me@example.test");
     scan.resume("INBOX", 1).unwrap();
     let batch = mail
         .into_iter()

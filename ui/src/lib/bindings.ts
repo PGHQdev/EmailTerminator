@@ -15,7 +15,7 @@ export const commands = {
 	addImapSource: (input: NewImapSource) => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_imap_source", { input })),
 	/**
 	 *  Opens Microsoft's sign-in in the browser, waits for it to come back,
-	 *  checks the token against IMAP, then saves the source and its refresh
+	 *  checks the token against Graph, then saves the source and its refresh
 	 *  token.
 	 */
 	addOutlookSource: () => typedError<SourceSummary, ConnectError>(__TAURI_INVOKE("add_outlook_source")),

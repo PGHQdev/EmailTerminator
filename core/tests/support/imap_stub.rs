@@ -8,7 +8,6 @@
 use std::collections::BTreeMap;
 use std::sync::{Arc, Mutex};
 
-use base64::Engine;
 use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
 use tokio::net::TcpListener;
 
@@ -30,12 +29,11 @@ pub struct Folder {
 
 pub struct State {
     pub folders: Vec<Folder>,
-    /// The app password, or the access token XOAUTH2 must carry.
     pub password: String,
     /// Close the socket after this many FETCH responses, once.
     pub drop_after_fetches: Option<usize>,
     pub commands: Vec<String>,
-    /// The words a refused sign-in carries, per provider.
+    /// The words a refused LOGIN carries, per provider.
     pub auth_failure: String,
 }
 
@@ -120,7 +118,7 @@ impl Provider {
             Provider::ICloud => "[AUTHENTICATIONFAILED] Authentication failed.",
             Provider::Fastmail => "[AUTHENTICATIONFAILED] Authentication failed",
             Provider::Yahoo => "[AUTHENTICATIONFAILED] LOGIN Invalid credentials",
-            Provider::Outlook => "AUTHENTICATE failed.",
+            Provider::Outlook => "LOGIN failed.",
         }
     }
 
@@ -182,35 +180,6 @@ async fn serve(socket: tokio::net::TcpStream, state: Arc<Mutex<State>>) {
                 if words.get(2).map(String::as_str) == Some(st.password.as_str()) {
                     out.extend(format!("{tag} OK LOGIN completed\r\n").bytes());
                 } else {
-                    out.extend(format!("{tag} NO {}\r\n", st.auth_failure).bytes());
-                }
-            }
-            "AUTHENTICATE" if words.get(1).map(|w| w.to_uppercase()) == Some("XOAUTH2".into()) => {
-                if write.write_all(b"+ \r\n").await.is_err() {
-                    return;
-                }
-                line.clear();
-                if lines.read_line(&mut line).await.unwrap_or(0) == 0 {
-                    return;
-                }
-                let response = base64::engine::general_purpose::STANDARD
-                    .decode(line.trim_end())
-                    .unwrap_or_default();
-                let expected = {
-                    let st = state.lock().unwrap();
-                    format!("auth=Bearer {}\x01\x01", st.password)
-                };
-                if String::from_utf8_lossy(&response).ends_with(&expected) {
-                    out.extend(format!("{tag} OK AUTHENTICATE completed.\r\n").bytes());
-                } else {
-                    // As Gmail does: the error comes as a challenge the client
-                    // answers empty (RFC 7628 3.2.3), then the NO.
-                    let _ = write.write_all(b"+ eyJzdGF0dXMiOiI0MDAifQ==\r\n").await;
-                    line.clear();
-                    if lines.read_line(&mut line).await.unwrap_or(0) == 0 {
-                        return;
-                    }
-                    let st = state.lock().unwrap();
                     out.extend(format!("{tag} NO {}\r\n", st.auth_failure).bytes());
                 }
             }

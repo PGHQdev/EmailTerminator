@@ -7,7 +7,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use et_core::action::bulk::{self, Event, Item, RunItem, Target};
 use et_core::action::{self, Entry, unsubscribe};
 use et_core::extract::{Preview, preview};
-use et_core::ingest::imap;
+use et_core::ingest::{graph, imap};
 use et_core::source::{self, unix_now};
 use serde::Serialize;
 use specta::Type;
@@ -15,7 +15,7 @@ use tauri::ipc::Channel;
 
 use crate::AppState;
 use crate::settings::read_sweep;
-use crate::sources::{SignInError, credentials};
+use crate::sources::{Login, SignInError, credentials};
 
 #[tauri::command]
 #[specta::specta]
@@ -127,8 +127,9 @@ pub async fn evidence_original(
     let Some(locator) = found else {
         return Ok(Original::Gone);
     };
-    let signed_in = match credentials(&state, &store, locator.source_id).await {
-        Ok(signed_in) => signed_in,
+    let login = match credentials(&state, &store, locator.source_id).await {
+        Ok(Some(login)) => login,
+        Ok(None) => return Ok(Original::Gone),
         Err(SignInError::Refused { server_says, .. }) => {
             return Ok(Original::Unreachable {
                 message: format!("sign-in refused: {server_says}"),
@@ -137,18 +138,26 @@ pub async fn evidence_original(
         Err(SignInError::Unreachable(message)) => return Ok(Original::Unreachable { message }),
         Err(SignInError::Failed(message)) => return Err(message),
     };
-    let Some((account, secret)) = signed_in else {
-        return Ok(Original::Gone);
+    let fetched = match login {
+        Login::Imap { account, password } => {
+            let Some(uid) = locator.uid() else {
+                return Ok(Original::Gone);
+            };
+            imap::fetch_one(
+                &account,
+                &password,
+                &locator.folder,
+                locator.uid_validity,
+                uid,
+            )
+            .await
+            .map_err(|e| e.to_string())
+        }
+        Login::Outlook { token, .. } => graph::fetch_one(&token, &locator.locator)
+            .await
+            .map_err(|e| e.to_string()),
     };
-    match imap::fetch_one(
-        &account,
-        &secret,
-        &locator.folder,
-        locator.uid_validity,
-        locator.uid,
-    )
-    .await
-    {
+    match fetched {
         Ok(Some(raw)) => Ok(Original::Found {
             preview: preview(&raw),
         }),

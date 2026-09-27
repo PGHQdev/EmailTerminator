@@ -183,7 +183,7 @@ fn remove_if_present(path: &Path) -> io::Result<()> {
 mod tests {
     use super::*;
     use crate::crypt::EncryptedFile;
-    use crate::source::{ImapConfig, add_imap, add_outlook};
+    use crate::source::{ImapConfig, OutlookConfig, add_imap, add_outlook};
 
     fn open(dir: &Path, secrets: &dyn SecretStore) -> Store {
         Store::open(&dir.join(DB_FILE), &load_or_create_key(secrets).unwrap()).unwrap()
@@ -202,7 +202,10 @@ mod tests {
         };
         let id = add_imap(&store, "Test", &config).unwrap();
         secrets.set(&source::password_secret(id), b"pw").unwrap();
-        let outlook = add_outlook(&store, "Outlook", &config).unwrap();
+        let outlook = OutlookConfig {
+            username: "me@outlook.test".into(),
+        };
+        let outlook = add_outlook(&store, "Outlook", &outlook).unwrap();
         secrets
             .set(&source::refresh_secret(outlook), b"rt")
             .unwrap();

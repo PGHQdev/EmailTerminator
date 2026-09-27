@@ -3,11 +3,12 @@
 
 use std::sync::Arc;
 
+use et_core::ingest::graph::{self, GraphError};
 use et_core::ingest::imap::{
-    self, Account, Auth, FASTMAIL, GMAIL, ICLOUD, ImapError, Preset, Security, YAHOO,
+    self, Account, FASTMAIL, GMAIL, ICLOUD, ImapError, Preset, Security, YAHOO,
 };
 use et_core::ingest::outlook::{self, OAuthError};
-use et_core::source::{self, ImapConfig};
+use et_core::source::{self, ImapConfig, Mailbox, OutlookConfig};
 use et_core::store::{Store, StoreError};
 use serde::{Deserialize, Serialize};
 use specta::Type;
@@ -15,8 +16,10 @@ use tauri_plugin_opener::OpenerExt;
 
 use crate::AppState;
 
-/// Where Microsoft's sign-in answers from; S16 names it when it refuses.
+/// Where Microsoft's sign-in and mail answer from; S16 names them when they
+/// refuse.
 const MICROSOFT: &str = "login.microsoftonline.com";
+const GRAPH: &str = "graph.microsoft.com";
 
 #[derive(Clone, Copy, Serialize, Deserialize, Type)]
 #[serde(rename_all = "camelCase")]
@@ -171,7 +174,6 @@ pub async fn add_imap_source(
         port,
         username: email.clone(),
         security: Security::Tls,
-        auth: Auth::Password,
     };
     imap::check_sign_in(&account, &password)
         .await
@@ -204,7 +206,7 @@ pub async fn add_imap_source(
 }
 
 /// Opens Microsoft's sign-in in the browser, waits for it to come back,
-/// checks the token against IMAP, then saves the source and its refresh
+/// checks the token against Graph, then saves the source and its refresh
 /// token.
 #[tauri::command]
 #[specta::specta]
@@ -231,30 +233,24 @@ pub async fn add_outlook_source(
         .refresh
         .ok_or_else(|| failed("Microsoft sent no refresh token"))?;
 
-    let account = outlook_account(email.clone());
-    imap::check_sign_in(&account, &tokens.access)
+    graph::check_sign_in(&tokens.access)
         .await
         .map_err(|err| match err {
-            ImapError::Auth(server_says) => ConnectError::SignInRefused {
-                host: outlook::HOST.into(),
-                server_says,
-                guide: None,
-            },
-            ImapError::Connect { .. } | ImapError::Tls(_) => ConnectError::Unreachable {
-                message: err.to_string(),
-            },
+            GraphError::Expired(server_says) | GraphError::Refused(server_says) => {
+                ConnectError::SignInRefused {
+                    host: GRAPH.into(),
+                    server_says,
+                    guide: None,
+                }
+            }
+            GraphError::Connect(message) => ConnectError::Unreachable { message },
             other => failed(other),
         })?;
 
-    let config = ImapConfig {
-        host: account.host,
-        port: account.port,
-        username: email.clone(),
-    };
     save(
         &state,
         format!("Outlook · {email}"),
-        config,
+        OutlookConfig { username: email },
         source::add_outlook,
         source::refresh_secret,
         refresh.as_bytes(),
@@ -281,29 +277,19 @@ fn oauth_error(err: OAuthError) -> ConnectError {
             guide: None,
         },
         OAuthError::Cancelled => ConnectError::Cancelled,
-        OAuthError::Http(_) => ConnectError::Unreachable {
+        OAuthError::Network(_) => ConnectError::Unreachable {
             message: err.to_string(),
         },
         other => failed(other),
     }
 }
 
-fn outlook_account(username: String) -> Account {
-    Account {
-        host: outlook::HOST.into(),
-        port: outlook::PORT,
-        username,
-        security: Security::Tls,
-        auth: Auth::XOAuth2,
-    }
-}
-
 /// Saves a checked source, then puts its secret in the secret store.
-async fn save(
+async fn save<C: Send + 'static>(
     state: &AppState,
     label: String,
-    config: ImapConfig,
-    add: fn(&Store, &str, &ImapConfig) -> Result<i64, StoreError>,
+    config: C,
+    add: fn(&Store, &str, &C) -> Result<i64, StoreError>,
     secret_name: fn(i64) -> String,
     secret: &[u8],
 ) -> Result<SourceSummary, ConnectError> {
@@ -334,54 +320,85 @@ pub(crate) enum SignInError {
     Failed(String),
 }
 
-/// The account and secret a sync or an evidence link signs in with, or
-/// `None` for a source that is not a mailbox. An Outlook source trades its
-/// refresh token for an access token, and keeps the new refresh token
-/// Microsoft may send with it.
+/// How a sync or an evidence link reads a mailbox.
+pub(crate) enum Login {
+    Imap { account: Account, password: String },
+    Outlook { username: String, token: String },
+}
+
+/// The login for a mailbox source, or `None` for a source that is not one.
+/// An Outlook source trades its refresh token for an access token, and keeps
+/// the new refresh token Microsoft may send with it.
 pub(crate) async fn credentials(
     state: &AppState,
     store: &Arc<Store>,
     source_id: i64,
-) -> Result<Option<(Account, String)>, SignInError> {
+) -> Result<Option<Login>, SignInError> {
     let fail = |e: &dyn std::fmt::Display| SignInError::Failed(e.to_string());
+    let missing = || SignInError::Failed("the sign-in is missing from the keychain".into());
     let Some(mailbox) = source::mailbox(store, source_id).map_err(|e| fail(&e))? else {
         return Ok(None);
     };
-    let name = match mailbox.auth {
-        Auth::Password => source::password_secret(source_id),
-        Auth::XOAuth2 => source::refresh_secret(source_id),
-    };
-    let secret = state
-        .secrets
-        .get(&name)
-        .map_err(|e| fail(&e))?
-        .ok_or_else(|| SignInError::Failed("the sign-in is missing from the keychain".into()))?;
-    let secret = String::from_utf8_lossy(&secret).into_owned();
-    let account = Account {
-        host: mailbox.config.host,
-        port: mailbox.config.port,
-        username: mailbox.config.username,
-        security: Security::Tls,
-        auth: mailbox.auth,
-    };
-    if mailbox.auth == Auth::Password {
-        return Ok(Some((account, secret)));
+    match mailbox {
+        Mailbox::Imap(config) => {
+            let password = state
+                .secrets
+                .get(&source::password_secret(source_id))
+                .map_err(|e| fail(&e))?
+                .ok_or_else(missing)?;
+            Ok(Some(Login::Imap {
+                account: Account {
+                    host: config.host,
+                    port: config.port,
+                    username: config.username,
+                    security: Security::Tls,
+                },
+                password: String::from_utf8_lossy(&password).into_owned(),
+            }))
+        }
+        Mailbox::Outlook(config) => {
+            let name = source::refresh_secret(source_id);
+            let refresh = state
+                .secrets
+                .get(&name)
+                .map_err(|e| fail(&e))?
+                .ok_or_else(missing)?;
+            let tokens = outlook::refresh(&String::from_utf8_lossy(&refresh))
+                .await
+                .map_err(|err| match err {
+                    OAuthError::Refused(server_says) => SignInError::Refused {
+                        host: MICROSOFT.into(),
+                        server_says,
+                    },
+                    OAuthError::Network(_) => SignInError::Unreachable(err.to_string()),
+                    other => fail(&other),
+                })?;
+            if let Some(refresh) = &tokens.refresh {
+                state
+                    .secrets
+                    .set(&name, refresh.as_bytes())
+                    .map_err(|e| fail(&e))?;
+            }
+            Ok(Some(Login::Outlook {
+                username: config.username,
+                token: tokens.access.to_string(),
+            }))
+        }
     }
-    let tokens = outlook::refresh(&secret).await.map_err(|err| match err {
-        OAuthError::Refused(server_says) => SignInError::Refused {
-            host: MICROSOFT.into(),
-            server_says,
-        },
-        OAuthError::Http(_) => SignInError::Unreachable(err.to_string()),
-        other => fail(&other),
-    })?;
-    if let Some(refresh) = &tokens.refresh {
-        state
-            .secrets
-            .set(&name, refresh.as_bytes())
-            .map_err(|e| fail(&e))?;
+}
+
+/// S16 shows a refused Graph request as a sign-in failure.
+pub(crate) fn graph_refusal(err: GraphError) -> SignInError {
+    match err {
+        GraphError::Expired(server_says) | GraphError::Refused(server_says) => {
+            SignInError::Refused {
+                host: GRAPH.into(),
+                server_says,
+            }
+        }
+        GraphError::Connect(message) => SignInError::Unreachable(message),
+        other => SignInError::Failed(other.to_string()),
     }
-    Ok(Some((account, tokens.access.to_string())))
 }
 
 #[tauri::command]

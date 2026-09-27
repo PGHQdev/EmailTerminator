@@ -8,6 +8,7 @@ const MIGRATIONS: &[&str] = &[
     include_str!("../../migrations/001-initial.sql"),
     include_str!("../../migrations/002-price-increase.sql"),
     include_str!("../../migrations/003-actions.sql"),
+    include_str!("../../migrations/004-graph.sql"),
 ];
 
 pub(super) fn migrate(conn: &mut Connection) -> Result<(), StoreError> {

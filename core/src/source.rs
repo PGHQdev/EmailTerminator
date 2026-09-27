@@ -6,10 +6,9 @@ use rusqlite::{OptionalExtension, params};
 use serde::{Deserialize, Serialize};
 
 use crate::extract::rfc3339_utc;
-use crate::ingest::imap::Auth;
 use crate::store::{Store, StoreError};
 
-/// A mailbox source's settings. Its secret lives in the secret store, never
+/// An IMAP source's settings. A mailbox source's secret lives in the secret store, never
 /// in the database: an app password under [`password_secret`], an Outlook
 /// refresh token under [`refresh_secret`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -28,11 +27,26 @@ pub struct Source {
     pub message_count: i64,
 }
 
-/// A mailbox source and how it signs in.
+/// An Outlook.com source's settings: Graph needs only the address.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct OutlookConfig {
+    pub username: String,
+}
+
+/// A mailbox source, by how it is read.
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Mailbox {
-    pub config: ImapConfig,
-    pub auth: Auth,
+pub enum Mailbox {
+    Imap(ImapConfig),
+    Outlook(OutlookConfig),
+}
+
+impl Mailbox {
+    pub fn username(&self) -> &str {
+        match self {
+            Mailbox::Imap(c) => &c.username,
+            Mailbox::Outlook(c) => &c.username,
+        }
+    }
 }
 
 pub fn password_secret(source_id: i64) -> String {
@@ -59,11 +73,11 @@ pub fn add_imap(store: &Store, label: &str, config: &ImapConfig) -> Result<i64, 
     add(store, "imap", label, config)
 }
 
-pub fn add_outlook(store: &Store, label: &str, config: &ImapConfig) -> Result<i64, StoreError> {
+pub fn add_outlook(store: &Store, label: &str, config: &OutlookConfig) -> Result<i64, StoreError> {
     add(store, "outlook", label, config)
 }
 
-fn add(store: &Store, kind: &str, label: &str, config: &ImapConfig) -> Result<i64, StoreError> {
+fn add(store: &Store, kind: &str, label: &str, config: &impl Serialize) -> Result<i64, StoreError> {
     let (kind, label, config) = (
         kind.to_owned(),
         label.to_owned(),
@@ -105,15 +119,9 @@ pub fn mailbox(store: &Store, id: i64) -> Result<Option<Mailbox>, StoreError> {
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
         .optional()?;
-    Ok(row.and_then(|(kind, config)| {
-        Some(Mailbox {
-            config: serde_json::from_str(&config).ok()?,
-            auth: if kind == "outlook" {
-                Auth::XOAuth2
-            } else {
-                Auth::Password
-            },
-        })
+    Ok(row.and_then(|(kind, config)| match kind.as_str() {
+        "outlook" => serde_json::from_str(&config).ok().map(Mailbox::Outlook),
+        _ => serde_json::from_str(&config).ok().map(Mailbox::Imap),
     }))
 }
 
@@ -133,7 +141,7 @@ mod tests {
     use crate::crypt::DbKey;
 
     #[test]
-    fn an_imap_source_round_trips_without_its_password() {
+    fn mailbox_sources_round_trip_without_their_secrets() {
         let dir = tempfile::tempdir().unwrap();
         let store = Store::open(&dir.path().join("et.db"), &DbKey::generate().unwrap()).unwrap();
         let config = ImapConfig {
@@ -142,17 +150,14 @@ mod tests {
             username: "me@fastmail.test".into(),
         };
         let id = add_imap(&store, "Fastmail", &config).unwrap();
+        assert_eq!(mailbox(&store, id).unwrap(), Some(Mailbox::Imap(config)));
+        let outlook = OutlookConfig {
+            username: "me@outlook.test".into(),
+        };
+        let outlook_id = add_outlook(&store, "Outlook", &outlook).unwrap();
         assert_eq!(
-            mailbox(&store, id).unwrap(),
-            Some(Mailbox {
-                config: config.clone(),
-                auth: Auth::Password
-            })
-        );
-        let outlook = add_outlook(&store, "Outlook", &config).unwrap();
-        assert_eq!(
-            mailbox(&store, outlook).unwrap().unwrap().auth,
-            Auth::XOAuth2
+            mailbox(&store, outlook_id).unwrap(),
+            Some(Mailbox::Outlook(outlook))
         );
 
         mark_synced(&store, id).unwrap();

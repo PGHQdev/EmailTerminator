@@ -185,14 +185,21 @@ pub fn get(conn: &Connection, id: u32) -> Result<Option<Entry>, StoreError> {
         .optional()?)
 }
 
-/// Where the original of a message is, for an IMAP source: the folder, its
-/// UIDVALIDITY when the message was stored, and the UID.
+/// Where the original of a message is: the folder, its UIDVALIDITY when the
+/// message was stored (0 for Graph), and the locator, an IMAP UID or a Graph
+/// message id.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Locator {
     pub source_id: i64,
     pub folder: String,
     pub uid_validity: u32,
-    pub uid: u32,
+    pub locator: String,
+}
+
+impl Locator {
+    pub fn uid(&self) -> Option<u32> {
+        self.locator.parse().ok()
+    }
 }
 
 pub fn locate(conn: &Connection, message_id: u32) -> Result<Option<Locator>, StoreError> {
@@ -212,13 +219,11 @@ pub fn locate(conn: &Connection, message_id: u32) -> Result<Option<Locator>, Sto
             },
         )
         .optional()?
-        .and_then(|(source_id, folder, uid_validity, locator)| {
-            Some(Locator {
-                source_id,
-                folder,
-                uid_validity,
-                uid: locator.parse().ok()?,
-            })
+        .map(|(source_id, folder, uid_validity, locator)| Locator {
+            source_id,
+            folder,
+            uid_validity,
+            locator,
         }))
 }
 
@@ -267,7 +272,7 @@ mod tests {
                 source_id: 1,
                 folder: "INBOX".into(),
                 uid_validity: 9,
-                uid: 42
+                locator: "42".into()
             })
         );
         drop(conn);
