@@ -156,6 +156,13 @@ fn read_capped(path: &Path) -> io::Result<Vec<u8>> {
 mod tests {
     use super::*;
 
+    /// Windows forbids `:` in a file name; its Maildir tools write `!`.
+    const INFO: &str = if cfg!(windows) { "!" } else { ":" };
+
+    fn flagged(name: &str, flags: &str) -> String {
+        format!("{name}{INFO}{flags}")
+    }
+
     fn put(root: &Path, path: &str, body: &str) {
         let path = root.join(path);
         fs::create_dir_all(path.parent().unwrap()).unwrap();
@@ -166,11 +173,23 @@ mod tests {
     fn folders_are_found_and_sent_mail_is_skipped() {
         let dir = tempfile::tempdir().unwrap();
         let root = dir.path();
-        put(root, "cur/1.a.host:2,S", "Subject: read\n\nx\n");
+        put(
+            root,
+            &flagged("cur/1.a.host", "2,S"),
+            "Subject: read\n\nx\n",
+        );
         put(root, "new/2.b.host", "Subject: new\n\nx\n");
         fs::create_dir_all(root.join("tmp")).unwrap();
-        put(root, ".Receipts/cur/3.c.host:2,", "Subject: receipt\n\nx\n");
-        put(root, ".Sent/cur/4.d.host:2,S", "Subject: mine\n\nx\n");
+        put(
+            root,
+            &flagged(".Receipts/cur/3.c.host", "2,"),
+            "Subject: receipt\n\nx\n",
+        );
+        put(
+            root,
+            &flagged(".Sent/cur/4.d.host", "2,S"),
+            "Subject: mine\n\nx\n",
+        );
         put(root, "Archive/2025/new/5.e.host", "Subject: nested\n\nx\n");
         put(root, "cur/.hidden", "not mail");
 
@@ -198,14 +217,14 @@ mod tests {
         fs::create_dir_all(root.join(".Receipts/cur")).unwrap();
         fs::rename(
             root.join(".Receipts/new/3.c.host"),
-            root.join(".Receipts/cur/3.c.host:2,S"),
+            root.join(flagged(".Receipts/cur/3.c.host", "2,S")),
         )
         .unwrap();
         assert_eq!(
             read_one(root, &locator).unwrap().unwrap(),
             b"Subject: receipt\n\nx\n"
         );
-        fs::remove_file(root.join(".Receipts/cur/3.c.host:2,S")).unwrap();
+        fs::remove_file(root.join(flagged(".Receipts/cur/3.c.host", "2,S"))).unwrap();
         assert_eq!(read_one(root, &locator).unwrap(), None);
     }
 

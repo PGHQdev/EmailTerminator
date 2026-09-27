@@ -136,7 +136,9 @@ fn a_maildir_import_skips_sent_mail() {
     {
         let dir = root.path().join(folder);
         std::fs::create_dir_all(&dir).unwrap();
-        std::fs::write(dir.join(format!("{n}.x.host:2,S")), receipt(n as u32)).unwrap();
+        // Windows forbids `:` in a file name; its Maildir tools write `!`.
+        let info = if cfg!(windows) { "!" } else { ":" };
+        std::fs::write(dir.join(format!("{n}.x.host{info}2,S")), receipt(n as u32)).unwrap();
     }
     let scan = MailScan::new(store.clone(), 1, "");
     let files = maildir::open(root.path()).unwrap();
