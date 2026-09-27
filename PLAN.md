@@ -713,8 +713,8 @@ where contributing needs nothing but a text editor.
   implementation with a different base URL — presets live in
   `data/providers.toml` (2.6).
 - **Tier 1 is discovery first.** Probe the OpenAI-compatible endpoints a user
-  is likely to already run (Ollama, LM Studio, llama.cpp server) on their
-  default ports. If one answers, Tier 1 *is* the Tier 2 client pointed at
+  is likely to already run (Ollama, LM Studio, llama.cpp server, `mlx-lm`
+  server) on their default ports. If one answers, Tier 1 *is* the Tier 2 client pointed at
   localhost, and we ship no runtime at all.
 - **A local endpoint is not automatically a local model.** Ollama now ships
   cloud models, so an endpoint on `localhost` can forward mail content to a
@@ -723,8 +723,35 @@ where contributing needs nothing but a text editor.
   unless we can confirm the model is resident. Getting this wrong breaks the
   first invariant while appearing to honour it.
 - **Fallback when nothing answers**: fetch a `llama.cpp` server binary on
-  enable (~23 MB) and manage it as a child process. Fetched, never bundled —
-  it must not be in the installer for a feature most users never turn on.
+  enable and manage it as a child process. Fetched, never bundled — it must
+  not be in the installer for a feature most users never turn on. One build
+  per platform, picked by the app's own target (sizes at b11221):
+
+  | Platform | Build | Size |
+  |---|---|---|
+  | macOS, Apple Silicon | `macos-arm64` (Metal) | 11 MB |
+  | macOS, Intel | `macos-x64` (CPU) | 10 MB |
+  | Windows x64 | `win-vulkan-x64` | 31 MB |
+  | Linux x64 | `ubuntu-vulkan-x64` | 29 MB |
+
+  Vulkan covers NVIDIA, AMD and Intel GPUs in one build. After the fetch the
+  app runs `llama-server --list-devices`; with no GPU listed, it runs on the
+  CPU. Intel Macs run on the CPU only, so S13 points them at Tier 2.
+
+  **Why `llama.cpp` and not Ollama or MLX.** One small binary per platform,
+  one model format (GGUF) everywhere, Metal on Apple Silicon without setup.
+  Ollama is not fetched or recommended: it wraps the same engine and ships
+  cloud models (below). MLX is faster on Apple Silicon, but its server is
+  Python: fetching it costs `uv`, a Python runtime and about 300 MB before
+  the model, plus pinned packages to keep current, and it does not run on
+  Intel Macs. `mlx-rs` would embed MLX with no Python, but it leaves each
+  model family's code to us and puts model crashes inside the app process.
+  CUDA builds are left out: about 550 MB with `cudart`, for a speed gain on
+  NVIDIA we have not measured.
+
+  **What would reopen it**: `mlx-rs` or a native MLX server shipping the
+  model families we default to, which makes MLX a single fetch; or a
+  measured CUDA gain large enough to justify its download.
 - **Model licensing is settled, and the rule that settles it is gating.** A
   gated Hugging Face repository needs an account and per-repository approval,
   which no unattended download can satisfy. Every `google/gemma-3-*` repo
